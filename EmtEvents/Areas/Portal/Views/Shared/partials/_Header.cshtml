@@ -1,0 +1,18 @@
+
+<header class="main-header">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-sm-auto col-md-12 col-lg-auto text-center">
+                <a href="#" class="main_logo">
+                    <img src="~/portal/img/logo.png" alt="@ViewData["Title"]">
+                </a>
+            </div>
+
+            <div class="col-sm-auto col-md-12 col-lg-auto">
+                 
+                    @await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_topbar.cshtml")
+                    @await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_navabr.cshtml")
+            </div>
+        </div>
+    </div>
+</header>

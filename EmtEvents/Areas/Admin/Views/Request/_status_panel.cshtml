@@ -1,0 +1,47 @@
+﻿<div class="status_panel">
+   
+    
+        @{ List<TamTechSDK.Common.Models.SelectList.SelectListItemModel> statusList = ViewBag.statusList; }
+
+        <form asp-action="Details" method="post" class="form-horizontal forn-new form-label-left">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" name="CurrentStatusId" value="@Model.StatusId" />
+
+
+            <div class="form-group clearfix m-t4">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["status"]</label>
+                <div class="col-md-7 col-sm-9 col-xs-12">
+                    @foreach (var item in statusList)
+                    {
+                        <label class="rideo-label">
+                            <span> @item.Text</span>
+                            <input type="radio"
+                                   name="StatusId"
+                                   id="Shipping"
+                                   class="toggle_switch ut-radio-btn"
+                                   value="@item.Value"
+                                   onchange="document.getElementById('notes').style.display= 'block'"
+                                   @((Model.StatusId == (int)item.Value) ? "checked" : "" )>
+                        </label>
+
+                    }
+                </div>
+            </div>
+            <div style="display:none" id="notes">
+                <div class="form-group clearfix">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["l_notes"]</label>
+                    <div class="col-md-7 col-sm-9 col-xs-12">
+                        <textarea name="Notes" class="form-control ut-status-note"></textarea>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
+                        <input type="submit" class="btn btn-success p-x-5 ut-update-btn" name="save" value="@Localizer["Update"] ">
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+ 
+</div>

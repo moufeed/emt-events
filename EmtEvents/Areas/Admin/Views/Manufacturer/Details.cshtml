@@ -1,0 +1,68 @@
+﻿@model Brand
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Details</h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-default"><span class="fa fa-chevron-left"></span>Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Id)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ImageUrl)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ImageUrl)
+                    </dd>
+                    <dt>
+                        CreatedDate   @*@Html.DisplayNameFor(model => model.CreatedDate)*@
+                    </dt>
+                    <dd>
+                        CreatedDate   @*@Html.DisplayFor(model => model.CreatedDate)*@
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+ 

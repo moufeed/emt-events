@@ -1,0 +1,26 @@
+<div class="c-form">
+
+    <h4 class="c-title">
+        <strong>@Localizer["send_us_meesage"]</strong>
+    </h4>
+
+    <form id="ContactForm" action="@Url.Action("contactus","home")" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control form-control-lg" placeholder="@Localizer["name"].." name="Name"  required/>
+        </div>
+        <div class="form-group">
+            <input type="tel" class="form-control form-control-lg" placeholder="@Localizer["Phone"].." name="Mobile" id="cphone" />
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control form-control-lg" placeholder="@Localizer["Email"].." name="Email" id="cemail">
+        </div>
+        <div class="form-group">
+            <textarea cols="30" rows="12" class="form-control" placeholder="@Localizer["Message"].." name="Message" required></textarea>
+        </div>
+        <div class="form-group  d-flex justify-content-end">
+            <button type="submit" class="btn btn-send btn-lg btn-block">
+                @Localizer["Send_it"]
+            </button>
+        </div>
+    </form>
+</div>

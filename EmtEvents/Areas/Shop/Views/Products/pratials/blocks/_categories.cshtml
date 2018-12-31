@@ -1,0 +1,73 @@
+<div class="block block-categories mb-3">
+    <div class="title">
+        <strong>Categories</strong>
+
+        <a class="collapse-link" data-toggle="collapse" href="#collapsecategories" role="button" aria-expanded="true" aria-controls="collapseExample">
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+
+    </div>
+
+
+
+
+    @{
+        string activeCategory = (ViewBag.FilterModel != null && ViewBag.FilterModel.CategoryId != null) ? ViewBag.FilterModel.CategoryId.ToString() : "";
+    }
+
+
+    <div class="block_body px-2 collapse show" id="collapsecategories" data-scroll='{"setTop": 0}' data-mcs-theme="dark">
+        <ul class="list" >
+
+            @*@{ int i = 0; }
+        @foreach (var category in ViewBag.Categories)
+        {
+            <li>
+                <label for="cbox-@i">
+                    @if (activeCategory == category.Id.ToString())
+                    {
+                        <input name="categories[]" id="cbox-@i" class="Checkbox" type="checkbox" value="@category.Id" checked />
+                    }
+                    else
+                    {
+                        <input name="categories[]" id="cbox-@i" class="Checkbox" type="checkbox" value="@category.Id" />
+                    }
+                    @category.Name
+                </label>
+            </li>
+            i++;
+        }*@
+
+
+            @if (ViewBag.Categories != null)
+            {
+                @foreach (var category in ViewBag.Categories)
+                {
+
+
+                    @if (activeCategory == category.Id.ToString())
+                    {
+                        <li class="active">
+                            <span>
+                                <a class="btn btn-reset" href="/Shop/Products">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                                @category.Name
+                            </span>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/Shop/Products/@category.Id.ToString()">
+                                @category.Name
+                            </a>
+                        </li>
+                    }
+
+
+                }
+            }
+            </ul>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+@using System.Linq
+
+@if (ViewBag.brands != null)
+{
+
+<div class="block block-brands">
+    <div class="title">
+        <strong>
+            Manufacturers
+        </strong>
+        <a class="collapse-link" data-toggle="collapse" href="#collapsebrands" role="button" aria-expanded="true" aria-controls="collapseExample">
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+    </div>
+
+
+    @{
+        List<string> activeBrands = new List<string>();
+
+        @if (ViewBag.FilterModel != null && ViewBag.FilterModel.BrandId != null)
+        {
+
+
+            activeBrands = ((string)ViewBag.FilterModel.BrandId).Split(',').ToList();
+
+        }
+        
+
+
+        string activeBrand = "";
+
+        
+      
+    }
+
+     
+
+
+    <div class="block_body  px-2 collapse show" id="collapsebrands" data-scroll data-mcs-theme="dark">
+        <ul class="list" >
+            @{ int i = 0; }
+              @foreach (var brand in ViewBag.brands)
+                {
+                    <li>
+                        <label for="Checkbox-@i">
+                            <input name="brands[]" id="Checkbox-@i" class="Checkbox" 
+                                   type="checkbox" value="@brand.Id" 
+                                   @if (activeBrands.Contains(brand.Id.ToString())) { <text> checked </text> } />
+
+                            @brand.Name
+                        </label>
+                    </li>
+                    i++;
+            }
+        </ul>
+
+
+
+        @*<div class="block_footer">
+                 <a href="#" class="view-all">
+                view all
+            </a>
+            </div>*@
+    </div>
+</div>
+}

@@ -1,0 +1,275 @@
+﻿@using System.Linq
+@model SectionFormVM
+
+@{
+    ViewData["UnitTestPageClass"] = "ut-sections-form";
+    ViewData["Title"] = ViewBag.IsEditMode ? Localizer["edit_section"] : Localizer["create_section"];
+
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@(ViewBag.IsEditMode ? Localizer["edit_section"] : Localizer["create_section"])<small></small></h3>
+        </div>
+        <div class="title_right dropdown">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        @{
+            if (ViewBag.IsEditMode)
+            {
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary {
+                        {"id" , Model.Id }};
+            }
+            else
+            {
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { };
+            }
+
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+
+
+
+
+        <div class="x_panel">
+
+
+
+
+            <div class="x_content">
+
+
+                @if (!Model.Locked && ViewBag.IsEditMode)
+                {
+                    <div class="text-right flip">
+                        <label asp-for="Published">
+                            <input type="checkbox"
+                                   asp-for="Published"
+                                   class="toggle_switch "
+                                   data-toggle="tooltip"
+                                   id="publish-section"
+                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-url="@Url.AdminUrl("PublishAsync","sections" , new { id = Model.Id})"
+                                   title="@Localizer["publish_unpublish"]" />
+                        </label>
+                    </div>
+                }
+
+
+                <form asp-action="@( ViewBag.IsEditMode  ? "Edit" : "Create" )" method="post" class="form-horizontal forn-new form-label-left" id="ServicesForm" enctype="multipart/form-data">
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    }
+                    <input type="hidden" name="Lang" value="@activeLang" />
+                    @if (ViewBag.IsEditMode)
+                    {
+                        <input type="hidden" asp-for="Id" class="ut-id" />
+                    }
+                    <div class="form-group clearfix">
+                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_name"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input asp-for="Title" class="form-control" required data-seo-name />
+                            <span asp-validation-for="Title" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="Slug" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            @if (Model.Locked)
+                            {
+                                <div class="input-group input-locked">
+
+                                    <p class="form-control-static">@Model.Slug</p>
+                                    <span class="input-group-addon"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <input type="text" asp-for="Slug" class="form-control" required />
+                            }
+
+                            <span asp-validation-for="Slug" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+
+                            @if (!string.IsNullOrEmpty(Model.MainImage))
+                            {
+                                <img src="@Model.MainImage" style="max-width:300px" class="img-thumbnail m-b3" data-seo-image="@Model.MainImage">
+                                <input type="hidden" name="MainImage" value="@Model.MainImage" />
+                            }
+
+                            <label class="form-control clearfix uploadfile">
+                                <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" />
+                                <span class="url">@Localizer["choose_file"]</span>
+                                <span class="file-btn"><i class="fa fa-search"></i> @Localizer["Browse"]</span>
+                            </label>
+                            <span asp-validation-for="MainImage" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="ParentId" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_section_parent"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+
+                            <select asp-items="ViewBag.selectItems" asp-for="ParentId" class="form-control select_picker">
+                                <option value="">@Localizer["none"]</option>
+                            </select>
+                            <span asp-validation-for="ParentId" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="DisplayOrder" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            @if (activeLang != CultureConstants.DefaultCulture.Lang && ViewBag.IsEditMode)
+                            {
+                                <input asp-for="DisplayOrder" class="form-control" min="0" disabled />
+                            }
+                            else
+                            {
+                                <input asp-for="DisplayOrder" class="form-control" min="0" />
+                            }
+                            <span asp-validation-for="DisplayOrder" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <textarea asp-for="Summary" class="form-control" required rows="5" maxlength="1000" data-seo-description></textarea>
+                            <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+
+
+                    <h4>
+                        @Localizer["SEO"]
+                    </h4>
+                    <hr />
+
+
+                    <div class="form-group clearfix">
+
+                        <label asp-for="MetaDescription" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
+
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <textarea asp-for="MetaDescription" class="form-control MetaDescription"
+                                      data-characters='{"warning_count" : 158  , "maximum_count" : 300 }' rows="3"></textarea>
+
+                            <span asp-validation-for="MetaDescription" class="text-danger invalid_field"></span>
+
+                        </div>
+                    </div>
+
+
+                    @if (ViewBag.IsEditMode)
+                    {
+                        <input type="hidden" name="DatePublished" value="@(String.Format("{0:yyyy-MM-dd}", Model.PublishedDate))" data-seo-published />
+                        <input type="hidden" name="DateModified" value="@(String.Format("{0:yyyy-MM-dd}", Model.ModifiedDate))" data-seo-modified />
+                        @await Html.PartialAsync("~/Areas/admin/Views/Shared/_SeoFields.cshtml", Model.SEOMarkup);
+                    }
+
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
+                            <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@((ViewBag.IsEditMode) ? Localizer["Update"]  : Localizer["Create"] )">
+                            <input type="submit" class="btn btn-info p-x-5   ut-continue-btn" name="save-continue" value="@Localizer["save_and_continue"]">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script src="~/Admin/lib/select2/dist/js/select2.js"></script>
+    <script src="~/Admin/js/validator.min.js"></script>
+
+
+
+
+    @if (ViewBag.IsEditMode)
+    {
+        <script src="~/Admin/js/serializejson.min.js"></script>
+        <script src="~/Admin/js/seo.min.js"></script>
+
+        <script>
+            $('#publish-section').on('change', function () {
+                var msg = ($(this).prop('checked')) ? "@Localizer["published_successfully"]" : "@Localizer["unpublished_successfully"]";
+                var url = $(this).data('url');
+                $.get(url, function () { }).done(function (data) {
+
+                    if (data.success) {
+                        $notification.success(window.localization.success,msg, 2000, "fa fa-check");
+                    } else {
+                        var errors = data.errors;
+                        $notification.error("<strong>" + errors[0].key + "</strong>", "<span>" + errors[0].value[0] + "</span>", 2000, "fa fa-exclamation-circle");
+                        togglePublishBtn($this, false, published, unpublished);
+                    }
+                })
+                .fail(function (jqXHR, Status) {
+                    $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
+                    togglePublishBtn($this, false, published, unpublished);
+                }); })
+        </script>
+    }
+    <script>
+   $('.select_picker').select2();
+    </script>
+
+    @if (!ViewBag.IsEditMode)
+    {
+        <script>
+           $("#Title").on("keyup", function() {
+               $("#Slug").val($(this).val().replace(/\s/g, "_")).valid();
+           })
+        </script>
+    }
+}
+
+

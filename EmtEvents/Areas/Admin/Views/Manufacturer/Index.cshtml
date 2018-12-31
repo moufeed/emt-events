@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] =  Localizer["Manufacturer"];
+}
+
+
+
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                @Localizer["Manufacturer"] 
+                <small></small>
+            </h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Create" class="btn btn-default btn-add-new">@Localizer["new_manufacturer"]</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <div class=" datatable">
+                    <table class="table table-middle table-striped" id="BrnadsTable">
+                        <thead>
+                            <tr class="headings">
+                                <th>@Localizer["t_logo"]</th>
+                                <th>@Localizer["t_name"]</th>
+                                <th>@Localizer["t_order"]</th>
+                                <th>@Localizer["t_actions"]</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/Admin/lib/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Admin/lib/datatables/media/js/dataTables.bootstrap.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            window.BrnadsTable = $('#BrnadsTable').DataTable({
+
+                "searching": false,
+                //"processing": true, // for show progress bar
+                //"serverSide": true, // for process server side
+                //"filter": true, // this is for disable filter (search box)
+                //"orderMulti": false, // for disable multiple column at once
+                //"pageLength": 10, //
+
+                "ajax": {
+                    "url": "/Manufacturer/LoadManufacturers",
+                    "type": "Get",
+                    "datatype": "json"
+                },
+                "order": [[1, 'asc']],
+                "columns": [
+
+                    {
+                        "data": "imageUri",
+                        width: "110px",
+                        sortable: false,
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            
+                            return '<span class="Brands_list_thumbnail"><img src="' + row.imageUrl + '"></span>';
+                        }
+                    },
+                    { "data": "name" },
+                    {
+                        data: "order",
+                         width: "100",
+                         className: "text-center",
+                    },
+                     
+                    {
+                        width: "200",
+                        className: "text-center",
+                        sortable: false,
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+
+                           
+                            return '<a  href="/Manufacturer/Edit/' + row.id+'" data-toggle="tooltip" data-placement="top" title="@Localizer["edit"]"' +
+                                    'class="btn btn-edit"><i class="fa fa-edit "></i></a>' +
+                                    '<a data-toggle="tooltip"' +
+                                    'data-placement="top"' +
+                                    'data-type="Brnad"' +
+                                    'data-id="' + row.Id + '"' +
+                                    'data-url="/Manufacturer/Delete/' + row.Id + '"' +
+                                    'title="@Localizer["remove"]"' +
+                                    'class="btn btn-remove" onClick="RemoveItem(BrnadsTable, this)"><i class="fa fa-times "></i></a>';
+                        }
+
+                    }
+
+                ]
+            });
+
+
+        })
+    </script>
+}
+
+

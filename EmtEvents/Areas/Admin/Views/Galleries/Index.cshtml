@@ -1,0 +1,221 @@
+﻿@model List<GalleryLiteDto>
+@{
+    ViewData["Title"] = Localizer["Galleries"];
+    ViewData["UnitTestPageClass"] = "ut-Galleries-index";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+
+    
+}
+
+<div class="clearfix"> 
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["Galleries"] <small></small></h3>
+        </div>
+        <div class="title_right">
+            <a href="@Url.AdminUrl("Create" ,"Galleries")"
+               class="btn btn-blue btn-add-new ut-NewGallery">@Localizer["new_gallery"]</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        @{
+            ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { };
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+        <div class="x_panel p-x-0">
+            <div class="x_content">
+                <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
+                <div class="table-responsive">
+                    <table class="table table-middle table-striped services-table" id="ServicesTable">
+                        <thead>
+                        <th width="100" class="text-center">@Localizer["t_image"]</th>
+                        <th width="300">title</th>
+                        <th>@Localizer["t_slug"]</th>
+                        <th>@Localizer["t_summary"]</th>
+                        <th width="125">@Localizer["t_total_items"]</th>
+                        <th width="100" class="text-center">@Localizer["t_display_order"]</th>
+                        <th width="100" class="text-center">@Localizer["t_visibility"]</th>
+                        <th width="175">@Localizer["t_actions"]</th>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr id="tr-@item.Id">
+                                    <td class="text-center">
+                                        @if (!string.IsNullOrEmpty(item.MainImage))
+                                        {
+
+                                            <img src="@item.MainImage" alt="" width="60" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Admin/img/noimage.jpg" alt="" width="60" />
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.Published)
+                                        {
+
+                                            <a asp-area="Portal" asp-action="v" asp-controller="galleries" asp-route-slug="@item.Slug" target="_blank" class="underline ser-title">
+                                                @item.Title
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a target="_blank" data-href="@Url.AdminUrl("v","galleries",new {area = "portal" , slug = item.Slug })" class="ser-title"> @item.Title</a>
+                                        }
+
+                                    </td>
+
+                                    <td>@item.Slug</td>
+                                    <td>
+                                        <div class="s-summary">
+                                            @{
+                                                string text = String.Empty;
+                                                if (item.Summary != null)
+                                                {
+                                                    text = Regex.Replace(item.Summary, "<.*?>", String.Empty);
+                                                }
+
+                                            }
+                                            @Html.Raw(text)
+                                        </div>
+                                    </td>
+                                    <td class="text-center">@item.ItemsCount</td>
+                                    <td class="text-center">@item.DisplayOrder</td>
+                                    <td class="text-center">
+
+                                        @if (item.Locked)
+                                        {
+
+                                            <if include-if="item.Published">
+                                                <span class="label label-success">
+                                                    <i class="fa fa-eye "></i>
+                                                    @Localizer["t_published"]
+                                                </span>
+                                            </if>
+                                            <if exclude-if="item.Published">
+                                                <span class="label label-danger">
+                                                    <i class="fa fa-eye-slash "></i>
+                                                    @Localizer["t_unpublished"]
+                                                </span>
+                                            </if>
+                                        }
+                                        else
+                                        {
+
+                                            if (item.Published)
+                                            {
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   data-status="true"
+                                                   data-url="@Url.AdminUrl("PublishAsync" ,"galleries" , new { id= item.Id })"
+                                                   title="@Localizer["t_unpublish"]"
+                                                   data-type="gallery"
+                                                   data-txt-published="@Localizer["t_published"]"
+                                                   data-txt-unpublished="@Localizer["t_unpublished"]"
+                                                   data-msg-error="@Localizer["error"]"
+                                                   class="btn btn-link-pup  published toggle__publish ut-published">
+                                                    <i class="fa fa-eye c-green"></i>
+                                                    <small>@Localizer["t_published"]</small>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   data-url="@Url.AdminUrl("PublishAsync" ,"galleries" , new { id= item.Id })"
+                                                   title="@Localizer["t_publish"]"
+                                                   data-type="gallery"
+                                                   data-txt-published="@Localizer["t_published"]"
+                                                   data-txt-unpublished="@Localizer["t_unpublished"]"
+                                                   class="btn btn-link-pup  unpublished toggle__publish ut-unpublished">
+                                                    <i class="fa fa-eye-slash c-red"></i>
+                                                    <small>@Localizer["t_unpublished"]</small>
+                                                </a>
+                                            }
+
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <div>
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="@Localizer["t_details"]"
+                                               href="@Url.AdminUrl("Details","galleries" ,new { id = item.Id })"
+                                               class="btn btn-view btn-round"><i class="fa fa-info "></i></a>
+
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="@Localizer["t_edit"]"
+                                               href="@Url.AdminUrl("Edit" ,"galleries" ,new { id= item.Id})"
+                                               class="btn btn-edit btn-round ut-edit-btn"><i class="fa fa-edit "></i></a>
+
+                                            @if (item.Locked)
+                                            {
+                                                <span data-toggle="tooltip"
+                                                      data-placement="left"
+                                                      class="btn-locked btn-round"
+                                                      title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
+                                            }
+                                            else
+                                            {
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   data-url="@Url.AdminUrl("DeleteAsync" ,"galleries" , new { id = item.Id })"
+                                                   title="@Localizer["t_remove"]"
+                                                   data-target="#tr-@item.Id"
+                                                   data-ut="tr-@item.Id"
+                                                   data-msg-error="@Localizer["error"]"
+                                                   data-msg-deleted="@Localizer["deleted_successfully"]"
+                                                   class="btn btn-remove btn-round delete__gallery ut-delete-btn"><i class="fa fa-trash-o "></i></a>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                            <if include-if='Model.Count == 0'>
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <p class="empty_row">
+                                            <i class='fa fa fa-exclamation-circle'></i>
+                                            @Localizer["no_data_table"]
+                                        </p>
+                                    </td>
+                                </tr>
+                            </if>
+                        </tbody>
+                    </table>
+                </div>
+                  <hr class="m-y-2" />
+                    <pagination controller-name="galleries" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+@section Styles{
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+
+@section Scripts {
+   <script src="~/Admin/js/galleries.min.js"></script>
+    <script src="~/Admin/lib/select2/dist/js/select2.js"></script>
+    <script>
+        $('.select_no-search').select2({ minimumResultsForSearch: -1});
+        $('.select_picker').select2();
+    </script>
+}

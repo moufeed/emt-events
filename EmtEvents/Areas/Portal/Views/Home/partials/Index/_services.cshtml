@@ -1,0 +1,60 @@
+ 
+<section class="home_services">
+    <div class="container">
+         <header class="section-header text-center">
+                            <p>@Localizer["services_we_offer"]</p>
+                            <h2><strong>@Localizer["What_we_do"]</strong></h2>
+            </header>
+         <div class="row justify-content-center">
+
+             @if (ViewBag.services != null && ViewBag.services.Count > 0)
+             {
+
+                 foreach (ServiceDto item in ViewBag.services)
+                 {
+                     <div class="col-md-6 col-lg-3">
+                         <div class="services-box">
+                             @if (item.IconVisibility && !string.IsNullOrEmpty(item.Icon))
+                             {
+                                 <div class="icon">
+                                     <i class="fa @item.Icon"></i>
+                                 </div>
+                             }
+                             else if(!string.IsNullOrEmpty(item.MainImage) && !item.IconVisibility)
+                             {
+                                 <div class="image">
+                                     <span>
+                                         <figure>
+                                             <img src="@item.MainImage" alt="@item.Title" />
+                                         </figure>
+                                     </span>
+                                 </div>
+                             }
+                             else
+                             {
+                                 <div class="icon">
+                                     <i class="fa fa-cubes"></i>
+                                 </div>
+                             }
+
+                             <h4>@item.Title</h4>
+                             <p>
+                                 @Html.Raw(item.Summary)
+                             </p>
+                            
+                         </div>
+                     </div>
+                 }
+
+             }
+
+
+
+             
+         </div>
+
+        <div class="text-center mt-4"> 
+                <a   asp-controller="services" asp-action="index" class="btn btn-outline-success btn-more" >Read More</a>
+        </div>
+    </div>
+</section>

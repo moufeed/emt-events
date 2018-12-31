@@ -1,0 +1,297 @@
+﻿@model SectionsPageCreationVM
+@{
+    ViewData["Title"] = Localizer["create_sections_page"];
+    ViewData["UnitTestPageClass"] = "ut-createPage";
+    int indx = 0;
+     var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["sections_creating_form"]</h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+        @*@if (ViewBag.Languages?.Count > 1)
+            {
+                <header class="language_bar clearfix">
+                    <ul class="nav nav-tabs nav-header" role="tablist">
+                        @foreach (var lang in ViewBag.Languages)
+                        {
+                            <li class="@((activeLang == lang.Lang) ? "active" :"" )">
+                                <a href="@Url.AdminUrl("CreateSectionsPage", "Pages", new { culture = lang.Lang})">@lang.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </header>
+            }*@
+
+        <div class="x_panel">
+            <div class="x_content">
+
+
+                <form asp-action="CreateSectionsPage"
+                      asp-controller="Pages"
+                      method="Post"
+                      enctype="multipart/form-data"
+                      id="CreatePageForm"
+                      class="form-horizontal forn-new form-label-left m-t5">
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    }
+
+                    <input type="hidden" name="Lang" value="@activeLang" />
+                    <div class="form-group clearfix">
+
+                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_title"]</label>
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+                            <input type="text" asp-for="Title" class="form-control" required />
+                            <span asp-validation-for="Title" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+
+                        <label asp-for="Slug" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+
+                            <input type="text" asp-for="Slug" class="form-control" required />
+                            <span asp-validation-for="Slug" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+
+                        <label asp-for="Section" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_section"]</label>
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+
+                            <input type="text" asp-for="Section" class="form-control" />
+                            <span asp-validation-for="Section" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group clearfix">
+
+                        <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+
+
+                            <label class="form-control clearfix uploadfile">
+                                <input type="file" asp-for="MainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" />
+                                <span class="url">@Localizer["choose_file"]</span>
+                                <span class="file-btn"><i class="fa fa-search"></i> @Localizer["Browse"]</span>
+                            </label>
+                            <span asp-validation-for="MainImage" class="text-danger invalid_field"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="AuthorName" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["author_name"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input type="text" asp-for="AuthorName" class="form-control" />
+                            <span asp-validation-for="AuthorName" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+
+                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_summary"]</label>
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+                            <textarea asp-for="Summary" class="form-control" rows="3" required></textarea>
+                            <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="m-t4 p-t3 p-x-3">
+                        <h4>@Localizer["page_content"]</h4>
+                        <hr />
+                        <div class="content_items" id="ContentItems">
+
+
+
+                            @*<section id="section-@indx" class="m-b3 clearfix">
+                                    <a class="btn btn-remove-content remove-content" data-id="@indx">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                    <div class="form-group">
+                                        <Label for="title-@indx" class="control-label col-md-3 col-sm-3 col-xs-12"> @Localizer["f_title"]</Label>
+                                        <div class="col-md-7 col-sm-5 col-xs-12" id="">
+                                            <input type="text" name="Content[@indx].Key" id="title-@indx" class="form-control m-b2" required="required" />
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <Label for="Content-@indx" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_content"]</Label>
+                                        <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                                            <textarea rows="4" class="form-control" id="Content-@indx" name="Content[@indx].Value" required="required"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <hr class="line" />
+                                </section>
+                                @{indx++;}*@
+
+                        </div>
+                        <div>
+                            <a class="btn btn-addContent ut-content-add" id="addContent"><i class="fa fa-plus"></i>  @Localizer["add_content"] </a>
+
+                        </div>
+                    </div>
+
+
+                    <h4 class="m-t4 p-t3 p-x-3">
+                        @Localizer["SEO"]
+                    </h4>
+                    <hr />
+
+                    <div class="form-group clearfix">
+                        @{
+                            string keywords = string.Empty;
+                        }
+                        <label asp-for="Keywords" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_keywords"]</label>
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+                            <div class="static-form-control">
+                                <input type="text" asp-for="Keywords" class="form-control" id="keywords" />
+                            </div>
+                            <span asp-validation-for="Keywords" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="MetaDescription" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
+                        <div class="col-md-7 col-sm-8 col-xs-12">
+                            <textarea asp-for="MetaDescription" class="form-control MetaDescription" data-characters='{"warning_count" : 158  , "maximum_count"  : 300 }' rows="3"></textarea>
+                            <span asp-validation-for="MetaDescription" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-7 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 text-right">
+                            <input type="submit" class="btn btn-success p-x-5 ut-createbtn" value="@Localizer["Create"]" id="createBtn">
+                            <input type="submit" class="btn btn-info p-x-5 ut-saveAndcontinue" value="@Localizer["save_and_continue"]" id="saveAndcontinue" name="save-continue">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+
+    <script src="~/Admin/js/validator.min.js"></script>
+
+    <script src="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+
+    <script src="~/Admin/lib/tinymce/tinymce.min.js"></script>
+
+    <script>
+        function tinymceInit(){
+            tinymce.init({
+                selector: 'textarea[id^="Content-"]',
+                branding: false,
+                theme: 'modern',
+                min_height: 150,
+                statusbar: false,
+                menubar: false,
+
+                plugins: ['code hr anchor pagebreak spellchecker '],
+                setup: function(editor) {
+                    editor.on('change', function(e) {
+                        editor.save();
+                    })}
+            });
+        }
+        
+
+        var i =  @indx || 0;
+        var template =
+            '<section id="section-&&" class="m-b3 clearfix">' +
+            '<a class="btn btn-remove-content remove-content"  data-id="&&">' +
+            '<i class="fa fa-trash-o"></i>' +
+            '</a>' +
+            '<div class="form-group">' +
+            '<Label for="Title-&&" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_title"]</Label>' +
+            '<div class="col-md-7 col-sm-5 col-xs-12" id="">' +
+            '<input type="text" name="Content[&&].Key" id="Title-&&" class="form-control m-b2" required="required"/>' +
+            '</div></div>' +
+            '<div class="form-group">' +
+            '<Label for="Content-&&" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_content"]</Label>' +
+            '<div class="col-md-7 col-sm-8 col-xs-12" id="">' +
+            '<textarea rows="4" class="form-control" id="Content-&&" name="Content[&&].Value" required="required"></textarea>' +
+            '</div></div><hr class="line"/>' +
+            '</section>';
+        
+
+        $('#addContent').on('click', function (e) {
+            e.preventDefault();
+            let temp = template.replace(/&&/g, i);//.replace(/%%/g, i+1)
+            $('#ContentItems').append(temp);
+            tinymceInit();
+            i++;
+        });
+
+
+        $(document).on('click', '.remove-content', function () {
+            if (i > 1) {
+                let id = $(this).data('id');
+                $('#section-' + id).remove();
+                if (id < (i - 1)) {
+                    let sections = $('#ContentItems').find('section');
+                    sections.each(function (indx, section) {
+                        let sec = $(section),
+                            link = sec.find(".remove-content"),
+                            labTitle = sec.find('.control-label[for^="title-"]'),
+                            labContent = sec.find('.control-label[for^="Content-"]'),
+                            input = sec.find('input[id^="title-"]'),
+                            textarea = sec.find('textarea[id^="Content-"]');
+
+                            sec.attr("id", "section-" + indx);
+                            link.attr("data-id", indx);
+                            labTitle.attr("for", "title-" + indx);
+                            labContent.attr("for", "Content-" + indx);
+                            input.attr("id", "title-" + indx).attr('name', "Content[" + indx + "].Key");
+                            textarea.attr("id", "Content-" + indx).attr('name', "Content[" + indx + "].Value");
+                    })
+                }
+                i--;
+            }
+        })
+        $('#keywords').tagsinput({
+            tagClass: 'tag'
+        });
+        $("#Title").on("keyup", function () {
+            $("#Slug").val($(this).val().replace(/\s/g, "_")).valid();
+        })
+    </script>
+}

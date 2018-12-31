@@ -1,0 +1,149 @@
+﻿@model GalleryFormVM
+@using TamTechSDK.Common.Services.ContentService.Galleries.Enums
+@{
+
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div class="x_panel">
+
+    <div class="clearfix">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>@Localizer["gallery_items"] <small></small></h3>
+            </div>
+            <div class="title_right">
+
+                <button data-url="@Url.AdminUrl("PublishGaleryItemsAsync", "Galleries" , new { gid = Model.Id})"
+                        class="publish__all btn btn-success"
+                        data-confirm-title="@Localizer["Publish"]"
+                        data-confirm-text="@Localizer["publish_all_images"]"
+                        data-confrim-yes="@Localizer["Yes"]"
+                        data-confrim-cancel="@Localizer["cancel"]"
+                        data-msg-published="@Localizer["published_successfully"]"
+                        data-txt-unpublish="@Localizer["unpublish"]">
+                    @Localizer["publish_all"]
+                </button>
+
+
+                <a href="@Url.AdminUrl("CreateGaleryItemAsync","Galleries" ,new { gid = Model.Id})"
+                   class="btn btn-info ut-imageupload-btn">@Localizer["upload_single_image"]</a>
+
+
+                <button class="btn btn-primary ut-mulipleupload-modal" data-toggle="modal" data-target="#MultipleImagesModal">@Localizer["upload_multiple_images"]</button>
+
+                <a href="@Url.AdminUrl("CreateGaleryItemAsync","Galleries" ,new { gid = Model.Id ,video=true})"
+                   class="btn btn-info ut-imageupload-btn">@Localizer["add_video"]</a>
+            </div>
+        </div>
+
+    </div>
+    <hr class="line" />
+
+    @if (Model.Items != null && Model.Items.Count > 0)
+    {
+        <div class="clearfix m-b5 gallery__items ut-gallery-items">
+            @foreach (var item in Model.Items)
+            {
+               
+
+                <div class="col-md-6 col-sm-6 col-lg-3" id="@item.Id">
+                    <div class="gallery_item ut-gallery-item">
+
+
+
+                        <if include-if=" @item.GalleryItemType == (int)GalleryItemTypeEnum.YoutubeVideo">
+
+                            <figure>
+                                @if (string.IsNullOrEmpty(item.MainImage))
+                                {
+                                    <img src="https://img.youtube.com/vi/@item.VideoUrl/0.jpg" alt="@item.Title" class="img-responsive">
+                                }
+                                else
+                                {
+                                    <img src="@item.MainImage" alt="@item.Title" class="img-responsive">
+                                }
+                                    <i class="fa fa-play-circle-o" ></i>
+                            </figure>
+                        </if>
+
+                        <if include-if=" @item.GalleryItemType == (int)GalleryItemTypeEnum.Image">
+
+                            <figure>
+                                @if (string.IsNullOrEmpty(item.MainImage))
+                                {
+                                    <img src="~/Admin/img/no_image.jpg" alt="@item.Title" class="img-responsive">
+                                }
+                                else
+                                {
+                                    <img src="@item.MainImage" alt="@item.Title" class="img-responsive">
+                                }
+                            </figure>
+                        </if>
+                        
+
+
+                        <div class="info">
+                            <h4>@item.Title</h4>
+                            <div class="actions">
+                                <span class="image-info">
+                                    @(String.Format("{0:d/M/yyyy  }", item.CreatedDate))
+                                </span>
+
+
+
+                                <div class="btn-group  ">
+                                    @if (item.Published)
+                                    {
+                                        <a data-status="true"
+                                           data-url="@Url.AdminUrl("PublishItemAsync","galleries" , new {GalleryId = Model.Id ,id = item.Id })"
+                                           title="@Localizer["t_unpublish"]"
+                                           data-type="item"
+                                           data-text-unpublish="@Localizer["t_unpublish"]"
+                                           data-text-publish="@Localizer["t_publish"]"
+                                           class="btn btn-default published toggle__publish__item ut-published">
+                                            <span class="fa fa-eye-slash"></span>
+                                            <span class="text">@Localizer["t_unpublish"]</span>
+
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a data-url="@Url.AdminUrl("PublishItemAsync","galleries" , new {GalleryId = Model.Id ,id = item.Id })"
+                                           title="@Localizer["t_publish"]"
+                                           data-type="item"
+                                           data-text-unpublish="@Localizer["t_unpublish"]"
+                                           data-text-publish="@Localizer["t_publish"]"
+                                           class="btn btn-default unpublished toggle__publish__item ut-unpublished">
+                                            <span class="fa fa-eye"></span>
+                                            <span class="text">@Localizer["t_publish"]</span>
+                                        </a>
+                                    }
+                                    <a href="@Url.AdminUrl("EditGaleryItemAsync","Galleries" ,new { gid= Model.Id , id= item.Id })"
+                                       title="@Localizer["t_edit"]"
+                                       class="btn btn-default btn-link-edit">
+                                        <span class="fa fa-edit ut-item-edit"></span> Edit
+                                    </a>
+
+                                    <a title="@Localizer["t_delete"]"
+                                       class="btn btn-default btn-link-delete delete__gallery ut-item-delete"
+                                       data-parent-id="@Model.Id"
+                                       data-target="#@item.Id"
+                                       data-url="@Url.AdminUrl("DeletetGaleryItemAsync","galleries" ,new {GalleryId= Model.Id , id=item.Id })">
+                                        <span class="fa fa-times"></span> @Localizer["t_delete"]
+                                    </a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    }
+
+
+
+</div>

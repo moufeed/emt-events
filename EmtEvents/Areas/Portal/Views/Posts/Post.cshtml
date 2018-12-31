@@ -1,0 +1,87 @@
+﻿@model PostDto
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/news.jpeg");
+    ViewData["pageTitle"] = Model.Title;
+
+    ViewBag.ItemId = Model.Id;
+    ViewBag.Action = "Edit";
+}
+@using System.Text;
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData);
+
+@section SEO{
+    <meta name="description" content="@Html.Raw(Model.MetaDescription)" />
+  
+    <partial name="~/Areas/Portal/Views/Shared/partials/_SEO.cshtml" model="Model.SEOMarkup" />
+}
+
+
+<section class="post-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-xs-12">
+                <div class=" post-content">
+                    <div class="main-image d-flex justify-content-center align-items-center">
+                        @if (string.IsNullOrEmpty(Model.MainImage))
+                        {
+                            <img src="~/Portal/img/wideemptyimg.jpg" style="width:100%" />
+                        }
+                        else
+                        {
+                            <img src="@Model.MainImage" alt="@Model.Title" />
+                        }
+                    </div>
+                    <header class="mt-4 mb-3 border-bottom">
+                        <h2>@Model.Title</h2>
+                        <div class="post-meta">
+                            <small>
+                                <i class="fa fa-calendar"></i>
+                                @Model.CreatedDate.ToString("yyyy/MM/dd")
+                            </small>
+                            <small>
+                                <i class="fa fa-folder"></i>
+                                <a href="@Url.AdminUrl("s","posts",new{slug=$"{@Model.SectionSlug.Trim('/')}"}).Replace("%2F", "/")">@Model.Section</a>
+                            </small>
+
+                        </div>
+                    </header>
+                    <div class="mb-5">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+
+
+                <div class="post-block mt-5 mb-4 post-share">
+                    <h4 class="mb-3">@Localizer["share_this_post"]</h4>
+
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style ">
+                        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                        <a class="addthis_button_tweet"></a>
+                        <a class="addthis_counter addthis_pill_style"></a>
+                    </div>
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50faf75173aadc53"></script>
+                    <!-- AddThis Button END -->
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-xs-12">
+
+                @if (ViewBag.Sections != null && ViewBag.Sections.Count > 0)
+                {
+                    <div class="categories-list widget">
+                        <h4 class="widget-title"><strong>@Localizer["sections"]</strong></h4>
+                        <sections-list sections="ViewBag.Sections"
+                                       action-name="s"
+                                       controller-name="Posts"></sections-list>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>

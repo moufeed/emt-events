@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewData["Title"] = Localizer["Products_list"];
+}
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["Products_list"] <small></small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-controller="Products"
+               asp-action="Create"
+               class="btn btn-default btn-add-new">
+                <i class="fa fa-plus"></i> @Localizer["new_product"]
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel p-x-0">
+            <div class="x_content">
+                <div class="table-responsive datatable">
+                    <table class="table table-middle table-striped" id="ProductsTable">
+                        <thead>
+                            <tr class="headings">
+                                <th>@Localizer["t_image"]</th>
+                                <th>@Localizer["t_name"] </th>
+                                <th>@Localizer["t_price"] </th>
+                                <th>@Localizer["t_sku"] </th>
+                                <th>@Localizer["t_quantity"] </th>
+                                <th>@Localizer["t_published"] </th>
+                                <th>@Localizer["t_actions"] </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- OldPrice-->
+
+
+@section Styles{
+    <link href="~/Admin/lib/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/Admin/lib/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Admin/lib/datatables/media/js/dataTables.bootstrap.js"></script>
+
+    <script>
+        
+        $(document).ready(function () {
+
+            window.productsTable = $('#ProductsTable').DataTable({
+                responsive: true,
+                 autoWidth: false,
+                "language": {
+                    "emptyTable": "<div class='empty_table'> <i class='fa fa fa-exclamation-circle'></i><p>@Localizer["no_data_table"]</p></div>"
+                },
+                //"searching": false,
+                //"processing": true, // for show progress bar
+                //"serverSide": true, // for process server side
+                //"filter": true, // this is for disable filter (search box)
+                //"orderMulti": false, // for disable multiple column at once
+                //"pageLength": 10, //
+
+                "ajax": {
+                    "url": "/Admin/Products/LoadProducts",
+                    "type": "Get",
+                    "datatype": "json"
+                },
+                "order": [[1, 'asc']],
+                "columnDefs": [
+                    {
+                        "className": "text-center",
+                        "targets": 5,
+                        width: "100",
+                        sortable: false,
+                        orderable: false,
+                    },
+                    { "className": "text-center", "targets": 4 },
+                    { "className": "text-right", "targets": 6 },
+                ],
+                "columns": [
+
+                    {
+                        "data": "thumbnailUrl",
+                        width: "100px",
+                        sortable: false,
+                        orderable: false,
+                        render: function (data) {
+                            return '<span class="list_thumbnail"><img src="' + data + '"></span>';
+                        }
+                    },
+                    { "data": "name", },
+                    { "data": "price" },
+                    { "data": "sku" },
+                    { "data": "stockquantity"},
+                    {
+                        data: "published",
+                       
+                        render: function (data, type, row, meta) {
+                            if (row.published) {
+                                return '<i class="fa fa-check c-green"></i>'
+                            }
+                            return '<i class="fa fa-times c-red"></i>'
+                        }
+                    },
+                    {
+                        width: "150",
+                        className: "text-center",
+                        sortable: false,
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+
+                            
+                            return '<a  href="/Products/Edit/' + row.id + '" data-toggle="tooltip" data-placement="top" title="@Localizer["t_edit"]"' +
+                                'class="btn btn-edit"><i class="fa fa-edit "></i></a>' +
+                                '<a data-toggle="tooltip"' +
+                                'data-placement="top"' +
+                                'data-type="product"' +
+                                'data-id="' + row.id + '"' +
+                                'data-url="/Products/Delete/' + row.id + '"' +
+                                'title="@Localizer["t_remove"]"' +
+                                'class="btn btn-remove" onClick="RemoveItem(productsTable, this)"><i class="fa fa-times"></i></a>';
+                        }
+
+                    }
+
+                ]
+            });
+
+             
+        })
+    </script>
+}

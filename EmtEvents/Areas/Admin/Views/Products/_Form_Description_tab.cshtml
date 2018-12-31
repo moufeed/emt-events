@@ -1,0 +1,78 @@
+﻿@model ProductFormVM
+@{  int indx = 0;}
+
+ 
+ 
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+    <strong>@Localizer["description_is_only_used_in_mobile_view"]
+</div>
+
+<div class="content_items" id="ContentItems">
+
+    @if (Model.Description != null && Model.Description.Count > 0)
+    {
+
+        @foreach (var item in Model.Description)
+        {
+            <section id="section-@indx" class="m-b3 clearfix">
+                <a class="btn btn-remove-content" id="remove-content" data-id="@indx">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+                <div class="form-group">
+                    <Label for="title-@indx" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_title"]</Label>
+                    <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                        <input type="text" name="Description[@indx].Key" id="Title-@indx" asp-for="@item.Key" class="form-control m-b2" required  />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <Label for="Content-@indx" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_content"]</Label>
+                    <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                        <textarea rows="4" class="form-control" id="Description-@indx" name="Description[@indx].Value" asp-for="@item.Value"  ></textarea>
+                    </div>
+                </div>
+
+                <hr class="line" />
+            </section>
+            indx++;
+        }
+    }
+    else
+    {
+
+        <section id="section-@indx" class="m-b3 clearfix">
+            <a class="btn btn-remove-content" id="remove-content" data-id="@indx">
+                <i class="fa fa-trash-o"></i>
+            </a>
+            <div class="form-group">
+                <Label for="title-@indx" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_title"]</Label>
+                <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                    <input type="text" name="Description[@indx].Key" id="Title-@indx" class="form-control m-b2" required />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <Label for="Description-@indx" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_content"]</Label>
+                <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                    <textarea rows="4" class="form-control" id="Description-@indx" name="Description[@indx].Value" ></textarea>
+                </div>
+            </div>
+
+            <hr class="line" />
+        </section>
+        indx++;
+    }
+</div>
+<div>
+    <a class="btn btn-addContent" id="addContent"><i class="fa fa-plus"></i>  @Localizer["add_content"] </a>
+</div>
+
+
+
+
+@{
+    this.ViewContext.HttpContext.Items["dtab"] = indx;
+}

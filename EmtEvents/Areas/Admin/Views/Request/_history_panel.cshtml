@@ -1,0 +1,37 @@
+﻿@{
+    List<RequestHistoryDto> History = ViewBag.history;
+}
+<div class="history_panel m-t4">
+    <h4 class="h_title">@Localizer["request_history"] </h4>
+    <div class="table-responsive">
+        <table class="table table-middle table-striped   table-hover">
+            <thead>
+                <tr>
+                    <th width="50" class="text-center">#</th>
+                    <th>@Localizer["process_date"]</th>
+                    <th>@Localizer["current_status"]</th>
+                    
+                    <th>@Localizer["l_notes"]</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{ int index = 1;}
+                @foreach (RequestHistoryDto item in History)
+                {
+
+                    <tr>
+                        <td class="text-center p-y-2">@index</td>
+                        <td>@item.ProcessDate.ToString("yyyy/mm/dd")  -   <small> @item.ProcessDate.ToString("hh:mm tt") </small></td>
+                        <td>@item.CurrentStatusName</td>
+                        
+                        <td>@item.Notes</td>
+                    </tr>
+
+                    index++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

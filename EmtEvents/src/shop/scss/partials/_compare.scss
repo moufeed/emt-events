@@ -1,0 +1,241 @@
+.compare-box{
+    background:$white;
+    box-shadow: 0 0 0 1px $border-color; 
+}
+.table-compare{
+    table-layout:fixed;
+    col{
+        &:hover{
+            background: #000;
+        }
+    }
+    tbody{
+        td{
+            padding:rem(25px);
+        }
+    }
+    tr{
+        &:first-child{
+            td,th{
+                border: 0;
+            }   
+        }
+        td,th{
+            text-align: center;
+            vertical-align: middle;
+        }
+        th{
+            padding:rem(15px);
+           text-align: $left;
+           font-weight: 600;
+        }
+      
+    }
+
+    .btn-remove{
+        color: $dark-text;
+        &:hover{
+            color: $red;
+        }
+    }
+    .image-row{
+        a{
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            /* &:after{
+                @include absolute (top $left , calc(50% - 25px)  );
+                background: rgba($black,.9);
+                @include square(50px);
+                content: '\f0c1';
+                font-family: FontAwesome;
+                display: flex;
+                justify-content: center;
+                align-items:center; 
+                font-size: rem(24px);
+                color: transparent;
+                opacity: 0;
+                transition:transform .25s  ,opacity .33s ,color .5s; 
+                transform:translate3d(0,100%,0);
+                border-radius: 50%;
+            } */
+
+            &:hover:after{
+                color: $white;
+                opacity: 1;
+                transform:translate3d(0,0,0);
+            }
+        }
+    }
+    .name-row{
+        a{
+            color: $dark-text;
+            font-weight: 600;
+            display: block;
+            max-width: 300px;
+            &:hover{
+                color: $blue;
+            }
+        }
+    }
+    .rating{
+        color: darken($white,20%); 
+        .fa-star{
+            color: $yellow;
+        }
+    }
+    .reviews-count{
+        display: block;
+    }
+
+    .price-row{
+        td{
+            font-weight: 900;
+            font-size: rem(18px);
+        }
+    }
+
+    .description-row{
+        p{
+            @include ellipse(16px,1.6,3);
+            letter-spacing: 1px;
+        }
+    }
+
+    tfoot{
+        td{
+            border: 0;
+            padding-top: rem(25px);
+        }
+    }
+}
+
+ 
+/* 
+ 
+
+                                
+ 
+
+                                 <tr>
+                                    <th scope="row">Rating</th>
+                                    <td class="text-center">
+                                        <span class="">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                        <p class=""><b>5</b> Reviews </p>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="rating">
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                        <p class="reviews-count"><b>0</b> Reviews </p>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                        <p class="reviews-count"><b>15</b> Reviews </p>
+                                    </td>
+                                </tr>
+                                <tr class="manufacturer-row">
+                                    <th scope="row">Manufacturer</th>
+                                    <td>
+                                        samsung
+                                    </td>
+                                    <td>
+                                        apple
+                                    </td>
+                                    <td>
+                                        nokia
+                                    </td>
+                                </tr>
+                                 <tr class="">
+                                    <th scope="row">Price</th>
+                                    <td>
+                                        <span>1232</span>
+                                        <small>$</small>
+                                    </td>
+                                    <td>
+                                        <span>12320</span>
+                                        <small>$</small>
+                                    </td>
+                                    <td>
+                                        <span>120</span>
+                                        <small>$</small>
+                                    </td>
+                                </tr>
+                                 <tr class="stock-row">
+                                    <th scope="row">Stock</th>
+                                    <td>out of stouck </td>
+                                    <td>10</td>
+                                    <td>30</td>
+                                </tr>
+                                 <tr class="description-row">
+                                    <th scope="row">Description</th>
+                                    <td>
+                                        <p>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat, distinctio illo perspiciatis laudantium molestiae ipsum.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat, distinctio illo perspiciatis laudantium molestiae ipsum.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat, distinctio illo perspiciatis laudantium molestiae ipsum.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr class="shipping-row">
+                                    <th scope="row">Shipping</th>
+                                    <td>
+                                        free shipping
+                                    </td>
+                                    <td>
+                                        free shipping
+                                    </td>
+                                    <td>
+                                        free shipping
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                            <tfoot>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-success btn-block">
+                                           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                           Add to cart
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-block">
+                                           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                           Add to cart
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-block">
+                                           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                           Add to cart
+                                    </button>
+                                </td>
+                            </tfoot>
+                        </table>
+*/

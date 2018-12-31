@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Reviews <small></small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Create"
+               asp-route-type="html"
+               class="btn btn-default btn-add-new">New Review</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel p-x-0">
+            <div class="x_content">
+                <div class="table-responsive datatable">
+                    <table class="table table-bordered table-striped table-middle" id="ReviewsTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Author</th>
+                                <th>Review text</th>
+                                <th>Reply text</th>
+                                <th>Rating</th>
+                                <th>Created on</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/Admin/lib/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Admin/lib/datatables/media/js/dataTables.bootstrap.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            window.ReviewsTable = $('#ReviewsTable').DataTable({
+                responsive: true,
+                "searching": false,
+                "language": {
+                    "emptyTable": "<div class='empty_table'> <i class='fa fa fa-exclamation-circle'></i><p>No data available in table</p></div>"
+                },
+                "ajax": {
+                    "url": "/Reviews/GetReviews",
+                    "type": "Get",
+                    "datatype": "json"
+                },
+                "columns": [
+                    {
+                        data: 'product.name'
+                    },
+                    {
+                        
+                        data: 'author',
+                        className: "text-center",
+                    },
+                    {
+                        data: 'text'
+                    },
+                    {
+                        data: 'replyText'
+                    },
+                    {
+                        width: "50",
+                        data: 'rate',
+                        className: "text-center",
+                    },
+                    {
+                        width  :"120",
+                        data: 'createdDate',
+                        className: "text-center",
+                    },
+                    {
+                        width: "120",
+                        className: "text-center",
+                        sortable: false,
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            return '<a  href="/Reviews/Edit/' + row.id + '" data-toggle="tooltip" data-placement="top" title="Edit"' +
+                                'class="btn btn-edit"><i class="fa fa-edit "></i></a>' +
+                                '<a data-toggle="tooltip"' +
+                                'data-placement="top"' +
+                                'data-type="review"' +
+                                'data-id="' + row.id + '"' +
+                                'data-url="/Reviews/Delete/' + row.id + '"' +
+                                'title="Remove"' +
+                                'class="btn btn-remove" onClick="RemoveItem(ReviewsTable, this)"><i class="fa fa-trash-o"></i></a>';
+                        }
+
+                    }
+                ]
+            });
+
+            
+        })
+    </script>
+}

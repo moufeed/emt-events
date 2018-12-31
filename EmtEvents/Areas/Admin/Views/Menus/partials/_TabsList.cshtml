@@ -1,0 +1,76 @@
+﻿
+@{
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+<ul class="nav nav-tabs navs-line" role="tablist">
+    <li role="presentation" class="active" data-type="Page">
+        <a href="#@MenuItemTypeEnum.page.ToString()"
+           aria-controls="@MenuItemTypeEnum.page.ToString()"
+           role="tab"
+           data-toggle="tab"
+           class="ut-page-tab"><strong>@Localizer["page"]</strong></a>
+    </li>
+
+    @*<li role="presentation" data-type="product" >
+            <a href="#@MenuItemTypeEnum.product.ToString()"
+               aria-controls="@MenuItemTypeEnum.product.ToString()"
+               role="tab"
+               class="ut-product-tab"
+               data-toggle="tab"><strong>@Localizer["product"]</strong></a>
+        </li>*@
+
+    <li role="presentation" data-type="dropdown">
+        <a href="#@MenuItemTypeEnum.dropdown.ToString()"
+           aria-controls="@MenuItemTypeEnum.dropdown.ToString()"
+           role="tab"
+           class="ut-submenu-tab"
+           data-toggle="tab"><strong>@Localizer["parent_menu"]</strong></a>
+    </li>
+
+    <li role="presentation" data-type="Url">
+        <a href="#@MenuItemTypeEnum.url.ToString()"
+           aria-controls="@MenuItemTypeEnum.url.ToString()"
+           role="tab"
+           class="ut-link"
+           data-toggle="tab"><strong>@Localizer["link"]</strong></a>
+    </li>
+
+    <li role="presentation" data-type="staticpage">
+        <a href="#@MenuItemTypeEnum.staticpage.ToString()"
+           aria-controls="@MenuItemTypeEnum.staticpage.ToString()"
+           role="tab"
+           class="ut-staticpage-tab"
+           data-toggle="tab"><strong>@Localizer["static_page"]</strong></a>
+    </li>
+
+    <li role="presentation" data-type="service">
+        <a href="#@MenuItemTypeEnum.service.ToString()"
+           aria-controls="@MenuItemTypeEnum.service.ToString()"
+           role="tab"
+           class="ut-service-tab"
+           data-toggle="tab"><strong>@Localizer["service"]</strong></a>
+    </li>
+    <li role="presentation" data-type="gallery">
+        <a href="#@MenuItemTypeEnum.gallery.ToString()"
+           aria-controls="@MenuItemTypeEnum.gallery.ToString()"
+           role="tab"
+           class="ut-gallery-tab"
+           data-toggle="tab"><strong>@Localizer["Gallery"]</strong></a>
+    </li>
+
+    <li role="presentation" data-type="section">
+        <a href="#@MenuItemTypeEnum.section.ToString()"
+           aria-controls="@MenuItemTypeEnum.section.ToString()"
+           role="tab"
+           class="ut-section-tab"
+           data-toggle="tab"><strong>@Localizer["posts_section"]</strong></a>
+    </li>
+
+    <li role="presentation" data-type="section">
+        <a href="#@MenuItemTypeEnum.section_of_service.ToString()"
+           aria-controls="@MenuItemTypeEnum.section_of_service.ToString()"
+           role="tab"
+           class="ut-section_of_service-tab"
+           data-toggle="tab"><strong>@Localizer["services_section"]</strong></a>
+    </li>
+</ul>

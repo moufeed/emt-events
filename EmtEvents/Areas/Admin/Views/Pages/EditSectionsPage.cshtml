@@ -1,0 +1,379 @@
+﻿@model SectionsPageEditingVM
+@{
+    ViewData["Title"] = Localizer["edit_sections_page"];
+    ViewData["UnitTestPageClass"] = "ut-editPage";
+    int indx = 0;
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+
+    ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
+
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["sections_editing_form"]</h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+        <div class="x_panel">
+            <div class="x_content">
+                @if (!Model.Locked) { 
+                    <div class="text-right flip">
+                        <label asp-for="Published">
+
+                            <input type="checkbox"
+                                   asp-for="Published"
+                                   class="toggle_switch "
+                                   data-toggle="tooltip"
+                                   id="publish-page"
+                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-url="@Url.AdminUrl("Publish","Pages", new { type = "Sections" , id = Model.Id } )"
+                                   title="@Localizer["publish_unpublish"]" />
+                        </label>
+                    </div>
+                }
+
+                <form asp-action="EditSectionsPage" asp-controller="Pages"
+                      method="post"
+                      id="EditPageForm"
+                      enctype="multipart/form-data"
+                      class="form-horizontal forn-new form-label-left m-t5">
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    }
+                    <input type="hidden" asp-for="Id" class="ut-id" />
+                    <input type="hidden" name="DatePublished" value="@(String.Format("{0:yyyy-MM-dd}", Model.PublishedDate))" data-seo-published />
+                    <input type="hidden" name="DateModified" value="@(String.Format("{0:yyyy-MM-dd}", Model.ModifiedDate))" data-seo-modified />
+                    <input type="hidden" name="Lang" value="@activeLang" />
+                    @if (!string.IsNullOrEmpty(Model.Slug) && Model.Published)
+                    {
+                        <div class="form-group clearfix">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_public_url"]</label>
+                            <div class="col-md-7 col-sm-9 col-xs-12">
+                                @{
+                                    var url = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action("v", "pages", new { Area = "portal", slug = Model.Slug }));
+                                }
+                                <p class="form-control-static p-x-2"><a href="@url" class="underline" id="url">@(System.Uri.UnescapeDataString(url))</a></p>
+                                <span asp-validation-for="Title" class="text-danger invalid_field"></span>
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group clearfix">
+                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_title"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input type="text" asp-for="Title" class="form-control" required data-seo-name />
+                            <span asp-validation-for="Title" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="Slug" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            @if (Model.Locked)
+                            {
+                                <div class="input-group input-locked">
+                                    <p class="form-control-static">@Model.Slug</p>
+                                    <span class="input-group-addon"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <input type="text" asp-for="Slug" class="form-control" required />
+                            }
+                            <span asp-validation-for="Slug" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="Section" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_section"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            @Html.TextBoxFor(m => m.Section, new { @class = "form-control", required = "required" })
+                            <span asp-validation-for="Section" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="AuthorName" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["author_name"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input type="text" asp-for="AuthorName" class="form-control" data-seo-author />
+                            <span asp-validation-for="AuthorName" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <textarea asp-for="Summary" class="form-control" rows="3" data-seo-description></textarea>
+                            <span asp-validation-for="Content" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            @if (Model.MainImage != null)
+                            {
+                                <img src="@Model.MainImage" style="max-width:300px" data-seo-image="@Model.MainImage" class="img-thumbnail m-b3">
+                                <input type="hidden" asp-for="MainImage" />
+                            }
+                            <label class="form-control clearfix uploadfile">
+                                <input type="file" Name="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" />
+                                <span class="url">@Localizer["choose_file"]</span>
+                                <span class="file-btn"><i class="fa fa-search"></i> Browse</span>
+                            </label>
+                            <span asp-validation-for="MainImage" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group clearfix">
+                @Html.Label("IsPublished", "Page Visibility :", new { @class = "control-label col-md-3 col-sm-4 col-xs-12 " })
+                <div class="col-md-7 col-sm-8 col-xs-12">
+                    @Html.CheckBoxFor(m => m.Published, new { @class = "toggle_switch" })
+                    @Html.ValidationMessageFor(m => m.Published, "", new { @class = "text-danger " })
+
+
+                </div>
+            </div>*@
+                    <div class="m-t4 p-t3 p-x-3">
+                        <h4>@Localizer["page_content"]</h4>
+                        <hr />
+                        <div class="content_items" id="ContentItems">
+                            @if (Model.Content != null && Model.Content.Count > 0)
+                            {
+
+                                @foreach (var item in Model.Content)
+                                {
+                                    <section id="section-@indx" class="m-b3 clearfix">
+                                        <a class="btn btn-remove-content remove-content" data-id="@indx">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                        <div class="form-group">
+                                            <Label for="title-@indx" class="control-label col-md-3 col-sm-3 col-xs-12"> @Localizer["f_title"]</Label>
+                                            <div class="col-md-7 col-sm-5 col-xs-12" id="">
+                                                <input type="text" name="Content[@indx].Key" id="title-@indx" asp-for="@item.Key" class="form-control m-b2" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <Label for="Content-@indx" class="control-label col-md-3 col-sm-3 col-xs-12 "> @Localizer["f_content"] </Label>
+                                            <div class="col-md-7 col-sm-9 col-xs-12" id="">
+                                                <textarea rows="4" class="form-control" id="Content-@indx" name="Content[@indx].Value" asp-for="@item.Value" required="required"></textarea>
+                                            </div>
+                                        </div>
+                                        <hr class="line" />
+                                    </section>
+                                    indx++;
+                                }
+                            }
+                            @*else
+                    {
+
+                        <section id="section-@indx" class="m-b3 clearfix">
+                            <a class="btn btn-remove-content remove-content" data-id="@indx">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                            <div class="form-group">
+                                <Label for="title-@indx" class="control-label col-md-3 col-sm-3 col-xs-12"> @Localizer["f_title"]</Label>
+                                <div class="col-md-7 col-sm-5 col-xs-12" id="">
+                                    <input type="text" name="Content[@indx].Key" id="title-@indx" class="form-control m-b2" required="required" />
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <Label for="Content-@indx" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_content"]</Label>
+                                <div class="col-md-7 col-sm-9 col-xs-12" id="">
+                                    <textarea rows="4" class="form-control" id="Content-@indx" name="Content[@indx].Value" required="required"></textarea>
+                                </div>
+                            </div>
+
+                            <hr class="line" />
+                        </section>
+                        indx++;
+                    }*@
+                        </div>
+                        <div>
+                            <a class="btn btn-addContent" id="addContent"><i class="fa fa-plus"></i>@Localizer["add_content"] </a>
+                        </div>
+                    </div>
+
+
+                    <h4 class="m-t4 p-t3 p-x-3">
+                        @Localizer["SEO"]
+                    </h4>
+                    <hr />
+
+                    <div class="form-group clearfix">
+                        @{
+                            string keywords = string.Empty;
+
+                            if (Model.KeywordsList != null && Model.KeywordsList.Count > 0)
+                            {
+
+                                List<string> list = Model.KeywordsList;
+                                keywords = string.Join(",", list);
+                            }
+                        }
+                        <label asp-for="Keywords" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_keywords"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <div class="static-form-control">
+                                <input type="text" name="Keywords" class="form-control" id="keywords" value="@keywords" />
+                            </div>
+                            <span asp-validation-for="Content" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="MetaDescription" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
+
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <textarea asp-for="MetaDescription" class="form-control MetaDescription"
+                                      data-characters='{"warning_count" : 158  , "maximum_count"  : 300 }' rows="3"></textarea>
+                            @Html.ValidationMessageFor(m => m.MetaDescription, "", new { @class = "text-danger " })
+                        </div>
+                    </div>
+
+                    @await Html.PartialAsync("~/Areas/admin/Views/Shared/_SeoFields.cshtml", Model.SEOMarkup);
+
+                    <div class="form-group">
+                        <div class="col-md-7 col-md-offset-3 col-sm-offset-3 col-sm-9 col-xs-12 text-right">
+                            <input type="submit" class="btn btn-success p-x-5 ut-update" value="@Localizer["Update"]">
+                            <input type="submit" class="btn btn-info p-x-5 ut-update_and_continue" value="@Localizer["save_and_continue"]" name="save-continue">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script src="~/Admin/js/validator.min.js"></script>
+
+    <script src="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+
+    @{await Html.RenderPartialAsync("~/Areas/Admin/Views/Shared/_seoLabels.cshtml"); }
+    <script src="~/Admin/js/serializejson.min.js"></script>
+    <script src="~/Admin/js/seo.min.js"></script>
+
+
+    <script src="~/Admin/lib/tinymce/tinymce.min.js"></script>
+    <script>
+
+        function tinymceInit(){
+            tinymce.init({
+                selector: 'textarea[id^="Content-"]',
+                branding: false,
+                theme: 'modern',
+                min_height: 150,
+                statusbar: false,
+                menubar: false,
+
+                plugins: ['code hr anchor pagebreak spellchecker '],
+                setup: function(editor) {
+                    editor.on('change', function(e) {
+                        editor.save();
+                    })}
+            });
+        }
+        tinymceInit();
+
+
+        var i = @indx || 0;
+        var template =
+            '<section id="section-&&" class="m-b3 clearfix">' +
+            '<a class="btn btn-remove-content remove-content"   data-id="&&">' +
+            '<i class="fa fa-trash-o"></i>' +
+            '</a>' +
+            '<div class="form-group">' +
+            '<Label for="Title-&&" class="control-label col-md-3 col-sm-3 col-xs-12"> @Localizer["f_title"]</Label>' +
+            '<div class="col-md-7 col-sm-5 col-xs-12" id="">' +
+            '<input type="text" name="Content[&&].Key" id="Title-&&" class="form-control m-b2" required="required"/>' +
+            '</div></div>' +
+            '<div class="form-group">' +
+            '<Label for="Content-&&" class="control-label col-md-3 col-sm-3 col-xs-12 "> @Localizer["f_content"]</Label>' +
+            '<div class="col-md-7 col-sm-9 col-xs-12" id="">' +
+            '<textarea rows="4" class="form-control" id="Content-&&" name="Content[&&].Value" required="required"></textarea>' +
+            '</div></div><hr class="line"/>' +
+            '</section>';
+
+
+        $('#addContent').on('click', function (e) {
+            e.preventDefault();
+            let temp = template.replace(/&&/g, i);//.replace(/%%/g, i+1)
+            $('#ContentItems').append(temp);
+            tinymceInit()
+            i++;
+        });
+
+
+        $(document).on('click', '.remove-content', function () {
+            if (i > 1) {
+                let id = $(this).data('id');
+                $('#section-' + id).remove();
+                if (id < (i - 1)) {
+                    let sections = $('#ContentItems').find('section');
+                    sections.each(function (indx, section) {
+                        let sec = $(section),
+                            link = sec.find(".remove-content"),
+                            labTitle = sec.find('.control-label[for^="title-"]'),
+                            labContent = sec.find('.control-label[for^="Content-"]'),
+                            input = sec.find('input[id^="title-"]'),
+                            textarea = sec.find('textarea[id^="Content-"]');
+
+                            sec.attr("id", "section-" + indx);
+                            link.attr("data-id", indx);
+                            labTitle.attr("for", "title-" + indx);
+                            labContent.attr("for", "Content-" + indx);
+                            input.attr("id", "title-" + indx).attr('name', "Content[" + indx + "].Key");
+                            textarea.attr("id", "Content-" + indx).attr('name', "Content[" + indx + "].Value");
+                    })
+                }
+                i--;
+            }
+        })
+        $('#keywords').tagsinput({
+            tagClass: 'tag'
+        });
+
+        $('#publish-page').on('change', function () {
+            var msg = ($(this).prop('checked')) ? "@Localizer["published_successfully"]" : "@Localizer["unpublished_successfully"]";
+            var url = $(this).data('url');
+            $.get(url, function () { }).done(function (data) {
+
+                if (data.success) {
+                    $notification.success(window.localization.success,msg, 2000, "fa fa-check");
+                } else {
+                    var errors = data.errors;
+                    $notification.error("<strong>" + errors[0].key + "</strong>", "<span>" + errors[0].value[0] + "</span>", 2000, "fa fa-exclamation-circle");
+                    togglePublishBtn($this, false, published, unpublished);
+                }
+            })
+            .fail(function (jqXHR, Status) {
+                $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
+                togglePublishBtn($this, false, published, unpublished);
+            }); })
+
+        
+    </script>
+}

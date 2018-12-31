@@ -1,0 +1,144 @@
+﻿@model List< Smslite>
+@{
+    ViewData["Title"] = "Index";
+
+    int index = 0;
+}
+<script> var obj = {} </script>
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Text message <small></small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="CreateSms"
+               class="btn btn-default btn-add-new">New text message</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel p-x-0">
+            <div class="x_content">
+                <div class="table-responsive datatable">
+
+                    <table class="table table-middle table-striped" id="SmsTable">
+                        <thead>
+                            <tr>
+                                <th width="250" class="p-x-2">To</th>
+                                <th>Message</th>
+                                <th width="150">Date</th>
+                                <th width="100" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    @if (item.Recipients.Count > 4)
+                                    {
+
+                                        <td class="p-x-2">@item.Recipients.Count <span>Recipients</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="p-l2">
+                                            @foreach (var number in item.Recipients)
+                                            {
+                                                <small class="badge bg-gray m-1">@number.Name</small>
+                                            }
+                                        </td>
+                                    }
+
+                                    <td>
+                                        @item.Massage
+                                    </td>
+                                    <td>@item.CreatedDate</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-sm btn-link "
+                                           data-toggle="modal"
+                                           data-sms=@index
+                                           title="View"
+                                           data-target="#SmsModal"><i class="fa fa-eye c-red"></i></a>
+                                    </td>
+                                </tr>
+
+                                <script>
+                                    obj[@index] = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item,
+Newtonsoft.Json.Formatting.None))
+                                </script>
+                                index++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/lib/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/media/js/dataTables.bootstrap.js"></script>
+
+    <script>
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    $(document).ready(function () {
+
+            window.Pagestable = $('#SmsTable').DataTable({
+            responsive: true,
+                    "language": {
+                        "emptyTable": "<div class='empty_table'> <i class='fa fa fa-exclamation-circle'></i><p>No data available in table</p></div>"
+                    },
+            "searching": false,
+            });
+
+        $('#SmsModal').on('show.bs.modal', function (event) {
+            var link = $(event.relatedTarget)
+            var sms = obj[link.data('sms')];
+            var modal = $(this);
+            modal.find('.title small').text(sms.Recipients.length);
+            modal.find('.message').text(sms.Massage);
+            modal.find('.recipients').html(" ");
+            $.each(sms.Recipients, function (i, item) {
+                modal.find('.recipients').append('<span>' + item.Name + '<small>< ' + item.Number +' ></small></span>');
+             })
+        })
+        });
+        </script>
+}
+
+
+    <div class="modal fade sms_modal" id="SmsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Sms</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h4 class="title">Recipients <small >0</small></h4>
+                    <div class="recipients"></div>
+                    <hr />
+                    <h4>Message:</h4>
+                    <div class="message"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

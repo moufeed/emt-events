@@ -1,0 +1,22 @@
+
+
+		Templates : 
+								- *SectionTitle* : main section 
+													- <<<"Title">>> : Add/Remove/Rename property or section
+																		 - *MainSectionTitle.SubSectionTitle* : sub section of  main section 
+																	
+
+- Changes in a appsettings file :
+_________________________________
+
+- Remove <<<"WebApplication_CultureInfo">>>  sub section From *WebApplicationSettings* main section
+- Remove <<<"WebApplication_CacheMenus">>>  sub section From *WebApplicationSettings* main section
+- Remove <<<"WebApplication_StaticPages">>>  sub section From *WebApplicationSettings* main section
+- Remove <<<"WebApplication_URl">>>  sub section From *WebApplicationSettings* main section
+- Remove <<<"WebApplication_Version">>>  sub section From *WebApplicationSettings* main section
+- Remove <<<"WebApplication_RoutingInfo">>>  sub section From *WebApplicationSettings* main section
+
+- Add <<<"StaticPages">>>  sub section to  *WebApplicationSettings.WebApplication_ContentsInfo* 
+- Add <<<"WebApplication_Configuration">>> sub section to  *WebApplicationSettings* 
+- ReSeed the Identity Database after adding many different users and new roles
+

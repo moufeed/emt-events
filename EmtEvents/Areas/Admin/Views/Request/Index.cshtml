@@ -1,0 +1,101 @@
+﻿@model List<RequestDto>
+@{
+    ViewData["Title"] = Localizer["requests"];
+    ViewData["UnitTestPageClass"] = "ut-requests-index";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3> @Localizer["requests"] <small></small></h3>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @{ ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { }; }
+        <partial name="~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml" />
+        <div class="x_panel p-x-0">
+
+            <div class="x_content">
+                <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
+                <div class="table-responsive">
+                    <table class="table table-middle table-striped posts-table">
+                        <thead>
+                            <tr>
+                                <th width="50" class="text-center">#</th>
+                                <th>@Localizer["t_name"]</th>
+                                <th>@Localizer["t_email"]</th>
+                                <th>@Localizer["t_city"]</th>
+                                <th width="150">@Localizer["t_create_date"]</th>
+                                <th width="150">@Localizer["t_status"]</th>
+                                <th width="100" class="text-center">@Localizer["t_detials"]</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int index = 1; }
+
+                            @foreach (RequestDto item in Model)
+                            {
+
+                                <tr>
+                                    <td class="text-center">@index</td>
+                                    <td class="p-y-3">@item.FullName  </td>
+                                    <td>@item.Email</td>
+                                    <td>@item.CityName</td>
+                                    <td>@item.CreatedDate.ToString("yyyy/MM/dd")</td>
+                                    <td>
+                                        <small class="label label-@item.StatusName.ToLower()">
+                                             @item.StatusName
+                                        </small>
+
+                                   </td>
+                                    <td class="text-center">
+                                        <a href="@Url.AdminUrl("details","request" ,new { id = item.Id} )" class="btn btn-link-pup ut-details-btn"><i class="fa fa-info-circle" aria-hidden="true"></i> @Localizer["t_detials"]</a>
+                                    </td>
+                                </tr>
+                                index++;
+                            }
+                            <if include-if='Model.Count == 0'>
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        <p class="empty_row">
+                                            <i class='fa fa fa-exclamation-circle'></i>
+                                            @Localizer["no_data_table"]
+                                        </p>
+                                    </td>
+                                </tr>
+                            </if>
+                        </tbody>
+
+
+                    </table>
+                </div>
+                <hr class="m-y-2" />
+                <pagination controller-name="Request" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+
+@section Scripts {
+    <script src="~/Admin/js/posts.min.js"></script>
+    <script src="~/Admin/lib/select2/dist/js/select2.js"></script>
+    <script>
+        $('.select_no-search').select2({ minimumResultsForSearch: -1});
+        $('.select_picker').select2();
+    </script>
+}

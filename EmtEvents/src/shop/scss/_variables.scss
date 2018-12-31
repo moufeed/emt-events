@@ -1,0 +1,141 @@
+
+$img:"../img/";
+$font:"../fonts/";
+$orange : #f6a417;
+$blue:#3e9fd9;
+$deep_navy : #363f6f;
+$red :#C1292E;
+$green :#7CB518;
+$dark_green :#0B6E4F;
+$light_text:#A2AEBB;
+$dark_text :#30323D;
+$white : #ffffff;  
+$black : #000000;
+
+@import "node_modules/bootstrap/scss/functions";
+@import 'node_modules/bootstrap/scss/variables';
+ 
+$body_bacground : darken($white , 3%); 
+$main_header_bg : $white;
+$tob_bar_bg : darken($white , 2%);
+
+$border-color : darken($white , 8%);
+
+//defaults 
+$form_control_focus_shadow :0 0 0 0.2rem  rgba($deep_navy,0.25);
+$form_control_focus_border : $deep_navy;
+$title_bottom_border :$blue;
+
+//slider navigation dots
+$slider_dot_width   : 8px ;
+$slider_dot_height  : 8px ;
+$slider_dot_background  : rgba($blue , .5) ;
+$slider_dot_radius  : 0;
+$slider_dot_active_background   : $blue ;
+$slider_dot_active_scale  : 2;
+
+//navbar 
+$navbar_hover_bg : $deep_navy;
+$navbar_hover_color : $white;
+$navbar_active_bg : $deep_navy;
+$navbar_active_color : $white;
+$navbar_background : $orange;
+
+
+
+//shopping list
+$shopping_list_width : 300px;    
+$shopping_list_max_height : 350px;
+
+//block 
+
+$block_bg :$white;
+
+$block_item_border :  1px solid darken($white,4%);
+$block_item_hover_bg : darken($white ,3%);
+$block_item_hover_color : $blue;
+$block_item_active_bg:$orange; 
+$block_item_active_color:$white; 
+$block_item_open_color : darken($blue ,10%);
+
+
+//font awesome
+$fa-font-path: "../fonts/fa";
+
+// grid view
+$products_grid_mask_height : 250px;
+$products_grid_mask_bg :rgba($orange, .7);
+$pro_grid_mask_gradient_start : rgba($deep_navy, 0);
+$pro_grid_mask_gradient_end :rgba($deep_navy, .7);
+
+// product gir buttons [btn-whitelist / btn-compare]
+$pro_btn_bg : transparent ;
+$pro_btn_color : $white ;
+$pro_btn_border : 1px solid $white ; 
+$pro_btn_radius : 0;
+$pro_btn_bg_hover : $white;
+$pro_btn_color_hover : $orange ;
+$pro_btn_border_hover : $pro_btn_border;
+
+//ribbons
+$ribbon_new_bg : $green;
+$ribbon_new_color : $white ;
+$ribbon_offer_bg :#EC4E20 ;
+$ribbon_offer_color :$white ;
+//price
+$pro_price_color : $blue;
+
+// add to cart
+$btn-addtocart_color : lighten($dark_text ,20%);
+$btn-addtocart_hover_bg : $green;
+$btn-addtocart_hover_color : $white;
+
+// list view
+$products_grid_mask_width :250px;
+
+
+
+// footer
+$main_footer_bg : $deep_navy;
+$main_footer_color : $white;
+
+//bootstrap
+$theme-colors: (
+  "primary":    $blue,
+  "dark":       $deep_navy
+); 
+$enable-rounded :false; 
+
+
+// product details
+
+$pro_price_color : $blue;
+$action_bar_height_btns : 46px;
+$action_input_width : 56px; 
+
+$share_btn_width :  35px;
+$share_btn_height : $share_btn_width ;
+
+ 
+
+ 
+//product tabs
+$tab_link_color : $light_text ;
+ 
+$tab_link_active_border :  $blue ;
+$tab_link_active_color : $dark_text   ;
+
+$tab_link_hover_bg :  transparent ;
+$tab_link_hover_color :  $deep_navy ;
+$tab_link_hover_border :  $deep_navy   ;
+
+
+//reviews
+  $review_title_border :$blue;
+  $review_border : 1px solid darken($white ,5%);
+  $avater_size : 50px;
+  $avater_radius : 50%;
+  $review_rating_color : $gray-400;
+  $review_rating_active_color : lighten($orange ,10%);  
+  $review_text_color : $gray_600;
+  $reply_border : 4px dotted $blue;

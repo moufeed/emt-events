@@ -1,0 +1,56 @@
+﻿<div class="request_panel m-t4">
+
+    <h4 class="h_title">@Localizer["personal_information"]</h4>
+
+    <div class="row ">
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_name"]   <strong>@Model.FullName </strong></p>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_email"]   <strong>@Model.Email </strong></p>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_mobile"]   <strong>@Model.Mobile </strong></p>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_phone"]   <strong>@Model.Phone </strong></p>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_city"]   <strong>@Model.CityName </strong></p>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_zip_code"]   <strong>@Model.ZipCode </strong></p>
+        </div>
+
+        <div class="col-md-12 ">
+            <p class="justify-start">@Localizer["l_address"]   <strong>@Model.Address </strong></p>
+        </div>
+    </div>
+    <hr />
+    <h4 class="h_title">@Localizer["request_information"]</h4>
+
+    <div class="row request_panel">
+
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["request_date"]   <strong>@Model.CreatedDate.ToString("yyyy/mm/dd") </strong></p>
+        </div>
+
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_quantity"]   <strong>@Model.Quantity </strong></p>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["l_price"]   <strong>@Model.ItemPrice </strong></p>
+        </div>
+
+        <div class="col-md-3 col-sm-4">
+            <p>@Localizer["request_status"]   <strong class="ut-status-text">@Model.StatusName </strong></p>
+        </div>
+
+    </div>
+
+    <div>
+        <h4 class="h_title">@Localizer["l_notes"] </h4>
+        <p class="notes"> <strong>@Model.Notes </strong></p>
+    </div>
+
+</div>

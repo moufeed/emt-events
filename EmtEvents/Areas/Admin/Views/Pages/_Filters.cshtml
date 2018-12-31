@@ -1,0 +1,55 @@
+﻿@model TamTechSDK.Web.Models.Shared.Filters.Filter
+
+
+<form class="form-horizontal forn-new form-label-left p-3 filter-form" asp-action="index" method="get" name="filterForm">
+
+    <div class="row">
+        <div class="form-group col-md-4 col-sm-4 col-lg-2">
+            <label for="sortPage">@Localizer["sort_by"]</label>
+            <select asp-for="SortBy" asp-items="ViewBag.sortList"
+             onchange="document.filterForm.submit()"
+                    class="form-control m-x-1 select_no-search"></select>
+        </div>
+
+       
+
+        <div class="form-group col-md-4 col-sm-4 col-lg-2">
+            <label for="sortPage">@Localizer["Type"]</label>
+            <select asp-for="Type"
+                    asp-items="ViewBag.TypeList"
+                    class="form-control m-x-1 select_no-search">
+                <option value="null">@Localizer["all"]</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4 col-sm-4 col-lg-2">
+            <label for="sortPage">@Localizer["status"]</label>
+            <select asp-for="Visibility"
+                    asp-items="ViewBag.visibilityList"
+                    class="form-control m-x-1 select_no-search">
+                <option value="null">@Localizer["all"]</option>
+            </select>
+        </div>
+         <div class="form-group col-md-4 col-sm-4 col-lg-2">
+            <label for="sortPage">@Localizer["title"]</label>
+            <input type="text" asp-for="Title" class="form-control m-x-1" style="height: 38px;" />
+        </div>
+        <div class="form-group col-md-4 col-lg-3 col-sm-4">
+
+            <button type="submit" class="btn btn-info p-x-5 m-t5">@Localizer["search"]</button>
+
+        <if exclude-if="@ViewBag.showReset">
+                <a href="@Url.AdminUrl("index","pages")" class="btn btn-link p-x-2 m-t5 c-red"> <i class="fa fa-times-circle "></i> @Localizer["reset"]</a>
+        </if>
+        </div>
+
+
+        <div class="form-group col-md-3 pull-right flip-dir col-lg-1 col-sm-2 col-xs-12">
+            <label for="sortPage">@Localizer["page_size"]</label>
+            <select asp-for="PageSize"
+                    asp-items="ViewBag.pagesizes"
+                    onchange="document.filterForm.submit()"
+                    class="form-control m-x-1 select_no-search pagesize"></select>
+        </div>
+    </div>
+</form>
+<hr class="m-y-2" />

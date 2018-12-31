@@ -1,0 +1,160 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework> 
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+    <UserSecretsId>1a3c3056-0c25-46da-9dbb-18390a18c855</UserSecretsId>
+    <Version>0.0.0.6</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AppStartup\DirectBackendServices\IdentityService\RequestPipeline\**" />
+    <Compile Remove="Areas\Portal\Data\**" />
+    <Compile Remove="Areas\Portal\Models\**" />
+    <Compile Remove="Areas\Shop\Data\**" />
+    <Compile Remove="Areas\Shop\Models\**" />
+    <Content Remove="AppStartup\DirectBackendServices\IdentityService\RequestPipeline\**" />
+    <Content Remove="Areas\Portal\Data\**" />
+    <Content Remove="Areas\Portal\Models\**" />
+    <Content Remove="Areas\Shop\Data\**" />
+    <Content Remove="Areas\Shop\Models\**" />
+    <EmbeddedResource Remove="AppStartup\DirectBackendServices\IdentityService\RequestPipeline\**" />
+    <EmbeddedResource Remove="Areas\Portal\Data\**" />
+    <EmbeddedResource Remove="Areas\Portal\Models\**" />
+    <EmbeddedResource Remove="Areas\Shop\Data\**" />
+    <EmbeddedResource Remove="Areas\Shop\Models\**" />
+    <None Remove="AppStartup\DirectBackendServices\IdentityService\RequestPipeline\**" />
+    <None Remove="Areas\Portal\Data\**" />
+    <None Remove="Areas\Portal\Models\**" />
+    <None Remove="Areas\Shop\Data\**" />
+    <None Remove="Areas\Shop\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="FluentValidation" Version="8.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="OrchardCore.Localization.Core" Version="1.0.0-beta3-68792" /> 
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" /> 
+    <PackageReference Include="TamTechBackendSDK.ContentService.SQL" Version="0.0.3.3" /> 
+    <PackageReference Include="TamTechBackendSDK.EmailService" Version="0.0.1.8" />
+    <PackageReference Include="TamTechBackendSDK.FileStorageService" Version="0.0.0.7" />
+    <PackageReference Include="TamTechBackendSDK.IdentityService" Version="0.0.1.2" />
+    <PackageReference Include="TamTechBackendSDK.SMSService" Version="0.0.0.1" />
+    <PackageReference Include="TamTechSDK.Web" Version="0.0.1.9" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Areas\Shop\Views\Products\pratials\blocks\" />
+    <Folder Include="src\" />
+    <Folder Include="wwwroot\Shop\css\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\Galleries\FormGalleryItem.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Home\Biography.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Menus\partials\_urlTap.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Posts\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Products\List.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Products\_Filters.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Request\_Filters.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Sections\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Sections\Form.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Shared\partials\_LanguageTabs.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Shared\_ResultMessage_notification.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Sliders\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Sliders\Form.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Users\_Filters.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Identity\Views\Account\AccessDenied.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Error\_\Exception.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Error\_\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Error\_\NotFound.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Pages\Index - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Pages\Preview_Html.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Products\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Shared\Error.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Shared\_ValidationScriptsPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Shop\Views\Shared\Error.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Shop\Views\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Shop\Views\Shared\_ValidationScriptsPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Shop\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Shop\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Localization\ar.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Localization\en.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

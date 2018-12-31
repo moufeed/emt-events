@@ -1,0 +1,114 @@
+﻿@{ ViewData["Title"] = Localizer["Categories"];
+
+    }
+
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                @Localizer["Categories"]
+                <small></small>
+            </h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Create" class="btn btn-default btn-add-new">@Localizer["new_category"]</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <div class=" datatable">
+                    <table class="table table-middle table-striped" id="CatgoriesTable">
+                        <thead>
+                            <tr class="headings">
+                                <th>@Localizer["t_image"]</th>
+                                <th>@Localizer["t_title"]Title</th>
+                                <th>@Localizer["t_description"]</th>
+                                <th>@Localizer["t_actions"]</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/datatables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/Admin/lib/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Admin/lib/datatables/media/js/dataTables.bootstrap.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            window.CatgoriesTable = $('#CatgoriesTable').DataTable({
+
+                "searching": false,
+                "language": {
+                    "emptyTable": "<div class='empty_table'> <i class='fa fa fa-exclamation-circle'></i><p>@Localizer["no_data_table"]</p></div>"
+                },
+                //"processing": true, // for show progress bar
+                //"serverSide": true, // for process server side
+                //"filter": true, // this is for disable filter (search box)
+                //"orderMulti": false, // for disable multiple column at once
+                //"pageLength": 10, //
+
+                "ajax": {
+                    "url": "/admin/Categories/LoadCategories",
+                    "type": "Get",
+                    "datatype": "json"
+                },
+                "order": [[1, 'asc']],
+                "columns": [
+                     
+                    {
+                        "data": "imageUri",
+                        width: "100px",
+                        sortable: false,
+                        orderable: false,
+                        render: function (data) { 
+                            return '<span class="category_list_thumbnail"><img src="' + data + '"></span>';
+                        }
+                    },
+                    { "data": "name", },
+                    { "data": "description" },
+                    {
+                        width: "200",
+                        className: "text-center",
+                        sortable: false,
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            return '<a  href="/Categories/Edit/' + row.id+'" data-toggle="tooltip" data-placement="top" title="@Localizer["edit"]"' +
+                                    'class="btn btn-edit"><i class="fa fa-edit "></i></a>' +
+                                    '<a data-toggle="tooltip"' +
+                                    'data-placement="top"' +
+                                    'data-type="Category"' +
+                                    'data-id="' + row.Id + '"' +
+                                    'data-url="/Categories/Delete/' + row.Id + '"' +
+                                    'title="@Localizer["remove"]"' +
+                                    'class="btn btn-remove" onClick="RemoveItem(CatgoriesTable, this)" ><i class="fa fa-times "></i></a>';
+                        }
+
+                    }
+
+                ]
+            });
+
+           
+        })
+    </script>
+}

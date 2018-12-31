@@ -1,0 +1,176 @@
+﻿@model IEnumerable<ProductLiteVM>
+@{
+    ViewData["Title"] = Localizer["Products"];
+    ViewData["UnitTestPageClass"] = "ut-products-index";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+
+<div class="clearfix">
+    <div class="page-title"> 
+        <div class="title_left">
+            <h3>@Localizer["Products"]<small></small></h3>
+          
+            
+            
+        </div>
+        <div class="title_right">
+            <a  href="@Url.AdminUrl("Create" ,"Products")"  class="btn btn-info btn-add-new ut-create-btn">
+                <i class="fa fa-plus"></i> @Localizer["new_product"]
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @{
+            ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { };
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+        <div class="x_panel p-x-0">
+
+
+            <div class="x_content">
+
+               @*  <partial name="_Filters.cshtml" model="ViewBag.FilterModel" /> *@
+
+                <div class="table-responsive">
+                    <table class="table table-middle table-striped">
+                        <thead>
+                            <tr class="headings">
+                                <th width="60" class="text-center">@Localizer["t_image"]</th>
+                                <th class="text-center">@Localizer["t_name"]</th>
+                                <th>@Localizer["t_price"]</th>
+                                <th>@Localizer["t_sku"]</th>
+                                <th class="text-center">@Localizer["t_quantity"]</th>
+                                <th class="text-center">@Localizer["t_published"]</th>
+                                <th class="text-center">@Localizer["t_actions"]</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{int i = 1;}
+                            @foreach (var product in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+
+                                        <span class="list_thumbnail">
+
+                                            @if (string.IsNullOrEmpty(product.MainImageUrl))
+                                            {
+
+                                                <img src="~/Admin/img/noimage.jpg">
+                                            }
+                                            else
+                                            {
+                                                <img src="@product.MainImageUrl">
+
+                                            }
+
+
+
+                                        </span>
+                                    </td>
+
+
+
+                                    <td style="max-width:500px">@product.Name</td>
+                                    <td>@product.Price</td>
+                                    <td>@product.SKU</td>
+                                    <td class="text-center">@product.StockQuantity</td>
+                                    <td class="text-center">
+                                        @if (product.Published)
+                                        {<i class="fa fa-check c-green"></i> }
+                                        else
+                                        { <i class="fa fa-times c-red"></i>}
+                                    </td>
+                                    <td width="150" class="text-center td-actions">
+                                       <div>
+                                            <a data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="@Localizer["t_edit"]"
+                                           data-id="@product.Id"
+                                           href=" @Url.AdminUrl("Edit","Products" ,new { id = product.Id } )"
+                                           class="btn btn-edit btn-round ut-edit-btn"><i class="fa fa-edit "></i></a>
+
+                                        <a data-toggle="tooltip"
+                                           data-placement="top"
+                                           data-id="@product.Id"
+                                           title="@Localizer["t_remove"]"
+                                           data-url="@Url.AdminUrl("DeleteAsync","products" ,new { id = product.Id } )"
+                                           data-backurl="@Url.AdminUrl("index","products")"
+                                           class="btn btn-remove btn-round delete-product ut-remove-btn"><i class="fa fa-trash-o"></i></a>
+
+                                            
+
+                                       </div>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                @*  <hr class="m-y-2" />
+                    <pagination controller-name="posts" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
+                *@
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    <script>
+         $(document).on('click','.delete-product' ,function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var dataURl = $this.data("url");
+             
+        
+       
+         
+        swal({
+            title: "",
+            title: "@Localizer["are_you_sure"]",
+            text: "@Localizer["you_wont_be_able_to_revert_this"]",
+            type: 'error',
+            showCancelButton: true,
+            cancelButtonText :"@Localizer["cancel"]",
+            confirmButtonText: "@Localizer["yse_delete"]"
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: dataURl  ,
+                    type: 'Get',
+                    dataType: "json",  
+                    data: {
+                        redirection : false
+                    }
+                })
+                .done(function(data){
+                    if(data.success){
+                        $notification.success("@Localizer["success"]", "", 2000, "fa fa-check");
+                         $this.parents('tr')[0].remove()
+                    }else{
+                        var errors = data.errors;
+                    $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");
+                    }
+                })
+                .fail(function (jqXHR, Status) {
+                    $notification.error("@Localizer["error"]", jqXHR.statusText, 2000, "fa fa-exclamation-circle");
+                })
+            }
+        })
+    })
+    </script>
+
+}

@@ -1,0 +1,340 @@
+﻿@model ProductFormVM
+@{
+    ViewData["Title"] = "Form";
+
+    int index = 0, attrIdx = 0, imageIndex = 0, dtab = 0, comb = 0;
+
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+@{ string target = ViewData["FormAction"].ToString(); }
+@using (Html.BeginForm(target, "Products", FormMethod.Post,
+new
+{
+   enctype = "multipart/form-data",
+   @class = "form-horizontal forn-new form-label-left ",
+   id = "ProductForm"
+}))
+
+{
+    <div class="clearfix">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>@( ViewBag.isUpdate ? Localizer["edit_product"] : Localizer["create_product"] )</h3>
+                
+            </div>
+            <div class="title_right">
+
+
+                <a asp-action="Index" class="btn btn-default">
+                    <span class="fa fa-chevron-left"></span> @Localizer["back_to_list"]
+                </a>
+                <button type="submit" name="save" class="btn btn-success ut-save-btn"><i class="fa fa-save"></i> @Localizer["save"] </button>
+                <button type="submit" name="save-continue" class="btn  btn-info ut-continue-btn">
+                    <i class="fa fa-floppy-o"></i>
+                    @Localizer["save_and_continue"]
+                </button>
+                @if (ViewBag.isUpdate)
+                {
+                    <button type="button" class="btn  btn-danger delete-product" data-redirection
+                            data-url="@Url.AdminUrl("DeleteAsync","products" ,new { id = Model.Id } )"
+                            data-backurl="@Url.AdminUrl("index","products")">
+                        <i class="fa fa-trash-o"></i>
+                        @Localizer["delete"]
+                    </button>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            @{
+                if (ViewBag.isUpdate)
+                {
+                    ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary {
+                        {"id" , Model.Id }};
+                }
+                else
+                {
+                    ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { };
+                }
+            }
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+
+
+
+            <div class="x_panel">
+
+
+                <header class="header_bar clearfix">
+                    <div class="pull-left flip-dir">
+                        <ul class="nav nav-tabs navs-line" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#information" aria-controls="information" role="tab" data-toggle="tab" class="ut-tap-info">@Localizer["product_info"] </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#Specifications" aria-controls="Specifications" role="tab" data-toggle="tab" class="ut-tap-specifications">@Localizer["product_specifications"] </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#Description" aria-controls="Description" role="tab" data-toggle="tab" class="ut-tap-description">@Localizer["product_description"] </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#images" aria-controls="images" role="tab" data-toggle="tab" class="ut-tap-pictures">@Localizer["product_pictures"] </a>
+                            </li>
+                            @if (ViewBag.isUpdate)
+                            {
+                                <li role="presentation">
+                                    <a href="#Attributes" aria-controls="Attributes" role="tab" data-toggle="tab" class="ut-tap-attributes">@Localizer["product_attributes"] </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    @if (ViewBag.isUpdate)
+                    {
+                        <div class="pull-right flip-dir">
+                            <span class="toggle_span">
+                                <span>@Localizer["unpublish/publish"]</span>
+                                <input type="checkbox" asp-for="Published"
+                                       class="toggle_switch" id="publish_product"
+                                       data-published-text="@Localizer["published_successfully"]"
+                                       data-unpublished-text="@Localizer["unpublished_successfully"]"
+                                       data-url="" />
+
+                            </span>
+                        </div>
+                    }
+                </header>
+                <div class="x_content p-t5">
+
+                    @Html.ValidationSummary(true, "", new { @class = "  col-md-3 col-sm-4 col-xs-12 " })
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade  in  active" id="information">
+                            @{
+                                await Html.RenderPartialAsync("_Form_information_tab");
+                            }
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Specifications">
+                            @{
+                                var Specifications_tab = Html.Partial("_Form_Specifications_tab");
+                                index = (int)this.ViewContext.HttpContext.Items["index"];
+                            }
+                            @Specifications_tab
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade " id="images">
+                            @{
+                                var Images_tab = Html.Partial("_Form_Images_tab");
+                                imageIndex = (int)this.ViewContext.HttpContext.Items["image_index"];
+                            }
+                            @Images_tab
+                        </div>
+
+
+                        <div role="tabpanel" class="tab-pane fade " id="Description">
+                            @{
+                                var _description_tab = Html.Partial("_Form_Description_tab");
+                                dtab = (int)this.ViewContext.HttpContext.Items["dtab"];
+                            }
+                            @_description_tab
+                        </div>
+
+
+
+
+
+                        @if (ViewBag.isUpdate)
+                        {
+                            <div role="tabpanel" class="tab-pane fade" id="Attributes">
+                                @{
+                                    var Attributes_tab = Html.Partial("_Form_Attributes_tab");
+                                    attrIdx = (int)this.ViewContext.HttpContext.Items["attrIdx"];
+                                    comb = (int)this.ViewContext.HttpContext.Items["combination"];
+                                }
+                                @Attributes_tab
+                            </div>
+
+                        }
+
+                    </div>
+                    <div class="form-footer text-right flip">
+
+
+                        <hr>
+
+                        <a asp-action="Index" class="btn btn-default pull-left flip-dir">
+                            <span class="fa @((activeLang == "ar") ? " fa-chevron-right" :" fa-chevron-left") "></span>
+                            @Localizer["back_to_list"]
+                        </a>
+                        <button type="submit" name="save" class="btn btn-success ut-save-btn"><i class="fa fa-save"></i> @Localizer["save"] </button>
+                        <button type="submit" name="save-continue" class="btn  btn-info ut-continue-btn">
+                            <i class="fa fa-floppy-o"></i>
+                            @Localizer["save_and_continue"]
+                        </button>
+                        @if (ViewBag.isUpdate)
+                        {
+
+                            <input type="hidden" asp-for="Id" />
+
+                            <button type="button" class="btn  btn-danger delete-product" data-redirection
+                                    data-url="@Url.AdminUrl("DeleteAsync","products" ,new { id = Model.Id } )"
+                                    data-backurl="@Url.AdminUrl("index","products")">
+                                <i class="fa fa-trash-o"></i>
+                                @Localizer["delete"]
+                            </button>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<!-- combination Modal -->
+<div class="modal fade " id="combinationModal" tabindex="-1" role="dialog" aria-labelledby="combinationModalLabel" aria-hidden="true">
+    <div class="fiexd-flex-center">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@Localizer["select_new_combination"]</h4>
+                </div>
+
+                <form class="form" id="product_cobinations">
+                    <div class="modal-body overflow ">
+
+                        <div class="atrributes_selects_box ">
+                            <div class="lds-ripple"><div></div><div></div></div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label col-md-3 col-sm-4">@Localizer["f_stock_quantity"]</label>
+                            <div class="col-md-9 col-sm-8 col-xs-12">
+                                <input type="number" step="1" name="quantity" class="form-control" min="0" value="0" />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="control-label col-md-3 col-sm-4"> @Localizer["f_sku"] </label>
+                            <div class="col-md-9 col-sm-8 col-xs-12">
+
+                                <input type="text" id="pro_sku" class="form-control ignore" disabled />
+                                <div class="combSkUBox">
+                                    <input type="text" name="sku" id="combSkU" class="form-control" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label col-md-3 col-sm-4"> @Localizer["f_price"] </label>
+                            <div class="col-md-9 col-sm-8 col-xs-12">
+                                <input type="number" step="any" name="price" class="form-control" id="combination_price" min="0" value="0" />
+                            </div>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label col-md-3 col-sm-4">@Localizer["f_discount_price"]  </label>
+                            <div class="col-md-9 col-sm-8 col-xs-12">
+                                <input type="number" step="any" name="discountprice" class="form-control" id="discount_price" min="0" value="0" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn  btn-link link-red  close-link" data-dismiss="modal">@Localizer["close"]</button>
+                        <button type="submit" class="btn btn-save" id="saveCombination">@Localizer["save"]</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/Admin/lib/select2/dist/js/select2.min.js"></script>
+
+    <script src="~/Admin/lib/typeahead.js/dist/typeahead.jquery.js"></script>
+    <script src="~/Admin/js/validator.min.js"></script>
+    <script type="text/javascript">
+
+        $('.select_picker').select2();
+        window.product ={
+             pid : "@Model.Id",
+             idx :  @index ,
+             hints : [],
+             attrIdx : @attrIdx,
+             img_index :  @imageIndex,
+             dtab : @dtab,
+             comb : @comb,
+             PSKU : "@Model.SKU"
+        }
+
+        window.productlinks = {
+            LoadHints      : '@Url.AdminUrl("LoadHints", "Products")',
+            publishProduct : '@Url.AdminUrl("PublishAsync", "products", new { id = Model.Id })'  ,
+            createCombination : '@Url.AdminUrl("CreateProductCombinationAsync", "Products")' ,
+            editCombination : '/Admin/Products/combinations/edit',
+            publishCombination :'@Url.AdminUrl("PublishProductCombinationAsync", "Products")'   ,
+            deleteCombination :'@Url.AdminUrl("DeleteProductCombinationAsync", "Products")'  ,
+            deleteimages : '@Url.AdminUrl("DeleteProductImagesAsync", "Products")',
+            createAttributes :"@Url.AdminUrl("CreateProductAttributeAsync", "Products")",
+            editAttributes : "@Url.AdminUrl("EditProductAttributeAsync", "Products")",
+            deleteattribute : "@Url.AdminUrl("DeleteProductAttributeAsync", "Products")",
+            createAttrValue : "@Url.AdminUrl("CreateProductAttributeValueAsync", "Products")",
+            editAttrValue : "@Url.AdminUrl("EditProductAttributeValueAsync" ,"Products")",
+            deleteAttrValue : "@Url.AdminUrl("DeleteProductAttributeValueAsync", "Products")",
+            geteditAttributes: "@Url.AdminUrl("GetProductAttributesAsync", "Products" , new { productId = Model.Id })"
+        }
+
+        window.productLocalization ={
+            "f_type" :" @Localizer["f_type"]",
+            "f_name" :" @Localizer["f_name"]",
+            "save" :  " @Localizer["save"]",
+            "delete" : " @Localizer["delete"]",
+            "option_value" :" @Localizer["option_value"]",
+            "f_price" :  " @Localizer["f_price"]",
+            "add_option" : " @Localizer["add_option"]",
+            "option_value" : " @Localizer["option_value"]",
+            "values" : " @Localizer["values"]",
+            "edit" :  " @Localizer["edit"]",
+            "select" :" @Localizer["select"]",
+            "product_havent_attributes" :" @Localizer["product_havent_attributes"]",
+            "unpublished" :" @Localizer["unpublished"]",
+            "published" :" @Localizer["published"]",
+            "delete_combination" :" @Localizer["delete_combination"]",
+            "no_data_table" :" @Localizer["no_data_table"]",
+            "f_title" :" @Localizer["f_title"]",
+            "f_description" :" @Localizer["f_description"]"
+        }
+    </script>
+    <script src="~/Admin/js/product.min.js"></script>
+
+    @{
+        ViewBag.TinyMce_Contetnt_Id = "#FullDescription";
+        ViewBag.TinyMce_Suumry_Id = null;
+        await Html.RenderPartialAsync("partials/_tinymce.cshtml");
+    }
+ 
+
+
+}

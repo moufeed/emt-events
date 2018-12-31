@@ -1,0 +1,113 @@
+﻿
+@model Product
+
+@{
+    ViewData["Title"] = Localizer["Products"];
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/products.jpg");
+    ViewData["pageTitle"] = Localizer["Products"];
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml")
+
+
+
+
+<section class="section-products">
+
+    <div class="container">
+       
+         
+
+        <div class="row">
+            <div class="col-md-6 ">
+
+
+
+                @if (Model.Images != null && Model.Images.Count > 0)
+                {
+                    <div class="product-images">
+                        <div class="owl-carousel" gallery-images>
+                            @foreach (var img in Model.Images)
+                            {
+                                <a class=" d-flex justify-content-center align-items-center product-item-img" href="@img" gallery-item>
+                                    <img src="@img" alt="" class="img-fluid">
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <figure class="product-image">
+                        <img src="@Model.MainImageUrl" class="img-fluid" alt="">
+                    </figure>
+                }
+
+
+            </div>
+            <div class="col-md-6 ">
+                <div class="product-description">
+                    <h5 class="c-title"><strong>@Localizer["Description"]</strong></h5>
+                    <h3>@Model.Name</h3>
+                    <p class="p-description lead mt-3">
+                        @Html.Raw(Model.ShortDescription)
+                    </p>
+                    @*<ul class="product-meta list-unstyled mt-4">
+                        <li>
+                            <i class="fa fa-calendar mx-2"></i>
+                            <strong>Completed on:</strong>
+                            <span class="mx-3">  17th March 2017 </span>
+                        </li>
+                    </ul>*@
+
+                    <nav class="d-flex justify-content-start  sharebar">
+                        <a href="https://twitter.com/share?url=@ViewBag.url" class="sharebtn twitter" data-toggle="tooltip" data-placement="top" title="" data-original-title="twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=@ViewBag.url" class="sharebtn facebook" data-toggle="tooltip" data-placement="top" title="" data-original-title="facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="https://plus.google.com/share?url=@ViewBag.url" class="sharebtn google-plus" data-toggle="tooltip" data-placement="top" title="" data-original-title="google plus">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                        <a href="https://www.tumblr.com/share/link?url=@ViewBag.url" class="sharebtn tumblr" data-toggle="tooltip" data-placement="top" title="" data-original-title="tumblr">
+                            <i class="fa fa-tumblr"></i>
+                        </a>
+                        <a href="https://www.pinterest.com/pin/create/button/?url=@ViewBag.url" class="sharebtn pinterest" data-toggle="tooltip" data-placement="top" title="" data-original-title="pinterest">
+                            <i class="fa fa-pinterest-p"></i>
+                        </a>
+                    </nav>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 fullDescription">
+            <div class="col-xs-12">
+                @Html.Raw(Model.FullDescription)
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section footer{
+    <script src="~/portal/js/owl.carousel.min.js"></script>
+    <script>
+
+         $('.owl-carousel').owlCarousel({
+             items:1,
+            loop:true,
+            margin:10,
+            nav:false,
+            autoHeight: true,
+            autoHeightClass: 'owl-height'
+        })
+    </script>
+}

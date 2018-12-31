@@ -1,0 +1,55 @@
+﻿@model BiographyVM
+@{
+
+    Layout = "_Layout";
+    ViewData["Title"] = "Biogarphy";
+
+}
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3> Biography <small></small></h3>
+        </div>
+        <div class="title_right"></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <form asp-controller="Home" asp-action="Biography" class="form-horizontal forn-new form-label-left" id="BiographyForm">
+                <div class="x_content clearfix">
+                    
+                        <div class=" ">
+                             
+                            <div class="col-md-3 col-sm-4">
+
+                                <div class="logo text-center">
+                                    <img src="http://via.placeholder.com/350x350" class=" img-responsive img-thumbnail m-b1" alt="logo" />
+                                </div>
+                                <label class="control-label m-b2">Logo</label>
+                                <label class="form-control clearfix uploadfile">
+                                    <input type="file" asp-for="LogoUrl" class="upload-input" data-text="Choose file." accept="image/*" />
+                                    <span class="url">Choose file.</span>
+                                    <span class="file-btn"><i class="fa fa-search"></i> Browse</span>
+                                </label>
+                            </div>
+                            <div class="col-md-9 col-sm-8 m-t4">
+                                <div class="form-group clearfix">
+                                    <label asp-for="SiteName" class="control-label col-md-3 col-sm-3 col-xs-12 ">Site Name</label>
+                                    <div class="col-md-7 col-sm-5 col-xs-12">
+                                        <input asp-for="SiteName" class="form-control" required />
+                                        <span asp-validation-for="SiteName" class="text-danger invalid_field"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

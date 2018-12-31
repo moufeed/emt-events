@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="application/xhtml+html; charset=utf-8" />
+    <title>@ViewData["Title"]</title>
+    @RenderSection("SEO", required: false)
+    <link rel="shortcut icon" href="~/Portal/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Portal/img/favicon.ico" type="image/x-icon">
+    @{ 
+        var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+        var styleFile = (lang == "ar") ? "style-rtl.min.css" : "style-ltr.min.css";
+    }
+    <link rel="stylesheet" href="~/Portal/css/@styleFile">
+    @RenderSection("meta", required: false)
+    @if (IsSectionDefined("header"))
+    {
+        @RenderSection("Styles", required: false)
+    }
+
+
+</head>
+<body>
+
+    @using IdentityServer4.Extensions
+            @{
+                string name = null;
+                if (!true.Equals(ViewData["signed-out"]))
+                {
+                    name = Context.User?.GetDisplayName();
+                }
+            }
+
+                <ul class="nav navbar-nav navbar-right">
+                   
+            @if (!string.IsNullOrWhiteSpace(name))
+            {
+                  @await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_AdminBar.cshtml",@name)
+            }
+
+
+    @await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_Header.cshtml")
+
+    @RenderBody()
+    
+    @await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_Footer.cshtml")
+
+
+
+    <script src="~/Portal/js/bundle.min.js"></script>
+    <script src="~/Portal/js/script.min.js"></script>
+    @RenderSection("footer", required: false)
+
+</body>
+</html>
+
+
+
+
+
+

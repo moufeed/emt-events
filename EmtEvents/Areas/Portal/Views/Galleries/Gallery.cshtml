@@ -1,0 +1,153 @@
+﻿@model GalleryDto;
+@using TamTechSDK.Common.Services.ContentService.Galleries.Enums
+@{
+    ViewData["Title"] = Localizer["Gallery"];
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/galleries.jpg");
+    ViewData["pageTitle"] = (!string.IsNullOrEmpty(Model.Title)) ? Model.Title : "Gallery";
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml")
+@section SEO{
+    <meta name="description" content="@Html.Raw(Model.MetaDescription)" />
+    <partial name="~/Areas/Portal/Views/Shared/partials/_SEO.cshtml" model="Model.SEOMarkup" />
+}
+@if (Model != null && Model.Id != default(Guid))
+{
+
+    <section class="gallery-section my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12  mb-4">
+                    <div class="gallery-meta mb-3">
+                        <span>
+                            <i class="fa fa-calendar"></i>
+                            @(String.Format("{0:d/M/yyyy}", Model.CreatedDate))
+                        </span>
+                    </div>
+                    <div class="summary text-center">
+                        @Html.Raw(Model.Summary)
+                    </div>
+                </div>
+
+                @if (Model.Items != null && Model.Items.Count > 0)
+                {
+                    foreach (GalleryItemDto item in Model.Items)
+                    {
+
+                        <div class="col-md-4 col-sm-6">
+                            <figure class="gallery-item">
+
+                                @if (item.GalleryItemType == (int)GalleryItemTypeEnum.YoutubeVideo)
+                                {
+                                    @if (string.IsNullOrEmpty(item.MainImage))
+                                    {
+                                        <img src="https://img.youtube.com/vi/@item.VideoUrl/0.jpg" alt="@item.Title" class="img-responsive">
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.MainImage" alt="@item.Title">
+                                    }
+                                }
+                                else
+                                {
+                                    @if (string.IsNullOrEmpty(item.MainImage))
+                                    {
+                                        <img src="~/Portal/img/no-image.svg" alt="@item.Title">
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.MainImage" alt="@item.Title">
+                                    }
+                                }
+
+                                        <figcaption>
+                                            <h5><strong>@item.Title</strong></h5>
+                                            <p><i class="fa fa-search-plus"></i></p>
+
+
+                                            @if (item.GalleryItemType == (int)GalleryItemTypeEnum.YoutubeVideo)
+                                            {
+                                                <a href="https://www.youtube.com/watch?v=@item.VideoUrl" class="gallery-item-link video-link">
+                                                    <div style="display:none">
+                                                        <strong class="title">@item.Title</strong>
+                                                        <p>@Html.Raw(item.Summary)</p>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@((string.IsNullOrEmpty(item.MainImage)) ? "/Portal/img/no-image.svg" : item.MainImage)" class="gallery-item-link ">
+                                                    <div style="display:none">
+                                                        <strong class="title">@item.Title</strong>
+                                                        <p>@Html.Raw(item.Summary)</p>
+                                                    </div>
+                                                </a>
+                                            }
+
+
+                                        </figcaption>
+                            </figure>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+
+
+}
+
+
+
+
+
+
+@section footer {
+    <script src="~/Portal/js/magnific-popup.min.js"></script>
+    <script>
+
+        var template =
+                        '<div class="gallery-popup-container container-fluid mfp-figure">'+
+                        '<div class="row no-gutters ">'+
+                            '<div class="col-lg-8 col-sm-12">'+
+                                '<div class="mfp-img"></div>'+
+                            '</div>'+
+                            '<div class="col-lg-4 content">'+
+                                '<div class="header">'+
+                                    '<span class="mfp-counter"></span>'+
+                                    '<span class="mfp-close"></span>'+
+                                '</div>'+
+                                '<span class="mfp-title"></span>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+        $('.gallery-item-link').magnificPopup({
+            type: 'image',
+            mainClass: 'mfp-gallery',
+            closeMarkup : '<button title="%title%" type="button" class="mfp-close btn btn-close">&#215;</button>',
+            image: {
+                    markup: template ,
+                    titleSrc: function (item) {
+                            return item.el.children()[0].innerHTML;
+                    }
+            },
+            callbacks: {
+                elementParse: function(item) {
+                    console.log(item.el)
+                    if ($(item.el).hasClass('video-link')) {
+                        item.type = 'iframe';
+                    } else {
+                        item.type = 'image';
+                    }
+                }
+            },
+              gallery:{
+                  enabled: true,
+                  tCounter: '%curr% / %total%'
+              }
+            });
+    </script>
+}
+

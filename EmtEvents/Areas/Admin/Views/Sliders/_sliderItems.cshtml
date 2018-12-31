@@ -1,0 +1,92 @@
+@model UpdateSliderDto
+@{
+    var route_lang = ViewContext.RouteData.Values["lang"];
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div class="x_panel">
+
+    <div class="clearfix">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>@Localizer["slider_items"] <small></small></h3>
+            </div>
+            <div class="title_right">
+                <a href="@Url.AdminUrl("CreateItem","sliders", new { sliderId = Model.Id, sliderTitle =Model.Title  } )" class="btn btn-info ut-slide-create"> @Localizer["upload_single_image"]</a>
+            </div>
+        </div>
+
+    </div>
+    <hr class="line" />
+
+    @if (Model.Items != null && Model.Items.Count > 0)
+    {
+                <div class="clearfix m-b5 gallery__items">
+            @foreach (var item in Model.Items)
+            {
+                    <div class="col-md-6 col-sm-6 col-lg-3"  id="@item.Id">
+                        <div class="gallery_item ut-item">
+                            <figure>
+                                @if (string.IsNullOrEmpty(item.MainImage))
+                                {
+                                    <img src="~/Admin/img/no_image.jpg" alt="@item.Title" class="img-responsive">
+                                }
+                                else
+                                {
+                                    <img src="@item.MainImage" alt="@item.Title" class="img-responsive">
+                                }
+                            </figure>
+
+
+                            <div class="info">
+                                <h4>@item.Title</h4>
+                                <div class="actions">
+                                    <div class="btn-group  ">
+                                        @if (item.Published)
+                                        {
+                                            <a  
+                                               data-status="true"
+                                               data-url="@Url.AdminUrl("PublishItem","sliders" , new {sliderId = Model.Id , id = item.Id })"
+                                               title="@Localizer["t_unpublish"]"
+                                               data-type="item"
+                                               class="btn btn-default published toggle_publish_slider_item ut-published"
+                                               data-publish="@Localizer["Publish"]"
+                                               data-unpublish="@Localizer["unpublish"]">
+                                                <span class="fa fa-eye-slash"></span> 
+                                                <span class="text">@Localizer["t_unpublish"]</span>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a data-url="@Url.AdminUrl("PublishItem","sliders" , new {sliderId = Model.Id , id = item.Id })"
+                                               title="@Localizer["t_publish"]"
+                                               data-type="item"
+                                               class="btn btn-default unpublished toggle_publish_slider_item ut-unpublished">
+                                                <span class="fa fa-eye"></span> 
+                                                <span class="text">@Localizer["t_publish"]</span>
+                                            </a>
+
+                                        }
+                                            <a href="@Url.AdminUrl("EditItem","sliders" , new {sliderId = Model.Id , slideId = item.Id , sliderTitle = Model.Title }) "
+                                               title="Edit"
+                                               class="btn btn-default btn-link-edit ut-edit-btn">
+                                                <span class="fa fa-edit"></span> @Localizer["t_edit"]
+                                            </a>
+
+                                            <a title="Delete"
+                                               class="btn btn-link-delete delete__slider ut-delete-btn"
+                                               data-parent-id="@Model.Id"
+                                               data-target="#@item.Id"
+                                               data-url="@Url.AdminUrl("DeleteAsync","sliders" , new {sliderId = Model.Id , id = item.Id })">
+                                                <span class="fa fa-times"></span>@Localizer["t_delete"]
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            }
+                </div>
+    }
+    </div>

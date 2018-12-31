@@ -1,0 +1,75 @@
+﻿
+@model  ProductFormVM
+@{ int index = 0;}
+<div class="form-group">
+    <div class="col-md-3 col-sm-4 col-xs-12  uploadImage">
+   
+        <label class="control-label m-b3">@Localizer["main_image"]</label>
+        <div class="imagebox">
+            @if (!string.IsNullOrEmpty(Model.MainImageUrl))
+            {
+
+                <img src="@Html.DisplayFor(m => m.MainImageUrl)" alt="" id="imagePreview" class="edit_image">
+            }
+            else
+            {
+                <img src="@Html.DisplayFor(m => m.MainImageUrl)" alt="" id="imagePreview">
+
+            }
+                 
+        </div>
+        <div class="form-group from-file">
+            <input type="hidden" name="MainImageUrl" value="@Model.MainImageUrl" />
+            <input type="file" name="MainImage" id="avater" class="input-file" accept="image/*">
+            <label for="avater" class="btn btn-tertiary  ">
+                <span>@Localizer["choose_picture"]</span>
+            </label>
+        </div>
+
+
+    </div>
+    <div class="col-md-9 col-sm-8 col-xs-12 ">
+        <label class="control-label m-b3 m-x-3">@Localizer["product_images"]</label>
+        <div class="images-zone clearfix">
+
+            @if (Model.Images.Count > 0)
+            {
+                 
+                foreach (var img in Model.Images)
+                {
+                    <div class="col-md-3 col-sm-4">
+                        <figure class="imgbox" id="@index">
+                            <a href="#" class="remove-btn" id="removeimage"><i class="fa fa-times"></i></a>
+                            <input type="checkbox" class="ignore" id="thumb-checkbox-@index" />
+                            <div class="thumbnail">
+                                <img src="@img" alt="@Model.Name" id="img-@index" />
+                            </div>
+                        </figure>
+                    </div>
+                    index++;
+                }
+            }
+
+
+        </div>
+        <div class="">
+            <hr />
+            <div class="uplaod-link">
+                
+                    <input type="file" id="addImages" class="input-file" accept="image/*">
+                    <label for="addImages" class="btn btn-add-image">
+                        <span><i class="fa fa-plus" aria-hidden="true"></i>@Localizer["add_images"]</span>
+                    </label>
+                 
+            </div>
+            
+            <a class="btn btn-link remove hidden" id="removeImages"> <i class="fa fa-times" aria-hidden="true"></i>@Localizer["remove_selected_images"]</a>
+        </div>
+    </div>
+</div>
+
+<div class="hidden" id="inputsfiles"></div>
+
+@{
+    this.ViewContext.HttpContext.Items["image_index"] = index;
+}

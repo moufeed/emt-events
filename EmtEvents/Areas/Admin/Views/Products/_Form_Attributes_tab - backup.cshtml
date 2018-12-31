@@ -1,0 +1,348 @@
+﻿@model ProductFormVM
+
+@{
+    int attrIdx = 0;
+    int index = 0;
+}
+
+
+
+<div class="attributes-box">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs sub-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#p_attributes" aria-controls="p_attributes" role="tab" data-toggle="tab">@Localizer["attributes"]</a></li>
+         <li role="presentation"><a href="#combinations" aria-controls="combinations" role="tab" data-toggle="tab">@Localizer["attribute_combinations"]</a></li>
+        
+
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active p-y-5" id="p_attributes">
+
+            <div id="a_wrapper" class="attributes">
+
+                @if (Model.Attributes.Count > 0)
+                {
+
+                    @foreach (var item in Model.Attributes)
+                    {
+
+
+                        <section id="attr_item-@attrIdx">
+                            <div class="clearfix inputitem">
+                                <div class="row attribute">
+                                    <div class="col-md-4 col-sm-4 p-0">
+                                        <div class="form-group clearfix">
+                                            <label for="@item.Type" class="control-label col-md-3 col-sm-12 col-xs-12 ">@Localizer["f_type"]</label>
+                                            <div class="col-md-9 col-sm-12 col-xs-12 ">
+                                                <input type="text" asp-for="@item.Type" name="Attributes[@attrIdx].type" id="Attribute-type-@attrIdx" class="form-control" disabled />
+                                                <span asp-validation-for="@item.Type" class="text-danger invalid_field"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 p-0">
+                                        <div class=" form-group clearfix">
+                                            <label for="@item.Name" class="control-label col-md-3 col-sm-12 col-xs-12 ">@Localizer["f_name"]</label>
+                                            <div class="col-md-9 col-sm-12 col-xs-12 ">
+                                                <input type="text" asp-for="@item.Name" name="Attributes[@attrIdx].Name" id="Attribute-name-@attrIdx"  data-value="@item.Name" class="form-control " disabled />
+                                                <span asp-validation-for="@item.Name" class="text-danger invalid_field"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 p-0">
+                                        <div class="form-group clearfix text-right flip p-x-3">
+
+                                            <a class="btn  btn-link btn-values" role="button"
+                                               data-toggle="collapse" href="#values-@attrIdx" aria-expanded="false" aria-controls="values-@attrIdx">
+                                                <i class="fa fa-cubes" aria-hidden="true"></i>   @Localizer["values"]  
+                                            </a>
+
+                                            <a class="btn btn-update-link update-attrbute" data-id="@attrIdx">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["edit"] 
+                                            </a>
+
+                                            <a class="btn btn-save-link save-attrbute hidden" data-id="@attrIdx">
+                                                <i class="fa fa-check" aria-hidden="true"></i>  @Localizer["save"]
+                                            </a>
+
+                                            <a class="btn btn-remove-link remove-attrbute" data-id="@attrIdx">
+                                                <i class="fa fa-trash-o"></i>  @Localizer["delete"] 
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="attr_values collapse" id="values-@attrIdx">
+
+                                    @{ int optIdx = 0;}
+                                    <div class="options-box" id="options-@attrIdx">
+
+                                        @if (item.Values != null && (int)item.Values.Count() > 0)
+                                        {
+                                            @foreach (var opt in item.Values)
+                                            {
+                                                <div class="form-group m-y-2 " id="opt-@attrIdx-@optIdx">
+                                                    <div class=" clearfix">
+                                                        <label for="Value-@attrIdx-@optIdx" class="control-label col-md-2  col-xs-12 col-sm-4 m-y-2">@Localizer["option_value"]</label>
+                                                        <div class="col-md-3 col-xs-12 col-sm-8 m-y-2">
+                                                            <input type="text" asp-for="@opt.Value" name="Attributes[@attrIdx][Values][@optIdx][Value]" class="form-control ignore" id="Value-@attrIdx-@optIdx" disabled   />
+                                                        </div>
+
+                                                        <label for="Price-@attrIdx-@optIdx" class="control-label col-md-2  col-xs-12 col-sm-4 m-y-2">Price</label>
+                                                        <div class="col-md-3 col-xs-12 col-sm-8 m-y-2">
+                                                            <input type="number" step="any" asp-for="@opt.Price" name="Attributes[@attrIdx][Values][@optIdx][Price]" min="0" class="form-control ignore" id="Price-@attrIdx-@optIdx" disabled />
+                                                        </div>
+
+                                                        <div class="col-md-2 col-xs-12">
+                                                            <a class="btn btn-remove-link  pull-right flip-dir m-y-2 remove-option" data-id="opt-@attrIdx-@optIdx">
+                                                                <i class="fa fa-trash-o"></i> @Localizer["delete"]
+                                                            </a>
+                                                            <a class="btn btn-update-link Update-option pull-right flip-dir m-y-2" data-id="opt-@attrIdx-@optIdx">
+                                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["edit"]
+                                                            </a>
+                                                            <a class="btn btn-save-link save-option hidden pull-right flip-dir m-y-2" data-id="opt-@attrIdx-@optIdx">
+                                                                <i class="fa fa-check" aria-hidden="true"></i> @Localizer["save"]
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="line" />
+                                                </div>
+                                                optIdx++;
+
+                                            }
+                                        }
+                                    </div>
+
+
+
+
+                                    <div class="option-footer text-right flip">
+                                        <a class="btn btn-addContent m-y-2 m-x-2 small" id="addOptions" data-attr="@attrIdx"><i class="fa fa-plus"></i> @Localizer["add_option"] </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="m-t0 m-b5" />
+                        </section>
+
+
+
+
+                        attrIdx++;
+                    }
+                }
+                else
+                {
+                    <section id="attr_item-@attrIdx">
+                        <div class="clearfix inputitem">
+                            <div class="row attribute">
+                                <div class="col-md-4 col-sm-4 p-0">
+                                    <div class="form-group clearfix">
+                                        <label for="Attribute-type-@attrIdx" class="control-label col-md-3 col-sm-12 col-xs-12 ">@Localizer["f_type"]</label>
+                                        <div class="col-md-9 col-sm-12 col-xs-12 ">
+                                            <input type="text" asp-for="Attributes[@attrIdx].type" name="Attributes[@attrIdx].type" id="Attribute-type-@attrIdx" class="form-control ignore" disabled value="select" />
+                                            <span asp-validation-for="Attributes[@attrIdx].type" class="text-danger invalid_field"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 p-0">
+                                    <div class=" form-group clearfix">
+                                        <label for="Attribute-name-@attrIdx" class="control-label col-md-3 col-sm-12 col-xs-12 ">@Localizer["f_name"]</label>
+                                        <div class="col-md-9 col-sm-12 col-xs-12 ">
+                                            <input type="text" asp-for="Attributes[@attrIdx].Name" name="Attributes[@attrIdx].Name" id="Attribute-name-@attrIdx" class="form-control " value="" />
+                                            <span asp-validation-for="Attributes[@attrIdx].Name" class="text-danger invalid_field"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 p-0">
+                                    <div class="form-group clearfix text-right flip">
+
+                                        @*<a class="btn  btn-link btn-values" role="button"
+           data-toggle="collapse" href="#values-@attrIdx" aria-expanded="false" aria-controls="values-@attrIdx">
+            <i class="fa fa-cubes" aria-hidden="true"></i>     Values
+        </a>*@
+
+                                        <a class="btn btn-save-link save-attrbute" data-id="@attrIdx" data-new="true">
+                                            <i class="fa fa-check" aria-hidden="true"></i> @Localizer["save"]
+                                        </a>
+                                        <a class="btn btn-remove-link remove-attrbute" data-new="true" data-id="@attrIdx">
+                                            <i class="fa fa-trash-o"></i> @Localizer["delete"]
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="attr_values collapse" id="values-@attrIdx">
+                                @{ int optIdx = 0; }
+
+                                <div class="options-box" id="options-@attrIdx">
+                                    <div class="form-group m-y-2 " id="opt-@attrIdx-@optIdx">
+                                        <div class="clearfix">
+                                            <label for="Value-@attrIdx-@optIdx" class="control-label col-md-2  col-xs-12 col-sm-4 m-y-2">@Localizer["option_value"]</label>
+                                            <div class="col-md-3 col-xs-12 col-sm-8 m-y-2">
+                                                <input type="text" name="Attributes[@attrIdx][Values][@optIdx][Value]" class="form-control" id="Value-@attrIdx-@optIdx" />
+                                            </div>
+
+                                            <label for="Price-@attrIdx-@optIdx" class="control-label col-md-2  col-xs-12 col-sm-4 m-y-2">@Localizer["f_price"]</label>
+                                            <div class="col-md-3 col-xs-12 col-sm-8 m-y-2">
+                                                <input type="number" name="Attributes[@attrIdx][Values][@optIdx][Price]" class="form-control" id="Price-@attrIdx-@optIdx" min="0" />
+                                            </div>
+
+                                            <div class="col-md-2 col-xs-12">
+                                                <a class="btn btn-remove-link  pull-right flip-dir m-y-2 remove-option" data-id="opt-@attrIdx-@optIdx">
+                                                    <i class="fa fa-trash-o"></i> @Localizer["delete"]
+                                                </a>
+                                                <a class="btn btn-save-link  pull-right flip-dir m-y-2 save-option" data-id="opt-@attrIdx-@optIdx" data-new="true">
+                                                    <i class="fa fa-check"></i> @Localizer["save"]
+                                                </a>
+ 
+                                            </div>
+                                        </div>
+                                        <hr class="line" />
+                                    </div>
+                                </div>
+
+
+                                <div class="option-footer text-right flip">
+                                    <a class="btn btn-addContent m-y-2 small" id="addOptions" data-attr="@attrIdx"><i class="fa fa-plus"></i>@Localizer["add_option"]</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="m-t0 m-b5" />
+                    </section>
+                    optIdx++;
+                    attrIdx++;
+
+                }
+
+
+            </div>
+            <div class="text-right flip">
+                <a class="btn btn-addContent" id="addAttrbutes"><i class="fa fa-plus"></i> @Localizer["add_attribute"]  </a>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade  p-y-5 " id="combinations">
+
+            <div class="" id="c_wrapper">
+                <div class="table-responsive">
+                    <table class="table table-middle table-striped table-hover combinations-table">
+                        <thead>
+                            <tr>
+                                <th>@Localizer["t_attributes"]</th>
+                                <th>@Localizer["t_stock_quantity"]</th>
+                                <th>@Localizer["t_sku"]</th>
+                                <th>@Localizer["t_price"]</th>
+                                <th>@Localizer["t_discount_price"] </th>
+                                <th width="150" class="text-center">@Localizer["t_visibility"]</th>
+                                <th width="200">@Localizer["t_actions"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Model.Combinations != null && Model.Combinations.Count > 0)
+                            {
+
+                                @foreach (var item in Model.Combinations)
+                                {
+
+                                <tr>
+                                  
+                                <td>@Html.Raw(string.IsNullOrEmpty(item.AttributesValues) ? "" : item.AttributesValues.Replace(",", "<br>").Replace(":", " : "))  </td>
+                                    <td>
+                                        <input type="number" step="1" class="form-control m-y-1 ignore" name="Combinations[@index].Quantity" value="@item.Quantity" disabled min="0"/>
+                                    </td>
+                                    <td>
+                                        <p class="form-control-static">@item.Sku</p>
+                                    </td>
+                                    <td>
+                                        <input type="number" step="any" class="form-control m-y-1 ignore" name="Combinations[@index].Price" value="@item.Price" disabled  min="0" />
+                                    </td>
+                                    <td>
+                                        <input type="number" step="any" class="form-control m-y-1 ignore" name="Combinations[@index].DiscountPrice" value="@item.DiscountPrice" disabled />
+                                    </td>
+
+
+                                    <td class="text-center">
+
+
+                                        <a data-sku="@item.Sku"
+                                           data-key="@item.AttributesValues"
+                                           class="btn btn-link-pup toggle_comb_publish">
+                                            @if (@item.Published)
+                                            {
+                                                <span class="published">
+                                                    <i class="fa fa-eye c-green"></i>
+                                                    <small>@Localizer["published"]</small>
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="unpublished">
+                                                    <i class="fa fa-eye-slash c-red"></i>
+                                                    <small>@Localizer["unpublished"]</small>
+                                                </span>
+                                            }
+                                        </a>
+
+
+
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex-center">
+
+                                            <a href="#" class="btn btn-update-link update-combination hidden  m-y-2 " data-index="@index">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> @Localizer["edit"]
+                                            </a>
+                                            <a class="btn btn-save-link save-combination hidden m-y-2" data-index="@index">
+                                                <i class="fa fa-check" aria-hidden="true"></i>  @Localizer["save"] 
+                                            </a>
+
+                                            <a title="Delete Combination"
+                                               data-sku="@item.Sku"
+                                               data-key="@item.AttributesValues"
+                                               data-id="@index"
+                                               class="btn btn-remove-combination c-red m-y-2 remove-combination">
+                                                <i class="fa fa-trash-o"></i>  @Localizer["delete"]
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                index++;
+
+                            }
+
+                            }
+                            else
+                            {
+                                <tr class="empty_row">
+                                    <td colspan="7">
+                                        <div class='empty_table text-center'> <i class='fa fa fa-exclamation-circle'></i><p>@Localizer["no_data_table"]</p></div>
+                                    </td>
+                                </tr>
+
+                            }
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+
+            <div class="form-footer text-right flip">
+                <hr>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-productid="@Model.Id" data-target="#combinationModal">
+                    <i class="fa fa-plus" aria-hidden="true"></i> @Localizer["add_combination"]
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@{
+    this.ViewContext.HttpContext.Items["attrIdx"] = attrIdx;
+    this.ViewContext.HttpContext.Items["combination"] = index;
+}
+
+ 

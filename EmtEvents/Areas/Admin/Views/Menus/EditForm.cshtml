@@ -1,0 +1,531 @@
+﻿@model EditMenuVM
+
+@{
+    ViewData["Title"] = Localizer["edit_menu"];
+    ViewData["UnitTestPageClass"] = "ut-Menus-edit";
+    List<string> targets = new List<string> { "_blank", "_self", "_parent", "_top" };
+
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+
+}
+
+@using System.Text;
+
+@functions {
+
+
+    List<string> targets = new List<string> { "_blank", "_self", "_parent", "_top" };
+
+
+    public string PrintMenu(List<MenuItemDto> MenuItems , string index)
+    {
+
+
+
+        StringBuilder stringBuilder = new StringBuilder("<table class=\"table table-middle table-hover\">");
+        stringBuilder.Append("<thead><tr>");
+        stringBuilder.Append($"<th width=\"80\">{ViewBag.tableheadding[0]}</th>");
+        stringBuilder.Append($"<th>{ViewBag.tableheadding[1]}</th>");
+        stringBuilder.Append($"<th>{ViewBag.tableheadding[2]}</th>");
+        stringBuilder.Append($"<th>{ViewBag.tableheadding[3]}</th>");
+        stringBuilder.Append($"<th width=\"150\" class=\"text-center\">{ViewBag.tableheadding[4]}</th>");
+        stringBuilder.Append($"<th width=\"200\" class=\"text-center\">{ViewBag.tableheadding[5]}</th>");
+        stringBuilder.Append($"</tr></thead>");
+        if (MenuItems?.Count > 0)
+        {
+            foreach (var item in MenuItems)
+            {
+                PrintMenuItem(item, stringBuilder , index);
+            }
+        }
+
+        stringBuilder.Append("<tr class=\"tfooter\"><td colspan='6'>");
+        stringBuilder.Append("<div class=\"text-right p-t2\">");
+        stringBuilder.Append($"<button class=\"btn btn-add btn-info ut-additem-btn ut-btn-{index}  \" data-toggle=\"modal\" data-target=\"#MenuItemModal\" data-root=\"false\" " +
+            $"<i class=\"fa fa-plus\"></i>{ViewBag.tableheadding[6]}</button>");
+        stringBuilder.Append("</div></tr></td>");
+        stringBuilder.Append("</table>");
+        return stringBuilder.ToString();
+
+    }
+
+    private void PrintMenuItem(MenuItemDto dto, StringBuilder stringBuilder , string index )
+    {
+
+        stringBuilder.Append($"<tr data-key=\"{dto.Key}\" data-type=\"{dto.ItemType}\" class=\"{dto.ItemType}\" >");
+        stringBuilder.Append($"<td class=\"text-center\"><input type=\"number\" name=\"DisplayOrder\" min=\"0\" class=\"form-control order-control ut-displayOrder\"  value=\"{dto.DisplayOrder}\" disabled/></td>");
+        stringBuilder.Append($"<td><input type='text' class='form-control input-title ut-input-title'  value='{dto.Title}' disabled /></td> ");
+
+
+        stringBuilder.Append($"<td>");
+        stringBuilder.Append($"<div class=\"flex-display\">");
+
+
+        stringBuilder.Append($"<span class=\"url-target\" data-target=\"{dto.UrlTarget}\">");
+        stringBuilder.Append($"<select class=\"form-control url-select hidden ut-select-url\">");
+
+        foreach (var target in targets)
+        {
+            if (target == dto.UrlTarget)
+            {
+                stringBuilder.Append($"<option value=\"{target}\"selected>{target}</option>");
+            }
+            else
+            {
+                stringBuilder.Append($"<option value=\"{target}\">{target}</option>");
+            }
+
+        }
+
+        stringBuilder.Append($"</select>");
+        stringBuilder.Append($"<span class=\"badge badge-pill badge-secondary\">{dto.UrlTarget}</span>");
+        stringBuilder.Append($"</span>");
+        stringBuilder.Append($"<input type=\"url\" name=\"Url\" value=\"{dto.Url}\" class=\"form-control url-control ut-input-url \" disabled />");
+
+
+        stringBuilder.Append($"</div>");
+        stringBuilder.Append($"</td>");
+
+
+
+        stringBuilder.Append($"<td><span>{dto.ItemType}</span></td>");
+
+
+
+        if (dto.Published)
+        {
+            stringBuilder.Append($"<td> <a data-toggle='tooltip' data-placement='top'  " +
+                $"data-status='true' title='{ViewBag.tableheadding[7]}' data-key='{dto.Key}' " +
+                $" data-published='{ViewBag.tableheadding[8]}' data-unpublished='{ViewBag.tableheadding[7]}' " +
+                $"data-root='{@Model.Id}' class='btn btn-link-pup toggle__publish  published'> " +
+                $"<i class='fa fa-eye c-green'></i> <small>{ViewBag.tableheadding[8]}</small></a></td>");
+        }
+        else
+        {
+            stringBuilder.Append($"<td>  <a   data-toggle='tooltip'" +
+                $" data-placement='top' title='{ViewBag.tableheadding[9]}' data-key='{dto.Key}'" +
+                $" data-published='{ViewBag.tableheadding[8]}' data-unpublished='{ViewBag.tableheadding[7]}' " +
+                $"data-root= '{@Model.Id}' class='btn btn-link-pup toggle__publish unpublished'>" +
+                $" <i class='fa fa-eye-slash c-red'></i>  <small>{ViewBag.tableheadding[10]}</small>  </a></td>");
+        }
+
+        stringBuilder.Append($"<td class='text-right'>");
+
+        var level = dto.Key.Split('_').ToList();
+
+
+        if (level.Count < ViewBag.MenuMaxLevels && dto.ItemType != null && dto.ItemType.Equals(MenuItemTypeEnum.dropdown.ToString(), StringComparison.OrdinalIgnoreCase))
+        {
+
+            stringBuilder.Append($"<a class='btn btn-link btn-values btn-submenu btn-round'" +
+                                 $"role='button' data-toggle='collapse' data-key=\"{dto.Key}\"" +
+                                 $"aria-expanded='false'  aria-controls='collapse-sub'>" +
+                                 $"<span data-toggle='tooltip'   title='Submenu' data-placement='top'>" +
+                                 $" <i class='fa fa-caret-square-o-down'  ></i></span> </a>");
+
+        }
+
+
+
+        stringBuilder.Append($"<a data-toggle='tooltip' data-placement='top' title='{ViewBag.tableheadding[11]}'" +
+                             $"data-key='{dto.Key}' " +
+                             $"data-type=\"{dto.ItemType}\" " +
+                             $"data-root='{@Model.Id}' " +
+                             $"class='btn btn-edit edit-menuitem ut-{dto.ItemType}-edit btn-round child' >" +
+                             $"<i class='fa fa-edit '></i></a>");
+
+
+        stringBuilder.Append($"<a data-toggle='tooltip'" +
+                           $"data-placement='top'" +
+                           $"title='{ViewBag.tableheadding[12]}'" +
+                           $"data-object='{@Html.Raw(Json.Serialize(@dto))}'" +
+                           $"class='btn btn-cancel cancel-menuitem btn-round hidden child'>" +
+                           $"<i class='fa fa-ban '></i></a>");
+
+
+        stringBuilder.Append($" <a data-toggle='tooltip'" +
+                            $"data-placement='top'  data-key='{dto.Key}' data-root='{@Model.Id}'" +
+                            $"data-url={Url.AdminUrl("DeleteAsync","menus" ,new { rootmenuid = Model.Id  , Key = dto.Key })}" +
+                            $" title='{ViewBag.tableheadding[13]}' class='btn btn-remove delete-menuitem btn-round' data-type=\"{dto.ItemType}\">" +
+                            $"<i class='fa fa-trash-o '></i></a>");
+
+
+        stringBuilder.Append($"</td>");
+        stringBuilder.Append("</tr>");
+
+
+        if (dto.ItemType != null && dto.ItemType.Equals(MenuItemTypeEnum.dropdown.ToString(), StringComparison.OrdinalIgnoreCase))
+        {
+
+            stringBuilder.Append($"<tr class=\"submenu ut-submenu-{dto.Key} \" data-key=\"{dto.Key}\"><td colspan=\"6\"  >");
+
+            stringBuilder.Append($"<div class=\"collapse collapse-box\" aria-expanded=\"false\">");
+
+            var sublavel = PrintMenu(dto.MenuItems, dto.Key);
+            stringBuilder.Append(sublavel);
+            stringBuilder.Append("</div></td></tr>");
+        }
+    }
+
+}
+
+
+@using (Html.BeginForm("Edit", "Menus", FormMethod.Post,
+   new
+   {
+       @class = "form-horizontal forn-new form-label-left",
+       id = "MenuForm"
+   }))
+{
+
+
+
+    <div class="clearfix">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>@Localizer["edit_menu"]</h3>
+            </div>
+            <div class="title_right">
+
+
+                <a asp-action="Index" class="btn btn-default">
+                    <span class="fa fa-chevron-left"></span> @Localizer["back_to_list"]
+                </a>
+                <button type="submit" name="save" class="btn btn-success ut-save-btn"><i class="fa fa-save"></i> @Localizer["save"] </button>
+                <button type="submit" name="save-continue" class="btn  btn-blue">
+                    <i class="fa fa-floppy-o"></i>
+                    @Localizer["save_and_continue"]
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    <input type="hidden" name="Lang" value="@activeLang" />
+ 
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @{
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary {
+                    { "id" , Model.Id}
+
+                };
+            }
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+             
+            <div class="x_panel">
+
+                <input type="hidden" name="Lang" value="@activeLang" />
+                <div class="row m-t5">
+                    <div class="col-md-4 col-xs-12">
+                        <div class="form-group clearfix">
+                            <label for="Menutitle" class="control-label col-md-3 col-sm-12">@Localizer["title"]</label>
+                            <div class="col-md-9 col-sm-12">
+                                <input type="text" asp-for="Title" name="Title" id="Menutitle" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger invalid_field"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-xs-12">
+                        <div class="form-group clearfix">
+                            <label for="MenuKey" class="control-label col-md-3 col-sm-12">@Localizer["name"]</label>
+                            <div class="col-md-9 col-sm-12">
+                                @if (Model.Locked)
+                                {
+                                    <div class="input-group input-locked">
+                                        <p class="form-control-static p-x-2 disabled">@Model.Key</p>
+                                        <input type="hidden" asp-for="Key" id="MenuKey" class="form-control" disabled />
+                                        <span class="input-group-addon"
+                                              data-toggle="tooltip"
+                                              data-placement="top"
+                                              title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <input type="text" asp-for="Key" id="MenuKey" class="form-control" required data-rule-slug="true" />
+                                }
+                                <span asp-validation-for="Key" class="text-danger invalid_field"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-xs-12">
+                        <div class="form-group clearfix">
+                            <label for="MenuKey" class="control-label col-md-3 col-sm-12">@Localizer["f_position"]</label>
+                            <div class="col-md-9 col-sm-12">
+                                <select class="form-control" name="Position" asp-for="Position">
+                                    <option value="header">Header</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel p-x-0">
+
+            <div class="x_title clearfix p-x-2">
+                <h2><i class="fa fa-sitemap" aria-hidden="true"></i>@Localizer["menu_structure"] <small></small></h2>
+            </div>
+            <div class="x_content">
+
+                <div class="menus">
+                    @{int index = 0;}
+                    @if (Model.MenuItems?.Count > 0)
+                    {
+                        <div class="table-responsive datatable">
+                            <table class="table table-middle table-hover" id="MenusTable">
+
+                                <thead>
+                                    <tr>
+                                        <th width="80"> @Localizer["t_order"] </th>
+                                        <th> @Localizer["t_title"] </th>
+                                        <th> @Localizer["t_url"] </th>
+                                        <th> @Localizer["t_type"] </th>
+                                        <th width="150" class="text-center">@Localizer["t_visibility"]</th>
+                                        <th width="200" class="text-center">@Localizer["t_actions"]</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.MenuItems)
+                                    {
+                                        <tr data-key="@item.Key" data-type="@item.ItemType" class="ut-tr-@item.ItemType">
+
+                                            <td class="text-center">
+                                                <input type="number" 
+                                                       name="DisplayOrder" 
+                                                        
+                                                       class="form-control order-control ut-input-displayOrder" min="0" value="@item.DisplayOrder" disabled />
+                                            </td>
+
+
+                                            <td>
+                                                <input type="text" class="form-control input-title ut-input-title" value="@item.Title" disabled />
+                                            </td>
+                                            <td>
+                                                <div class="flex-display">
+                                                    <span class="url-target" data-target="@item.UrlTarget">
+                                                        <select class="form-control url-select hidden ut-select-url">
+                                                            @foreach (var target in targets)
+                                                            {
+                                                                if (target == @item.UrlTarget)
+                                                                {
+                                                                    <option value="@target" selected>@target</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="@target">@target</option>
+                                                                }
+
+                                                            }
+                                                        </select>
+                                                        <span class="badge badge-pill badge-secondary">@item.UrlTarget</span>
+                                                    </span>
+                                                    <input type="url" name="Url" value="@item.Url" class="form-control url-control ut-input-url"  disabled />
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <span class="form-control-static">@item.ItemType </span>
+                                            </td>
+                                            
+                                            <td>
+                                                @if (@item.Published)
+                                                {
+
+                                                    <a id="pubunpub-@index"
+                                                       data-toggle="tooltip"
+                                                       data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                       data-status="true"
+                                                       title="@Localizer["publish"]"
+                                                       data-published='@Localizer["t_published"]'
+                                                       data-unpublished='@Localizer["t_unpublish"]'
+                                                       data-key="@item.Key"
+                                                       data-root="@Model.Id"
+                                                       class="btn btn-link-pup published toggle__publish ut-published">
+                                                        <i class="fa fa-eye c-green"></i>
+                                                        <small>@Localizer["published"]</small>
+                                                    </a>
+
+                                                }
+                                                else
+                                                {
+
+                                                    <a id="pubunpub-@index"
+                                                       data-toggle="tooltip"
+                                                       data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                       title="@Localizer["unpublished"]"
+                                                       data-published='@Localizer["t_published"]'
+                                                       data-unpublished='@Localizer["t_unpublish"]'
+                                                       data-key="@item.Key"
+                                                       data-root="@Model.Id"
+                                                       class="btn btn-link-pup unpublished toggle__publish ut-unpublished">
+                                                        <i class="fa fa-eye-slash c-red"></i>
+                                                        <small>@Localizer["unpublished"]</small>
+                                                    </a>
+
+
+                                                }
+                                            </td>
+                                            <td class="text-right">
+
+                                                @if (item.ItemType.Equals(MenuItemTypeEnum.dropdown.ToString(), StringComparison.OrdinalIgnoreCase))
+                                                {
+                                                    <a class="btn btn-link btn-values btn-round btn-submenu"
+                                                       role="button"
+                                                       data-key="@item.Key"
+                                                       aria-expanded="false"
+                                                       aria-controls="collapse-@index">
+                                                        <span data-toggle="tooltip"
+                                                              title="@Localizer["submenu"]"
+                                                              data-placement="top">
+                                                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+                                                        </span>
+                                                    </a>
+
+                                                }
+
+
+                                                <a data-toggle="tooltip"
+                                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                   title="@Localizer["edit"]"
+                                                   data-key="@item.Key"
+                                                   data-root="@Model.Id"
+                                                   data-type='@item.ItemType'
+                                                   class="btn btn-edit edit-menuitem btn-round ut-@item.ItemType-edit"><i class="fa fa-edit "></i></a>
+
+
+                                                <a data-toggle="tooltip"
+                                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                   title="@Localizer["cancel"]"
+                                                   data-object='@Html.Raw(Json.Serialize(@item))'
+                                                   class="btn btn-cancel cancel-menuitem btn-round hidden"><i class="fa fa-ban "></i></a>
+                                                 
+                                                <a data-toggle="tooltip"
+                                                    data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                   data-key="@item.Key"
+                                                   data-root="@Model.Id"
+                                                   data-type='@item.ItemType'
+                                                   data-url="@Url.AdminUrl("DeleteAsync","menus",new { rootmenuid = Model.Id , Key=item.Key})"
+                                                   title="@Localizer["remove"]"
+                                                   class="btn btn-remove delete-menuitem btn-round ut-delete-btn"><i class="fa fa-trash-o "></i></a>
+
+                                            </td>
+                                        </tr>
+
+                                        @if (item.ItemType.Equals(MenuItemTypeEnum.dropdown.ToString(), StringComparison.OrdinalIgnoreCase))
+                                        {
+                                            <tr class="submenu ut-submenu-@item.Key" data-key="@item.Key" >
+                                                <td colspan="6">
+                                                    <div class="collapse collapse-box" id="collapse-@index">
+                                                        @Html.Raw(PrintMenu(item.MenuItems , item.Key ))
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                        index++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+
+                    }
+                    else
+                    {
+                        <div class="empty_table text-center"> <i class="fa fa fa-exclamation-circle"></i><p>@Localizer["no_data_table"]</p></div>
+
+                    }
+
+                </div>
+
+            </div>
+            <div class="x_footer m-t3 p-x-3">
+
+                <button class="btn btn-add btn-info ut-root-additem" data-toggle="modal" data-target="#MenuItemModal" data-root="true">
+                    <i class="fa fa-plus"></i>
+                    @Localizer["add_Item"]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+ 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/Admin/lib/select2/dist/js/select2.min.js"></script>
+    <script src="~/Admin/js/validator.min.js"></script>
+    <script>
+        var edit_url = '@Url.AdminUrl("EditMenuItemAsync" , "menus" )';
+        var publishUrl = '@Url.AdminUrl("PublishMenuItemAsync", "menus")';
+        var MenuMaxLevels = @ViewBag.MenuMaxLevels ;
+    </script>
+    <script src="~/Admin/js/menu.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        $('.select_picker').select2({dir: "ltr"});
+
+    </script>
+}
+
+    
+ 
+<div class="modal fade" id="MenuItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ut-modal">
+            <div class="content">
+
+                <partial name="partials/_TabsList.cshtml" />
+
+                <div class="tab-content">
+                    <partial name="partials/_pageTap.cshtml"  model="Model"/>
+                    <partial name="partials/_productTap.cshtml"  model="Model"/>
+                    <partial name="partials/_urlTap.cshtml"  model="Model"/>
+                    <partial name="partials/_serviceTap.cshtml"  model="Model"/>
+                    <partial name="partials/_staticpageTap.cshtml"  model="Model"/>
+                    <partial name="partials/_dropdownTap.cshtml"  model="Model"/>
+                    <partial name="partials/_galleryTap.cshtml"  model="Model"/> 
+                    <partial name="partials/_PostSectionTap.cshtml"  model="Model"/>
+                    <partial name="partials/_ServicesSectionTap.cshtml"  model="Model"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@model string
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
+
+@{
+    SEODataModel SModel = new SEODataModel();
+    if (!string.IsNullOrEmpty(Model))
+    {
+        SModel = JsonConvert.DeserializeObject<SEODataModel>(Model);
+    }
+    Uri GetAbsoluteUri()
+    {
+          
+        UriBuilder uriBuilder = new UriBuilder();
+        uriBuilder.Scheme = accessor.HttpContext.Request.Scheme;
+        uriBuilder.Host = accessor.HttpContext.Request.Host.Host;
+        uriBuilder.Path = accessor.HttpContext.Request.Path.ToString();
+        uriBuilder.Query = accessor.HttpContext.Request.QueryString.ToString();
+        return uriBuilder.Uri;
+    }
+
+    var url = GetAbsoluteUri();
+}
+
+
+
+@if (SModel.Data != null)
+{
+
+    if (SModel.Type == SeoTypes.Article.ToString())
+    {
+        string serialized = JsonConvert.SerializeObject(SModel.Data);
+
+        ArticleModel Article = JsonConvert.DeserializeObject<ArticleModel>(serialized);
+
+        <meta property="og:locale" content="@System.Globalization.CultureInfo.CurrentCulture.Name" />
+        <meta property="og:url" content="@url" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="@Article.Name" />
+        <meta property="og:description" content="@Article.Description" />
+        <meta property="og:image" content="@Article.Image" />
+        <meta name="article:author" content="@Article.Author.Name">
+    }
+
+    else if (SModel.Type == SeoTypes.Recipe.ToString())
+    {
+        string serialized = JsonConvert.SerializeObject(SModel.Data);
+
+        RecipeModel Recipe = JsonConvert.DeserializeObject<RecipeModel>(serialized);
+
+        <meta property="og:locale" content="@System.Globalization.CultureInfo.CurrentCulture.Name" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="@url" />
+        <meta property="og:title" content="@Recipe.Name" />
+        <meta property="og:image" content="@Recipe.Image" />
+        <meta property="og:description" content="@Recipe.Description" />
+        <meta name="article:author" content="@Recipe.Author.Name">
+    }
+
+    else if (SModel.Type == SeoTypes.WebPage.ToString())
+    {
+
+        string serialized = JsonConvert.SerializeObject(SModel.Data);
+        WebPage Web_Page = JsonConvert.DeserializeObject<WebPage>(serialized);
+
+
+        <meta property="og:locale" content="@System.Globalization.CultureInfo.CurrentCulture.Name" />
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="@Web_Page.Name">
+        <meta property="og:description" content="@Web_Page.Description">
+        <meta property="og:url" content="@url">
+        <meta property="og:image" content="@Web_Page.Image">
+
+
+    }
+
+
+    <script type="application/ld+json">
+        @Html.Raw(SModel.Data)
+    </script>
+}
+

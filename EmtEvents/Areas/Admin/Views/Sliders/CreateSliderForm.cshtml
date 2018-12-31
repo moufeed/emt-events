@@ -1,0 +1,141 @@
+﻿
+@model CreateSliderDto
+
+
+
+@{
+    ViewData["Title"] = "Sliders - Create ";
+    ViewData["UnitTestPageClass"] = "ut-slider-form";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["create_slider"]<small></small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @{
+            ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { };
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+        <div class="x_panel">
+
+
+
+            <div class="x_content">
+
+                <form asp-controller="Sliders"
+                      asp-action="@ViewBag.FormAction"
+                      class="form-horizontal forn-new form-label-left m-t5"
+                      id="SlidersForm">
+
+                    <input type="hidden" name="Lang" value="@activeLang" />
+
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    }
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_name"]</label>
+                        <div class="col-md-7 col-sm-5 col-xs-12">
+                            <input asp-for="Title" class="form-control" required />
+                            <span asp-validation-for="Title" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Key" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_key"]</label>
+                        <div class="col-md-7 col-sm-5 col-xs-12">
+                            <input asp-for="Key" class="form-control" required data-rule-slug="true" />
+                            <span asp-validation-for="Key" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group clearfix">
+                            <label asp-for="Position" class="control-label col-md-3 col-sm-3 col-xs-12 ">Slider Position</label>
+                            <div class="col-md-7 col-sm-5 col-xs-12">
+                                <select asp-for="Position" class="form-control" required>
+                                    <option value="Header">Header</option>
+                                </select>
+
+                                <span asp-validation-for="Position" class="text-danger invalid_field"></span>
+                            </div>
+                        </div>*@
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
+                        <div class="col-md-7 col-sm-5 col-xs-12">
+                            <textarea asp-for="Summary" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
+                            <input type="submit" class="btn btn-success p-x-5 ut-save-btn" value="@Localizer["Create"]">
+                            <button type="submit" name="save-continue" class="btn  btn-info ut-continue-btn">
+                                <i class="fa fa-floppy-o"></i>
+                                @Localizer["save_and_continue"]
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Styles{
+
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+
+    <script>
+        $('#SlidersForm').validate({
+            errorClass: "invalid_field",
+            validClass: "valid_field",
+            ignore: ".ignore"
+        });
+       
+           $("#Title").on("keyup", function() {
+               $("#Key").val($(this).val().replace(/\s/g, "_")).valid();
+           })
+   
+ 
+    </script>
+<script src="~/Admin/js/validator.min.js"></script>
+@{
+    ViewBag.TinyMce_Contetnt_Id = null;
+    ViewBag.TinyMce_Suumry_Id = "#Summary";
+    await Html.RenderPartialAsync("partials/_tinymce.cshtml");
+}
+
+
+
+}
+
+

@@ -1,0 +1,33 @@
+﻿@using TamTechSDK.Common.Services.ContentService.ContentService.Models
+
+
+
+<if include-if="ViewBag.statistics != null">
+
+    <div class="row statistics-panel">
+        @foreach (var item in (Dictionary<string, NumericalStatisticsDto>)ViewBag.statistics)
+        {
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card card-statistics">
+                <div class="card-body card-@item.Key">
+                    <div class="clearfix">
+                        <span class="icon icon-@item.Key"></span>
+                        <div class="card-meta">
+                            <p class="title">@Localizer[$"h_{item.Key}"]</p>
+                            <strong class="count">@item.Value.Count</strong>
+                        </div>
+                    </div>
+                    <p class="card-footer">
+                        <span class="published" ><small><i class="fa fa-circle c-green"></i>  @Localizer["t_published"]</small> : @item.Value.PublishedCount</span>
+                        <span class="unpublished" ><small><i class="fa fa-circle c-red"></i>  @Localizer["t_unpublished"]</small> : @item.Value.UnpublishedCount</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        }
+    </div>
+</if>
+
+
+ 

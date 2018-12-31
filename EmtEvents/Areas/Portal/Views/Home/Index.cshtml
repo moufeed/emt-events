@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["Title"] = "TamTech";
+    Layout = "_Layout";
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+@*<h1>-----------------------------------------------------------------</h1>
+    @inject IStringLocalizer<SharedResources> SharedLocalizer
+    <br />
+
+    <p style="margin-left:20px">@SharedLocalizer["Test"]</p>
+    <p style="margin-left:20px">@SharedLocalizer["Yes"]</p>
+    <p style="margin-left:20px">@SharedLocalizer["Cancel"]</p>
+    <p style="margin-left:20px">@SharedLocalizer["No"]</p>
+    <p style="margin-left:20px">@SharedLocalizer["Save"]</p>
+
+
+    <h1> Test Localization :  @ViewData["Test"]  </h1>
+    <h1> Cancel :  @ViewData["Cancel"]</h1>
+*@
+@*@{ ViewBag.} Public Main Slider Call is here .. To be continued..*@
+
+ 
+@*<h1> Normal  Date  :  @DateTime.Now</h1>*@
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_slider.cshtml")
+@await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_about.cshtml")
+@await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_services.cshtml")
+@await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_promo.cshtml")
+@await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_testimonials.cshtml")
+@await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_clients.cshtml")
+@section footer{
+    <script src="~/Portal/js/slider.min.js"></script>
+    <script src="~/portal/js/owl.carousel.min.js"></script>
+    <script>
+        @{
+
+        }
+        var isRTL = @((lang =="ar") ? "true" :  "false");
+        $('.testimonials_carousel').owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: ["&#xf104;", "&#xf105;"],
+            dots: false,
+            rtl: isRTL
+        });
+
+        $('.clients_carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            rtl: isRTL,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                600: {
+                    items: 3,
+                    nav: false
+                },
+                1000: {
+                    items: 5,
+                    nav: false,
+                    loop: false
+                }
+            }
+        })</script>
+}
+
+@section SEO {
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "Organization",
+        "url":  "@ViewBag.Host",
+        "logo": "@ViewBag.Host/portal/img/seoLogo.jpg",
+        "name": "tam tech",
+        "telephone": "00905354152865",
+        description :"tam tech"
+        }
+    </script>
+}

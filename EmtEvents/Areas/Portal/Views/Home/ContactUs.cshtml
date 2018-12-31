@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "TamTech";
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/contact.jpg");
+    ViewData["pageTitle"] = Localizer["contact_us"];
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
+
+
+@section SEO{
+
+<script type="application/ld+json">
+    {
+    "@@context":"http://schema.org",
+    "@@type":"LocalBusiness",
+    "image":"@ViewBag.Host/portal/img/seoLogo.jpg",
+    "name":"Tamtech",
+    "address":{
+    "@@type":"PostalAddress",
+    "streetAddress":"E5 yan yol Civan Cokak",
+    "addressLocality":"Avcılar Üniversite Mh",
+    "addressRegion":"İstanbul",
+    "postalCode":"34320",
+    "addressCountry":"Turkey"
+    },
+    "geo":{
+    "@@type":"GeoCoordinates",
+    "latitude":40.991939 ,
+    "longitude":28.713351
+    },
+    "telephone":"+905354152865"
+    }
+</script>
+
+}
+
+ 
+
+<section class="section-contact">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-sm-auto col-md-12 col-lg-6">
+                @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/_ContactLinks.cshtml", @ViewData)
+            </div>
+            <div class="col-sm-auto col-md-12 col-lg-6">
+                @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/_ContactForm.cshtml")
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section footer {
+
+    <div class="modal fade" id="ContactModel" tabindex="-1" role="dialog" aria-labelledby="ContactModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body p-5">
+                    <p> @Localizer["dear_customer"] </p>
+                    <p>@Localizer["We_have_received_your_message"]</p>
+                    <p>
+                        @Localizer["mobile_no"]. <span dir="ltr" style="font-family:tahoma">+90 000111222</span>
+                    </p>
+                    <small>@Localizer["have_great_day"]</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@Localizer["close"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/portal/js/validation.min.js"></script>
+
+
+
+}
+

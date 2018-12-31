@@ -1,0 +1,40 @@
+  
+
+  .main_footer{
+      background: $main_footer_bg;
+      color:  $main_footer_color;
+  }
+
+.bootom_bar{
+
+   background :  darken( $main_footer_bg ,10%);
+    .row{
+        min-height: 40px;
+    }
+}
+
+  /*
+  <footer class="">
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div> 
+
+
+    <div class="bootom_bar">
+        <div class="container">
+            <div class="row justify-content-between align">
+                <div class="col-sm-auto">
+                    Powered by <a href="http://tamtech.solutions">tamtech</a>
+                </div>
+                <div class="col-sm-auto">
+                    <p>
+                        Copyright © 2018 tamtech solutions. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+  */

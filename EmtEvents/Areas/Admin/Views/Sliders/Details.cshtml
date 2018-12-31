@@ -1,0 +1,164 @@
+﻿@model SliderDto
+@{
+    ViewData["Title"] = "Silders - Details";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3> @Localizer["slider_details"]<small></small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @{
+            ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary {
+                {"id" , Model.Id }
+            };
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+        
+
+        <div class="x_panel">
+
+
+
+            <div class="x_content p-y-5 ">
+                <div class="form-group clearfix">
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["title"]</strong>
+                    <strong class="col-md-8 col-sm-8 col-xs-12">@Model.Title</strong>
+                </div>
+                <hr />
+                <ul class="clearfix metalist list-unstyled">
+                    <li class="col-md-4 col-xs-12 col-sm-4">
+                        <strong>Status</strong>
+                        @if (Model.Published)
+                        {
+                            <span class="c-green"> <i class="fa fa-check" aria-hidden="true"></i> @Localizer["published"]</span>
+                        }
+                        else
+                        {
+                            <span class="c-red"> <i class="fa fa-times" aria-hidden="true"></i> @Localizer["unpublished"]</span>
+                        }
+
+                    </li>
+                    <li class="col-md-4 col-xs-12 col-sm-4">
+                        <strong>@Localizer["created_date"]</strong>
+                        <span>@Model.CreatedDate</span>
+                    </li>
+                    <li class="col-md-4 col-xs-12 col-sm-4">
+                        <strong>@Localizer["modified_date"]</strong>
+                        <span>@Model.ModifiedDate</span>
+                    </li>
+                </ul>
+                <hr />
+                <div class="form-group clearfix">
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["key"]</strong>
+                    <strong class="col-md-8 col-sm-8 col-xs-12">@Model.Key</strong>
+                </div>
+                <hr />
+                @*<div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>Slider Position :</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @Model.Position
+                    </div>
+                </div>
+                <hr />*@
+                <div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>@Localizer["summary"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @Html.Raw(Model.Summary)
+                    </div>
+                </div>
+                <hr />
+
+
+                <h3>
+                    The Slides
+                </h3>
+                <hr />
+                <div class="form-group clearfix">
+
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="col-md-12 col-sm-12 " id="@item.Id">
+                            <div class="gi-card">
+                                <a href="@item.MainImage" class="gi-image" data-lightbox="images" data-title="@item.Title">
+                                    <img src="@item.MainImage">
+                                </a>
+                                <div class="gi-info">
+
+                                    <header class="gi-header">
+                                        <h3>@item.Title</h3>
+                                        @*  <div class="actions">@Model.Title/@Model.Position
+                                        </div>*@
+                                    </header>
+                                    <div class="gi-meta">
+                                        <span>
+                                            <i class="fa fa-calendar"></i>
+                                            @item.CreatedDate
+                                        </span>
+
+                                        @if (item.Published)
+                                        {
+                                            <span class="c-green" id="item-@item.Id"> <i class="fa fa-check" aria-hidden="true"></i> @Localizer["published"]</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="c-red" id="item-@item.Id"> <i class="fa fa-times" aria-hidden="true"></i> @Localizer["unpublished"]</span>
+                                        }
+
+                                    </div>
+
+                                    <div class="gi-suumary">
+                                        @Html.Raw(item.Summary)
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+
+    <script src="~/Admin/js/lightbox.min.js"></script>
+    <script>
+
+
+        lightbox.option({
+            'resizeDuration': 400,
+            'wrapAround': true,
+            'showImageNumberLabel': false
+        })
+    </script>
+
+}

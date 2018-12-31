@@ -1,0 +1,192 @@
+
+.grid-view{
+
+    .product-description{
+        display: none;
+    }
+
+}
+
+.product-box{
+    margin:rem(6px); 
+    background: $white;
+    border: 1px solid $border-color ;
+
+    &:hover{
+        .product-action{
+            opacity: 1;
+            transform: translate3d(0,0,0);
+            .btn{
+                 
+                transform: translate3d(0,0,0);
+                &:nth-child(2) {
+                   
+                    transition-delay: 0.1s;
+                }
+            }
+        }
+    }
+}
+
+
+
+ .product-ribbons{
+     position: relative;
+     height: $products_grid_mask_height;  
+     overflow: hidden;
+     .product-action{
+         .product-link{
+            @include absolute(top left , 0);
+            @include square(100%);
+            display: block;
+            z-index: 0;
+         }
+         z-index: 1;
+         @include absolute(top left , 0);
+         @include square(100%);
+         background: $products_grid_mask_bg;
+         background: -webkit-linear-gradient(top, $pro_grid_mask_gradient_start 0%,  $pro_grid_mask_gradient_end 75%);
+         background: linear-gradient(to bottom,  $pro_grid_mask_gradient_start 0%, $pro_grid_mask_gradient_end 75%);
+         transform: translate3d(0,50%,0);
+         transition: opacity 0.35s, transform 0.35s;
+         opacity: 0;
+         display: flex;
+         justify-content: center;
+         align-items: flex-end;
+         .btn{
+            background: $pro_btn_bg;
+            color: $pro_btn_color;
+            border: $pro_btn_border;
+            border-radius: $pro_btn_radius;
+            outline: none !important;
+            margin: rem(5px);
+            transition: transform 0.35s;
+            transform: translate3d(0,200%,0); 
+             &:hover{
+                background: $pro_btn_bg_hover;
+                color: $pro_btn_color_hover;
+                border: $pro_btn_border_hover;
+             }
+             &.btn-whitelist{
+                &:hover{
+                    background: $pro_btn_bg_hover;
+                    color: $red;
+                    border: $pro_btn_border_hover;
+                 }
+
+                 &.in-whitelist{
+                     color: $red; 
+                     background: $white;
+                     .fa{
+                         &:before{
+                             content: "\f004";
+                         }
+                     }
+                 }
+             }
+             &.btn-compare {
+                 &.inlist{
+                    color: $pro_btn_color_hover; 
+                    background: $pro_btn_bg_hover;
+                 }
+             }
+         }
+     }
+ }
+
+
+.product-image{
+    position: relative;
+    background: $white;
+    overflow: hidden;
+    height: $products_grid_mask_height;
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+.products-ribbons{
+    @include absolute (top $left , 0 0);
+     
+    .ribbon{
+        background: $white;
+        display: block;
+        padding: rem(2px) rem(12px);
+        margin-top:rem(5px) ;
+        font-size: 12px;
+        position: relative; 
+        &.new{
+            background: $ribbon_new_bg;
+            color: $ribbon_new_color;
+        }
+        &.offer{
+            background: $ribbon_offer_bg;
+            color: $ribbon_offer_color;
+        }
+    }
+}
+
+
+
+.product-info{
+    padding: rem(10px) rem(10px);
+    .title{
+        display: block;
+        color: $black;
+        font-family: if-ltr('rw-semibold','') , $font-family-sans-serif;
+        @include ellipse(14px,1.4,2);
+    }
+}
+
+.prices{
+    margin: rem(10px) 0;
+        .price{
+            color: $pro_price_color;
+            font-size: rem(16px);
+            font-family: if-ltr('rw-semibold','') ;
+        }
+        .old-price{
+            padding: 0 4px;
+            font-size: 13px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+}
+.product-footer{
+    border-top: 1px solid $border-color;
+    .addtocart {
+        width: 100%;
+        background: transparent;
+        padding : rem(8px) rem( 12px) ;
+        font-family: if-ltr('rw-semibold','') ;
+        text-transform: capitalize;
+        font-size: rem(13px);
+        color: $btn-addtocart_color;
+        i{
+            margin: auto 4px;
+        }
+        &:active, &:focus{
+            box-shadow: none;
+        }
+        &:hover{
+            background: $btn-addtocart_hover_bg;
+            color: $btn-addtocart_hover_color;
+        }
+    }
+}
+/*
+
+ 
+ 
+
+ 
+<div class="">
+    <button class="btn  ">
+           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+           add to cart
+    </button>
+</div>
+
+</div>
+*/

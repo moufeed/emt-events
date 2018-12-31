@@ -1,0 +1,34 @@
+ 
+
+1 - DotNet version  :     2.1.500-preview-009335
+ ________________________________________________
+
+
+
+
+2 - Database Scripts :
+_________________________________
+
+      2.1 - This version does not contain any change in the structure of the DataBase (no upgrade script).
+
+      2.2 - The scripts for the database are on the following track : DatabaseScripts / DBRelease / DB_Scripts_V0.0.1.2 
+
+	  2.3 - The Scripts folder contains the following files : 
+															  2.3.1 - ContentService_db_Script_Schema_V0.0.1.2  
+															  2.3.2 - ContentService_db_Script_SeedData_V0.0.1.2 
+															  2.3.3 - ContentService_db_Script_UpgradeSchemaFrom_V0.0.1.1_To_V0.0.1.2
+
+
+
+
+ 3 - Changes in a appsettings file :  There are no changes.
+ ___________________________________________________________
+
+
+
+
+
+
+ 
+
+ 

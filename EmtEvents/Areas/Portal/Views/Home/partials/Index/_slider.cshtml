@@ -1,0 +1,75 @@
+
+@using TamTechSDK.Common.Services.ContentService.Sliders.Models;
+@{
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+
+@if (ViewBag.publicMainSlider != null)
+{
+    SliderDto mainSlider = (SliderDto)ViewBag.publicMainSlider;
+
+
+<section class="slider-section">
+
+    @if (mainSlider.Items != null && mainSlider.Items.Count > 0)
+    {
+        
+            var x = (lang == "ar") ? 1170 : 125;
+        
+        <div class="rev_slider_wrapper fullwidthbanner-container">
+            <div id="main_slider" class="rev_slider fullwidthabanner" data-version="5.4.5" style="display:none">
+                <ul>
+                    @foreach (var item in mainSlider.Items)
+                    {
+                        <li data-transition="random">
+                            <img src="@item.MainImage" alt="" class="rev-slidebg">
+                            <div class="tp-caption top-label"
+                                 data-x='@x'
+                                 data-y="260"
+                                 data-start="500"
+                                 data-transform_in="y:[-300%];opacity:0;s:500;">@item.Title</div>
+
+                                <div class="tp-caption main-label"
+                                     data-x="@x"
+                                     data-y="290"
+                                     data-start="600"
+                                     data-transform_in="y:[100%];s:500;" style="min-width:350px; max-width:450px;white-space: pre-line;">@Html.Raw(item.Summary)</div>
+                                </li>
+                            }
+                </ul>
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="rev_slider_wrapper fullwidthbanner-container">
+            <div id="main_slider" class="rev_slider fullwidthabanner" data-version="5.4.5" style="display:none">
+                <ul>
+                    @{
+                        var x = (lang == "ar") ? 1170 : 125;
+                    }
+                    @for (var i = 1; i <= 3; i++)
+                    {
+                        <li data-transition="random">
+                            <img src="~/portal/img/slider/@(i).jpg" alt="" class="rev-slidebg">
+                            <div class="tp-caption top-label"
+                                 data-x="@x"
+                                 data-y="260"
+                                 data-start="500"
+                                 data-transform_in="y:[-300%];opacity:0;s:500;">Lorem, ipsum dolor.</div>
+
+                            <div class="tp-caption main-label"
+                                 data-x="@x"
+                                 data-y="290"
+                                 data-start="600"
+                                 data-transform_in="y:[100%];s:500;" style="min-width:350px; max-width:450px;white-space: pre-line;" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, sed.</div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+</section>
+}

@@ -1,0 +1,67 @@
+﻿@model RequestDto
+@{
+    ViewData["Title"] = Localizer["request_details"];
+    ViewData["UnitTestPageClass"] = "ut-request-details";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3> @Localizer["request_details"] <small> </small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        @{
+            ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+
+        <div class="x_panel ">
+            <div class="x_content p-y-5 ">
+
+                <div class=" ">
+                    <ul class="nav nav-tabs navs-line" role="tablist">
+
+                        <li role="presentation" class="active">
+                            <a href="#information" aria-controls="information" role="tab" data-toggle="tab" class="ut-tap-info">@Localizer["information"] </a>
+                        </li>
+                        <if include-if="@ViewBag.statusList != null">
+                            <li role="presentation">
+                                <a href="#history" aria-controls="history" role="tab" data-toggle="tab" class="ut-tap-history">@Localizer["history"] </a>
+                            </li>
+                        </if>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade  in  active" id="information">
+                        <partial name="_request_panel.cshtml" />
+                        <hr />
+                        <if include-if="@ViewBag.statusList != null">
+                            <partial name="_status_panel.cshtml" />
+                        </if>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="history">
+                        <if include-if="@ViewBag.history != null">
+                            <partial name="_history_panel.cshtml" />
+                        </if>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+ 

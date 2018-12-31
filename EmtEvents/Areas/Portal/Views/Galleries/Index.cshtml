@@ -1,0 +1,64 @@
+﻿@model List<GalleryLiteDto>;
+@{
+    ViewData["Title"] = Localizer["Galleries"];
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/galleries.jpg");
+    ViewData["pageTitle"] = Localizer["our_galleries"];
+   
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml")
+
+
+<section class="galleries">
+
+    <div class="container">
+
+        <div class="row py-5 ">
+            @if (Model.Count > 0)
+            {
+                foreach (GalleryLiteDto item in Model)
+                {
+                    <div class="col-md-4 col-lg-3">
+
+                        <div class="gallery_item">
+                            <span class="image">
+                                 
+                                @if (string.IsNullOrEmpty(item.MainImage))
+                                {
+                                   <a asp-controller="galleries" asp-action="v" asp-route-slug="@item.Slug"><img src="~/Portal/img/no-image.svg" alt="@item.Title" /></a>
+                                }
+                                else
+                                { 
+                                   <a asp-controller="galleries" asp-action="v" asp-route-slug="@item.Slug"><img src="@item.MainImage" alt="@item.Title" /></a>
+                                }
+                            </span>
+                            <div class="Info">
+                                <span class="meta">
+                                    <small> @(String.Format("{0:d/M/yyyy }", item.CreatedDate)) </small>
+                                </span>
+                                <h5><a href="@Url.PortalAction("v", "galleries", new { slug = item.Slug })">@item.Title</a></h5>
+
+
+                                <p>
+
+                                    @{
+                                        string text = String.Empty;
+                                        if(!string.IsNullOrEmpty(item.Summary)){
+                                         text = Regex.Replace(item.Summary, "<.*?>", String.Empty);
+                                        }
+                                    }
+                                    @Html.Raw(text)
+
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</section>

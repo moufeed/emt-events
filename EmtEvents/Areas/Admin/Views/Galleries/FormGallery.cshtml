@@ -1,0 +1,359 @@
+﻿@model GalleryFormVM
+
+@{
+    ViewData["UnitTestPageClass"] = "ut-form-page";
+    ViewData["Title"] = ViewBag.isUpdate ? Localizer["update_gallery"] : Localizer["create_gallery"];
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@( ViewBag.isUpdate ? Localizer["update_gallery"] : Localizer["create_gallery"]) <small></small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+@{
+    if (TempData.ContainsKey("uploadFailed"))
+    {
+        <div class="alert alert-danger alert-dismissible alert-flex" role="alert">
+            <div class="flex-display">
+                <i class="fa fa-times-circle fa-3x m-r4" aria-hidden="true"></i>
+                @Localizer["upload_failed"]
+            </div>
+            <button type="button" class="close btn-alert-close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        TempData.Remove("uploadFailed");
+    }
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        @{
+            if (ViewBag.isUpdate)
+            {
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary {
+                {"id" , Model.Id }
+            };
+            }
+            else
+            {
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { };
+            }
+
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+
+
+
+
+        <div class="x_panel">
+            <div class="x_content">
+
+                @if (!Model.Locked && ViewBag.isUpdate)
+                {
+                    <div class="text-right flip">
+                        <label asp-for="Published">
+
+                            <input type="checkbox"
+                                   asp-for="Published"
+                                   class="toggle_switch "
+                                   data-toggle="tooltip"
+                                   id="publish-gallery"
+                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-url="@Url.AdminUrl("PublishAsync" ,"galleries" , new { id= Model.Id })"
+                                   title="@Localizer["publish_unpublish"]" />
+                        </label>
+                    </div>
+                }
+
+                <form asp-controller="Galleries"
+                      asp-action="@ViewBag.FormAction"
+                      class="form-horizontal forn-new form-label-left m-t4"
+                      id="ServicesForm"
+                      enctype="multipart/form-data">
+
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    }
+
+
+                    @if (ViewBag.isUpdate)
+                    {
+                        <input type="hidden" asp-for="Id" />
+                    }
+                    <input type="hidden" asp-for="Lang" value="@activeLang" class="ignore" />
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_title"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input asp-for="Title" class="form-control" required data-seo-name />
+                            <span asp-validation-for="Title" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Slug" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            @if (Model.Locked)
+                            {
+                                <div class="input-group input-locked">
+                                    <input type="hidden" asp-for="Slug"  />
+                                    <input type="text"   class="form-control" disabled  value="@Model.Slug" />
+                                    <span class="input-group-addon"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <input type="text" asp-for="Slug" class="form-control" required />
+                            }
+                            <span asp-validation-for="Slug" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+
+                            @if (!string.IsNullOrEmpty(Model.MainImage))
+                            {
+                                <img src="@Model.MainImage" style="max-width:300px" class="img-thumbnail m-b3" data-seo-image="@Model.MainImage">
+                                <input type="hidden" name="MainImage" value="@Model.MainImage" />
+                            }
+
+                            <label class="form-control clearfix uploadfile">
+                                @if (ViewBag.isUpdate)
+                                {
+                                    <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" />
+                                }
+                                else
+                                {
+                                    <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" required />
+                                }
+
+                                <span class="url">@Localizer["choose_file"]</span>
+                                <span class="file-btn"><i class="fa fa-search"></i> @Localizer["Browse"]</span>
+                            </label>
+                            <label id="NewMainImage-error" class="invalid_field" for="NewMainImage"></label>
+                            <span asp-validation-for="MainImage" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="DisplayOrder" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input asp-for="DisplayOrder" class="form-control" min="0" />
+                            <span asp-validation-for="DisplayOrder" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Section" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_section"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input asp-for="Section" class="form-control" />
+                            <span asp-validation-for="Section" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="AuthorName" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["author_name"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <input type="text" asp-for="AuthorName" class="form-control" data-seo-author />
+                            <span asp-validation-for="AuthorName" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <textarea asp-for="Summary" class="form-control" rows="3" data-seo-description></textarea>
+                            <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group clearfix">
+                            <label asp-for="Content" class="control-label col-md-3 col-sm-3 col-xs-12 ">Service Content</label>
+                            <div class="col-md-7 col-sm-9 col-xs-12">
+                                <textarea asp-for="Content" class="form-control" required rows="5"></textarea>
+                                <span asp-validation-for="Content" class="text-danger invalid_field"></span>
+                            </div>
+                        </div>*@
+
+                    <h4>
+                        SEO
+                    </h4>
+                    <hr />
+
+
+                    <div class="form-group clearfix">
+
+                        <label asp-for="MetaDescription" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["meta_description"]</label>
+
+                        <div class="col-md-7 col-sm-9 col-xs-12">
+                            <textarea asp-for="MetaDescription" class="form-control MetaDescription" data-characters='{"warning_count" : 158  , "maximum_count"  : 300 }' rows="3"></textarea>
+
+                            <span asp-validation-for="MetaDescription" class="text-danger invalid_field"></span>
+
+                        </div>
+                    </div>
+                    @if (ViewBag.isUpdate)
+                    {
+
+
+                        <input type="hidden" name="DatePublished" value="@(String.Format("{0:yyyy-MM-dd}", (Model.PublishedDate != null) ? Model.PublishedDate : Model.CreatedDate ))" data-seo-published />
+
+                        <input type="hidden" name="DateModified" value="@(String.Format("{0:yyyy-MM-dd}", (Model.ModifiedDate != null ) ? Model.ModifiedDate  : Model.CreatedDate  ))" data-seo-modified />
+
+
+                        @await Html.PartialAsync("~/Areas/admin/Views/Shared/_SeoFields.cshtml", Model.SEOMarkup);
+
+                    }
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-xs-12 ">
+                            <input type="submit" class="btn btn-success p-x-5 ut-save-btn" value="@( (ViewBag.isUpdate) ? @Localizer["Update"] : @Localizer["Create"] )">
+                            <input type="submit" class="btn btn-info p-x-5 ut-saveAndContinue-btn" value="@Localizer["save_and_continue"]" name="save-continue">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@if (ViewBag.isUpdate)
+{
+    @await Html.PartialAsync("_galleryitems");
+}
+
+
+
+
+
+
+<div class="modal fade" id="MultipleImagesModal" tabindex="-1" role="dialog" aria-labelledby="MultipleImagesModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">@Localizer["Upload Multiple Images"]</h4>
+
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Galleries"
+                      asp-action="UploadMUltiapleImage"
+                      class="form-horizontal forn-new form-label-left"
+                      id="UMImages" enctype="multipart/form-data">
+
+                    <input type="hidden" name="Lang" value="@activeLang" />
+                    <input type="hidden" name="GalleryId" value="@Model.Id" />
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger"></div>
+                    }
+
+                    <label>Images</label>
+                    <label class="form-control clearfix uploadfile">
+                        <input type="file" name="Images" class="uploadinput ut-mulipleFile-input" data-text="@Localizer["choose_file"]" accept="image/*" multiple />
+                        <span class="url">@Localizer["choose_file"]</span>
+                        <span class="file-btn"><i class="fa fa-search"></i> @Localizer["Browse"]</span>
+                    </label>
+
+                    <div class="m-t4 clearfix">
+                        <input type="submit" class="btn btn-success p-x-5 ut-upload-btn " id="submitImages" value="@Localizer["Upload"]">
+                        <div class="pull-right flip-dir m-t2 m-x-4"> <span id="FilesCount">0</span> @Localizer["files"]</div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script src="~/Admin/js/validator.min.js"></script>
+ 
+    <script src="~/Admin/js/galleries.min.js"></script>
+
+    @{
+        ViewBag.TinyMce_Contetnt_Id = null;
+        ViewBag.TinyMce_Suumry_Id = "#Summary";
+        await Html.RenderPartialAsync("partials/_tinymce.cshtml");
+    }
+
+
+
+
+    @if (ViewBag.isUpdate)
+    {
+        await Html.RenderPartialAsync("~/Areas/Admin/Views/Shared/_seoLabels.cshtml");
+        <script src="~/Admin/js/serializejson.min.js"></script>
+        <script src="~/Admin/js/seo.min.js"></script>
+        <script>
+
+            $('#publish-gallery').on('change', function () {
+                var msg = ($(this).prop('checked')) ? "@Localizer["published_successfully"]" : "@Localizer["unpublished_successfully"]";
+                var url = $(this).data('url');
+                $.get(url, function () { }).done(function (data) {
+                    if (data.success) {
+                        $notification.success(window.localization.success,msg, 2000, "fa fa-check");
+                    } else {
+                        var errors = data.errors;
+                        $notification.error("<strong>" + errors[0].key + "</strong>", "<span>" + errors[0].value[0] + "</span>", 2000, "fa fa-exclamation-circle");
+                        togglePublishBtn($this, false, published, unpublished);
+                    }
+                })
+                .fail(function (jqXHR, Status) {
+                    $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
+                    togglePublishBtn($this, false, published, unpublished);
+                }); })
+
+        </script>
+
+    }
+
+
+    <script>
+         var length =  158 - $('.MetaDescription').val().length;
+
+            $('.MetaDescription').keyup(function(){
+                $('.sms_messages .characters').text( length - this.value.length);
+            });
+    </script>
+    @if (!ViewBag.isUpdate)
+    {
+        <script>
+           $("#Title").on("keyup", function() {
+               $("#Slug").val($(this).val().replace(/\s/g, "_")).valid();
+           })
+        </script>
+    }
+
+}
+
+

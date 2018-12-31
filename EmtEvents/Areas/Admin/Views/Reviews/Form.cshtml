@@ -1,0 +1,175 @@
+﻿@model Review
+@{
+    ViewData["Title"] = "Form";
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@ViewData["PageTitle"]</h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-default"><span class="fa fa-chevron-left"></span>Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                @{ string target = ViewData["FormAction"].ToString(); }
+
+                @using (Html.BeginForm(target, "Reviews", FormMethod.Post,
+new
+{
+enctype = "multipart/form-data",
+@class = "form-horizontal forn-new form-label-left m-t5",
+id = "ReviewForm"
+}))
+
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "  col-md-3 col-sm-4 col-xs-12 " })
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Author" class="control-label col-md-3 col-sm-3 col-xs-12">Author</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <input asp-for="Author" class="form-control " />
+                            <span asp-validation-for="Author" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Product.Name" class="control-label col-md-3 col-sm-3 col-xs-12">Product</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+
+                                @if (ViewBag.viewMode == 1)  {
+                                <select asp-for="ProductId"
+                                        name="ProductId" id="ProductId"
+                                        asp-items="ViewBag.ProductsNames"
+                                        class="form-control select_picker"
+                                        data-live-search="true"
+                                        size="5"
+                                        disabled
+                                        data-style="btn-select"></select>
+                                 }else{
+                                <select asp-for="ProductId"
+                                        name="ProductId" id="ProductId"
+                                        asp-items="ViewBag.ProductsNames"
+                                        class="form-control select_picker"
+                                        data-live-search="true"
+                                        size="5"
+                                        data-style="btn-select"></select>
+
+                                                            }
+
+
+                                <span asp-validation-for="ProductId" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Text" class="control-label col-md-3 col-sm-3 col-xs-12">Text</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <textarea rows="4" class="form-control" asp-for="Text"></textarea>
+                            <span asp-validation-for="Text" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="ReplyText" class="control-label col-md-3 col-sm-3 col-xs-12">Reply Text</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <textarea rows="4" class="form-control" asp-for="ReplyText"></textarea>
+                            <span asp-validation-for="ReplyText" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Rate" class="control-label col-md-3 col-sm-3 col-xs-12">Rating</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12 rate p-x-4">
+                            <label class="radio-inline">
+                                <input type="radio" asp-for="Rate" value="1"> 1
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" asp-for="Rate" value="2">  2
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" asp-for="Rate" value="3">  3
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" asp-for="Rate" value="4">  4
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" asp-for="Rate" value="5">  5
+                            </label>
+
+                            <span asp-validation-for="Rate" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="CreatedDate" class="control-label col-md-3 col-sm-3 col-xs-12">Created</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+
+
+                            <div class=" xdisplay_inputx form-group has-feedback">
+                                <input type="datetime" asp-for="CreatedDate" class="form-control has-feedback-left">
+                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <span asp-validation-for="CreatedDate" class="text-danger invalid_field"></span>
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Isapproved" class="control-label col-md-3 col-sm-3 col-xs-12">Is approved</label>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <input class="toggle_switch" asp-for="Isapproved">
+                            <span asp-validation-for="Isapproved" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
+                            <input type="submit" class="btn btn-success p-x-5" value="@ViewData["SubmitBtn"]">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Styles{
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Admin/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script src="~/Admin/js/validator.min.js"></script>
+    <script src="~/Admin/lib/moment/min/moment.min.js"></script>
+    <script src="~/Admin/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Admin/lib/select2/dist/js/select2.min.js"></script>
+    <script>
+        $('#CreatedDate ').datetimepicker({
+            sideBySide: true,
+            date: new Date('@Model.CreatedDate')
+        })
+
+         $('.select_picker').select2();
+
+    </script>
+}
+
+
+
+

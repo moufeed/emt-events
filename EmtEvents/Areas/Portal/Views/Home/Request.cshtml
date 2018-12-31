@@ -1,0 +1,108 @@
+﻿@model  CreateRequestModel
+@{
+    ViewData["Title"] = Localizer["request_qute"];
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/qute.jpeg");
+    ViewData["pageTitle"] = Localizer["request_qute"];
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
+
+
+<section class="section-qute pt-5">
+    <div class="container">
+        <header class="text-center">
+            <p class="lead">
+                Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+            </p>
+        </header>
+
+        <if include-if="@TempData["Success"] != null">
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">Thank You for Your Quote Request</h4>
+
+                <p>
+                    We appreciate your taking the time to submit your quote request. You will hear from a Tam tech
+                    by phone or email within 24 business hours of receiving your quote request.
+                </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </if>
+
+        <form asp-action="request" method="post" class="my-5">
+            <if include-if="!ViewData.ModelState.IsValid">
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+            </if>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="FullName">@Localizer["l_full_name"]</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="@Localizer["l_full_name"].." asp-for="FullName" required />
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Email">@Localizer["l_email"]</label>
+                    <input type="email" class="form-control form-control-lg" placeholder="@Localizer["l_email"].." asp-for="Email" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Mobile">@Localizer["l_mobile"]</label>
+                    <input type="tel" class="form-control form-control-lg" placeholder="@Localizer["l_mobile"].." asp-for="Mobile" required/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Phone">@Localizer["l_phone"]</label>
+                    <input type="tel" class="form-control form-control-lg" placeholder="@Localizer["l_phone"].." asp-for="Phone" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="CityId">@Localizer["l_city"]</label>
+                    <select class="form-control form-control-lg" asp-for="CityId" asp-items="ViewBag.Cities"></select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="ZipCode">@Localizer["l_zip_code"]</label>
+                    <input type="number" class="form-control form-control-lg" placeholder="@Localizer["l_zip_code"].." asp-for="ZipCode" />
+                </div>
+                
+                <div class="form-group col-md-12">
+                    <label asp-for="Address">@Localizer["l_address"]</label>
+                    <textarea class="form-control form-control-lg" cols="30" rows="2" placeholder="@Localizer["l_address"].." asp-for="Address"></textarea>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label asp-for="Notes">@Localizer["l_notes"]</label>
+                    <textarea cols="30" rows="5" class="form-control" placeholder="@Localizer["l_notes"].." asp-for="Notes"></textarea>
+                </div>
+
+                <div class="form-group d-flex justify-content-between align-items-end col-md-12">
+                    <div class="col-md-4 p-0">
+
+                        <label asp-for="Quantity">@Localizer["l_quantity"]</label>
+                        <input type="number" class="form-control form-control-lg" placeholder="@Localizer["l_quantity"].." asp-for="Quantity" />
+                    </div>
+                    <button type="submit" class="btn btn-send btn-lg btn-info ">
+                        @Localizer["request"]
+                    </button>
+                </div>
+                
+            </div>
+
+            
+            
+            
+
+            
+
+
+           
+
+           
+
+
+
+        </form>
+        
+    </div>
+</section>
+
+
+       
+ 

@@ -1,0 +1,33 @@
+
+<svg id="curveDownColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0 C 50 100 80 100 100 0 Z"></path></svg>
+@using TamTechSDK.Common.Services.ContentService.Sliders.Models;
+@if (ViewBag.publicClientsSlider != null)
+{
+    SliderDto clientsSlider = (SliderDto)ViewBag.publicClientsSlider;
+    if (clientsSlider.Items?.Count > 0)
+    {
+    <section class="home_clients_section">
+        <div class="container">
+            <header class="section-header text-center">
+                <p>@Localizer["Our_Clients"]</p>
+                <h2><strong>@Localizer["meet_our_clients"]</strong></h2>
+            </header> 
+            <div class="row">
+                <div class="col">
+                    <div class="owl-carousel clients_carousel">
+                        @foreach (var item in ViewBag.publicClientsSlider.Items)
+                        {
+                            <div class="clients-img">
+                                <img src="@item.MainImage">
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+}
+
+

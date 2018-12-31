@@ -1,0 +1,78 @@
+﻿
+
+
+<header class="main_header ">
+    <div class="tob_bar border-bottom">
+        <div class="container">
+            <div class="row justify-content-end align-items-center">
+                <div class="col-auto">
+                    <div class="dropdown">
+                            <a class="btn btn-link text-dark dropdown-toggle px-0" href="#" role="button" id="userdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user"></i>
+                                My Account
+                            </a>
+                            <div class="dropdown-menu rounded-0" aria-labelledby="userdropdown">
+                                <a class="dropdown-item" href="#">login</a>
+                                <a class="dropdown-item" href="#">Register</a>
+                            </div>
+                    </div>
+                </div>
+
+                 <div class="dropdown"> 
+                            <a class="btn btn-link text-dark  px-0 shopinglist-toggle" href="#" role="button">
+                                <i class="fa fa-shopping-cart"></i>
+                                shopping cart
+                            </a>
+                            <div class="dropdown-menu rounded-0 shopping_list" id="shopinglist">
+                                <!-- <div class="empty_shopping_list p-3 text-center m-auto">
+                                    Your shopping cart is empty!
+                                </div> -->
+
+                                <div class="shopping_list_items p-3" data-scroll data-mcs-theme="dark">
+                                        <ul class="list-unstyled " >
+                                            @for(var i =1 ; i < 10 ; i++){
+                                            <li class="d-flex item no-gutters">
+                                                <div class="d-none  d-sm-inline col-sm-auto picture">
+                                                   <a href="#"> <img src="~/shop/img/products/@(i).jpg" alt="" /> </a>
+                                                </div>
+                                                <div class="col product-item">
+                                                        <a href=""> Lorem, ipsum dolor.</a>
+                                                        <span class="price">1 X <strong>$53.00</strong> </span>
+                                                </div>
+                                            </li>
+                                            }
+ 
+                                        </ul>
+                                </div>
+
+                            </div>
+                    </div>
+
+                 <a href="" class="btn btn-link text-dark comparison-link">
+                     <i class="fa fa-expand"></i>
+                     comparison [ <span>0</span> ]
+                 </a>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4">
+        <div class="row justify-content-between align-items-end">
+            <div class="col-sm-auto">
+                <a href="/shop" class="site_logo">
+                    <img src="~/Shop/img/logo.png" alt="tamtech logo" />
+                </a>
+            </div>
+            <div class="col-auto">
+                <form class="form-inline" method="post">
+                    <div class="form-group mx-sm-1 mb-2">
+                        <input type="search" class="form-control rounded-0"  name="Search" id="Search" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2 rounded-0">
+                        <i class="fa fa-search"></i>
+                        <span>search</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>

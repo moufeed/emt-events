@@ -1,0 +1,165 @@
+﻿@model  SmsVM
+@{
+    ViewData["Title"] = "CreateSms";
+}
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>New Sms <small></small></h3>
+        </div>
+        <div class="title_right">
+            @if (ViewBag.SpecificUser)
+            {
+                <a OnClick="JavaScript: window.history.back(1); return false;"
+                   class="btn btn-default"><span class="fa fa-chevron-left"></span>Back</a>
+            }
+            else
+            {
+                <a asp-action="Index"
+                   class="btn btn-default"><span class="fa fa-chevron-left"></span>Back to List</a>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel p-x-0">
+            <div class="x_content">
+                @{ string target = "Create"; }
+
+                @using (Html.BeginForm(target, "Sms", FormMethod.Post,
+      new
+      {
+          @class = "form-horizontal forn-new form-label-left m-t5",
+          id = "EmailForm"
+      }))
+
+                {
+                    @Html.ValidationSummary(true)
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Recipients" class="control-label col-md-3 col-sm-3 col-xs-12 ">Recipients :</label>
+                        <div class="col-md-7 col-sm-5 col-xs-12">
+
+                            @if (ViewBag.SpecificUser)
+                            {
+
+                                <input type="hidden" name="Recipients" value="@ViewBag.number" />
+                                <input type="text"  value="@ViewBag.username / @ViewBag.number"  disabled class="form-control"/>
+
+                                
+                            }
+                            else
+                            {
+                                <select asp-for="Recipients"
+                                        name="Recipients" id="Recipients"
+                                        asp-items="ViewBag.UsersList"
+                                        class="form-control select_picker"
+                                        multiple="multiple"
+                                        data-live-search="true"
+                                        size="5"
+                                        required
+                                        data-style="btn-select"
+                                        data-max-options="50"
+                                        data-selected-text-format="count > 4"></select>
+                                <span asp-validation-for="Recipients" class="text-danger invalid_field"></span>
+                            }
+                        </div>
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label asp-for="Massage" class="control-label col-md-3 col-sm-3 col-xs-12 ">Massage :</label>
+                        <div class="col-md-7 col-sm-5 col-xs-12">
+
+
+                            @if (ViewBag.allowparts)
+                            {
+                                <textarea asp-for="Massage" class="form-control smsbox" rows="5" min="2" required></textarea>
+                                <span class="pull-right flip-dir sms_messages">
+                                    <small class="characters">@ViewBag.CharactersLength</small>
+                                    <small>Characters</small> |
+                                    <small class="parts">1</small>  <small>Parts</small>
+                                </span>
+                            }
+                            else
+                            {
+                                <textarea asp-for="Massage" class="form-control smsbox" rows="5" maxlength="@ViewBag.CharactersLength"   required ></textarea>
+                                <span class="pull-right flip-dir sms_messages">
+                                    <small class="characters">@ViewBag.CharactersLength</small> <small>Characters</small>
+                                </span>
+                            }
+
+
+                            <span asp-validation-for="Massage" class="text-danger invalid_field"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-7 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 text-right">
+                            <input type="submit" class="btn btn-success p-x-5" value="Send">
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Styles{
+   <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script src="~/js/validator.js"></script>
+    <script src="~/Admin/lib/select2/dist/js/select2.min.js"></script>
+
+
+    <script>
+         $('.select_picker').select2();
+  
+
+    </script>
+
+    @if (ViewBag.allowparts)
+    {
+        <script>
+             var length =  @ViewBag.CharactersLength ;
+            $('.smsbox').keyup(function(){
+
+                var chars = this.value.length,
+                    messages = Math.ceil(chars / length),
+                    remaining = messages * length - (chars % (messages * length) || messages * length);
+                $('.sms_messages .characters').text(remaining )
+                $('.sms_messages .parts').text(messages)
+
+            });
+        </script>
+
+    }
+    else
+    {
+        <script>
+            var length =  @ViewBag.CharactersLength - $('.smsbox').val().length;
+            
+            $('.smsbox').keyup(function(){
+                $('.sms_messages .characters').text( length - this.value.length);
+            });
+        </script>
+    }
+
+
+}
+
+

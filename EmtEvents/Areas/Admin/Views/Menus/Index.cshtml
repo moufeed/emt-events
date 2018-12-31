@@ -1,0 +1,115 @@
+﻿@model List<MenuLiteDto>
+@{
+
+    ViewData["Title"] = Localizer["menus"];
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+    ViewData["UnitTestPageClass"] = "ut-Menus_index";
+}
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@ViewData["Title"] <small></small></h3>
+        </div>
+        <div class="title_right">
+
+            <a href="@Url.AdminUrl("Create","Menus")"
+               class="btn btn-blue  btn-add-new ut-newMenu"><i class="fa fa-plus"></i>@Localizer["new_menu"]</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+        @{
+            ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary {
+                    
+
+                };
+        }
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+        <div class="x_panel p-x-0">
+
+            <div class="x_content">
+                <div class="table-responsive">
+
+                    <table class="table table-middle table-striped table-menus">
+
+                        <thead>
+                            <tr>
+                                <th>@Localizer["t_name"]</th>
+                                <th>@Localizer["t_title"]</th>
+                                <th>@Localizer["t_position"]</th>
+                                <th width="200">@Localizer["t_create_date"]</th>
+                                <th width="200">@Localizer["t_modified_date"]</th>
+                                <th width="150">@Localizer["t_actions"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var menu in Model)
+                            {
+
+                                <tr id="tr-@menu.Id">
+                                    <td class="index">
+                                        @menu.Key
+                                    </td>
+                                    <td>
+                                        @menu.Title
+                                    </td>
+                                    <td>
+                                        @menu.Position
+                                    </td>
+                                    <td>
+                                        @menu.CreatedDate
+                                    </td>
+                                    <td>
+                                        @menu.ModifiedDate
+                                    </td>
+                                    <td>
+                                        <div>
+
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               href="@Url.AdminUrl("Edit","menus",new { id = menu.Id})"
+                                               title="@Localizer["t_edit"]"
+                                               class="btn btn-edit  ut-edit-btn btn-round"><i class="fa fa-edit "></i></a>
+                                             
+
+                                            <if include-if="menu.Locked">
+                                                <span data-toggle="tooltip"
+                                                      data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                      class="btn-locked btn-round"
+                                                      title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
+                                            </if>
+
+                                            <if exclude-if="menu.Locked">
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   data-id="@menu.Id"
+                                                   data-target="#tr-@menu.Id"
+                                                   data-url="@Url.AdminUrl("Delete", "menus", new { id = menu.Id })"
+                                                   title="@Localizer["t_remove"]"
+                                                   data-msg-error="@Localizer["error"]"
+                                                   data-msg-deleted="@Localizer["deleted_successfully"]"
+                                                   class="btn btn-remove btn-round delete__menu ut-delete-btn "><i class="fa fa-trash-o "></i></a>
+                                            </if>
+                                             
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/Admin/js/menu.min.js"></script>
+}

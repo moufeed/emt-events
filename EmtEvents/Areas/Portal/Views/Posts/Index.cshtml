@@ -1,0 +1,96 @@
+﻿@model SectionContainerDto
+@{
+
+    if (Model.SectionInfo != null)
+    {
+        ViewData["pageTitle"] = "";
+        ViewData["Title"] = Model.SectionInfo.Title;
+        ViewData["pageTitle"] = Model.SectionInfo.Title;
+    }
+    else
+    {
+        ViewData["pageTitle"] = "";
+        ViewData["Title"] = Localizer["sections"];
+        ViewData["pageTitle"] = Localizer["sections"];
+    }
+
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/about.jpg");
+
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
+
+ 
+ 
+<section class="latest-posts-section pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-9 col-sm-7">
+                @if (Model.Posts != null && Model.Posts.Count > 0)
+                {
+
+                    <div class="row posts-list">
+
+                        @foreach (PostDto post in Model.Posts)
+                        {
+
+                            <article class="col-md-6 col-sm-6 post-item my-3">
+                                <div class="post-image d-flex justify-content-center align-items-center mb-4">
+                                    @if (string.IsNullOrEmpty(post.MainImage))
+                                    {
+                                        <img src="~/Portal/img/empty.jpg" style="width: 100%;height: auto" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@post.MainImage" alt="@post.Title" />
+                                    }
+                                </div>
+                                @{string slug = @post.SectionSlug.Trim('/');}
+                                <h5 class="title"> <a href="@Url.AdminUrl("p","Posts",new{slug=$"{@slug}/{@post.Slug}"}).Replace("%2F", "/")">@post.Title</a></h5>
+                                <div class="meta">
+                                    <small>
+                                        <i class="fa fa-calendar-o"></i> @post.CreatedDate.ToShortDateString()
+                                    </small>
+                                    <small>
+                                        <i class="fa fa-folder-o"></i>
+                                        <a href="@Url.AdminUrl("s","posts",new{slug=$"{@post.SectionSlug.Trim('/')}"}).Replace("%2F", "/")">@post.Section</a>
+
+                                    </small>
+
+                                </div>
+                                <div class="text mt-3 mb-1">
+                                    @post.Summary
+                                </div>
+
+
+
+
+                                <a href="@Url.AdminUrl("p","Posts",new{slug=$"{@slug}/{@post.Slug}"}).Replace("%2F", "/")" class=" px-0 btn btn-link text-uppercase">@Localizer["read_more"]</a>
+                            </article>
+                        }
+                    </div>
+                }
+
+               @*<partial name="_pagination" model="Model" />*@
+
+                @Html.Partial("_pagination.cshtml", @Model)
+
+
+            </div>
+            <div class="col-md-4 col-lg-3 col-sm-5">
+                @if (Model.Sections != null && Model.Sections.Count > 0)
+                {
+                    <div class="sections-list widget">
+                        <h4 class="widget-title"><strong>@Localizer["sections"]</strong></h4>
+                        <sections-list sections="Model.Sections"
+                                       action-name="s"
+                                       controller-name="Posts"></sections-list>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+

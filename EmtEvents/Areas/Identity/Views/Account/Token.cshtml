@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Authentication
+@{
+    ViewData["Title"] = "Token";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Enabled)
+    {
+    <h1> User Token : </h1>
+    <div>
+        <strong style="color:#1f36c3;">id_token</strong>
+        <span>@ViewBag.id_token</span>
+    </div>
+
+    <div>
+        <strong style="color:#1f36c3;">access_token</strong>
+        <span>@ViewBag.access_token  </span>
+    </div>
+    <div>
+        <strong style="color:#1f36c3;">refresh_token</strong>
+        <span>@ViewBag.refresh_token </span>
+    </div>
+}

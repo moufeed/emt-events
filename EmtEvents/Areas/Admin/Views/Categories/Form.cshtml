@@ -1,0 +1,104 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "Form";
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-default"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                @{ string target = ViewData["FormAction"].ToString(); }
+                @using (Html.BeginForm(target, "Categories", FormMethod.Post,
+                        new
+                        {
+                            enctype = "multipart/form-data",
+                            @class = "form-horizontal forn-new form-label-left m-t5",
+                            id = "CategoriesForm"
+                        }))
+
+                {
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(m => m.Id)
+                <div class="clearfix">
+                    <div class="col-sm-4 col-xs-12 col-md-3 uploadImage">
+                        <div class="imagebox">
+                            @if (target == "Edit")
+                            {
+
+                                <img src="@Html.DisplayFor(m => m.ImageUrl)" alt="" id="imagePreview" class="edit_image">
+                            }
+                            else
+                            {
+                                <img src="@Html.DisplayFor(m => m.ImageUrl)" alt="" id="imagePreview">
+
+                            }
+
+                        </div>
+                        <div class="form-group from-file">
+                            <input type="file" name="ImageUrl" id="avater" class="input-file" accept="image/*">
+                            <label for="avater" class="btn btn-tertiary  ">
+                                <span>Choose a Picture</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-xs-12 col-md-9">
+                        <div class="form-group clearfix">
+                         
+                            <label asp-for="Name" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_title"]</label>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger invalid_field " })
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group clearfix">
+                          
+                            <label asp-for="Description" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_description"]</label>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5" })
+                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger invalid_field" })
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-2 col-sm-offset-4 col-sm-6 col-xs-12 ">
+                                <input type="submit" class="btn btn-success p-x-5" value="create">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    }
+                </div>
+                </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/Admin/js/validator.min.js"></script>
+}
+

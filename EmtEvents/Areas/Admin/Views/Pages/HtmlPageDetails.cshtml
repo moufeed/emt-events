@@ -1,0 +1,166 @@
+﻿
+@model HtmlPage
+@{
+    ViewData["Title"] = Localizer["page_details"];
+    ViewData["UnitTestPageClass"] = "ut-page_details"; 
+    ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
+}
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["page_details"]</h3>
+        </div>
+        <div class="title_right">
+            <a href="@Url.AdminUrl("index","Pages")"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+        @*@if (ViewBag.Languages?.Count > 1)
+        {
+            <header class="language_bar clearfix">
+                <ul class="nav nav-tabs nav-header" role="tablist">
+                    @foreach (var lang in ViewBag.Languages)
+                    {
+                        <li class="@((activeLang == lang.Lang) ? "active" :"" )">
+                            <a href="@Url.AdminUrl("GetHtmlDetailsAsync", "Pages", new { culture = lang.Lang ,id = Model.Id})">@lang.Name</a>
+                        </li>
+                    }
+                </ul>
+            </header>
+        }*@
+
+        <div class="x_panel">
+
+            <div class="x_content p-y-5 ">
+                <div class="form-group clearfix">
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["title"]</strong>
+                    <strong class="col-md-8 col-sm-8 col-xs-12">@Model.Title</strong>
+                </div>
+                <hr />
+                <ul class="clearfix metalist list-unstyled">
+                    <li class="col-md-4 col-xs-12 col-sm-4">
+                        <strong>@Localizer["status"]</strong>
+                        @if (Model.Published)
+                        {
+                            <span class="c-green"> <i class="fa fa-check" aria-hidden="true"></i> @Localizer["published"]</span>
+                        }
+                        else
+                        {
+                            <span class="c-red"> <i class="fa fa-times" aria-hidden="true"></i> @Localizer["unpublished"]</span>
+                        }
+
+                    </li>
+                    <li class="col-md-4 col-xs-12 col-sm-4">
+                        <strong>@Localizer["created_date"]</strong>
+                        <span>@Model.CreatedDate</span>
+                    </li>
+                    <li class="col-md-4 col-xs-12 col-sm-4">
+                        <strong>@Localizer["modified_date"]</strong>
+                        <span>@Model.ModifiedDate</span>
+                    </li>
+                </ul>
+                <hr />
+                <div class="form-group clearfix">
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["slug"]</strong>
+                    <strong class="col-md-8 col-sm-8 col-xs-12 ut-page_slug">@Model.Slug</strong>
+                </div>
+                <hr />
+
+                <div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>@Localizer["author_name"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @Model.AuthorName
+                    </div>
+                </div>
+
+                <div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>@Localizer["summary"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @Html.Raw(Model.Summary)
+                    </div>
+                </div>
+                <hr />
+
+                <div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>@Localizer["section"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @Model.Section
+                    </div>
+                </div>
+                <hr />
+
+                <div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>@Localizer["image"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @if (Model.MainImage != null)
+                        {
+                            <img src="@Model.MainImage" class="img-responsive" />
+                        }
+                    </div>
+                </div>
+                <hr />
+                <div class="page_keywords clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>@Localizer["meta_keywords"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <ul class="list-inline list-unstyled ">
+                            @foreach (var key in Model.Keywords)
+                            {
+                                <li>@key</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="page_keywords clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong>@Localizer["meta_description"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @Model.MetaDescription
+                    </div>
+                </div>
+                <hr />
+
+                <div class="clearfix">
+                    <div class="col-md-2 col-xs-12 col-sm-3">
+                        <strong>@Localizer["content"]</strong>
+                    </div>
+                    <div class="col-md-8 col-xs-12 col-sm-8">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

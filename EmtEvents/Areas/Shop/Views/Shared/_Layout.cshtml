@@ -1,0 +1,42 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="application/xhtml+html; charset=utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="shortcut icon" href="~/Shop/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Shop/img/favicon.ico" type="image/x-icon">
+    @RenderSection("SEO", required: false)
+    <link rel="stylesheet" href="~/shop/css/style-ltr.min.css">
+    @if (IsSectionDefined("Styles"))
+    {
+        @RenderSection("Styles", required: false)
+    }
+
+</head>
+<body>
+
+     @*  @await Html.PartialAsync("_sidebar_menu")*@
+
+    @await Html.PartialAsync("_header")
+
+    @await Html.PartialAsync("_navbar")
+
+
+
+    @RenderBody()
+    @await Html.PartialAsync("_footer")
+
+    <script src="~/Shop/js/bundle.min.js"></script>
+    <script src="~/Shop/js/script.min.js"></script>
+    @RenderSection("footer", required: false)
+</body>
+</html>
+
+
+
+
+
+

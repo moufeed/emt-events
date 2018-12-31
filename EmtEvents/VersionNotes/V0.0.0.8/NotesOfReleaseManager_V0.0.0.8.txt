@@ -1,0 +1,27 @@
+ 
+
+ 1 - Database Scripts :
+_________________________________
+
+      1.1 - The scripts for the database are on the following track : DatabaseScripts / DBRelease / DB_Scripts_V0.0.0.8 
+
+	  1.2 - The Scripts folder contains the following files : 
+															  1.1.1 - ContentService_db_Script_Schema_V0.0.0.8   
+															  1.1.2 - ContentService_db_Script_SeedData_V0.0.0.8
+															  1.1.3 - ContentService_db_Script_UpgradeSchemaFrom_V0.0.0.7_To_V0.0.0.8
+
+
+2 - Changes in a appsettings file :
+_________________________________
+
+   2.1 - update values in a following path :
+										WebApplicationSettings >>> WebApplication_FilesTypesSettings >>> FilesTypes
+
+   2.2 - update values in a following path :
+										DirectBackendSDKsSettings >>> DirectBackendSDK_UploadService_FilesTypes
+
+
+
+ 
+
+ 

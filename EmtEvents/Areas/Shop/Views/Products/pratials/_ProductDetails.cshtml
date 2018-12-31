@@ -1,0 +1,129 @@
+@model Product
+<div class="productDetails py-3">
+    <h2 class="pro-title">
+        @Model.Name
+    </h2>
+
+     
+    <div class="customer-reviews">
+        <span class="rating">
+            @for (var i = 0; i < 5; i++)
+            {
+
+                @if (i < Model.Rate)
+                {
+                    <i class="fa fa-star"></i>
+                }
+                else
+                {
+                    <i class="fa fa-star-o"></i>
+                }
+         
+            }
+        </span>
+     
+        <span class="reviews-count"><b>5</b> Reviews </span>
+
+    </div>
+
+    
+    <div class="pro-prices">
+        <span class="price"> @Model.NewPrice </span>
+        @if (Model.HasDiscount)
+        {
+        <span class="old-price"> @Model.OldPrice </span>
+
+        }
+    </div>
+
+
+    <div class="pro-brief">
+             @Model.ShortDescription
+    </div>
+
+
+    <div class="product_action_bar d-flex justify-content-start">
+        <div class="quantity_box">
+            <input type="text" name="Quantity" id="Quantity" class="quantity_input" value="1" data-max="@Model.MaximumCartQuantity">
+            <div class="quantity-wrapper ">
+                <span class="pluse add-action fa fa-plus"></span>
+                <span class="minus add-action fa fa-minus"></span>
+            </div>
+        </div>
+        <button class="btn btn-outline-success mx-3 px-5 addtocart" onclick="$productManage.AddToCart('@Model.SKU' , 1)">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            add to cart
+        </button>
+        <span class="btn-group btn-group-lg" role="group" aria-label="actions">
+            <button class="btn btn-outline-danger btn-whitelist" data-toggle="tooltip" data-placement="top" title="Add to whitelist" onclick="$productManage.AddToWhitelist('@Model.SKU')">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+            </button>
+            <button class="btn  btn-outline-secondary   btn-compare" data-toggle="tooltip" data-placement="top" title="Add To Compare" onclick="$productManage.AddToCompare('@Model.SKU','/Shop/Products/compare',this)">
+                <i class="fa fa-exchange" aria-hidden="true"></i>
+            </button>
+        </span>
+    </div>
+
+
+    <div class="product-attribute  ">
+        <ul class="list-unstyled attribute-list">
+            <li>
+                Manufacturer :  <strong>@Model.Brand.Name </strong>
+            </li>
+            <li>
+                Shipping :
+                @if (Model.IsFreeShipping)
+                {
+                    <strong>FREE Shipping </strong>
+                }
+            </li>
+
+
+            <li>
+                Availability:
+                @if (Model.StockQuantity > 0)
+                {
+                    <strong>In stock</strong>
+                }
+                else
+                {
+                    <strong>out of stock</strong>
+                }
+
+
+
+            </li>
+        </ul>
+
+ 
+
+        @if (Model.Attributes != null && Model.Attributes.Count > 0)
+        {
+            int index = 0;
+
+
+            <div class="form-row mt-2 attribute-form">
+                @foreach (var attribute in Model.Attributes)
+                {
+                    <div class="col-md-6 col-lg-4 form-group">
+                        <label for=""><strong>@attribute.Name</strong></label>
+
+                        @if (attribute.Type == "select")
+                        {
+                            <select class="form-control form-control-lg" Name="Model.Attributes[@index].Name">
+                                @foreach (var val in attribute.Values) {
+                                    <option value="@val.Value">@val.Value</option>
+                                }
+                            </select>
+                        }
+
+                    </div>
+                    index++;
+                }
+            </div>
+        }
+
+
+    </div>
+
+        </div>

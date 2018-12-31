@@ -1,0 +1,74 @@
+﻿@model ServiceDto
+@{
+    ViewData["Title"] = Localizer["Services"];
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/services.jpg");
+
+    ViewData["pageTitle"] = Model.Title;
+
+    ViewBag.ItemId = Model.Id;
+    ViewBag.Action = "edit";
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
+
+@section SEO{
+    <meta name="description" content="@Html.Raw(Model.MetaDescription)" />
+    <partial name="~/Areas/Portal/Views/Shared/partials/_SEO.cshtml" model="Model.SEOMarkup" />
+}
+
+
+<section class="section-page py-5">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+
+            @{ int classname = 12; }
+
+            @if (Model.MainImage?.Length > 0)
+            {
+                <div class="col-md-5 ">
+
+                    <div class="page-mainimage  d-flex justify-content-center align-items-center">
+                        <img src="@Model.MainImage" alt="@Model.Title" />
+                    </div>
+                </div>
+
+                classname = 7;
+            }
+
+
+            <div class="col-md-@classname">
+                <div class="page-summary">
+                    <header>
+                        <h4>@Model.Title</h4>
+                    </header>
+                    <div class="page-meta">
+
+                        @if (Model.CreatedDate != DateTime.MinValue)
+                        {
+                            <small class=""> <i class="fa fa-calendar"></i> @Model.CreatedDate.ToString("MMMM dd, yyyy") </small>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.Section))
+                        {
+                            <small><i class="fa fa-folder-o" aria-hidden="true"></i>  @Model.Section </small>
+                        }
+
+
+                    </div>
+
+
+                    <div class="page-summary mt-3 mb-2">
+                        @Html.Raw(Model.Summary)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col ">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+    </div>
+</section>
+

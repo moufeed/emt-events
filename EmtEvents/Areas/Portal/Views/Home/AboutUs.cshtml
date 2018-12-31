@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "TamTech";
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content("~/portal/img/about.jpg");
+    ViewData["pageTitle"] = Localizer["About_Us"];
+}
+
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
+
+
+
+@section SEO{
+
+<script type="application/ld+json">
+    {
+    "@@context":"http://schema.org",
+    "@@type":"LocalBusiness",
+    "image":"@ViewBag.Host/portal/img/seoLogo.jpg",
+    "name":"Tamtech",
+    "address":{
+    "@@type":"PostalAddress",
+    "streetAddress":"E5 yan yol Civan Cokak",
+    "addressLocality":"Avcılar Üniversite Mh",
+    "addressRegion":"İstanbul",
+    "postalCode":"34320",
+    "addressCountry":"Turkey"
+    },
+    "geo":{
+    "@@type":"GeoCoordinates",
+    "latitude":40.991939 ,
+    "longitude":28.713351
+    },
+    "telephone":"+905354152865"
+    }
+</script>
+}
+
+
+<section class="about_us_section">
+
+    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_description.cshtml")
+    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_vision.cshtml")
+    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_mission.cshtml")
+    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_statistics.cshtml")
+    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_value.cshtml")
+    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_promo.cshtml")
+
+
+
+</section>
+
+
+@section footer{
+    <script src="~/Portal/js/counterup.min.js"></script>
+
+
+    <script>
+    $('.counter').counterUp({
+    delay: 10,
+    time: 1000
+});
+    </script>
+}

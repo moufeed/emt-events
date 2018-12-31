@@ -1,0 +1,27 @@
+
+ 
+<section class="home_about_section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <header class="section-header text-center">
+                     
+                    <p>@Localizer["Welcome_Totamtech"]</p>
+                    <h2><strong>@Localizer["Who_we_are"]</strong></h2>
+                </header>
+                @if (ViewBag.aboutSummary != null)
+                {
+                    <div class="lead short-description">
+                        @Html.Raw(ViewBag.aboutSummary.Summary)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<svg id="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1"
+     width="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+</svg>
+

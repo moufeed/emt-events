@@ -1,0 +1,168 @@
+.form-review{
+
+    .btn-send{
+        @include media-breakpoint-down(xs){
+            width: 100%;
+            margin-top: rem(25px);
+        }
+    }
+}
+.reviews-wrapper{
+    padding: rem(15px);
+    @include media-breakpoint-down(sm){
+       padding: 0;
+    }
+}
+ 
+.reviews-title{
+    font-size: rem(20px);
+    margin-bottom:rem(25px) ;
+    font-family: if-ltr('rw-semibold',''),$font-family-sans-serif;
+    @include media-breakpoint-down(sm){
+        text-align: center;
+    }
+    strong{
+        position: relative;
+        display: inline-block;
+        padding: rem(10px); 
+        &:after{
+            @include absolute(bottom $left , 0  );
+            content: '';
+            @include size(100%,3px);
+            background: $review_title_border;
+        }
+    }
+}
+
+.review{
+    margin: rem(10px) 0; 
+    padding: rem(15px) rem(10px) ; 
+    border:  $review_border ;
+    @include media-breakpoint-down(sm){
+        text-align: center;
+        padding:rem(15px) 2px ;
+    }
+}
+
+.review-header{
+    margin-bottom: rem(15px);
+    .profile{
+        margin-#{$left}:rem(15px) ;
+        @include media-breakpoint-down(sm){
+            margin: 0;
+            width: 100%;
+        }
+    }
+        .profile-img{
+            float: $left;
+            @include square($avater_size);
+            border-radius :  $avater_radius;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                max-height:100%;
+            }
+            @include media-breakpoint-down(sm){
+                float: none;
+                margin: 15px auto;
+            }
+        }
+
+        .profile-content{
+            width: calc(100% - #{$avater_size} );
+            float: $left;
+            padding-#{$left}:rem(15px);
+            strong{
+                margin-top: rem(3px);
+                display:block;
+                color: $dark-text;
+            } 
+            span{
+                margin-top: rem(4px);
+                display:block;
+                color: darken($light-text, 15%);
+            }
+            @include media-breakpoint-down(sm){
+               width: 100%;
+            }
+            @include media-breakpoint-down(sm){
+                padding: 0;
+            }
+        }
+        .review-rating{
+            font-size: rem(16px);
+            color: $review_rating_color;
+            margin: rem(8px);
+            .fa{
+                &.active{
+                    color: $review_rating_active_color;
+                }
+            }
+            @include media-breakpoint-down(sm){
+                
+                margin: 15px auto;
+             }
+        }
+        @include media-breakpoint-down(sm){
+            flex-direction: column;
+        }
+}
+.review-body{
+    color: $review_text_color;
+    padding: rem(5px) rem(15px);
+    letter-spacing: 1px ;
+    line-height: rem(24px);
+    @include media-breakpoint-down(sm){
+        text-align: center;
+        padding: 0;
+    }
+}
+
+
+//---------------------------------------
+.review-reply{
+    margin-#{$left}:rem(15px);
+    padding: rem(15px) rem(25px);
+    border-#{$left} :$reply_border  ;
+    @include media-breakpoint-down(sm){
+        margin-#{$left}:0;
+        padding: rem(25px) 5px;
+    }
+    .reply-header{
+        margin-bottom: rem(10px);
+        font-weight:bolder; 
+        border-bottom: 1px solid $gray-400;
+        padding-bottom: 10px;
+        span{
+            &:first-child{
+                color: $dark-text;
+                font-family: if-ltr('rw-semibold','') , $font-family-base; 
+            }
+            &:last-child{
+                margin-#{$left}: rem(5px); 
+                color: $gray-500;
+                font-size: 90%;
+                font-weight: 500;
+            }
+        }
+    }   
+    .reply-text{
+        color: $review_text_color;
+        letter-spacing: 1px ;
+        line-height: rem(24px);
+    }
+}   
+/* 
+
+ <div class="">
+                    <div class="">
+                        <span> Response From the  <strong>Admin</strong></span>
+                        <span>September  16 , 2017</span>
+                    </div>
+                    <div class="">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure corporis vel quam atque odit totam?
+                    </div>
+            </div>
+*/

@@ -1,0 +1,61 @@
+﻿@model  ProductFormVM
+
+@{ 
+    int index = 0;
+}
+
+<div id="s_wrapper" class="specifications">
+
+
+    @if (Model.Specifications != null && Model.Specifications.Count > 0)
+    {
+
+
+        @foreach (var item in Model.Specifications)
+        {
+            <div class="form-group clearfix inputitem" id="sitem-@index">
+                <div class="col-md-3 col-sm-3 col-xs-12 scrollable-dropdown-menu">
+                    <input type="text" id="Key-@index" name="Specifications[@index].Key" asp-for="@item.Key"  class="form-control typeahead" />
+                </div>
+                <div class="col-md-8 col-sm-7 col-xs-12">
+
+                    <textarea type="text" id="Value-@index" name="Specifications[@index].Value" asp-for="@item.Value"  class="form-control" rows="2"></textarea>
+                </div>
+                <div class="col-md-1 col-sm-2 col-xs-12">
+                    <a class="btn btn-remove-content m-t0 remove-content"   data-id="@index">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                </div>
+            </div>
+            index++;
+        }
+    }
+    else
+    {
+        <div class="form-group clearfix inputitem" id="sitem-@index">
+            <div class="col-md-3 col-sm-3 col-xs-12 scrollable-dropdown-menu ">
+                <input type="text" id="Key-@index" name="Specifications[@index].Key" class="form-control typeahead" required />
+            </div>
+            <div class="col-md-8 col-sm-7 col-xs-12">
+                <textarea type="text" id="Value-@index" name="Specifications[@index].Value" class="form-control" rows="1"></textarea>
+            </div>
+            <div class="col-md-1 col-sm-2 col-xs-12">
+                <a class="btn btn-remove-content m-t0 remove-content"   data-id="@index">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+            </div>
+        </div>
+        index++;
+    }
+
+</div>
+<hr />
+<div class="text-right">
+    <a class="btn btn-addContent" id="addItems"><i class="fa fa-plus"></i>@Localizer["add_Item"]</a>
+</div>
+
+
+
+@{
+    this.ViewContext.HttpContext.Items["index"] = index;
+}

@@ -1,0 +1,123 @@
+﻿@model LoginViewModel
+
+
+
+
+
+@{
+    ViewBag.bodyClass = "login_page";
+    ViewBag.className = "login_conteiner";
+}
+
+
+
+
+
+<div class="login-wrap col-md-5">
+    <header class="header_login text-center">
+        <img src="~/Identity/img/logo.png" width="200" />
+
+    </header>
+
+
+    @Html.Partial("_ValidationSummary")
+
+    <div class="form-wrap">
+
+        @if (Model.EnableLocalLogin)
+        {
+        <form asp-route="Login" class="form">
+            <input type="hidden" asp-for="ReturnUrl" />
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <svg class="icon">
+                            <use xlink:href="#username" />
+                        </svg>
+                    </div>
+                    <input class="form-control input-lg" placeholder="Username" asp-for="Username" autofocus>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <svg class="icon">
+                            <use xlink:href="#padlock" />
+                        </svg>
+                    </div>
+                    <input type="password" class="form-control input-lg" placeholder="Password" asp-for="Password" autocomplete="off">
+                </div>
+
+
+            </div>
+            @if (Model.AllowRememberLogin)
+            {
+                @*<div class="form-group login-remember">
+                <label asp-for="RememberLogin">
+                    <input asp-for="RememberLogin">
+                    <strong>Remember My Login</strong>
+                </label>
+            </div>*@
+            }
+            <div class="form-group">
+                <button class="btn btn-login btn-block btn-lg" name="button" value="login">Login</button>
+
+            </div>
+            <div class="form-group">
+                <a href="/Identity/Auth/ForgotPassword" class="btn-link">Forgot your passwword?</a>
+            </div>
+
+            @*<div class="form-group">
+            <a href="@Url.Action("signupbymobilenumber", "account")">Signup new user</a>
+        </div>*@
+
+        </form>
+
+
+
+
+        }
+
+        @if (Model.VisibleExternalProviders.Any())
+        {
+            <div class="col-md-6 col-sm-6 external-providers">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">External Login</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-inline">
+                            @foreach (var provider in Model.VisibleExternalProviders)
+                            {
+                                <li>
+                                    <a class="btn btn-default"
+                                       asp-action="ExternalLogin"
+                                       asp-route-provider="@provider.AuthenticationScheme"
+                                       asp-route-returnUrl="@Model.ReturnUrl">
+                                        @provider.DisplayName
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
+        {
+            <div class="alert alert-warning">
+                <strong>Invalid login request</strong>
+                There are no login schemes configured for this client.
+            </div>
+        }
+
+    </div>
+</div>
+
+
+ 
