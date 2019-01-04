@@ -101,7 +101,7 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts
 
         public async Task<PostsList> GetPublicLatestPostsAsync(PaginationModel Pagination)
         {
-            var result = await _postService.GetPublicLatestPostsAsync(Pagination.toBackendPaginationModel());
+            var result = await _postService.GetPublicLatestPostsAsync(Pagination.toBackendPaginationModel(),6);
             PostsList model = new PostsList
             {
                 Data = result.Data?.Select(m => m.MapToFrontendDto()).ToList(),
@@ -113,7 +113,7 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts
         public async Task<PostsList> GetPublicLatestPostsBySectionSlugAsync(PaginationModel Pagination, string sectionSlug)
         {
 
-            var result = await _postService.GetPublicLatestPostsBySectionSlugAsync(Pagination.toBackendPaginationModel(), sectionSlug);
+            var result = await _postService.GetPublicLatestPostsBySectionSlugAsync(Pagination.toBackendPaginationModel(), sectionSlug  );
 
             PostsList model = new PostsList
             {

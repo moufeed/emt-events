@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'fi';
+    src: url('#{$fonts}fi/fi.eot?65896805');
+    src: url('#{$fonts}fi/fi.eot?65896805#iefix') format('embedded-opentype'),
+         url('#{$fonts}fi/fi.woff2?65896805') format('woff2'),
+         url('#{$fonts}fi/fi.woff?65896805') format('woff'),
+         url('#{$fonts}fi/fi.ttf?65896805') format('truetype'),
+         url('#{$fonts}fi/fi.svg?65896805#fi') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+      font-family: 'fi';
+      src: url('#{$fonts}fi/fi.svg?65896805#fi') format('svg');
+    }
+  }
+ 
+   
+   .fi,.fi:before {
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    display: inline-block;
+    font-family: "fi";
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+  }
+   
+  .fi-crane:before { content: '\ab800'; } 
+  .fi-screen:before { content: '\ab801'; }  
+  .fi-sketch:before { content: '\ab802'; } 
+  .fi-strategy:before { content: '\ab803'; }  
+ 

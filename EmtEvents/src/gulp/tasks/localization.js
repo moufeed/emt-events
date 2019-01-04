@@ -2,7 +2,7 @@ const gulp = require("gulp"),
       merge = require("merge-stream"),
       concat = require("gulp-concat"),
       header = require('gulp-header'),
-      local_conf = require("../config/localization"),
+      local_conf = require("../config/localization.config"),
       pkg = require('../../../package.json'),
       mod = require('../lib/module');
       
@@ -28,3 +28,9 @@ gulp.task('po', function() {
 
     return merge(tasks);
   });
+
+
+  gulp.task('po:w',  ()=> {
+    gulp.watch(local_conf.watch, ['po']);
+ 
+});

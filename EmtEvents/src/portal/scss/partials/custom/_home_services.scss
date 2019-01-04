@@ -1,0 +1,100 @@
+
+$fi_mr : -3.5rem;
+.list-home-services{
+    .service-item{
+        position: relative;
+        @include clearfix();
+        &:before{
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            left: calc(50% - 10px );
+        }
+        @include media-breakpoint-up(md){
+            margin-bottom: 5rem;
+            &:before{
+                content: none;
+            }
+        }
+        
+        .service-title{
+            @include clearfix();
+            @include media-breakpoint-only(md){
+                font-size: 30px;
+            }
+            i{
+              
+                @include media-breakpoint-up(md){
+                    float: left;
+                    margin-top: -3rem;
+                    font-size: 7rem;
+                    font-weight: 600;
+                    margin-right: $fi_mr ;
+                    z-index: -1;
+                    transform: rotate(-5deg);
+                }
+                @include media-breakpoint-up(lg){
+                    font-size: 10rem;
+                }
+            }
+            strong{
+                position: relative;
+                z-index: 1; 
+            }
+        }
+        .service-text{
+            @include media-breakpoint-up(md){
+                width: 47%;
+                margin-top: 2rem;
+            }
+            @include media-breakpoint-up(lg){
+                width: 40%;
+            }
+        }
+
+        &:nth-child(even){
+            &:before{
+                top: auto;
+                bottom: 35%;
+            }
+
+            @include media-breakpoint-up(md){
+                text-align: right;
+                margin-top: -14rem;
+                .service-title{
+                    i{
+                         
+                            float: right;
+                            margin-left: $fi_mr ;
+                            margin-right: auto;
+                            transform: rotate(5deg);  
+                    }
+                }
+                .service-text{
+                    float: right;
+                    text-align: right; 
+                }
+            }
+        }
+         
+
+        $i :1;
+        @each $color in $services-listColor{
+            &:nth-child(#{$i}){
+                 
+                .service-title i.fi{
+                    color: $color; 
+                }
+            }
+            $i : $i + 1;
+        }
+        
+    }
+}
+ 
+

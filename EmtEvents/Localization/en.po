@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: asp.net 1.0.0"
+"Project-Id-Version: emt_events 0.1.6"
 "Last-Translator: tamtech solution <support@tamtech.solution>"
 "MIME-Version: 1.0"
 "Content-Type: text/plain; charset=UTF-8"
@@ -1552,182 +1552,186 @@ msgstr "More info"
 
 msgid "fullscreen"
 msgstr "Fullscreen"
-
-# adminbar
-msgid "Dashboard"
-msgstr "Dashboard"
-
-msgid "Log_Out"
-msgstr "Log Out"
-
-# tobbar
-msgid "mail_Us"
-msgstr "Mail Us"
-
+ 
 # bootombar
-msgid "Copyright_©_2018_tamtech_solutions._All_rights_reserved."
-msgstr "Copyright © 2018 tamtech solutions. All rights reserved."
+msgid "copyright_excellence_miles_All_rights_reserved"
+msgstr "Copyright © {0} Excellence Miles. All rights reserved."
 
 msgid "Powered_by"
 msgstr "Powered by"
 
 msgid "tamtech"
-msgstr "Tamtech"
+msgstr "tamtech"
 
-# index
-msgid "Welcome_Totamtech"
-msgstr "Welcome Totamtech"
+msgid "about_company"
+msgstr "About Company"
 
-msgid "Who_we_are"
-msgstr "Who we are?"
+msgid "latest_services"
+msgstr "Some Services"
 
-msgid "services_we_offer"
-msgstr "Services we offer"
+msgid "latest_services_slogan"
+msgstr "We deliver the best quality service for the realization of each client’s marketing needs."
 
-msgid "What_we_do"
-msgstr "What we do"
+msgid "Latest_work"
+msgstr "Some works"
 
-msgid "Why_Choose_Us"
-msgstr "Why Choose Us?"
+msgid "Latest_work_slogan"
+msgstr "We are honesty deal with everyone because we strongly believe that adhering to our promises is the key to success."
 
-msgid "What_Clients_say"
-msgstr "What Clients say?"
+msgid "Latest_Testimonials"
+msgstr "Testimonials"
 
-msgid "Our_Clients"
-msgstr "Our Clients"
+msgid "Latest_Testimonials_slogan"
+msgstr "Fabulously planned… Remembered always.."
 
-msgid "meet_our_clients"
-msgstr "Meet our clients"
+msgid "Lets_get_started"
+msgstr "Lets Get Started <br> Your Project"
 
-#about us
+msgid "Lets_get_started_slogan"
+msgstr "Because in your dreams, every detail matters."
 
-msgid "our_mission"
-msgstr "Our Mission"
+msgid "Lets_talk"
+msgstr "Let’s Talk!"
 
-msgid "happy_clients"
-msgstr "Happy Clients"
+msgid "latest_events"
+msgstr "Calendar"
 
-msgid "years_in_business"
-msgstr "Years in Business"
+msgid "latest_events_slogan"
+msgstr "An exceptional experience every time."
 
-msgid "cups_of_coffee"
-msgstr "Cups of Coffee"
+msgid "prev_event"
+msgstr "<span>prev<br>Event</span>"
 
-msgid "no_projects"
-msgstr "No. of Projects"
+msgid "next_event"
+msgstr "<span>next<br>Event</span>"
 
-msgid "our_values"
-msgstr "Our Value"
-
-msgid "our_vision"
-msgstr "Our Vision"
-
- 
-
-#: contact us
 msgid "contact_us"
-msgstr "Contact Us"
+msgstr "Contact us"
 
-msgid "Address"
-msgstr "Address"
+msgid "Write_Us"
+msgstr "Write Us"
 
-msgid "Phone"
-msgstr "Phone"
+msgid "call_us"
+msgstr "Call Us"
+ 
+msgid "visit_us"
+msgstr "Visit Us"
+ 
+msgid "p_full_name"
+msgstr "Full Name"
 
-msgid "Mobile"
-msgstr "Mobile"
+msgid "p_email_address"
+msgstr "Email address"
 
-msgid "Email"
-msgstr "Email"
+msgid "p_phone_number"
+msgstr "Phone number"
 
-msgid "Find_us"
-msgstr "Find us"
+msgid "p_Message"
+msgstr ""
 
-msgid "Get_in_Touch"
-msgstr "Get in Touch"
+msgid "p_send_message"
+msgstr "Send Message"
 
-msgid "send_us_meesage"
-msgstr "Send us a meesage"
+msgid "dear_customer"
+msgstr "Dear  <strong class=\"customer_name\"></strong>, thanks for reaching out!"
 
-msgid "name"
-msgstr "Name"
-
-msgid "Message"
-msgstr "Message"
-
-msgid "Send_it"
-msgstr "Send it"
-
-msgid "close"
-msgstr "Close"
+msgid "We_have_received_your_message"
+msgstr "We have received your message and would like to thank you for writing to us. If it's urgent, You can also use the mobile number listed below to talk to us."
 
 msgid "mobile_no"
 msgstr "Mobile No"
 
-msgid "dear_customer"
-msgstr  "Dear  <strong class=\"customer_name\"></strong>, thanks for reaching out!"
+msgid "have_great_day"
+msgstr "Have a great day!"
 
-msgid  "We_have_received_your_message"
-msgstr  "We have received your message and would like to thank you for writing to us. If it's urgent, You can also use the mobile number listed below to talk to us."
+msgid "our_works"
+msgstr "Our works"
 
-msgid  "have_great_day"
-msgstr  "Have a great day!"
+msgid "galleries_message"
+msgstr "A perfect blend of creativity, energy, communication, clarity and restraint"
 
+msgid "Know_More"
+msgstr "Know More"
 
-msgid "About_Us"
-msgstr "About Us"
+msgid "P_Video"
+msgstr "Video"
 
-msgid "Call_us_today_at_<span>{0}</span>_or_Email_us_at_<span>{1}</span>"
-msgstr "Call us today at <span>{0}</span> or Email us at <span>{1}</span>"
+msgid "p_photo"
+msgstr "Photo"
 
-msgid  "Start_Now"
-msgstr "Start Now"
+msgid "p_calendar"
+msgstr "Calendar"
 
-#:galleries
-msgid "our_galleries"
-msgstr "Our Galleries"
+msgid "events_message"
+msgstr "An exceptional experience every time."
 
-msgid "Galleries"
-msgstr "Galleries"
-
-msgid "Gallery"
-msgstr "Gallery"
-
-msgid "Services"
-msgstr "Services"
+msgid "share_this"
+msgstr "Share"
 
 msgid "our_services"
 msgstr "Our Services"
 
-msgid "read_more"
-msgstr "Read More"
+msgid ""
+msgstr ""
 
-#: Products
-
-msgid "Products"
-msgstr "Products"
-
-msgid "Our_products"
-msgstr "Our Products"
-
-msgid "Previous"
-msgstr "Previous"
-
-msgid "Next"
-msgstr "Next"
-
-msgid "Description"
-msgstr "Description"
-
-msgid "By"
-msgstr "By"
-
-msgid "share_this_post"
-msgstr "Share this Post"
+msgid ""
+msgstr ""
 
 
-#request quote
+#seo 
+msgid "excellence_miles"
+msgstr "Excellence Miles"
+msgid "p_meta_description"
+msgstr "The company aims at interior projects and services furnishing in accordance with the standards and levels of distinctive local and global perspective through the experience of its consultants."
 
-msgid "request_quote"
-msgstr "Request Quote"
+msgid "c_address"
+msgstr "Riyadh,Saudi Arabia"
+
+msgid "telephone_number"
+msgstr "+966 11 281 7030"
+ 
+msgid "mobile_number"
+msgstr "+966 55 164 9005"
+
+msgid "fax_number"
+msgstr "+966 11 281 7050"
+
+msgid "info_email"
+msgstr "info@emt-events.com"
+
+msgid "latitude"
+msgstr "24.6780230"
+
+msgid "longitude"
+msgstr "46.6776423"
+
+msgid "postalCode"
+msgstr "34320"
+
+msgid "streetAddress"
+msgstr "Takhassusi St"
+
+msgid "addressLocality"
+msgstr "Al Mathar Ash Shamali"
+
+msgid "contactUsImage"
+msgstr "~/Portal/img/backgrounds/contact-us.jpg"
+
+msgid "GalleriesImage"
+msgstr "~/Portal/img/backgrounds/works.jpg"
+
+msgid "PostsImage"
+msgstr "~/portal/img/backgrounds/events.jpg"
+
+msgid "ServicesImage"
+msgstr "~/portal/img/backgrounds/services.jpg"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
 

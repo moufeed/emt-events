@@ -18,9 +18,6 @@ namespace EmtEvents.Settings.Cultures
         {
             DefaultCulture,
             new CultureModel{Name = "العربية", Culture = "ar", Lang = "ar"},
-              new CultureModel{Name = "Türkçe", Culture = "tr", Lang = "tr"},
-                new CultureModel{Name = "Français", Culture = "fr", Lang = "fr"},
-                  new CultureModel{Name = "Deutsch", Culture = "de", Lang = "de"}
         };
         public static readonly string Constraint = DefaultCulture.Culture.Length == 2 ? "^([a||e||t||f||d])+([r||n||r||e])$" : "^([ar||en]{2})+(-)+([ar||en]{2})$";
         //  public static readonly string Constraint = DefaultCulture.Culture.Length == 2 ? "^([a||e])+([r||n])$" : "^([ar||en]{2})+(-)+([ar||en]{2})$";

@@ -1,0 +1,79 @@
+﻿<section class="  blog-owl overflow-visible blog-featured-posts">
+  
+    <div class="container">
+       
+        <div class="row">
+
+            <div class="col-12">
+                <div class="img-wrap text-center">
+                    <img src="~/Portal/img/vertical_line.png" alt="">
+                </div>
+                <div class="text-center">
+                    <h5 class="animate" data-animation="fadeInUp" data-appear-top-offset="250">@Localizer["latest_events"]  </h5>
+                    <p class="animate" data-animation="fadeInDown" data-appear-top-offset="250">@Localizer["latest_events_slogan"]  </p>
+                </div>
+                <div class="divider-110 d-none d-xl-block"></div>
+                <div class="owl-carousel top-right-nav animate" data-animation="fadeInUp"
+                     data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="2"
+                     data-nav="true" data-dots="false" data-loop="false" data-margin="15" 
+                     data-nav-prev="@Localizer["prev_event"]"
+                     data-nav-next="@Localizer["next_event"]">
+                    @{ 
+                        List<PostDto> posts = ViewBag.Posts;
+                    }
+                    <if include-if="ViewBag.Posts.Count > 0">
+                        @foreach (var post in posts)
+                        {
+                            string slug = @post.SectionSlug.Trim('/');
+
+
+                            <article class="vertical-item text-center content-padding padding-small ls post type-post status-publish format-standard has-post-thumbnail">
+                                <div class="item-media post-thumbnail">
+
+                                    <a href="@Url.Action("p","Posts",new{slug=$"{@slug}/{@post.Slug}"}).Replace("%2F", "/")">
+                                        @if (string.IsNullOrEmpty(post.MainImage))
+                                        {
+                                            <img src="~/Portal/img/empty.jpg" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img src="@post.MainImage" alt="@post.Title" />
+                                        }
+                                    </a>
+                                </div>
+                                <div class="item-content">
+                                    <header class="entry-header">
+                                        <div class="entry-meta">
+                                             
+                                            <a href="@Url.Action("p","Posts",new{slug=$"{@slug}/{@post.Slug}"}).Replace("%2F", "/")">
+                                            <time class="entry-date published updated" datetime="@post.CreatedDate">
+
+                                                    @post.CreatedDate.ToString("MMM/dd/yyyy")
+                                                </time>
+                                            </a>
+                                        </div>
+                                        <h6 class="entry-title">
+                                            <a href="@Url.Action("p","Posts",new{slug=$"{@slug}/{@post.Slug}"}).Replace("%2F", "/")" >
+                                               @post.Title
+                                            </a>
+                                        </h6>
+                                    </header>
+
+                                    <div class="entry-content">
+                                        <p>@post.Summary</p>
+                                    </div>
+
+                                </div>
+                            </article>
+                        }
+
+                    </if>
+                  
+
+                    
+                </div>
+            </div>
+        </div>
+        <div class="divider-110 d-none d-xl-block"></div>
+    </div>
+</section>

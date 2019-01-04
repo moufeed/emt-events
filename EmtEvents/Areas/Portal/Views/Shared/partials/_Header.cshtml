@@ -1,18 +1,105 @@
+﻿@{
+    string _lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    var controller = ViewContext.RouteData.Values["Controller"].ToString();
+    var action = ViewContext.RouteData.Values["Action"].ToString();
+    var routeValues = ViewBag.LanguageTabsRouteValues != null ? (Microsoft.AspNetCore.Routing.RouteValueDictionary)ViewBag.LanguageTabsRouteValues : new Microsoft.AspNetCore.Routing.RouteValueDictionary(); ;
+    routeValues.Add("culture", _lang);
 
-<header class="main-header">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-sm-auto col-md-12 col-lg-auto text-center">
-                <a href="#" class="main_logo">
-                    <img src="~/portal/img/logo.png" alt="@ViewData["Title"]">
-                </a>
+
+
+    bool isHomePage = controller.Equals("Home", StringComparison.OrdinalIgnoreCase) 
+                        && action.Equals("index", StringComparison.OrdinalIgnoreCase);
+}
+
+  
+@if (isHomePage)
+{
+    <div class="header_absolute s-pb-30">
+        <header class="page_header ds">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-3 col-11">
+                        <a href="@Url.Action("index","home")" class="logo text-center">
+                            <img src="~/Portal/img/main_logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
+                        <navbar></navbar>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right d-none d-lg-block">
+                        <div class="header_phone">
+
+                            @foreach (var culture in CultureConstants.CulturesList)
+                            {
+                                routeValues["culture"] = culture.Lang;
+                                @if (_lang != culture.Lang)
+                                {
+                                    <a href="@Url.AdminUrl(action,controller,routeValues)" class="btn btn_lang"> @culture.Name </a>
+                                }
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
+            <span class="toggle_menu">
+                <span></span>
+            </span>
+        </header>
+    </div>
+    <span class="toggle_menu_side header-slide">
+        <span></span>
+    </span>
 
-            <div class="col-sm-auto col-md-12 col-lg-auto">
-                 
-                    @await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_topbar.cshtml")
-                    @await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_navabr.cshtml")
+}
+else
+{
+    <header class="page_header ls justify-nav-center tog-ls affix-top">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-xl-2 col-lg-3 col-11">
+                    <a href="@Url.Action("index","home")" class="logo text-center">
+                        <img src="~/Portal/img/dark_main_logo.png" alt="">
+                    </a>
+                </div>
+                <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
+                    <navbar></navbar> 
+                </div>
+                <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right d-none d-lg-block">
+                    <div class="header_phone">
+                        @foreach (var culture in CultureConstants.CulturesList)
+                        {
+                            routeValues["culture"] = culture.Lang;
+                            @if (_lang != culture.Lang)
+                            {
+                                <a href="@Url.AdminUrl(action,controller,routeValues)" class="btn btn_lang"> @culture.Name </a>
+                            }
+                        }
+                    </div>
+                </div>
+                
             </div>
         </div>
-    </div>
-</header>
+        <!-- header toggler -->
+        <span class="toggle_menu">
+            <span></span>
+        </span>
+    </header>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

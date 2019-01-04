@@ -200,11 +200,7 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
     <script src="~/Admin/js/validator.min.js"></script>
      
-    @{
-        ViewBag.TinyMce_Contetnt_Id = null;
-        ViewBag.TinyMce_Suumry_Id = "#Summary";
-        await Html.RenderPartialAsync("partials/_tinymce.cshtml");
-    }
+    
 
     @if (ViewBag.isUpdate)
     {

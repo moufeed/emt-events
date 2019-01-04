@@ -1,0 +1,42 @@
+ .teaser-content{
+     > span{
+         display: block;
+         i{
+            font-size: 16px; 
+            width: 35px;
+            color: $db;
+         }
+     }
+ } 
+
+
+ .btnsend{
+     display: inline-flex;
+     justify-content: space-between;
+     align-items: center;
+     svg{
+         width:25px;
+         rect{
+             fill: $lightColor;
+         }
+     }
+     &:hover{
+        svg{
+            rect{
+                fill: $darkColor;
+            }
+        }
+     }
+ } 
+
+ .modal-contact{
+     .modal-body{
+         position: relative;
+         .close{
+             @include absolute(top $right , 10px);
+             &:active{
+                top : 10px !important;
+             }
+         }
+     }
+ }

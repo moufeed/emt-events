@@ -1,10 +1,50 @@
+<footer class="page_footer ds  main-footer">
+    <div class="ds py-5">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-12 col-md-auto">
+                    <div>
+                        <img src="~/Portal/img/main_logo.png" alt="" width="250">
+                    </div>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <ul class="list-unstyled text-light">
+                        <li><i class="fa fa-envelope-o mx-2"></i><a href="mailto:info@emt-events.co">info@emt-events.com</a> </li>
+                        <li><i class="fa fa-phone mx-2"></i><span class="number">@Localizer["telephone_number"]</span></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <div class="widget widget_social_buttons">
+                        <a href="http://www.facebook.com/#" class="fa fa-facebook color-icon" title="facebook"></a>
+                        <a href="http://www.twitter.com/#" class="fa fa-twitter color-icon" title="twitter"></a>
+                        <a href="http://www.plus.google.com/#" class="fa fa-google color-icon" title="google"></a>
+                        <a href="http://www.youtube.com/#" class="fa fa-youtube-play color-icon" title="youtube-play"></a>
+                        <a href="http://www.linkedin.com/#" class="fa fa-linkedin color-icon" title="linkedin"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
 
 
+<section class="page_copyright light-copy cs s-py-20 s-py-lg-5 copyright">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
 
-@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_mainFooter.cshtml")
+            <div class="col-12  col-sm-auto text-left">
+                <p class="animate" data-animation="fadeInDown">
+                    @Localizer["copyright_excellence_miles_All_rights_reserved", DateTime.Now.Year ]
+                </p>
+            </div>
+            <div class="col-12  col-sm-auto">
+                <p class="animate" data-animation="fadeInDown">@Localizer["Powered_by"]<a href="https://tamtech.solutions/" target="_blank">@Localizer["tamtech"]</a></p>
+            </div>
 
-@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_bottomBar.cshtml")
+        </div>
+    </div>
+</section>
 
-<a href="javascript:void(0)" class="back-to-top">
-    <i class="fa fa-angle-double-up"></i>
-</a>
+
+	

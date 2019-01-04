@@ -1,40 +1,159 @@
 
 
-@import "../../../node_modules/font-awesome/scss/font-awesome";
-@import "../../../node_modules/magnific-popup/src/css/main";
 
 
-@import 'lib/owl_carousel';
-@import 'lib/slider';
 
 
-@import 
-'partials/defaults',
-'partials/header',
-'partials/footer',
-'partials/page_header',
-'partials/topbar',
-'partials/navbar',
-'partials/contactUs',
-'partials/products', 
-'partials/product_item',
-'partials/services',
-'partials/about_us',
-'partials/home/slider',
-'partials/home/about', 
-'partials/home/promo',
-'partials/home/services',
-'partials/home/testimonials',
-'partials/home/clients',
-'partials/search',
-'partials/dynamic_page',
-'partials/galleries',
-'partials/gallery',
-'partials/gallery-popup',
-'partials/sections',
-'partials/posts',
-'partials/post'
-    
-;    
+@import  'lib/fonts'   ;
+
+/*
+** Bootstrap Addons
+*/
+@import './partials/addons/horizontal';
+@import './partials/addons/vertical';
+@import './partials/addons/sections';
+@import './partials/addons/media_items';
+@import './partials/addons/buttons';
 
 
+/*
+** Helper Utilities
+*/
+@import './partials/helpers/helpers_layout';
+@import './partials/helpers/helpers_colors';
+@import './partials/helpers/helpers_spacing';
+
+
+/*
+**plugins
+*/
+@import './plugins/animate';
+@import './plugins/owl';
+@import './plugins/flexslider';
+
+@import './plugins/photoswipe';
+//@import './plugins/piechart';
+//@import './plugins/timetable';
+//@import './plugins/totop';
+//@import './plugins/countdown';
+//@import './plugins/scroll_sidebar';
+
+@import './partials/menu/menu_xl';
+@import './partials/menu/menu_toggler';
+@import './partials/menu/menu_mobile';
+@import './partials/menu/menu_mega';
+@import './partials/menu/menu_click';
+
+/*
+** Bootstrap Overrides
+*/
+@import './partials/override_bootstrap/breadcrumbs';
+@import './partials/override_bootstrap/forms';
+@import './partials/override_bootstrap/carousel';
+@import './partials/override_bootstrap/tabs';
+@import './partials/override_bootstrap/collapse';
+@import './partials/override_bootstrap/dropdowns';
+
+
+
+  
+//.ls - light background sections
+@import './partials/color_sections/ls';
+//.ds - dark background sections
+@import './partials/color_sections/ds';
+//.cs - color background sections
+@import './partials/color_sections/cs';
+
+
+// @import './partials/widgets';.
+
+// @import './partials/widgets/access_press';
+// @import './partials/widgets/calendar';
+// @import './partials/widgets/flickr';
+// @import './partials/widgets/instagram';
+// @import './partials/widgets/nav_cat_arch_meta_pages';
+// @import './partials/widgets/post_2cols';
+// @import './partials/widgets/post_slider';
+// @import './partials/widgets/post_tabs';
+// @import './partials/widgets/rss';
+// @import './partials/widgets/search_mailchimp';
+// @import './partials/widgets/tag_cloud';
+// @import './partials/widgets/twitter';
+
+
+
+//accent colors variables
+ 
+ 
+//common styles for elements
+@import './partials/common';
+//styled lists
+@import './partials/lists';
+//override for bootstrap
+@import './partials/override';
+
+ 
+@import './partials/sections_corners';
+//addons common .ls and .ls.ms
+@import './partials/color_sections/ls';
+//theme .ls and .ls.ms
+@import './partials/section_light';
+@import './partials/section_grey';
+//addons common .ds
+
+//theme .ds
+@import './partials/section_dark';
+//addons common .cs
+@import './partials/color_sections/cs';
+//theme .cs
+@import './partials/section_color';
+//common components helpers - bootstrap addons
+
+@import './partials/widgets';
+
+//@import './partials/wordpress/required';
+//@import './partials/wordpress/pagination';
+
+
+@import './partials/header';
+@import './partials/header_side';
+@import './partials/intro';
+@import './partials/template';
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+ 
+
+/*
+** Subpages
+*/
+@import "./partials/subpages/404";
+@import "./partials/subpages/blog";
+
+/*
+** Shortcodes
+*/
+@import './partials/shortcodes/icon-box';
+@import './partials/shortcodes/special-heading';
+@import './partials/shortcodes/number-card';
+@import './partials/shortcodes/price_table';
+@import './partials/shortcodes/quote-item';
+@import './partials/shortcodes/items-masonry';
+
+
+@import './partials/custom/animation';
+@import './partials/custom/mainFooter';
+@import './partials/custom/home_services';
+@import './partials/custom/home_works';
+@import './partials/custom/pageHeader';
+@import './partials/custom/contact';
+@import './partials/custom/galleries';
+@import './partials/custom/posts';
+@import './partials/custom/services';

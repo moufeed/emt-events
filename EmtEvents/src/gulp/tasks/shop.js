@@ -12,7 +12,7 @@ merge = require("merge-stream"),
 babel = require('gulp-babel'),
 pkg = require('../../../package.json'),
 app= require("../../../appsettings.json"),
-shop_config = require('../config/shop'),
+shop_config = require('../config/shop.config'),
 mod = require('../lib/module')
 ;
 
