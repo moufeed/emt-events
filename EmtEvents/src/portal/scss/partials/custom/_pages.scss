@@ -1,0 +1,35 @@
+.section-page{
+    background: url('#{$img}about-bg.png') if-ltr(110%,-10%) 110%  no-repeat;
+}
+
+.page-sections{
+    background: url('#{$img}about-bg.png') if-ltr(110%,-10%) 50%  no-repeat;
+    padding: rem(75px) 0;
+    .s_item{
+        h6{
+            font-size: rem(18px);
+        }
+    }
+    .card-body{
+        padding: 5px;
+        color: $fontColor;
+    }
+}
+
+/* <div class="s_item">
+                            <div role="tab" id="collapse-@(index)_header">
+                                <>
+                                    <a data-toggle="collapse" href="#collapse-@(index)" aria-expanded="true" aria-controls="collapse01">
+                                        @content.Key
+                                    </a>
+                                </>
+                            </div>
+
+                            <div id="collapse-@(index)" class="collapse show" role="tabpanel" aria-labelledby="collapse-@(index)_header" data-parent="#accordion">
+                                <div class="card-body">
+                                      @Html.Raw(content.Value)
+                                </div>
+                            </div>
+                        </div>
+
+    */

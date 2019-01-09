@@ -47,10 +47,25 @@ msgstr "~/portal/img/backgrounds/events.jpg"
 msgid "ServicesImage"
 msgstr "~/portal/img/backgrounds/services.jpg"
 
-msgid ""
+msgid "AboutUsImage"
+msgstr "~/portal/img/backgrounds/about.jpg"
+
+msgid "PagesImage"
+msgstr "~/portal/img/backgrounds/pages.jpg"
+
+msgid "facebook_link"
 msgstr ""
 
-msgid ""
+msgid "twitter_link"
+msgstr ""
+
+msgid "google_link"
+msgstr ""
+
+msgid "youtube_link"
+msgstr "https://www.youtube.com/channel/UCsCA7gJjzyj8uBlJsH3nVFw"
+
+msgid "linkedin_link"
 msgstr ""
 
 msgid ""

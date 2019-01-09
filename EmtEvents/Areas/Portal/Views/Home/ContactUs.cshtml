@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "TamTech";
     Layout = "_Layout";
-    
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
     ViewData["ImageURl"] = @Url.Content(Localizer["contactUsImage"].Value);
     ViewData["pageTitle"] = Localizer["contact_us"];
 }
@@ -26,15 +26,15 @@
                 <p class="teaser-content">
                     <span >
                         <i class="fa fa-mobile"></i>
-                        <span class="number">@Localizer["mobile_number"]</span>
+                        <span class="number" dir="ltr">@Localizer["mobile_number"]</span>
                     </span>
                     <span >
                         <i class="fa fa-phone"></i>
-                        <span class="number">@Localizer["telephone_number"]</span>
+                        <span class="number" dir="ltr">@Localizer["telephone_number"]</span>
                     </span>
                     <span>
                         <i class="fa fa-fax"></i>
-                        <span class="number">@Localizer["fax_number"]</span>
+                        <span class="number" dir="ltr">@Localizer["fax_number"]</span>
                     </span>
                 </p>
             </div>
@@ -89,7 +89,7 @@ ction="@Url.Action("ContactUs","home" ,new { Area ="portal" })" id="contact_form
                                        value=""
                                        name="Name"
                                        id="name"
-                                       class="form-control text-left"
+                                       class="form-control text-left flip"
                                        placeholder="@Localizer["p_full_name"]">
                             </div>
                             <div class="form-group has-placeholder ">
@@ -101,7 +101,7 @@ ction="@Url.Action("ContactUs","home" ,new { Area ="portal" })" id="contact_form
                                        aria-required="true"
                                        size="30" value=""
                                        name="Email" id="email"
-                                       class="form-control text-left" placeholder="@Localizer["p_email_address"]">
+                                       class="form-control text-left flip" placeholder="@Localizer["p_email_address"]">
                             </div>
                             <div class="form-group has-placeholder">
                                 <label for="subject">
@@ -113,7 +113,7 @@ ction="@Url.Action("ContactUs","home" ,new { Area ="portal" })" id="contact_form
                                        size="30" value=""
                                        name="Mobile"
                                        id="Mobile"
-                                       class="form-control text-left"
+                                       class="form-control text-left flip"
                                        placeholder="@Localizer["p_phone_number"]">
                             </div>
                         </div>
@@ -126,8 +126,8 @@ ction="@Url.Action("ContactUs","home" ,new { Area ="portal" })" id="contact_form
                                           cols="45"
                                           name="Message"
                                           id="message"
-                                          class="form-control text-left"
-                                          placeholder="Your Message"></textarea>
+                                          class="form-control text-left flip"
+                                          placeholder="@Localizer["p_Message"]"></textarea>
                             </div>
                         </div>
                     </div>
@@ -190,6 +190,31 @@ ction="@Url.Action("ContactUs","home" ,new { Area ="portal" })" id="contact_form
  
 @section footer {
 <script src="~/Portal/js/contact.min.js"></script>
+
+@if (lang == "ar")
+{
+    <script>
+        $.extend( $.validator.messages, {
+	    required: "هذا الحقل إلزامي",
+	    remote: "يرجى تصحيح هذا الحقل للمتابعة",
+	    email: "رجاء إدخال عنوان بريد إلكتروني صحيح",
+	    url: "رجاء إدخال عنوان موقع إلكتروني صحيح",
+	    date: "رجاء إدخال تاريخ صحيح",
+	    dateISO: "رجاء إدخال تاريخ صحيح (ISO)",
+	    number: "رجاء إدخال عدد بطريقة صحيحة",
+	    digits: "رجاء إدخال أرقام فقط",
+	    creditcard: "رجاء إدخال رقم بطاقة ائتمان صحيح",
+	    equalTo: "رجاء إدخال نفس القيمة",
+	    extension: "رجاء إدخال ملف بامتداد موافق عليه",
+	    maxlength: $.validator.format( "الحد الأقصى لعدد الحروف هو {0}" ),
+	    minlength: $.validator.format( "الحد الأدنى لعدد الحروف هو {0}" ),
+	    rangelength: $.validator.format( "عدد الحروف يجب أن يكون بين {0} و {1}" ),
+	    range: $.validator.format( "رجاء إدخال عدد قيمته بين {0} و {1}" ),
+	    max: $.validator.format( "رجاء إدخال عدد أقل من أو يساوي {0}" ),
+	    min: $.validator.format( "رجاء إدخال عدد أكبر من أو يساوي {0}" )
+} );
+    </script>
+}
     <div class="modal fade modal-contact" id="ContactModel" tabindex="-1" role="dialog" aria-labelledby="ContactModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

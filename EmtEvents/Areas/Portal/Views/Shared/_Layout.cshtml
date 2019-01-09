@@ -3,11 +3,13 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
 @{
     var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
     var StyleFile = (lang == "ar") ? "style-rtl.min.css" : "style-ltr.min.css";
 }
+
+<html class="no-js" dir="@(lang== "ar" ? "rtl" :"ltr")">
+
 <head>
     <meta charset="utf-8">
     <!--[if IE]>
@@ -22,7 +24,7 @@
     <link rel="stylesheet" href="~/Portal/css/@StyleFile">
     @RenderSection("meta", required: false)
     @RenderSection("Styles", required: false)
-     <script src="~/Portal/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/Portal/js/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
     <!--[if lt IE 9]>
@@ -35,9 +37,9 @@
 
     <div id="canvas">
         <div id="box_wrapper">
-    <partial name="~/Areas/Portal/Views/Shared/partials/_Header.cshtml" />
+            <partial name="~/Areas/Portal/Views/Shared/partials/_Header.cshtml" />
             @RenderBody()
-    <partial name="~/Areas/Portal/Views/Shared/partials/_Footer.cshtml" />
+            <partial name="~/Areas/Portal/Views/Shared/partials/_Footer.cshtml" />
         </div>
     </div>
     <script src="~/Portal/js/bundle.min.js"></script>

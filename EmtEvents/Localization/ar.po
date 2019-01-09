@@ -945,6 +945,9 @@ msgstr "صفحة ثابتة"
 msgid "service"
 msgstr "خدمة"
 
+msgid "gallery"
+msgstr "معرض"
+
 msgid "posts_section"
 msgstr "تصنبفات المقالات"
 
@@ -1546,7 +1549,230 @@ msgstr "معرفة المزيد"
 
 msgid "fullscreen"
 msgstr "ملئ الشاشة"
+  
+# bootombar
+msgid "copyright_excellence_miles_All_rights_reserved"
+msgstr "جميع الحقوق محفوظة لصالح شركة أميال التميز {0}"
+
+msgid "Powered_by"
+msgstr "تم التنفيذ بواسطة"
+
+msgid "tamtech"
+msgstr "تام تيك"
+
+msgid "about_company"
+msgstr "حول الشركة"
+
+msgid "latest_services"
+msgstr "من خدماتنا"
+
+msgid "latest_services_slogan"
+msgstr "نحن نقدم أفضل الخدمات من أجل تحقيق احتياجات التسويق لكل عميل."
+
+msgid "Latest_work"
+msgstr "من أعمالنا"
+
+msgid "Latest_work_slogan"
+msgstr "نحن نتعامل بصدق مع الجميع لأننا نؤمن بشدة بأن الالتزام بوعودنا هو مفتاح النجاح."
+
+msgid "Latest_Testimonials"
+msgstr "أراء العملاء"
+
+msgid "Latest_Testimonials_slogan"
+msgstr "تخطيط خرافي ... يذكر دائما."
+
+msgid "Lets_get_started"
+msgstr "لنبدأ <br>  مشروعك الخاص"
+
+msgid "Lets_get_started_slogan"
+msgstr "لأنه في أحلامك ، كل التفاصيل مهمة."
+
+msgid "Lets_talk"
+msgstr "تواصل معنا"
+
+msgid "latest_events"
+msgstr "التقويم"
+
+msgid "latest_events_slogan"
+msgstr "تجربة استثنائية في كل مرة."
+
+msgid "prev_event"
+msgstr "<span>الحدث<br>السابق</span>"
+
+msgid "next_event"
+msgstr "<span>الحدث<br>التالي</span>"
+
+msgid "contact_us"
+msgstr "إتصل بنا"
+
+msgid "Write_Us"
+msgstr "راسلنا"
+
+msgid "call_us"
+msgstr "اتصل بنا"
  
+msgid "visit_us"
+msgstr "لزيارتنا "
+ 
+msgid "p_full_name"
+msgstr "الأسم الكامل"
+
+msgid "p_email_address"
+msgstr "البريد الإلكتروني"
+
+msgid "p_phone_number"
+msgstr "رقم الهاتف"
+
+msgid "p_Message"
+msgstr "الرسالة"
+
+msgid "p_send_message"
+msgstr "إرسال الرسالة"
+
+msgid "dear_customer"
+msgstr "عزيزي  <strong class=\"customer_name\"></strong>, شكراً لتواصلك معنا"
+
+msgid "We_have_received_your_message"
+msgstr "لقد إستلمنا رسالتك  وسيتم التواصل معك. كما يمكن التواصل مباشرة معنا من خلال رقم الجوال المدون بالأسفل"
+
+msgid "mobile_no"
+msgstr "رقم الجوال"
+
+msgid "have_great_day"
+msgstr "يوم سعيد"
+
+msgid "our_works"
+msgstr "أعمالنا"
+
+msgid "galleries_message"
+msgstr "مزيج مثالي من الإبداع والطاقة والاتصالات والوضوح وضبط النفس"
+
+msgid "Know_More"
+msgstr "المزيد"
+
+msgid "P_Video"
+msgstr "الفيديو"
+
+msgid "p_photo"
+msgstr "صورة"
+
+msgid "p_calendar"
+msgstr "التقويم"
+
+msgid "events_message"
+msgstr "تجربة استثنائية في كل مرة"
+
+msgid "share_this"
+msgstr "نشر"
+
+msgid "our_services"
+msgstr "خدماتنا"
+
+msgid "About_Us"
+msgstr "حول الشركة"
+
+msgid "companyHistory"
+msgstr "تاريخ الشركة"
+
+msgid "companyHistory_txt"
+msgstr "<p>تأسست الشركة الأم في عام 1988 وبعد أن تحقق نجاح العمل وتعددت الأنشطة انبثقت عنها (أميال التميز) لتكون أكثر تخصصا. تهدف الشركة إلى تقديم مشاريع داخلية وخدمات تأثيث وفقا لمعايير ومستويات المنظور المحلي والعالمي المتميز من خلال خبرة مستشاريها. طوّرت أميال الامتياز بنية جديدة لتنظيم المناسبات والمؤتمرات مع أفضل الموارد البشرية والتقنيات والخدمات ، بناءً على خبرتها السابقة ، بالإضافة إلى البحث والتطوير الذي يقدم خدمات إضافية ، بدءاً بالتصميم والتنفيذ ، والمشاركة في التحليل والتسويق للفعاليات وتوفير الخدمات الصوتية  والبصرية و الضيافة</p>"
+
+msgid "chairman_message"
+msgstr "كلمة رئيس مجلس الأدارة"
+
+msgid "chairman_message_txt"
+msgstr " لقد عملنا دوما على تقديم أفضل الخدمات لعملاؤنا وتميزنا بقدرتنا على تطور ومواكبة الحداثة في النهضة العمرانية التي تشهدها المملكة ووسعنا نطاق أعمالنا لتغطي كافة أنحاء المملكة
+كان ذلك بفضل الله ثم جهود الكادر الفني المتخصص لديكم حيث قدمتم كل ما يلزم للتوسع وتحقيق النجاح بتخصصكم في مجال الأعمال مدنية والإنشاءات الداخلية والديكور والتأثيث وتنظيم الفعاليات
+وعليه يسعدني أن تكونو ضمن مجموعة العما بكيان مستقل متخصص بالأعمال المذكورة لتكون أميال التميز للفعاليات  خدمة جديدة لعملاءنا تواكب تطور أعمالهم وتقدم أفضل ما يمكن لتحويل الخيال للواقع وتلبية حاجات العملاء
+الصدق والأمانة عماد النجاح فيجب أن تحافظو عليهما لنبقى أهلا للثقة الت عهدناها من عملاءنا والمتابعة الحثيثة لطلبات العملاء والدقة في الغنجاز تجعلكم دوما على سلم النجاح
+<br/>"
+
+msgid "Chairman"
+msgstr "رئيس مجلس الإدارة"
+
+msgid "Chairman_name"
+msgstr "عبدالله بن عبدالعزيز الزير"
+
+msgid "Mission"
+msgstr "مهمتنا"
+
+msgid "Mission_txt"
+msgstr "إضافة قيمة إلى العمل ، بروح الشراكة الحقيقية"
+
+msgid "Vision"
+msgstr "رؤيتنا"
+
+msgid "Vision_txt"
+msgstr "تحقيق معايير عالمية المستوى بأعلى تقنيات لاستراتيجية التواصل وتخطيط الأحداث في الشرق الأوسط"
+
+msgid "Methodology"
+msgstr "منهاجيتنا"
+
+msgid "listen"
+msgstr "الإصغاء"
+
+msgid "listen_txt"
+msgstr "نصغي بدقة للجميع لمساعدتهم في تلبية احتياجاتهم"
+
+msgid "Analysis"
+msgstr "التحليل"
+
+msgid "Analysis_txt"
+msgstr "نجري دراسات مكثفة لفهم احتياجات عملائنا وتحقيق أكثر من توقعاتهم"
+
+msgid "RD"
+msgstr "البحث والتطوير"
+
+msgid "RD_txt" 
+msgstr "لأننا نريد أن نبقي في رأس السوق ، فإن البحث والتطوير في كل جزئية أمر مهم بالنسبة لنا"
+
+msgid "Solutions"
+msgstr "الحلول"
+
+msgid "Solutions_txt"
+msgstr "نقترح الحل المناسب لعملائنا ونحاول أن نجعل هذا الحل ملبيا لمتطلباتهم بأفضل المعايير العالمية"
+
+msgid "Quality_of_control"
+msgstr "إدارة الجودة"
+
+msgid "Quality_of_control_txt"
+msgstr "جميع التعاملات مع عملائنا وموظفينا تتابع من قبل فريق الجودة للتأكد من أن هذه التعاملات تسير وفق أفضل المعايير"
+
+msgid "Innovation"
+msgstr "المبادرات"
+
+msgid "Innovation_txt"
+msgstr "من خلال خلق مبادرات فعالة فإن أميال التميز تساهم في التنمية الوطنية والمساهمة في العديد من الأنشطة البشرية"
+
+msgid "Motivation"
+msgstr "التحفيز"
+
+msgid "Motivation_txt"
+msgstr "نستفيد من أي نجاح صغير لتمكين فريقنا من منحهم جميع أنواع الحوافز ليكونوا قادرين على خدمة عملائنا "
+
+msgid "Customer_satisfaction"
+msgstr "رضا العميل"
+
+msgid "Customer_satisfaction_txt"
+msgstr "رضا العملاء هو أساس النجاح وهذا يعني أننا نقدم حل متكامل لتحقيق أهدافهم من خلال تصميم وتنفيذ ومتابعة فرق من ذوي المهارات العالية لتحقيق أفضل أداء وسجل زمني"
+
+msgid "Speed_performance"
+msgstr "السرعة في الأداء"
+
+msgid "Speed_performance_txt"
+msgstr "ولأن عامل الوقت هو أحد أساسيات عملنا ، فإننا نعطي كل عمل وقته بشكل صحيح ونلتزم بالجداول الزمنية المخططة ونشاركها مع عملائنا"
+
+msgid "Prices"
+msgstr "أسعارنا"
+
+msgid "Prices_txt"
+msgstr "ونظرًا لخبرتنا ، نقدم أسعارًا خاصة تحفز الشركات الصغيرة على المشاركة في الأحداث الكبرى"
+
+msgid "our_clients"
+msgstr "عملاءنا"
+
+msgid ""
+msgstr ""
  
 
 #seo 
@@ -1597,10 +1823,25 @@ msgstr "~/portal/img/backgrounds/events.jpg"
 msgid "ServicesImage"
 msgstr "~/portal/img/backgrounds/services.jpg"
 
-msgid ""
+msgid "AboutUsImage"
+msgstr "~/portal/img/backgrounds/about.jpg"
+
+msgid "PagesImage"
+msgstr "~/portal/img/backgrounds/pages.jpg"
+
+msgid "facebook_link"
 msgstr ""
 
-msgid ""
+msgid "twitter_link"
+msgstr ""
+
+msgid "google_link"
+msgstr ""
+
+msgid "youtube_link"
+msgstr "https://www.youtube.com/channel/UCsCA7gJjzyj8uBlJsH3nVFw"
+
+msgid "linkedin_link"
 msgstr ""
 
 msgid ""

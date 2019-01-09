@@ -2,63 +2,188 @@
 @{
     ViewData["Title"] = "TamTech";
     Layout = "_Layout";
-    ViewData["ImageURl"] = @Url.Content("~/portal/img/about.jpg");
+    ViewData["ImageURl"] = @Url.Content(Localizer["AboutUsImage"].Value);
     ViewData["pageTitle"] = Localizer["About_Us"];
-}
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
-@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
-
-
-
-@section SEO{
-
-<script type="application/ld+json">
-    {
-    "@@context":"http://schema.org",
-    "@@type":"LocalBusiness",
-    "image":"@ViewBag.Host/portal/img/seoLogo.jpg",
-    "name":"Tamtech",
-    "address":{
-    "@@type":"PostalAddress",
-    "streetAddress":"E5 yan yol Civan Cokak",
-    "addressLocality":"Avcılar Üniversite Mh",
-    "addressRegion":"İstanbul",
-    "postalCode":"34320",
-    "addressCountry":"Turkey"
-    },
-    "geo":{
-    "@@type":"GeoCoordinates",
-    "latitude":40.991939 ,
-    "longitude":28.713351
-    },
-    "telephone":"+905354152865"
-    }
-</script>
+    bool isAr = lang == "ar";
 }
 
 
-<section class="about_us_section">
-
-    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_description.cshtml")
-    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_vision.cshtml")
-    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_mission.cshtml")
-    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_statistics.cshtml")
-    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/aboutus/_value.cshtml")
-    @await Html.PartialAsync("~/Areas/Portal/Views/Home/partials/Index/_promo.cshtml")
 
 
 
+
+
+<partial name="~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml" />
+
+
+
+
+
+ 
+
+<section class="section-history">
+    <div class="container">
+        <div class="img-wrap text-center">
+                        <img src="/Portal/img/vertical_line.png" alt="">
+                        <div class="divider-35"></div>
+                    </div>
+        <div class="row text-center">
+             <div class="col-12">
+                    <h3 class="animate faster t" data-animation="@( isAr ? "fadeInRight" : "fadeInLeft")">
+                        <span>@Localizer["companyHistory"]</span>
+                    </h3>
+
+                    <div class="animate delay-5ms s" data-animation="fastInDown">
+                        @Localizer["companyHistory_txt"]
+                    </div>
+             </div>
+        </div>
+    </div>
 </section>
 
 
+
+
+<div class="corner corner-history"></div>
+
+<section class="section-vision-mission ls ms ">
+     <div class="divider-35"></div>
+    <div class="container">
+        <div class="row justify-content-around text-center">
+             <div class="col-12 col-lg-5 itm vision">
+                 <img src="~/portal/img/about/Vision.png" alt="@Localizer["Vision"]" class="animate delay-5ms" data-animation="fastInUp" >
+                    <h3 class="animate fast" data-animation="fadeInLeft">@Localizer["Vision"]</h3>
+                    
+                    <div class="animate delay-5ms txt" data-animation="fastInDown">
+                        @Localizer["Vision_txt"]
+                    </div>
+             </div>
+             <div class="col-12 col-lg-5 itm mission">
+                 <img src="~/portal/img/about/Mission.png" alt="@Localizer["Mission"]" class="animate delay-5ms" data-animation="fastInUp" >
+                    <h3 class="animate fast" data-animation="fadeInLeft">@Localizer["Mission"]</h3>
+                    
+                    <div class="animate delay-5ms txt" data-animation="fastInDown">
+                        @Localizer["Mission_txt"]
+                    </div>
+             </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-methodology">
+    <div class="container">
+        <div class="img-wrap text-center">
+                        <img src="/Portal/img/vertical_line.png" alt="">
+                        <div class="divider-35"></div>
+                    </div>
+        <div class="row">
+            <div class="col-12 text-center mb-5 hd">
+                <h2><span>@Localizer["Methodology"]</span></h2>
+            </div>
+            <div class="col-12 list-of-methodology">
+                  <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["listen"]</h4>
+                      <div>
+                          @Localizer["listen_txt"]
+                      </div>
+                  </article>
+                    <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Analysis"]</h4>
+                      <div>
+                          @Localizer["Analysis_txt"]
+                      </div>
+                  </article>
+                    <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["RD"]</h4>
+                      <div>
+                          @Localizer["RD_txt"] 
+                      </div>
+                  </article>
+                     <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Solutions"]</h4>
+                      <div>
+                          @Localizer["Solutions_txt"]
+                      </div>
+                  </article>
+                     <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Quality_of_control"]</h4>
+                      <div>
+                          @Localizer["Quality_of_control_txt"]
+                      </div>
+                  </article>
+                    <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Innovation"]</h4>
+                      <div>
+                          @Localizer["Innovation_txt"]
+                      </div>
+                  </article>
+                     <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Motivation"]</h4>
+                      <div>
+                          @Localizer["Motivation_txt"]
+                      </div>
+                  </article>
+                     <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Customer_satisfaction"]</h4>
+                      <div>
+                          @Localizer["Customer_satisfaction_txt"]
+                      </div>
+                  </article>
+                     <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Speed_performance"]</h4>
+                      <div>
+                          @Localizer["Speed_performance_txt"]
+                      </div>
+                  </article>
+                     <article class="animate fast" data-animation="fadeIn">
+                      <h4>@Localizer["Prices"]</h4>
+                      <div>
+                          @Localizer["Prices_txt"]
+                      </div>
+                  </article>
+            </div>  
+        </div>
+    </div>
+</section>
+
+<div class="corner corner-outside"></div>
+<section class="section section-message pt-5 s-pb-60">
+    <div class="container text-center">
+          <div class="img-wrap text-center">
+                        <img src="/Portal/img/vertical_line.png" alt="">
+                        <div class="divider-35"></div>
+                    </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="animate fast " data-animation="bounceInLeft">@Localizer["chairman_message"]</h3>
+                <div class="divider-50"></div>
+                <p class="mb-3 animate fast msg" data-animation="fastInUp"> @Localizer["chairman_message_txt"]</p>
+                <footer class="animate fast" data-animation="fadeInUp">
+                    <strong>@Localizer["Chairman_name"]</strong>
+                    <small>@Localizer["Chairman"]</small>
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>
+
+<if include-if="ViewBag.publicClientsSlider != null">
+    <div class="corner corner-half message"></div>
+    <partial name="~/Areas/Portal/Views/Home/partials/aboutus/_clients.cshtml" model="@ViewBag.publicClientsSlider" />
+</if>
+	
+
+
+
+
+
+ 
+
+
 @section footer{
-    <script src="~/Portal/js/counterup.min.js"></script>
+    <script src="~/Portal/js/about.min.js"></script>
 
-
-    <script>
-    $('.counter').counterUp({
-    delay: 10,
-    time: 1000
-});
-    </script>
+ 
 }

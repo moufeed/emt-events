@@ -1,9 +1,13 @@
 $dir :rtl;
 
+@import "./bootstrap-rtl/functions";
+@import './bootstrap-rtl/variables';
+
 @import 'variables';
 @import 'mixins/config';
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
+// @import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import './bootstrap-rtl/bootstrap.scss'; 
 
 
     
-@import 'partials';
+@import 'partials'; 

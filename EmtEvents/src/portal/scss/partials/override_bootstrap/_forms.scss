@@ -16,15 +16,17 @@ select,
   border-radius: 0;
   box-shadow: none;
   color: #7f7f7f;
-  padding-left: 28px;
-  padding-right: 30px;
+  padding-#{$left}: 28px;
+  padding-#{$right}: 30px;
   padding-top: 10px;
   padding-bottom: 11px;
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
   width: 100%;
+ @include if-ltr{
   letter-spacing: 0.1em;
+ }
 }
 
 input[disabled] {
@@ -138,7 +140,10 @@ select option,
   text-align: center;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 3px;
+   
+  @include if-ltr{
+    letter-spacing: 3px;
+  }
   font-weight: bold;
 }
 

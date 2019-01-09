@@ -136,7 +136,7 @@
                             <div class="form-group clearfix">
                                 <label asp-for="VideoUrl" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_video_url"]</label>
                                 <div class="col-md-7 col-sm-5 col-xs-12">
-                                    <div class="input-group">
+                                    <div class="input-group" dir="ltr">
                                         <div class="input-group-addon">http://youtube.com/watch?v=</div>
                                         <if include-if="ViewBag.isUpdate"> <input asp-for="VideoUrl" class="form-control" placeholder="@Localizer["f_video_id"]" /></if>
                                         <if exclude-if="ViewBag.isUpdate"> <input asp-for="VideoUrl" class="form-control" placeholder="@Localizer["f_video_id"]" required /></if>

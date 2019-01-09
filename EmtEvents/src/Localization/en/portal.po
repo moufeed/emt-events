@@ -31,7 +31,7 @@ msgid "Latest_Testimonials_slogan"
 msgstr "Fabulously planned… Remembered always.."
 
 msgid "Lets_get_started"
-msgstr "Lets Get Started <br> Your Project"
+msgstr "Let's Get Started <br> Your Project"
 
 msgid "Lets_get_started_slogan"
 msgstr "Because in your dreams, every detail matters."
@@ -73,7 +73,7 @@ msgid "p_phone_number"
 msgstr "Phone number"
 
 msgid "p_Message"
-msgstr ""
+msgstr "Message"
 
 msgid "p_send_message"
 msgstr "Send Message"
@@ -117,8 +117,104 @@ msgstr "Share"
 msgid "our_services"
 msgstr "Our Services"
 
-msgid ""
-msgstr ""
+msgid "About_Us"
+msgstr "About Us"
+
+msgid "companyHistory"
+msgstr "Company History"
+
+msgid "companyHistory_txt"
+msgstr "<p>Parent organization was founded in 1988 and after that check the success of the work and the multiplicity of activities emanated (Excellence Miles) to be more Specialized</p><p>The company aims at interior projects and services furnishing in accordance with the standards and levels of distinctive local and global perspective through the experience of its consultants.</p><p>Excellence miles has developed a new structure for events organization and conferences with the best human resources, technologies and services, based on its previous experience, in addition to research and development provided additional services, starting with design and implementation, engaged in the analysis and marketing of events and providing audio and visual services and catering.</p>"
+
+msgid "chairman_message"
+msgstr "Chairman’s Message"
+
+msgid "chairman_message_txt"
+msgstr "We have always worked to provide the best services to our clients and distinguished by our ability to develop and keep up with the modernity in the urban development witnessed by the Kingdom and we have expanded our business to cover all parts of the Kingdom.<br/>Was so thanks to God and then the efforts of your professional technical staff, where you have provided everything necessary to expand and achieve success with your specialization in the field of civil works, interior construction, decoration, furnishing and organization of events<br/>Therefore, I am pleased to be part of the group of independent entities specialized in the above mentioned activities to serve as a symbol of excellence for Events, a new service for our customers, keeping pace with the development of their business and providing the best possible to turn the imagination into reality and meet the needs of customers<br/>Honesty and honesty is the foundation of success, you must keep them to stay true to the trust we have entrusted to our customers and follow up diligently to customer requests and accuracy in the achievement always make you on the ladder of success<br/>"
+
+msgid "Chairman"
+msgstr "Chairman"
+
+msgid "Chairman_name"
+msgstr "Abdullah Abdulaziz Alzeer"
+
+msgid "Mission"
+msgstr "Mission"
+
+msgid "Mission_txt"
+msgstr "To add value to your business, in a true spirit of partnership, "
+
+msgid "Vision"
+msgstr "Vision"
+
+msgid "Vision_txt"
+msgstr "To bring world-class standards in highest technology to communication strategy and events planning in the middle east"
+
+msgid "Methodology"
+msgstr "Methodology"
+
+msgid "listen"
+msgstr "listen"
+
+msgid "listen_txt"
+msgstr "Listening carefully to everyone to help them identify their needs"
+
+msgid "Analysis"
+msgstr "Analysis"
+
+msgid "Analysis_txt"
+msgstr "Doing extensive studies in order to understand our customers’ needs and achieve more than their expectations"
+
+msgid "RD"
+msgstr "R&D"
+
+msgid "RD_txt" 
+msgstr "Because we want to keep at the top of the market we research and development in each article is very important to us"
+
+msgid "Solutions"
+msgstr "Solutions"
+
+msgid "Solutions_txt"
+msgstr "We propose appropriate solution to our customers and try to make that solution meet the requirement and the best international standards"
+
+msgid "Quality_of_control"
+msgstr "Quality of control"
+
+msgid "Quality_of_control_txt"
+msgstr "All dealings with our customer and employee’s follow-up by Quality team to make sure if these deals meet the best standards"
+
+msgid "Innovation"
+msgstr "Innovation"
+
+msgid "Innovation_txt"
+msgstr "by creating effective initiatives for the company to contribute to national development and contribute to many human activities."
+
+msgid "Motivation"
+msgstr "Motivation"
+
+msgid "Motivation_txt"
+msgstr "We take advantage of any small success to enable our team to give them all kinds of motivation to be able to serve our customers "
+
+msgid "Customer_satisfaction"
+msgstr "Customer satisfaction"
+
+msgid "Customer_satisfaction_txt"
+msgstr "Customer satisfaction is the foundation of success which’s mean we provide integrated solution to achieve their goals by designing, implementing and following by highly skilled teams to achieve the best performance and time record"
+
+msgid "Speed_performance"
+msgstr "Speed performance"
+
+msgid "Speed_performance_txt"
+msgstr "Because the time factor is one of the fundamentals of our work, we give every work its time right and comply with planned time tables and we share it with our clients."
+
+msgid "Prices"
+msgstr "Prices"
+
+msgid "Prices_txt"
+msgstr "Because of our expertise we provide special prices which motivate small companies to participate in big events"
+
+msgid "our_clients"
+msgstr "Our Clients"
 
 msgid ""
 msgstr ""

@@ -6,6 +6,8 @@ html {
   height: 100%;
   position: relative;
   overflow: visible;
+  direction: $dir;
+  text-align: $left;
 }
 
 ::selection {
@@ -19,7 +21,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: if-ltr('Poppins','Droid Arabic Kufi'), sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 30px;
@@ -29,9 +31,15 @@ body {
   //for scrollbar always seen
   overflow-y: scroll;
   //for scrollspy
-  position: relative;
+  position: relative; 
+  direction: $dir;
+  text-align: $left;
 }
-
+@include if-ltr{
+  body *{
+    direction: $dir;
+  }
+}
 h1,
 h2,
 h3,
@@ -39,11 +47,12 @@ h4,
 h5,
 h6 {
   //text-transform: uppercase;
-  font-weight: 500;
+  font-weight: if-ltr(500,700);
   line-height: 30px;
   margin-top: 5px;
   margin-bottom: 15px;
   //fix for Raleway numbers
+  
 }
 
 h1 {
@@ -166,7 +175,7 @@ a {
 }
 
 blockquote {
-  border-left: 4px solid $colorMain;
+  border-#{$left}: 4px solid $colorMain;
   padding: .4em 0 .4em 1.8em;
   font-style: italic;
   margin: 30px 0 53px;
@@ -219,16 +228,16 @@ hr {
   margin-top: 30px;
   margin-bottom: 30px;
 }
-
+ 
 iframe {
   border: none;
   max-width: 100%;
-}
+}  
 
 table {
   width: 100%;
   max-width: 100%;
-  margin: 10px 0;
+  margin: 10px 0; 
   td, th {
     padding: 13px 8px;
     line-height: 1.6;
@@ -302,10 +311,19 @@ pre {
   position: relative;
         &:before{
             content:"" ;
-            @include absolute (top $left , 10%  if-ltr(-10%,10%) );
+            @include absolute (top $left , 10%  -10% );
             z-index: -1;
             @include square(100%);
             border: 8px  solid rgba($colorMain,.8);
             transform: rotate(if-ltr(-4deg,4deg))
         }
+}
+
+.number{
+  font-family:$font-family-base; 
+  direction: ltr;
+}
+
+._3lines{
+  @include ellipse(16px , 1.6 ,3);
 }

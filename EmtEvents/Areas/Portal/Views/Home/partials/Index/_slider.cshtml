@@ -18,6 +18,29 @@
                 @{ int index = 1; }
                 @foreach (var item in mainSlider.Items)
                 {
+                    string animation = "fadeInLeft";
+                    string subanimation = "fastInDown";
+                    switch (index)
+                    {
+                        case  1 :
+                            animation = "bounceInLeft";
+                            subanimation = "fastFromLeft";
+                            break;
+                        case 2:
+                            animation = "bounceIn";
+                            subanimation = "fastInDown";
+                            break;
+                        case 3:
+                            animation = "bounceInLeft";
+                            subanimation = "fastFromLeft";
+                            break;
+
+                        default:
+                              animation = "fastFromLeft";
+                              subanimation = "fastFromRight";
+                            break;
+                    }
+
                     <li class="ds text-center slide-@index">
                         <span class="flexslider-overlay"></span>
                         <img src="@item.MainImage" alt="">
@@ -26,12 +49,12 @@
                                 <div class="col-12 itro_slider">
                                     <div class="intro_layers_wrapper">
                                         <div class="intro_layers">
-                                            <div class="intro_layer" data-animation="slideRight">
+                                            <div class="intro_layer animate fast" data-animation="@animation">
                                                 <h2 class="text-uppercase intro_featured_word">
                                                     @item.Title
                                                 </h2>
                                             </div>
-                                            <div class="intro_layer" data-animation="fadeIn">
+                                            <div class="intro_layer animate" data-animation="@subanimation">
                                                 <h3 class="intro_before_featured_word">
                                                     <span>@Html.Raw(item.Summary)</span>
                                                 </h3>

@@ -9,11 +9,11 @@
                     <img src="~/Portal/img/vertical_line.png" alt="">
                 </div>
                 <div class="text-center">
-                    <h5 class="animate" data-animation="fadeInUp" data-appear-top-offset="250">@Localizer["latest_events"]  </h5>
-                    <p class="animate" data-animation="fadeInDown" data-appear-top-offset="250">@Localizer["latest_events_slogan"]  </p>
+                    <h5 class="animate fast" data-animation="bounceInUp" >@Localizer["latest_events"]  </h5>
+                    <p class="animate fast" data-animation="bounceInLeft" >@Localizer["latest_events_slogan"]  </p>
                 </div>
                 <div class="divider-110 d-none d-xl-block"></div>
-                <div class="owl-carousel top-right-nav animate" data-animation="fadeInUp"
+                <div class="owl-carousel top-right-nav animate fast" data-animation="fadeInUp"
                      data-responsive-lg="3" data-responsive-md="2" data-responsive-sm="2"
                      data-nav="true" data-dots="false" data-loop="false" data-margin="15" 
                      data-nav-prev="@Localizer["prev_event"]"
@@ -60,7 +60,7 @@
                                     </header>
 
                                     <div class="entry-content">
-                                        <p>@post.Summary</p>
+                                        <p class="_3lines">@post.Summary</p>
                                     </div>
 
                                 </div>

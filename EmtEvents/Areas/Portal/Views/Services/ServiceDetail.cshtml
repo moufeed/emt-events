@@ -1,10 +1,13 @@
 ﻿@model ServiceDto
 @{
-    ViewData["Title"] = Localizer["Services"];
-    Layout = "_Layout";
-    ViewData["ImageURl"] = @Url.Content("~/portal/img/services.jpg");
 
-    ViewData["pageTitle"] = Model.Title;
+
+    ViewData["Title"] = Localizer["our_services"];
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content(string.IsNullOrEmpty(Model.MainImage) ? Localizer["ServicesImage"].Value  : Model.MainImage);
+    ViewData["pageTitle"] = Localizer["our_services"];
+
+
 
     ViewBag.ItemId = Model.Id;
     ViewBag.Action = "edit";
@@ -18,57 +21,39 @@
 }
 
 
-<section class="section-page py-5">
-    <div class="container">
-        <div class="row align-items-center mb-5">
 
-            @{ int classname = 12; }
+    <section class="services-section py-5">
+        <div class="divider-50 d-none d-md-block"></div>
+            <div class="container">
+                <header class="row align-items-center mb-4">
+                    <if include-if="Model.IconVisibility">
+                        <div class="col-md-3 text-center">
+                            <i class="@(Model.Icon.Contains("fi")?"fi":"fa") @Model.Icon service-icon"></i>
+                        </div>
+                    </if>
+                    <div class="@(Model.IconVisibility ?  "col-md-9" : "col-12" )">
+                        <h2>@Model.Title</h2>
 
-            @if (Model.MainImage?.Length > 0)
-            {
-                <div class="col-md-5 ">
-
-                    <div class="page-mainimage  d-flex justify-content-center align-items-center">
-                        <img src="@Model.MainImage" alt="@Model.Title" />
+                        <div class="page-meta color-main">
+                            @if (Model.CreatedDate != DateTime.MinValue)
+                            {
+                                <small class=""> <i class="fa fa-calendar"></i> @Model.CreatedDate.ToString("MMMM dd, yyyy") </small>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.Section))
+                            {
+                                <small><i class="fa fa-folder-o" aria-hidden="true"></i>  @Model.Section </small>
+                            }
+                        </div>
+                        <div class="suumary">
+                            @Html.Raw(Model.Summary)
+                        </div>
                     </div>
-                </div>
-
-                classname = 7;
-            }
-
-
-            <div class="col-md-@classname">
-                <div class="page-summary">
-                    <header>
-                        <h4>@Model.Title</h4>
-                    </header>
-                    <div class="page-meta">
-
-                        @if (Model.CreatedDate != DateTime.MinValue)
-                        {
-                            <small class=""> <i class="fa fa-calendar"></i> @Model.CreatedDate.ToString("MMMM dd, yyyy") </small>
-                        }
-
-                        @if (!string.IsNullOrEmpty(Model.Section))
-                        {
-                            <small><i class="fa fa-folder-o" aria-hidden="true"></i>  @Model.Section </small>
-                        }
-
-
-                    </div>
-
-
-                    <div class="page-summary mt-3 mb-2">
-                        @Html.Raw(Model.Summary)
+                </header>
+                <div class="row">
+                    <div class="col-12">
+                        @Html.Raw(Model.Content)
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col ">
-                @Html.Raw(Model.Content)
-            </div>
-        </div>
-    </div>
-</section>
-
+    </section>
+ 

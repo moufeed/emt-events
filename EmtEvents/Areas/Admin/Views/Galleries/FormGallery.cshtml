@@ -345,7 +345,7 @@
                 $('.sms_messages .characters').text( length - this.value.length);
             });
     </script>
-    @if (!ViewBag.isUpdate)
+    @if (!ViewBag.isUpdate || string.IsNullOrEmpty(Model.Title))
     {
         <script>
            $("#Title").on("keyup", function() {

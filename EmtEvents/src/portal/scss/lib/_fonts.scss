@@ -7,35 +7,6 @@
   }
 }
   
-/*
-  @include if-ltr{
-    
-
-
-    @include font('os-bold', '#{$font}/OpenSans/OpenSans-Bold.ttf'); 
-
-    @include font('rw-light', '#{$font}/Raleway/Raleway-Light.ttf');
-    @include font('rw-regular', '#{$font}/Raleway/Raleway-Regular.ttf');
-    @include font('rw-black', '#{$font}/Raleway/Raleway-Black.ttf');
-    @include font('rw-semibold', '#{$font}/Raleway/Raleway-SemiBold.ttf');
-   
-  }
-
- 
-  @include if-rtl{
-    @include font('tl-light', '#{$font}/Tajawal/Tajawal-Light.ttf');
-    @include font('tl-regular', '#{$font}/Tajawal/Tajawal-Regular.ttf');
-    @include font('tl-bold', '#{$font}/Tajawal/Tajawal-Bold.ttf');
-    @include font('tl-medium', '#{$font}/Tajawal/Tajawal-Medium.ttf');
-    @include font('tl-black', '#{$font}/Tajawal/Tajawal-Black.ttf');
-  } 
-
-*/
-
-  
-
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
 ////////////////////////////////////
 // Uncomment other fonts, if needed
 // @import url('https://fonts.googleapis.com/css?family=Roboto:400,300,700,100');
@@ -46,6 +17,21 @@
 // @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700');
 // @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700');
 // @import url('https://fonts.googleapis.com/css?family=Lato:300,400,900,300italic,400italic');
+
+@include if-ltr{
+  @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+}
+
+@include if-rtl{
+  @import url('https://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+  @import url('https://fonts.googleapis.com/css?family=Amiri');
+}
+ 
+  
+
+
+ 
+
 
 
  

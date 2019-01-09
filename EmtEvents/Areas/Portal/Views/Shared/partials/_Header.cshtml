@@ -2,8 +2,7 @@
     string _lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
     var controller = ViewContext.RouteData.Values["Controller"].ToString();
     var action = ViewContext.RouteData.Values["Action"].ToString();
-    var routeValues = ViewBag.LanguageTabsRouteValues != null ? (Microsoft.AspNetCore.Routing.RouteValueDictionary)ViewBag.LanguageTabsRouteValues : new Microsoft.AspNetCore.Routing.RouteValueDictionary(); ;
-    routeValues.Add("culture", _lang);
+    
 
 
 
@@ -20,7 +19,7 @@
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-lg-3 col-11">
                         <a href="@Url.Action("index","home")" class="logo text-center">
-                            <img src="~/Portal/img/main_logo.png" alt="">
+                            <img src="~/Portal/img/@(_lang == "ar" ? "main_logo_ar.png" : "main_logo.png" )" alt="">
                         </a>
                     </div>
                     <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
@@ -31,10 +30,10 @@
 
                             @foreach (var culture in CultureConstants.CulturesList)
                             {
-                                routeValues["culture"] = culture.Lang;
+                                 
                                 @if (_lang != culture.Lang)
                                 {
-                                    <a href="@Url.AdminUrl(action,controller,routeValues)" class="btn btn_lang"> @culture.Name </a>
+                                    <a href="@Url.Action("index","Home", new { culture = culture.Lang })" class="btn btn_lang"> @culture.Name </a>
                                 }
                             }
 
@@ -60,7 +59,7 @@ else
             <div class="row align-items-center">
                 <div class="col-xl-2 col-lg-3 col-11">
                     <a href="@Url.Action("index","home")" class="logo text-center">
-                        <img src="~/Portal/img/dark_main_logo.png" alt="">
+                        <img src="~/Portal/img/@(_lang == "ar" ? "dark_main_logo_ar.png" : "dark_main_logo.png" )" alt="">
                     </a>
                 </div>
                 <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
@@ -70,10 +69,10 @@ else
                     <div class="header_phone">
                         @foreach (var culture in CultureConstants.CulturesList)
                         {
-                            routeValues["culture"] = culture.Lang;
+                            
                             @if (_lang != culture.Lang)
                             {
-                                <a href="@Url.AdminUrl(action,controller,routeValues)" class="btn btn_lang"> @culture.Name </a>
+                                <a href="@Url.Action("index","Home", new { culture = culture.Lang })" class="btn btn_lang"> @culture.Name </a>
                             }
                         }
                     </div>

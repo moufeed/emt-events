@@ -18,9 +18,9 @@
     }
     $i :1;
     @each $color in $services-listColor{
-        &:nth-child(#{$i}){
+        &:nth-of-type(#{$i}){
             .s-icon i{  color: $color;  }
-        }
+        } 
         $i : $i + 1;
     }
 
@@ -51,77 +51,7 @@
         }
     }
 }
-
-/*
-$darkFontColor
-
-<section class="services-section py-5">
-
-    <div class="container">
-        <if include-if="Model != null && Model.Count > 0">
-            @{ 
-                int i = 1;
-                
-            }
-
-            @foreach (ServiceDto service in Model)
-            {
-                 
-                    var ImageAnimation = (lang == "ar")  ?  (i % 2 == 0 ? "fastFromLeft" :"fastFromRight" )  :  (i % 2 == 0 ? "fastFromRight" :"fastFromLeft" );
-
-                
-                <div class="row service-item justify-content-center align-items-center py-5 my-4 @(i % 2 == 0 ? "flex-row-reverse" :"" )">
-                    <div class="col-md-3 align-self-center text-center animate faster" data-animation="@ImageAnimation" >
-                        @if (service.IconVisibility && !string.IsNullOrEmpty(service.Icon))
-                        {
-                            <i class="@(service.Icon.Contains("fi")?"fi":"fa") @service.Icon"></i>
-                        }
-                        else if (!string.IsNullOrEmpty(service.MainImage) && !service.IconVisibility)
-                        {
-                            <figure>
-                                <img src="@service.MainImage" class="img-fluid" alt="">
-                            </figure>
-                        }
-                        else
-                        {
-                            <i class="fa fa-cubes"></i>
-                        }
-                    </div>
-                    <div class="col-md-9 col-xl-8">
-                        <if include-if="!string.IsNullOrEmpty(service.Content)">
-                            <h3 class="animate delay-2ms" data-animation="fadeIn">
-                                <a asp-controller="services"
-                                   asp-action="v"
-                                   asp-route-slug="@service.Slug">@service.Title</a>
-                            </h3>
-                        </if>
-                        <if exclude-if="!string.IsNullOrEmpty(service.Content)">
-                            <h3 class="animate delay-2ms" data-animation="fadeIn">
-                                <span>@service.Title</span>
-                            </h3>
-                        </if>
-                        <div class="s-summury animate fast"  data-animation="fastInDown" >
-                            @Html.Raw(service.Summary)
-                        </div>
-
-
-                        <if include-if="!string.IsNullOrEmpty(service.Content)">
-                           
-                                <a asp-controller="services"
-                                   asp-action="v"
-                                   asp-route-slug="@service.Slug" class="btn-link-more animate d-inline-block fast" data-animation="fastInUp">@Localizer["Know_More"]</a>
-                             
-                        </if>
-
-                    </div>
-                </div>
-
-                i++;
-            }
-        </if>
-    </div>
-
-
-</section>
- 
-*/
+ .service-icon{
+     font-size: 10rem;
+     color: $colorMain2;
+ }

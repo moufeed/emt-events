@@ -26,7 +26,9 @@ namespace EmtEvents.Areas.Portal.Controllers
 {
     public class HomeController : HomeBaseController
     {
-        private  IPostsService _postservice;
+        private IPostsService _postservice;
+        private ISlidersServices _sliderService;
+        private IWebApplicationSettingsService _appSettingsService;
 
         public HomeController(ITelemetryClientService telemetryClientService,
                                IPageService pageService,
@@ -37,6 +39,7 @@ namespace EmtEvents.Areas.Portal.Controllers
                                IRequestService requestService,
                                ICityService cityService,
                               IPostsService postservice
+                                
                              )
                                : base(telemetryClientService, pageService,
                                         menusServices, configuration, emailSender, appSettingsService,
@@ -44,7 +47,9 @@ namespace EmtEvents.Areas.Portal.Controllers
 
         {
             _postservice = postservice;
- 
+            _sliderService = sliderService;
+
+            _appSettingsService = appSettingsService;
         }
 
         public override async Task<IActionResult> Index()
@@ -65,6 +70,24 @@ namespace EmtEvents.Areas.Portal.Controllers
                 TrackException(ex);
             }
             return await base.Index();
+        }
+
+        public override async Task<IActionResult> AboutUs()
+        {
+            try
+            {
+                var publicClientsSlider = await _sliderService.GetPublicByKeyAsync(_appSettingsService.GetHomePageCarouselSliderKey());
+                if (publicClientsSlider.Success)
+                {
+                    ViewBag.publicClientsSlider = publicClientsSlider.Data;
+                }
+            }
+            catch (Exception ex)
+            {
+                TrackException(ex);
+            }
+
+            return await base.AboutUs();
         }
     }
 }

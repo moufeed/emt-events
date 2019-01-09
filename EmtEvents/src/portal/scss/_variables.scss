@@ -4,10 +4,8 @@
 $img:"../img/";
 $fonts : '../fonts/';
 
-
-@import "node_modules/bootstrap/scss/functions";
-@import 'node_modules/bootstrap/scss/variables';
-
+ 
+  
 
 $fa-font-path: "../fonts/fa"; 
 $db :#1f2732;
@@ -116,7 +114,9 @@ $dividers-height: 0 10 20 25 30 40 50 60 70 80 90 100 120;
   line-height: 1.6em;
   font-weight: 700;
   text-transform: uppercase;
+ @include if-ltr{
   letter-spacing: 0.2em;
+ }
 }
 
 @mixin cover() {

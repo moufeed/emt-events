@@ -938,6 +938,9 @@ msgstr "Static Page"
 
 msgid "service"
 msgstr "Service"
+
+msgid "gallery"
+msgstr "Gallery"
  
 msgid "posts_section"
 msgstr "Posts Section"

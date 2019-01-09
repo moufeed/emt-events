@@ -172,7 +172,7 @@ h4.entry-title {
   margin-bottom: 50px;
   padding: 30px 60px;
   .fa {
-    margin-right: 10px;
+    margin-#{$right}: 10px;
   }
   img {
     width: 50px;
@@ -236,7 +236,7 @@ h4.entry-title {
     a:before {
       font-family: 'FontAwesome';
       content: '\f040';
-      padding-right: 0.4em;
+      padding-#{$right}: 0.4em;
     }
   }
   //for woo
@@ -277,13 +277,13 @@ h4.entry-title {
     color: $colorMain;
     line-height: 60px;
     padding: 0 21px;
-    border-right: 1px solid $borderColorRGBA;
+    border-#{$right}: 1px solid $borderColorRGBA;
   }
   .votes_count {
     padding: 0 21px;
   }
   .views-count {
-    margin-left: auto;
+    margin-#{$left}: auto;
     padding: 22px 30px;
     background-color: $colorMain;
     color: $lightColor;
@@ -393,7 +393,7 @@ h4.comments-title {
     padding: 10px 27px 10px 75px;
     ol.children {
       list-style: none;
-      padding-left: 35px;
+      padding-#{$left}: 35px;
       img {
         max-width: 70px;
         left: -54px;
@@ -404,10 +404,10 @@ h4.comments-title {
         }
       }
       @media (min-width: 1200px) {
-        padding-left: 90px;
+        padding-#{$left}: 90px;
       }
       ol.children ol.children {
-        padding-left: 35px;
+        padding-#{$left}: 35px;
       }
     }
   }
@@ -415,12 +415,12 @@ h4.comments-title {
 
 .comment-body {
   position: relative;
-  margin-left: 70px;
+  margin-#{$left}: 70px;
   margin-bottom: 10px;
   padding: 25px 24px 20px;
   ol,
   ol ol {
-    padding-left: 20px;
+    padding-#{$left}: 20px;
   }
 }
 
@@ -457,7 +457,7 @@ h4.comments-title {
 
 @media(max-width: 575px) {
   .comment-body {
-    margin-left: 30px;
+    margin-#{$left}: 30px;
   }
   .comment-meta img {
     max-width: 60px;
@@ -545,7 +545,7 @@ h4.comments-title {
       width: 100%;
     }
     .comment-form-author {
-      padding-right: 0px;
+      padding-#{$right}: 0px;
     }
   }
   label {
@@ -610,7 +610,7 @@ h4.comments-title {
     font-style: italic;
     margin-bottom: 0;
     padding-bottom: 0;
-    padding-left: 0;
+    padding-#{$left}: 0;
     cite {
       display: block;
       font-style: normal;
@@ -658,10 +658,10 @@ h4.comments-title {
   }
 
   .comment-list ol.children {
-    padding-left: 90px;
+    padding-#{$left}: 90px;
     margin-top: -28px;
     @media (max-width: 767px) {
-      padding-left: 0;
+      padding-#{$left}: 0;
     }
   }
   .link-a {
@@ -705,7 +705,7 @@ h4.comments-title {
 .post1 {
   .entry-meta.icons a {
     color: #1f2732;
-    margin-right: 30px;
+    margin-#{$right}: 30px;
   }
   .blog-post1 {
     .post-nav {
@@ -778,7 +778,7 @@ h4.comments-title {
         background: #e8e9ea;
       }
       a.fa {
-        margin-right: 13px;
+        margin-#{$right}: 13px;
       }
     }
     .nav-links { 
@@ -786,9 +786,9 @@ h4.comments-title {
         background-color: #1f2732;
       }
       .next {
-        margin-left: 1px;
+        margin-#{$left}: 1px;
         @media (max-width: 767px) {
-          margin-left: 0;
+          margin-#{$left}: 0;
         }
       }
       .post-nav-text-wrap {
@@ -821,7 +821,7 @@ h4.comments-title {
         .prev-post:before {
           font-family: "FontAwesome";
           content: '\f053';
-          padding-right: 7px;
+          padding-#{$right}: 7px;
           font-size: 7px;
           position: relative;
           top: -1px;
@@ -829,7 +829,7 @@ h4.comments-title {
         .next-post:after {
           font-family: "FontAwesome";
           content: '\f054';
-          padding-left: 7px;
+          padding-#{$left}: 7px;
           font-size: 7px;
           position: relative;
           top: -1px;
@@ -921,11 +921,11 @@ h4.comments-title {
       }
     }
     span.data {
-      margin-left: 24px;
+      margin-#{$left}: 24px;
       color: $colorMain;
       font-weight: 300;
        @media(max-width: 575px) {
-        margin-left: 0;
+        margin-#{$left}: 0;
       }
       &:hover {
         color: #1f2732;
@@ -955,7 +955,7 @@ h4.comments-title {
   padding: 30px 0 23px ;
   a  {
     color: #1f2732;
-    margin-right: 21px;
+    margin-#{$right}: 21px;
     &:hover {
       color: $colorMain;
     }
@@ -978,18 +978,18 @@ h4.comments-title {
     }
   }
   i {
-    margin-left: 23px;
+    margin-#{$left}: 23px;
     @media (max-width: 767px) {
       margin: 0;
     }
   }
    .first {
-    padding-left: 37px;
+    padding-#{$left}: 37px;
   }
   .social {
-    margin-right: 60px;
+    margin-#{$right}: 60px;
     @media (max-width: 767px) {
-      margin-right: 25px;
+      margin-#{$right}: 25px;
     }
   }
 }
@@ -1089,7 +1089,7 @@ h4.comments-title {
     }
     .margin {
       margin-top: 0;
-      margin-left: 30px;
+      margin-#{$left}: 30px;
     }
   }
   .views-count {
@@ -1182,7 +1182,7 @@ h4.comments-title {
   }
   .comment-body {
     position: relative;
-    margin-left: 0;
+    margin-#{$left}: 0;
     margin-bottom: 27px;
     padding: 0 23px 30px;
   }
@@ -1256,13 +1256,13 @@ h4.comments-title {
   .meta {
     padding: 10px;
     .ent-meta {
-      margin-right: -15px;
+      margin-#{$right}: -15px;
       i {
         margin: 0 3px 0 9px;
       }
     }
     .autor {
-      margin-right: 5px;
+      margin-#{$right}: 5px;
     }
   }
   .tags-button {
@@ -1309,7 +1309,7 @@ h4.comments-title {
     }
   }
   .next {
-    margin-left: 10px;
+    margin-#{$left}: 10px;
     @media (max-width: 767px) {
       margin: 10px 0 0 0;
     }
@@ -1483,7 +1483,7 @@ h4.comments-title {
   .entry-meta > * {
     color: #fff;
     display: inline-block;
-    margin-right: 28px;
+    margin-#{$right}: 28px;
     margin-top: 0;
     line-height: 1.6;
     font-size: 12px;
@@ -1496,7 +1496,7 @@ h4.comments-title {
   }
   @media (max-width: 479px) {
     .entry-meta > * {
-      margin-right: 7px;
+      margin-#{$right}: 7px;
     }
   }
   .entry-meta.with_padding {
@@ -1511,7 +1511,7 @@ h4.comments-title {
     }
   }
   .entry-meta .entry-avatar {
-    margin-right: 10px;
+    margin-#{$right}: 10px;
   }
   .entry-meta .entry-avatar img {
     width: 50px;
@@ -1521,20 +1521,20 @@ h4.comments-title {
   }
 
   .entry-meta .blog-adds > * {
-    margin-right: 33px;
+    margin-#{$right}: 33px;
     color: #fff;
     &:last-child {
-      margin-right: 7px;
+      margin-#{$right}: 7px;
     }
   }
   @media (max-width: 479px) {
     .entry-meta .blog-adds > * {
-      margin-right: 7px;
+      margin-#{$right}: 7px;
     }
   }
   .entry-meta .tags {
     i {
-      margin-right: 9px;
+      margin-#{$right}: 9px;
     }
     a {
       color: $colorMain;
@@ -1590,7 +1590,7 @@ h4.comments-title {
 .blog1 {
   .entry-meta.icons a {
     color: #1f2732;
-    margin-right: 3px;
+    margin-#{$right}: 3px;
     &:hover {
       color: $colorMain;
     }
@@ -1638,7 +1638,7 @@ h4.comments-title {
           color: #fff;
         }
         &:first-child {
-          margin-left: 0; 
+          margin-#{$left}: 0; 
         }
       } 
     }
@@ -1686,8 +1686,8 @@ h4.comments-title {
 .blog2 {
   @media(max-width: 991px) {
     .c-gutter-60 [class*="col-"], .row.c-gutter-60 > [class*="col-"] {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-#{$right}: 10px;
+    padding-#{$left}: 10px;
 }
   }
   .post-thumb a img {
@@ -1699,10 +1699,10 @@ h4.comments-title {
 
   }
   .entry-content {
-      margin-left: 27px;
+      margin-#{$left}: 27px;
       @media(max-width: 767px) {
         margin-top: 30px;
-        margin-left: 0;
+        margin-#{$left}: 0;
       }
      .link {
         margin-top: 10px;
@@ -1725,7 +1725,7 @@ h4.comments-title {
     .status-icons {
       margin-top: 25px; 
       i {
-        margin-left: 30px;
+        margin-#{$left}: 30px;
       }    
     }
   } 
@@ -1772,8 +1772,8 @@ h4.comments-title {
       top: 30%;
       width: 80px;
       height: 40px;
-      border-top-left-radius: 110px;
-      border-top-right-radius: 110px;
+      border-top-#{$left}-radius: 110px;
+      border-top-#{$right}-radius: 110px;
       border: 5px solid rgba(255, 255, 255, 0.1);
       border-bottom: 0;
       @media (max-width: 767px) {
@@ -1799,7 +1799,7 @@ h4.comments-title {
     .entry-meta.small-text {
       margin: 24px 0 14px;
       i {
-        margin-left: 19px;
+        margin-#{$left}: 19px;
       }
     }
   }
@@ -1840,7 +1840,7 @@ h4.comments-title {
       margin-bottom: 25px;
     }
     .entry-meta.small-text i {
-      margin-left: 19px;
+      margin-#{$left}: 19px;
     }
   }
   .format-aside .post-icons {
@@ -1897,7 +1897,7 @@ h4.comments-title {
   .entry-meta > * {
     color: #fff;
     display: inline-block;
-    margin-right: 28px;
+    margin-#{$right}: 28px;
     margin-top: 0;
     line-height: 1.6;
     font-size: 12px;
@@ -1907,7 +1907,7 @@ h4.comments-title {
   }
   @media (max-width: 479px) {
     .entry-meta > * {
-      margin-right: 15px;
+      margin-#{$right}: 15px;
     }
   }
   .entry-meta.with_padding {
@@ -1919,7 +1919,7 @@ h4.comments-title {
     }
   }
   .entry-meta .entry-avatar {
-    margin-right: 10px;
+    margin-#{$right}: 10px;
   }
   .entry-meta .entry-avatar img {
     width: 50px;
@@ -1929,12 +1929,12 @@ h4.comments-title {
   }
 
   .entry-meta .blog-adds > * {
-    margin-right: 32px;
+    margin-#{$right}: 32px;
     color: #fff;
   }
   @media (max-width: 479px) {
     .entry-meta .blog-adds > * {
-      margin-right: 7px;
+      margin-#{$right}: 7px;
     }
   }
   .format-status {
@@ -1948,7 +1948,7 @@ h4.comments-title {
     .entry-meta.small-text {
       margin: 24px 0 14px;
       i {
-        margin-left: 19px;
+        margin-#{$left}: 19px;
       }
     }
   }
@@ -1981,7 +1981,7 @@ h4.comments-title {
     }
   }
   .post-icons i {
-    margin-left: 27px;
+    margin-#{$left}: 27px;
   }
 }
 
@@ -2000,9 +2000,9 @@ h4.comments-title {
   }
   .item-meta {
     i {
-      margin-left: 18px;
+      margin-#{$left}: 18px;
       @media(max-width: 991px) {
-        margin-left: 5px;
+        margin-#{$left}: 5px;
     }
 
     }
@@ -2022,7 +2022,7 @@ h4.comments-title {
 
 .blog-featured-posts {
   .vertical-item.content-padding.padding-small .item-content {
-    padding: 54px 60px 61px;
+    
     .entry-title, .entry-title:last-child {
       text-transform: none;
       margin: 9px 0 17px;
@@ -2058,8 +2058,8 @@ h4.comments-title {
     }
   }
   .c-gutter-60 [class*="col-"], .row.c-gutter-60 > [class*="col-"] {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-#{$right}: 15px;
+    padding-#{$left}: 15px;
   }
   .vertical-item.content-padding.padding-masonry .item-content {
      padding: 54px 45px 60px;
@@ -2189,7 +2189,7 @@ h4.comments-title {
       width: 48%;
     }
     .next {
-      margin-left: 27px;
+      margin-#{$left}: 27px;
     }
   }
   blockquote {
@@ -2216,7 +2216,7 @@ h4.comments-title {
   }
   @media (min-width: 991px) and (max-width: 1199px) {
     .next {
-      margin-left: 14px;
+      margin-#{$left}: 14px;
     }
   }
 }

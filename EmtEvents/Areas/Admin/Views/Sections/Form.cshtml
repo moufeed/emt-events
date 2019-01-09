@@ -262,7 +262,7 @@
    $('.select_picker').select2();
     </script>
 
-    @if (!ViewBag.IsEditMode)
+    @if (!ViewBag.IsEditMode || string.IsNullOrEmpty(Model.Slug))
     {
         <script>
            $("#Title").on("keyup", function() {

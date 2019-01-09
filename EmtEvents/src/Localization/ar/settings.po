@@ -1,0 +1,73 @@
+
+#seo 
+msgid "excellence_miles"
+msgstr "أميال التميز"
+msgid "p_meta_description"
+msgstr "تهدف الشركة إلى تقديم مشاريع داخلية وخدمات تأثيث وفقا لمعايير ومستويات المنظور المحلي والعالمي المتميز من خلال خبرة مستشاريها."
+
+msgid "c_address"
+msgstr "المملكة العربية السعودية . الرياض"
+
+msgid "telephone_number"
+msgstr "+966 11 281 7030"
+ 
+msgid "mobile_number"
+msgstr "+966 55 164 9005"
+
+msgid "fax_number"
+msgstr "+966 11 281 7050"
+
+msgid "info_email"
+msgstr "info@emt-events.com"
+
+msgid "latitude"
+msgstr "24.6780230"
+
+msgid "longitude"
+msgstr "46.6776423"
+
+msgid "postalCode"
+msgstr "34320"
+
+msgid "streetAddress"
+msgstr "شارع التخصصي"
+
+msgid "addressLocality"
+msgstr "حي المعذر الشمالي"
+
+msgid "contactUsImage"
+msgstr "~/Portal/img/backgrounds/contact-us.jpg"
+
+msgid "GalleriesImage"
+msgstr "~/Portal/img/backgrounds/works.jpg"
+
+msgid "PostsImage"
+msgstr "~/portal/img/backgrounds/events.jpg"
+
+msgid "ServicesImage"
+msgstr "~/portal/img/backgrounds/services.jpg"
+
+msgid "AboutUsImage"
+msgstr "~/portal/img/backgrounds/about.jpg"
+
+msgid "PagesImage"
+msgstr "~/portal/img/backgrounds/pages.jpg"
+
+msgid "facebook_link"
+msgstr ""
+
+msgid "twitter_link"
+msgstr ""
+
+msgid "google_link"
+msgstr ""
+
+msgid "youtube_link"
+msgstr "https://www.youtube.com/channel/UCsCA7gJjzyj8uBlJsH3nVFw"
+
+msgid "linkedin_link"
+msgstr ""
+
+msgid ""
+msgstr ""
+

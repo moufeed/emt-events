@@ -31,7 +31,9 @@
   padding: 26px 61px;
   border-radius: 50px;
   border: 4px solid;
-  letter-spacing: 0.2em;
+  @include if-ltr{
+    letter-spacing: 0.2em;
+  }
   transition: all 0.2s linear 0s;
 
   //for icons

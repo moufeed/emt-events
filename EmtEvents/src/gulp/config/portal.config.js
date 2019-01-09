@@ -76,7 +76,15 @@ module.exports = {
 	                `${portal_src}/js/vendor/photoswipe-ui-default.min.js`,
                     `${portal_src}/js/gallery.js` 
                 ],
-            } 
+            }  ,
+            {
+                outputFileName: "about.js",
+                es6: true,
+                inputFiles: [
+                    `${portal_src}/js/vendor/owl.carousel.min.js`,
+                    `${portal_src}/js/aboutus.js` 
+                ],
+            }  
         ]
     },
 }
