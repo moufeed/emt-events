@@ -38,12 +38,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
     <PackageReference Include="OrchardCore.Localization.Core" Version="1.0.0-beta3-68792" /> 
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" /> 
-    <PackageReference Include="TamTechBackendSDK.ContentService.SQL" Version="0.0.3.3" /> 
+    <PackageReference Include="TamTechBackendSDK.ContentService.SQL" Version="0.0.3.5" /> 
     <PackageReference Include="TamTechBackendSDK.EmailService" Version="0.0.1.8" />
     <PackageReference Include="TamTechBackendSDK.FileStorageService" Version="0.0.0.7" />
     <PackageReference Include="TamTechBackendSDK.IdentityService" Version="0.0.1.2" />
     <PackageReference Include="TamTechBackendSDK.SMSService" Version="0.0.0.1" />
-    <PackageReference Include="TamTechSDK.Web" Version="0.0.1.9" />
+    <PackageReference Include="TamTechSDK.Web" Version="0.0.2" />
   </ItemGroup>
   
   <ItemGroup>

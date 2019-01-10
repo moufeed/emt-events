@@ -274,6 +274,9 @@
   &.fixed-height{
     img{
       height: $post-image-height ;
+      @include media-breakpoint-down(sm){
+        height: auto;
+      }
     }
   }
 }

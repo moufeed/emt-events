@@ -5,8 +5,13 @@
         @include media-breakpoint-up(lg){
             margin-top: rem(75px);
         }
+        @include media-breakpoint-only(md){
+            margin-top: rem(35px);
+        }
         .service-title{
-             
+             @include media-breakpoint-only(md){
+                 font-size: rem(24px); 
+             }
             i{
                 @include media-breakpoint-up(md){
                     display: inline;
@@ -29,18 +34,23 @@
         }
 
         .service-text{
-            @include ellipse(16px,1.8,3);
-            max-width: 90%;
+            
+            @include media-breakpoint-up(md){
+                @include ellipse(16px,1.8,3);
+                max-width: 90%;
+            }
         }
         &.flip{
-            text-align: $right;
-            direction: if-ltr(rtl,ltr);
-            h3{
-               i{
-                   float: $right;
-                   margin-#{$right}: 0;
-                   margin-#{$left}: rem(15px);
-               }
+            @include media-breakpoint-up(md){
+                text-align: $right;
+                direction: if-ltr(rtl,ltr);
+                h3{
+                    i{
+                        float: $right;
+                        margin-#{$right}: 0;
+                        margin-#{$left}: rem(15px);
+                    }
+                 }
             }
         }
     }

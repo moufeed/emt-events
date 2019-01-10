@@ -5,6 +5,11 @@
 .page_slider {
   position: relative;
   overflow: hidden;
+
+  @include media-breakpoint-down(sm){
+    background: $db;
+    padding-top: 80px;
+  }
   //fix slider bug on small screens
   clear: both;
   & > img {

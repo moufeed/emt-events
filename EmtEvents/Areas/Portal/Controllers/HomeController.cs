@@ -8,6 +8,7 @@ using TamTechBackendSDK.EmailService.Services;
 using TamTechSDK.Common.Models.ContactUs;
 using TamTechSDK.Common.Models.Pagination;
 using TamTechSDK.Common.Services.ContentService.City;
+using TamTechSDK.Common.Services.ContentService.Galleries;
 using TamTechSDK.Common.Services.ContentService.Menus;
 using TamTechSDK.Common.Services.ContentService.Pages;
 using TamTechSDK.Common.Services.ContentService.Posts;
@@ -26,19 +27,25 @@ namespace EmtEvents.Areas.Portal.Controllers
 {
     public class HomeController : HomeBaseController
     {
-        private IPostsService _postservice;
-        private ISlidersServices _sliderService;
-        private IWebApplicationSettingsService _appSettingsService;
+        private readonly IPageService _pageService;
+        private readonly IWebApplicationSettingsService _appSettingsService;
+        private readonly ISlidersServices _sliderService;
+        private readonly IGalleriesService _GalleriesService;
+        private readonly IPostsService _postservice;
+        private readonly IServicesService _servicesservice;
 
         public HomeController(ITelemetryClientService telemetryClientService,
                                IPageService pageService,
                                IMenusServices menusServices,
                                IConfiguration configuration,
-                               IEmailSenderService emailSender, IWebApplicationSettingsService appSettingsService, IServicesService servicesservice,
+                               IEmailSenderService emailSender, 
+                               IWebApplicationSettingsService appSettingsService, 
+                               IServicesService servicesservice,
                                ISlidersServices sliderService,
                                IRequestService requestService,
                                ICityService cityService,
-                              IPostsService postservice
+                               IGalleriesService GalleriesService,
+                               IPostsService postservice
                                 
                              )
                                : base(telemetryClientService, pageService,
@@ -46,29 +53,53 @@ namespace EmtEvents.Areas.Portal.Controllers
                                         servicesservice, sliderService, requestService, cityService)
 
         {
-            _postservice = postservice;
-            _sliderService = sliderService;
-
+            _pageService = pageService;
             _appSettingsService = appSettingsService;
+            _GalleriesService = GalleriesService;
+            _sliderService = sliderService;
+            _postservice = postservice;
+            _servicesservice = servicesservice;
         }
 
         public override async Task<IActionResult> Index()
         {
+
             try
             {
-                PaginationModel Pagination = new PaginationModel
+                var publicMainSlider = await _sliderService.GetPublicByKeyAsync(_appSettingsService.GetHomePageMainSliderKey());
+                if (publicMainSlider.Success)
                 {
-                    PageNumber = "1",
-                    PageSize = 5
-                };
-                var latestPosts = await _postservice.GetPublicLatestPostsAsync(Pagination);
-                ViewBag.Posts = latestPosts.Data != null ? latestPosts.Data : new List<PostDto>();
-              
+                    ViewBag.publicMainSlider = publicMainSlider.Data;
+                }
+
+               ViewBag.Posts = await _postservice.GetPublicListAsync(4);
+
+                ViewBag.galleries = await _GalleriesService.GetPublicListAsync(4);
+
+                var aboutSummary = await _pageService.GetPublicPageSummaryByIdAsync(_appSettingsService.GetHomePageSummuryId());
+
+                if (aboutSummary.Success)
+                {
+                    ViewBag.aboutSummary = aboutSummary.Data;
+                }
+
+                var services = await _servicesservice.GetPublicListAsync(4);
+
+                if (services.Success)
+                {
+                    ViewBag.services = services.Data;
+                }
+
             }
             catch (Exception ex)
             {
                 TrackException(ex);
             }
+            
+
+
+
+            
             return await base.Index();
         }
 

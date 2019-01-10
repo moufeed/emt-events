@@ -53,9 +53,10 @@
 @import './partials/override_bootstrap/tabs';
 @import './partials/override_bootstrap/collapse';
 @import './partials/override_bootstrap/dropdowns';
-@import './partials/override_bootstrap/rtl';
 
-
+ 
+ 
+ 
   
 //.ls - light background sections
 @import './partials/color_sections/ls';
@@ -112,8 +113,8 @@
 @import './partials/widgets';
 
 //@import './partials/wordpress/required';
-//@import './partials/wordpress/pagination';
-
+@import './partials/wordpress/pagination';
+ 
 
 @import './partials/header';
 @import './partials/header_side';

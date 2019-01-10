@@ -1,5 +1,8 @@
 
 .work-item{
+    @include media-breakpoint-down(sm){
+       text-align: center;
+    }
     .item-media{
         overflow: hidden;
         max-height: 450px;

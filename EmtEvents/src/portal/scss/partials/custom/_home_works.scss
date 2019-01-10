@@ -1,3 +1,8 @@
+.works{
+    @include media-breakpoint-down(sm){
+        margin: 0;
+    }
+}
 .home-works{
 
     .witem{

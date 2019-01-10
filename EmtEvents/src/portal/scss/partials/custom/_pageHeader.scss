@@ -2,7 +2,8 @@
 
 .page-header{
     position: relative;
- 
+    background-position : 50%  0;
+    background-color: $db;
     &:after{
         @include absolute(top $left , 0);
         @include size(100%);
@@ -14,6 +15,9 @@
 
    .container >.row {
      min-height: 400px;
+     @include media-breakpoint-down(sm){
+        min-height:300px;
+     }
    }
    h1{
        color: $lightColor;

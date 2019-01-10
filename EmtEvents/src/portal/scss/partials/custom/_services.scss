@@ -4,6 +4,15 @@
 }
 
 .service-list-item{
+    @include media-breakpoint-down(sm){
+        text-align: center;
+        &.py-5{
+            padding: rem(25px) 0 !important;
+        }
+        hr{
+            margin: 0;
+        }
+    }
     figure{
         position: relative;
         

@@ -1,10 +1,10 @@
 ﻿
 @model SectionContainerDto
-
- 
+@{
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
 <nav class="my-4">
     <ul class="pagination">
-
         @if (Model.SectionInfo != null)
         {
             @if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
@@ -13,11 +13,12 @@
                 {
                     <li class="page-item ">
                         @{ int PreviousPage = Int32.Parse(Model.Pagination.PageNumber) - 1; }
-
                         <a class="page-link" href="@Url.AdminUrl("s", "posts", new { PageNumber = PreviousPage.ToString(),
-                                                  slug = Model.SectionInfo.Slug.Trim('/') }).Replace("%2F", "/")" tabindex="-1">@Localizer["Previous"]</a>
-                    </li>
-                }
+                                                  slug = Model.SectionInfo.Slug.Trim('/') }).Replace("%2F", "/")" tabindex="-1" title="@Localizer["Previous"]">
+                                                <i class="fa @(lang == "ar" ? "fa-chevron-right" :"fa-chevron-left") "></i>
+                                            </a>
+                                            </li>
+                                        }
 
                 @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
                 {
@@ -32,12 +33,10 @@
                 {
                     <li class="page-item ">
                         @{ int NextPage = Int32.Parse(Model.Pagination.PageNumber) + 1; }
-
                         <a class="page-link" href="@Url.AdminUrl("s", "posts", new { PageNumber = NextPage.ToString(),
                                                   slug = Model.SectionInfo.Slug.Trim('/') }).Replace("%2F", "/")" tabindex="-1">@Localizer["Next"]</a>
-
-                    </li>
-                }
+                                            </li>
+                                        }
 
             }
         }
@@ -49,8 +48,7 @@
                 {
                     <li class="page-item ">
                         @{ int PreviousPage = Int32.Parse(Model.Pagination.PageNumber) - 1; }
-
-                        <a class="page-link" href="@Url.AdminUrl("index", "posts", new { PageNumber = PreviousPage.ToString()})" >@Localizer["Previous"]</a>
+                        <a class="page-link" href="@Url.AdminUrl("index", "posts", new { PageNumber = PreviousPage.ToString()})">@Localizer["Previous"]</a>
                     </li>
                 }
 
@@ -67,16 +65,15 @@
                 {
                     <li class="page-item ">
                         @{ int NextPage = Int32.Parse(Model.Pagination.PageNumber) + 1; }
-
-                        <a class="page-link" href="@Url.AdminUrl("index", "posts", new { PageNumber = NextPage.ToString() })"  >@Localizer["Next"]</a>
-
+                        <a class="page-link" href="@Url.AdminUrl("index", "posts", new { PageNumber = NextPage.ToString() })" title="@Localizer["Next"]">
+                            <i class="fa @(lang == "ar" ? "fa-chevron-left" :"fa-chevron-right") "></i>
+                           
+                        </a>
                     </li>
                 }
 
             }
         }
-
-
 
 
     </ul>

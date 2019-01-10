@@ -1,4 +1,13 @@
-﻿<section class="ls ms book-item ">
+﻿
+
+
+
+@{
+    List<GalleryLiteDto> galleries = (List<GalleryLiteDto>)ViewBag.galleries;
+}
+   
+
+<section class="ls ms book-item works ">
 
     <div class="corner corner-light"></div>
     <div class="container">
@@ -11,8 +20,8 @@
                         <div class="divider-35"></div>
                     </div>
                     <div>
-                        <h5 class="animate fast" data-animation="fastFromLeft" >@Localizer["Latest_work"] </h5>
-                        <p class="animate fast" data-animation="fastFromRight" >
+                        <h5 class="animate fast" data-animation="fastFromLeft">@Localizer["Latest_work"] </h5>
+                        <p class="animate fast" data-animation="fastFromRight">
                             @Localizer["Latest_work_slogan"]
                         </p>
                     </div>
@@ -21,33 +30,49 @@
         </div>
         <div class="divider-100"></div>
         <div class="row justify-content-center home-works">
-            <div class="col-12 col-md-6 col-lg-5 witem">
-                <div class="work-item animate" data-animation="fadeInLeft" >
-                    <span class="w-image">
-                        <a href="#">
-                            <img src="~/Portal/img/projects/1.jpg" alt="">
-                        </a>
-                    </span>
+            @if (ViewBag.galleries != null && galleries.Count > 0)
+            {
+                
+                    int index = 0;
+                
+                @foreach (var gallery in galleries)
+                {
+                    <div class="col-12 col-md-6 col-lg-5 witem">
+                        <div class="work-item animate" data-animation="@(index %2 == 0 ? "bounceInLeft" :"bounceInRight")">
+                            <span class="w-image">
+                                <a asp-action="v" asp-controller="galleries" asp-route-slug="@gallery.Slug">
+                                    @if (string.IsNullOrEmpty(gallery.MainImage))
+                                    {
+                                    <img src="~/Portal/img/empty.jpg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="@gallery.MainImage" alt="">
+                                    }
 
-                    <div>
-                        <h6><a href="#">State Security part at the Janadriya Festival 2017	</a></h6>
-                        <p>We presented an integrated study and worked hard to make this Event success</p>
+                                </a>
+                            </span>
+                           
+                            <div>
+                                <h6><a asp-action="v" asp-controller="galleries" asp-route-slug="@gallery.Slug">@gallery.Title</a></h6>
+                                <p>
+                                    @{
+                                        string Summary = "";
+                                        if (!string.IsNullOrWhiteSpace(gallery.Summary))
+                                        {
+                                            Summary = Regex.Replace(gallery.Summary, "<.*?>", String.Empty);
+                                        }
+                                    }
+                                    @Html.Raw(Summary)
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-5 witem">
-                <div class="work-item animate" data-animation="fadeInRight" >
-                    <span class="w-image">
-                        <a href="#">
-                            <img src="~/Portal/img/projects/2.jpg" alt="">
-                        </a>
-                    </span>
-                    <div>
-                        <h6><a href="#"> Museum Of Science & Technology</a></h6>
-                        <p>The museum was designed and implemented by the " Excellence  Miles "</p>
-                    </div>
-                </div>
-            </div>
+                    index++;
+                }
+            }
+
+             
         </div>
 
         <div class="divider-100"></div>
