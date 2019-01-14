@@ -12,12 +12,16 @@
         background:  linear-gradient(to left ,rgba(darken($colorMain ,45%) ,.75) 0% , rgba($colorMain, 0.1) 50%,rgba(darken($colorMain ,45%) ,.75) 100%);
         opacity: .85;
     } 
-
-   .container >.row {
-     min-height: 400px;
-     @include media-breakpoint-down(sm){
-        min-height:300px;
-     }
+    .container{
+        z-index: 1;
+        position: relative;
+        >.row {
+            min-height: 400px;
+            @include media-breakpoint-down(sm){
+               min-height:300px;
+            }
+    }
+  
    }
    h1{
        color: $lightColor;

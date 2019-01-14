@@ -28,7 +28,7 @@
                 <header class="row align-items-center mb-4">
                     <if include-if="Model.IconVisibility">
                         <div class="col-md-3 text-center">
-                            <i class="@(Model.Icon.Contains("fi")?"fi":"fa") @Model.Icon service-icon"></i>
+                            <i class="@(Model.Icon.StartsWith("fi")?"fi":"fa") @Model.Icon service-icon"></i>
                         </div>
                     </if>
                     <div class="@(Model.IconVisibility ?  "col-md-9" : "col-12" )">

@@ -34,7 +34,7 @@
                     <div class="col-md-3 align-self-center text-center animate faster s-icon" data-animation="@ImageAnimation">
                         @if (service.IconVisibility && !string.IsNullOrEmpty(service.Icon))
                         {
-                            <i class="@(service.Icon.Contains("fi")?"fi":"fa") @service.Icon"></i>
+                            <i class="@(service.Icon.StartsWith("fi")?"fi":"fa") @service.Icon"></i>
                         }
                         else if (!string.IsNullOrEmpty(service.MainImage) && !service.IconVisibility)
                         {
