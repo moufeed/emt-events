@@ -19,7 +19,7 @@ $(document).ready(()=>{
                 .done(function(data){
                     if(data.success){
                         $notification.success("",window.localization.deleted_successfully , 2000, "fa fa-check");
-                        $this.parent().parent().remove();
+                        $this.parent().parent().parent().remove();
                     }else{ 
                         var errors = data.errors;
                         $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");

@@ -64,7 +64,7 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-service"
-                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                  data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("PublishAsync","services" , new { id = Model.Id})"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
@@ -304,7 +304,7 @@
 
     </script>
 
-    @if (!ViewBag.isUpdate)
+    @if (!ViewBag.isUpdate || string.IsNullOrEmpty(Model.Slug))
             {
        <script>
            $("#Title").on("keyup", function() {

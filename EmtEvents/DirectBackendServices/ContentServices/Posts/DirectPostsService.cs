@@ -101,7 +101,7 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts
 
         public async Task<PostsList> GetPublicLatestPostsAsync(PaginationModel Pagination)
         {
-            var result = await _postService.GetPublicLatestPostsAsync(Pagination.toBackendPaginationModel());
+            var result = await _postService.GetPublicLatestPostsAsync(Pagination.toBackendPaginationModel(),6);
             PostsList model = new PostsList
             {
                 Data = result.Data?.Select(m => m.MapToFrontendDto()).ToList(),
@@ -113,7 +113,7 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts
         public async Task<PostsList> GetPublicLatestPostsBySectionSlugAsync(PaginationModel Pagination, string sectionSlug)
         {
 
-            var result = await _postService.GetPublicLatestPostsBySectionSlugAsync(Pagination.toBackendPaginationModel(), sectionSlug);
+            var result = await _postService.GetPublicLatestPostsBySectionSlugAsync(Pagination.toBackendPaginationModel(), sectionSlug  );
 
             PostsList model = new PostsList
             {
@@ -129,6 +129,46 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts
         {
             var post = await _postService.GetPublicBySlugAndSectionSlugsAsync(sectionSlugs, slug);
             return post.MapToPublicFrontendDto();
+        }
+
+        public async Task<List<PostDto>> GetPublicListAsync(int takeItems)
+        {
+            var result = await _postService.GetPublicListAsync(takeItems);
+            var posts = new List<PostDto>();
+            if (result != null)
+            {
+                posts = result.Select(m => m.MapToFrontendDto()).ToList();
+            }
+            return posts;
+        }
+
+        public async Task<PostsList> GetPublicListAsync(PaginationModel pagination)
+        {
+            var result = await _postService.GetPublicListAsync(pagination.toBackendPaginationModel());
+
+            var posts = new PostsList();
+            if (result != null)
+            {
+                posts.Data = result.Data != null ? result.Data.Select(m => m.MapToFrontendDto()).ToList() : new List<PostDto>();
+                posts.Pagination = result.Pagination != null ? result.Pagination.MapToForntEndPagination() : new PaginationMetadataModel();
+
+            }
+            return posts;
+        }
+
+        public async Task<PostsList> GetPublicListBySectionSlugAsync(PaginationModel pagination, string slugHierarchy)
+        {
+            var result = await _postService.GetPublicListBySectionSlugAsync(pagination.toBackendPaginationModel(), slugHierarchy);
+
+            var model = new PostsList();
+            if (result != null)
+            {
+                model.Data = result.Data != null ? result.Data.Select(m => m.MapToFrontendDto()).ToList() : new List<PostDto>();
+                model.Pagination = result.Pagination != null ? result.Pagination.MapToForntEndPagination() : new PaginationMetadataModel();
+
+            }
+
+            return model;
         }
         #endregion
 

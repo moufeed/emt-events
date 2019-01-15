@@ -1,0 +1,49 @@
+﻿@model PostDto
+
+@{ 
+    var post = Model;
+
+    string slug = post.SectionSlug.Trim('/');
+}
+
+ 
+
+<article class="post-events side-item content-padding  animate my-5" data-animation="fadeInDown">
+    <div class="row align-items-center">
+        <div class="col-xl-4 col-lg-5 col-md-5 col-xs-12">
+            <div class="before-border">
+                <div class="item-media cover-image fixed-height " style="background-image: url('@post.MainImage');">
+                @if (string.IsNullOrEmpty(post.MainImage))
+                {
+                    <img src="~/Portal/img/empty.jpg" />
+                }
+                else
+                {
+                    <img src="@post.MainImage" alt="">
+                }
+            </div>
+            </div>
+            
+        </div>
+
+        <div class="col-xl-8 col-lg-7 col-md-7 col-xs-12">
+            <div class="item-content">
+                <h6>
+                    <a href="@Url.Action("p","Posts",new{slug=$"{@slug}/{@post.Slug}"}).Replace("%2F", "/")">@post.Title</a>
+                </h6>
+
+                <p class="item-meta color-darkgrey">
+                    <i class="fa fa-calendar color-main"></i>
+                    <span>@post.CreatedDate.ToString("MM/dd/yyyy")</span>
+
+                    <i class="fa fa-folder-o color-main"></i>
+                    <a href="@Url.Action("s","posts",new{slug=$"{post.SectionSlug.Trim('/')}"}).Replace("%2F", "/")">@post.Section</a>
+                </p>
+                <p>
+                    @Html.Raw(post.Summary)
+                </p>
+
+            </div>
+        </div>
+    </div>
+</article>

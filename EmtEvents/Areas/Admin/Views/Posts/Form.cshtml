@@ -51,8 +51,8 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-post"
-                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
-                                   data-url="@Url.AdminUrl("PublishAsync","Posts" , new { id = Model.Id})"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                   data-url="@Url.AdminUrl("PublishAsync", "Posts", new { id = Model.Id })"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
                     </div>
@@ -234,7 +234,7 @@
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
-                            <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@((ViewBag.IsEditMode) ? Localizer["Update"]  : Localizer["Create"] )">
+                            <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@((ViewBag.IsEditMode) ? Localizer["Update"] : Localizer["Create"] )">
                             <input type="submit" class="btn btn-info p-x-5   ut-continue-btn" name="save-continue" value="@Localizer["save_and_continue"]">
                         </div>
                     </div>
@@ -293,7 +293,7 @@
         }
     }
 
-    @if (!ViewBag.IsEditMode)
+    @if (!ViewBag.IsEditMode || string.IsNullOrEmpty(Model.Slug))
     {
         <script>
            $("#Title").on("keyup", function() {

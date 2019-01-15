@@ -15,3 +15,5 @@ gulp.task('s', ['s:css', 's:js'  ,'s:f']);
 
 //
 gulp.task('default', ['p' ,'a' ,'s' ]); 
+
+gulp.task('w', ['p:w', 'po:w']); 

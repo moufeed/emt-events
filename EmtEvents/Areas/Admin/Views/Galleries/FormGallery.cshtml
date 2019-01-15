@@ -70,7 +70,7 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-gallery"
-                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("PublishAsync" ,"galleries" , new { id= Model.Id })"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
@@ -345,7 +345,7 @@
                 $('.sms_messages .characters').text( length - this.value.length);
             });
     </script>
-    @if (!ViewBag.isUpdate)
+    @if (!ViewBag.isUpdate || string.IsNullOrEmpty(Model.Title))
     {
         <script>
            $("#Title").on("keyup", function() {

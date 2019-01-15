@@ -1,0 +1,12 @@
+.text-left{
+    &.flip{
+        text-align: right !important;
+    }
+}
+ 
+.text-right{
+    &.flip{
+        text-align: left !important;
+    }
+}
+ 
