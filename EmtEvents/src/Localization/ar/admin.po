@@ -934,6 +934,9 @@ msgstr "صفحة ثابتة"
 msgid "service"
 msgstr "خدمة"
 
+msgid "gallery"
+msgstr "معرض"
+
 msgid "posts_section"
 msgstr "تصنبفات المقالات"
 
@@ -1535,3 +1538,6 @@ msgstr "معرفة المزيد"
 
 msgid "fullscreen"
 msgstr "ملئ الشاشة"
+ 
+msgid "Log_out"
+msgstr "تسجيل الخروج"

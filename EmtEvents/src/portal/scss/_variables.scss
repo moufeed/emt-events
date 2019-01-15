@@ -1,133 +1,155 @@
 
+ 
+
 $img:"../img/";
-$font:"../fonts";
+$fonts : '../fonts/';
+
+ 
+  
+
+$fa-font-path: "../fonts/fa"; 
+$db :#1f2732;
+
+//text color in light section (.ls)
+$fontColor: #808080;
+//background color for light section (.ls) and font color in dark section (.ds)
+$lightColor: #ffffff;
+//text color for headings in light section (.ls) and background color for dark section (.ds)
+$darkgreyColor: #323232;
+//background color for light grey background light section (grey - .ls.ms)
+$greyColor: #f2f2f2;
+//background color for dark muted section (.ds.ms)
+$darkColor: #252525;
+//border colors for elements in light section (.ls) (and .bordered elements)
+$borderColor: #e1e1e1;
+//rgba variant for bordered elements
+$borderColorRGBA: rgba(#000, 0.1);
+//background color for hero background elements in light section (.hero-bg)
+$backgroundColor: #f5f5f5;
+
+$boxShadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+//section specific variables
+
+// dark section - .ds
+
+//font color in dark section (.ds) + normal text
+$darkFontColor: #9a9a9a;
+//border colors in dark section (.ds)
+$darkBorderColor: #454545;
+//background color for elements with background (.hero-bg etc.)
+$darkBackgroundColor: rgba(#fff, 0.05);
+
+//color section - .cs
+
+//border colors in color section (.cs)
+$colorBorderColor: rgba(#fff, 0.15);
+$colorBackgroundColor: rgba(#fff, 0.1);
+
+//dark grey background dark blue section - (.ds.bs)
+$darkBlueColor: #253138;
+$darkBlueColorLighter: #2f3e47;
+
+//Accent Color schemes
+
+//this variables is used in development process
+//in production color variables are overridden in 'color_schemes' folder
+ //theme accent colors
+
+$styleNumber: '' !default;
+$colorMain: #da3131 !default;
+$colorMain2: #a0ce4e !default;
+$colorMain3: #00bea3 !default;
+$colorMain4: #f1894c !default;
+//////bootstrap colors
+//orange - warning
+$colorPrimary: $colorMain !default;
+//green
+$colorSuccess: #4db19e !default;
+//blue
+$colorInfo: #007ebd !default;
+//orange
+$colorWarning: #eeb269 !default;
+//red
+$colorDanger: #dc5753 !default;
+
+//universal muted background color
+$universalBackgroundColor: rgba(150, 150, 150, 0.05) !default;
+$universalBorderColor: rgba(200, 200, 200, 0.35) !default;
+
+//Layout
+//////side header
+$sideHeaderWidth: 310px;
+//inner side header padding
+$sideHeaderLeftRightPadding: 30px;
+//header transition
+$headerTransition: 0.5s ease-in-out;
+
+$grid-breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+//_horizontal spacers
+//reverse for smaller gutters has priority
+$columns-horizontal-gutters-sum: 100 80 60 50 30 25 20 15 10 5 2 1 0;
+$container-horizontal-padding: 0 1 2 5 10 20 30 60;
+
+//_vertical spacers - vertical margins and padding for sections and columns
+$section-vertical-padding: 0 1 2 3 5 10 15 20 25 30 50 60 75 100 130;
+$columns-vertical-margins: 0 1 2 5 10 15 20 25 30 40 50 60;
+
+//top and bottom borders height for sections with borders - 1px by default
+$section-borders-height: 2 3 5;
+
+//font size helpers - fs-xx
+$font-size-helpers: 12 14 16 18 20 24 28 32 36 40 56;
+
+$dividers-height: 0 10 20 25 30 40 50 60 70 80 90 100 120;
+
+@mixin small-text() {
+  font-size: 12px;
+  line-height: 1.6em;
+  font-weight: 700;
+  text-transform: uppercase;
+ @include if-ltr{
+  letter-spacing: 0.2em;
+ }
+}
+
+@mixin cover() {
+  position: absolute;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin widget-title() {
+  font-weight: 500;
+  font-size: 24px;
+  margin-bottom: 27px;
+  line-height: 1;
+}
+
+@mixin widget-a-before() {
+  font-family: 'FontAwesome';
+      content: "\f111";
+      font-size: 5px;
+      color: $colorMain;
+      position: relative;
+      padding-right: 15px;
+      top: -2px;
+}
+
+//---------------------------------------------------------------
+//---------------------------------------------------------------
+//---------------------------------------------------------------
+ 
+
+$services-listColor : $colorMain $colorMain2 $colorMain3 $colorMain4 ;
 
 
-
-@import "node_modules/bootstrap/scss/functions";
-@import 'node_modules/bootstrap/scss/variables';
-
-
-$fa-font-path: "../fonts/fa";
-
-$orange : #f6a417;
-$blue:#3e9fd9;
-$deep_navy : #363f6f;
-$red :#F44336;
-$white : #fff;
-$light_text:#A2AEBB;
-$medium_text :#999999;
-$dark_text :#30323D;
-
-
-
-
-
-
-$invalid_field_color : $red;
-
-$header_input_border_radius : 25px ;
-$button_border-radius : 25px;
-
-$buttons_light_hover_color : $white;
-$buttons_light_hover_bg : $blue;
-$buttons_light_active_bg : darken($blue,5%);
-
-$form_control_focus_shadow :0 0 0 0.2rem  rgba($deep_navy,0.25);
-$form_control_focus_border : $deep_navy;
-
-$default_link_color : darken($medium_text ,5%);
-$default_link_hover_color : $blue;
-
-
-$title_underline_color :$orange;
-
-$backtop_background : $orange;
-$backtop_color : #fff;
-//header section 
-
-$section_header_stitle_color : $blue;
-$section_header_title_color : $black;
-$section_header_line_color: $blue;
-
-//navbar
-$nav_link_hover_bg : $blue;
-$nav_link_hover_color : $white;
-$nav_link_active_bg : $orange;
-$nav_link_active_color : $white;
-
-$submenu_background : #fff;
-$submenu_border : 1px solid rgba(#000,0.15);
-$submenu_text_color : $medium_text;
-$submenu_hover_text_background : $blue;
-$submenu_hover_text_color : #fff;
-
-//footer
-$footer_background: #30323D;
-$footer_color : $white;
-$footer_social_link_background : lighten($orange,15%);
-$footer_social_link_color : $white ;
-$footer_nav_line_color : $white;
-
-$bootom_bar_background : darken( $footer_background, 5%);
-$bootom_bar_color : $white;
-$bootom_bar_link_color : $blue; 
-
-// page header
-
-$page_header_row_height : 100px;
-$page_header_background_color : darken($white ,5%);
-$page_header_overlay_color : rgba( $deep_navy , .7);
-$page_header_title_color : $white ; 
-
-
-$c_title_line_color : $blue;
-$c_list_icons_color : lighten($orange,5%);
-
-$c_submit_btn_background : lighten($deep_navy ,15%);
-$c_submit_btn_color : $white;
-$c_submit_btn_hover_background :$deep_navy;
-$c_submit_btn_hover_color :$white;
-
-$gallery_item_height : 300px;
-$gallery_item_figure_background :darken($white ,3%);
-
-
-$product_Image_Border_color :$yellow;
-   
-$product_images_background : darken($white ,3%);
-$product_item_img_height : 450px;
-
-$product_owl_dots_color :$gray-300;
-$product_owl_dots_active_color : $blue;
-
-
-//home page
-$home_about_section :darken($white,2%);
-$home_services_icon_color :lighten($light_text ,10%);
-$home_services_icon_hover_color :$orange;
-
-$home_promo_section_background :transparent;//lighten($white ,5%) url('#{$img}company.jpg') top left /100% auto no-repeat
-$home_promo_section_overly_color : rgba( $deep_navy , .7);
-$promo_text_color : lighten($light_text ,25%);
-$promo_text_highlight_color : $orange;
-
-
-//services page
-$service_icon_color :$orange;
-
-//about page
-$about_image_border_color :$yellow;
-$about_title_border_color :$blue;
-$about_list_dots_color :$blue; 
-
-$statistics_section_background :$gray-300;
-$statistics_section_color :$dark_text;
-$statistics_section_icon_color : $gray-500;
-
-
-// html page
-
-
-$page_Image_Border_color :$yellow;
-$page_img_background : darken(#fff,5%);
+$post-image-height :  250px; 

@@ -1,11 +1,30 @@
+  
+  @font-face {
+    font-family: 'fi';
+    src: url('#{$font}/fi/fi.eot?65896805');
+    src: url('#{$font}/fi/fi.eot?65896805#iefix') format('embedded-opentype'),
+         url('#{$font}/fi/fi.woff2?65896805') format('woff2'),
+         url('#{$font}/fi/fi.woff?65896805') format('woff'),
+         url('#{$font}/fi/fi.ttf?65896805') format('truetype'),
+         url('#{$font}/fi/fi.svg?65896805#fi') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+      font-family: 'fi';
+      src: url('#{$font}/fi/fi.svg?65896805#fi') format('svg');
+    }
+  }
+
   .select2-dropdown,.select2-container{
-    font-family:if-ltr($ltr-fonts , $rtl-fonts ) ,  "Helvetica Neue", Roboto, Arial, "Droid Sans",FontAwesome;
-     
+    font-family:if-ltr($ltr-fonts , $rtl-fonts ) ,  "Helvetica Neue", Roboto, Arial, "Droid Sans",FontAwesome ,fi; 
     font-size: 15px;
-} 
+}
+  
 
-
-
+ 
 
  
 .page-title {

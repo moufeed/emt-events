@@ -1,11 +1,14 @@
- 
- <section class="page-header" 
-  data-parallax="scroll" data-speed="0.3" data-image-src="@ViewData["ImageURl"]">
-         <div class="container">
-             <div class="row justify-content-center align-items-center">
-                 <div class="col text-center ">
-                      <h3 class="p-title "><strong>@ViewData["pageTitle"]</strong></h3>
-                 </div>
-             </div> 
-         </div>
+ <section class="page-header " style="background-image :url('@ViewData["ImageURl"]');">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <h1 data-content="@ViewData["pageTitle"]" class="animate faster" data-animation="fastFromLeft">
+
+            <strong>
+                <span class="animate delay-5ms faster" data-animation="fastRotateInUp"></span>
+                @ViewData["pageTitle"]
+            </strong>
+            </h1>
+        </div>
+    </div>
+    <div class="flexslider-bottom d-none d-xl-block"> </div>
 </section>

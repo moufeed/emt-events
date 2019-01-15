@@ -1,60 +1,56 @@
- 
-<section class="home_services">
+@{ 
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+
+}
+
+<section class="s-pt-100 s-pt-lg-130 ds process-part skew_right s-parallax top_white_line_big overflow-visible" id="services">
     <div class="container">
-         <header class="section-header text-center">
-                            <p>@Localizer["services_we_offer"]</p>
-                            <h2><strong>@Localizer["What_we_do"]</strong></h2>
-            </header>
-         <div class="row justify-content-center">
+        <div class="divider-35"></div>
 
-             @if (ViewBag.services != null && ViewBag.services.Count > 0)
-             {
-
-                 foreach (ServiceDto item in ViewBag.services)
-                 {
-                     <div class="col-md-6 col-lg-3">
-                         <div class="services-box">
-                             @if (item.IconVisibility && !string.IsNullOrEmpty(item.Icon))
-                             {
-                                 <div class="icon">
-                                     <i class="fa @item.Icon"></i>
-                                 </div>
-                             }
-                             else if(!string.IsNullOrEmpty(item.MainImage) && !item.IconVisibility)
-                             {
-                                 <div class="image">
-                                     <span>
-                                         <figure>
-                                             <img src="@item.MainImage" alt="@item.Title" />
-                                         </figure>
-                                     </span>
-                                 </div>
-                             }
-                             else
-                             {
-                                 <div class="icon">
-                                     <i class="fa fa-cubes"></i>
-                                 </div>
-                             }
-
-                             <h4>@item.Title</h4>
-                             <p>
-                                 @Html.Raw(item.Summary)
-                             </p>
-                            
-                         </div>
-                     </div>
-                 }
-
-             }
-
-
-
-             
-         </div>
-
-        <div class="text-center mt-4"> 
-                <a   asp-controller="services" asp-action="index" class="btn btn-outline-success btn-more" >Read More</a>
+        <div class="row">
+            <div class="col-12 text-center mb-60">
+                <h2 class="animate fast" data-animation="fadeInLeft" data-appear-top-offset="250">@Localizer["latest_services"]</h2>
+                <p class="animate fast delay-2ms" data-animation="fastInDown" data-appear-top-offset="250">@Localizer["latest_services_slogan"]</p>
+            </div>
         </div>
+        <if include-if="(ViewBag.services != null && ViewBag.services.Count > 0)">
+            <div class="row list-home-services">
+                @{ int index = 0; }
+
+                @foreach (ServiceDto item in ViewBag.services)
+                {
+
+                <div class="col-md-6 si">
+                    <div class="service-item @(index % 2 != 0 ?"flip" :"")">
+                        <h3 class="service-title">
+                            @{ 
+                                var animation = activeLang == "ar" ? (index % 2) != 0 ? "interInDownLeft" : "interInDownRight"  : ((index % 2) == 0) ? "interInDownLeft" : "interInDownRight"  ;
+                            }
+                            <i class="fi @item.Icon animate" data-animation="@animation" data-appear-top-offset="250"></i>
+                            <span class="animate fast" data-animation="fadeIn" data-appear-top-offset="250">@item.Title</span>
+                        </h3>
+                        <p class="service-text animate fast" data-animation="fastInDown">
+                            @item.Summary
+                        </p>
+                    </div>
+                </div>
+
+                    index++;
+                }
+            </div>
+        </if>
+             
+
+
+
+
+
+            <div class="divider-10 d-block d-sm-none"></div>
+            <div class="img-wrap text-center">
+                <img src="~/Portal/img/vertical_line2.png" alt="">
+            </div>
+
     </div>
 </section>
+
+ 

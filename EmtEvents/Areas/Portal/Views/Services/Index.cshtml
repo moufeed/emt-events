@@ -1,74 +1,90 @@
 ﻿@model List<ServiceDto>
 @{
-    ViewData["Title"] = Localizer["Services"];
+    ViewData["Title"] = Localizer["our_services"];
     Layout = "_Layout";
-    ViewData["ImageURl"] = @Url.Content("~/portal/img/services.jpg");
+    ViewData["ImageURl"] = @Url.Content(Localizer["ServicesImage"].Value);
     ViewData["pageTitle"] = Localizer["our_services"];
- 
+ var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 }
 
-@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
+
+<partial name="~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml" model="@ViewData" />
 
 
 
 
-<section class="services-section">
 
-    
-    @if (Model != null && Model.Count > 0)
-    {
-        int i = 1;
 
-        foreach (var service in Model)
-        {
-            <div class="service-feature @(((i % 2) == 0)? "even" :"") ">
-                <div class="container">
-                    
-                    <div class="row align-items-center">
-                        <div class="col-md-4 text-center @(((i % 2) == 0)? "order-last" :"")">
-                            <div class="service-icon">
+<section class="services-section py-5">
 
-                                @if (service.IconVisibility && !string.IsNullOrEmpty(service.Icon))
-                                {
-                                        <i class="fa @service.Icon"></i>  
-                                }
-                                else if (!string.IsNullOrEmpty(service.MainImage) && !service.IconVisibility)
-                                {
-                                    <img src="@service.MainImage" class="img-fluid" alt="">
-                                }
-                                else
-                                {           
-                                        <i class="fa fa-cubes"></i>
-                                }
+    <div class="container">
+        <if include-if="Model != null && Model.Count > 0">
+            @{
+                int i = 1;
 
-                            </div>
-                            </div>
-                        <div class="col-md-8  @(((i % 2) == 0)? "order-first" :"")">
-                            <div class="service-description">
-                                <h3 class="c-title"><strong>@service.Title</strong></h3>
-                                <div>
-                                    @Html.Raw(service.Summary)
-                                </div>
-                                @if (!string.IsNullOrEmpty(service.Content))
-                                { 
-                                <a  asp-controller="services" asp-action="v" asp-route-slug="@service.Slug" class="btn">@Localizer["read_more"]</a>
-                                }
-                            </div>
+            }
+
+            @foreach (ServiceDto service in Model)
+            {
+
+                var ImageAnimation = (lang == "ar") ? (i % 2 == 0 ? "fastFromLeft" : "fastFromRight") : (i % 2 == 0 ? "fastFromRight" : "fastFromLeft");
+
+
+                <div class="row service-list-item justify-content-center align-items-center py-5 my-4 @(i % 2 == 0 ? "flex-row-reverse" :"" )">
+                    <div class="col-md-3 align-self-center text-center animate faster s-icon" data-animation="@ImageAnimation">
+                        @if (service.IconVisibility && !string.IsNullOrEmpty(service.Icon))
+                        {
+                            <i class="@(service.Icon.StartsWith("fi")?"fi":"fa") @service.Icon"></i>
+                        }
+                        else if (!string.IsNullOrEmpty(service.MainImage) && !service.IconVisibility)
+                        {
+                            <figure class="before-border">
+                                <img src="@service.MainImage" class="img-fluid" alt="">
+                            </figure>
+                        }
+                        else
+                        {
+                            <i class="fa fa-cubes"></i>
+                        }
+                    </div>
+                    <div class="col-md-9 col-xl-8">
+                        <if include-if="!string.IsNullOrEmpty(service.Content)">
+                            <h3 class="animate delay-2ms" data-animation="fadeIn">
+                                <a asp-controller="services"
+                                   asp-action="v"
+                                   asp-route-slug="@service.Slug">@service.Title</a>
+                            </h3>
+                        </if>
+                        <if exclude-if="!string.IsNullOrEmpty(service.Content)">
+                            <h3 class="animate delay-2ms" data-animation="fadeIn">
+                                <span>@service.Title</span>
+                            </h3>
+                        </if>
+                        <div class="s-summury animate fast" data-animation="fastInDown">
+                            @Html.Raw(service.Summary)
                         </div>
+
+
+                        <if include-if="!string.IsNullOrEmpty(service.Content)">
+
+                            <a asp-controller="services"
+                               asp-action="v"
+                               asp-route-slug="@service.Slug" class="btn-link-more animate d-inline-block fast" data-animation="fastInUp">@Localizer["Know_More"]</a>
+
+                        </if>
+
                     </div>
                 </div>
-            </div>
-            i++;
-        }
-    }
 
-
-
-
-
-
-     
+                i++;
+                @if (i <= Model.Count)
+                {
+                    <hr class="dashed-line animate  d-block delay-2ms " data-animation="fadeInUp"/>
+                }
+            }
+        </if>
+    </div>
 
 
 </section>
-
+ 

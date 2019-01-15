@@ -1,174 +1,224 @@
-
-# adminbar
-msgid "Dashboard"
-msgstr "لوحة التحكم"
-
-msgid "Log_Out"
-msgstr "تسجيل الخروج"
-
-# tobbar
-msgid "mail_Us"
-msgstr "راسلنا"
-
-# bootombar
-msgid "Copyright_©_2018_tamtech_solutions._All_rights_reserved."
-msgstr "جميع الحقوق محفوظة لصالح تام تك ©2018"
+  
+# bottom_bar
+msgid "copyright_excellence_miles_All_rights_reserved"
+msgstr "جميع الحقوق محفوظة لصالح شركة أميال التميز {0}"
 
 msgid "Powered_by"
-msgstr "تطوير"
+msgstr "تم التنفيذ بواسطة"
 
 msgid "tamtech"
-msgstr "تام تك"
+msgstr "تام تيك"
 
-# index
-msgid "Welcome_Totamtech"
-msgstr "مرحبا بك في تام تك"
+msgid "about_company"
+msgstr "حول الشركة"
 
-msgid "Who_we_are"
-msgstr "من نحن ؟"
+msgid "latest_services"
+msgstr "من خدماتنا"
 
-msgid "services_we_offer"
-msgstr "خدمات نقدّمها"
+msgid "latest_services_slogan"
+msgstr "نحن نقدم أفضل الخدمات من أجل تحقيق احتياجات التسويق لكل عميل."
 
-msgid "What_we_do"
-msgstr "عملنا"
+msgid "Latest_work"
+msgstr "من أعمالنا"
 
-msgid "Why_Choose_Us"
-msgstr "لماذا نحن ؟"
+msgid "Latest_work_slogan"
+msgstr "نحن نتعامل بصدق مع الجميع لأننا نؤمن بشدة بأن الالتزام بوعودنا هو مفتاح النجاح."
 
-msgid "What_Clients_say"
-msgstr "ماذا يقول العملاء ؟"
+msgid "Latest_Testimonials"
+msgstr "أراء العملاء"
 
-msgid "Our_Clients"
-msgstr "عملاؤنا"
+msgid "Latest_Testimonials_slogan"
+msgstr "تخطيط خرافي ... يذكر دائما."
 
-msgid "meet_our_clients"
-msgstr "اِلتقِ بعملائنا"
+msgid "Lets_get_started"
+msgstr "لنبدأ <br>  مشروعك الخاص"
 
-# about us
-msgid "our_mission"
-msgstr "مهمّتنا"
+msgid "Lets_get_started_slogan"
+msgstr "لأنه في أحلامك ، كل التفاصيل مهمة."
 
-msgid "happy_clients"
-msgstr "عملاء سعيدون"
-
-msgid "years_in_business"
-msgstr "في مجال الأعمال لسنوات"
-
-msgid "cups_of_coffee"
-msgstr "فناجين قهوة"
-
-msgid "no_projects"
-msgstr "عدد من المشاريع"
-
-msgid "our_values"
-msgstr "قيمنا"
-
-msgid "our_vision"
-msgstr "رؤيتنا"
-
-#: contact us
-msgid "contact_us"
+msgid "Lets_talk"
 msgstr "تواصل معنا"
 
-msgid "Address"
-msgstr "العنوان"
+msgid "latest_events"
+msgstr "التقويم"
 
-msgid "Phone"
-msgstr "الهاتف"
+msgid "latest_events_slogan"
+msgstr "تجربة استثنائية في كل مرة."
 
-msgid "Mobile"
-msgstr " الهاتف المحمول"
+msgid "prev_event"
+msgstr "<span>الحدث<br>السابق</span>"
 
-msgid "Email"
-msgstr "البريد الإلكترونيّ"
+msgid "next_event"
+msgstr "<span>الحدث<br>التالي</span>"
 
-msgid "Find_us"
-msgstr "جِدْنا"
+msgid "contact_us"
+msgstr "إتصل بنا"
 
-msgid "Get_in_Touch"
-msgstr "اِتّصل بنا"
+msgid "Write_Us"
+msgstr "راسلنا"
 
-msgid "send_us_meesage"
-msgstr "أرسل لنا رسالة"
+msgid "call_us"
+msgstr "اتصل بنا"
+ 
+msgid "visit_us"
+msgstr "لزيارتنا "
+ 
+msgid "p_full_name"
+msgstr "الأسم الكامل"
 
-msgid "name"
-msgstr "الاسم"
+msgid "p_email_address"
+msgstr "البريد الإلكتروني"
 
-msgid "Message"
-msgstr "الرّسالة"
+msgid "p_phone_number"
+msgstr "رقم الهاتف"
 
-msgid "Send_it"
-msgstr "أرسل"
+msgid "p_Message"
+msgstr "الرسالة"
 
-msgid "close"
-msgstr "أغلق"
-
-msgid "mobile_no"
-msgstr "رقم الهاتف المحمول"
+msgid "p_send_message"
+msgstr "إرسال الرسالة"
 
 msgid "dear_customer"
-msgstr  "عزيزي  <strong class=\"customer_name\"></strong>, شكراً لتواصلك معنا!"
+msgstr "عزيزي  <strong class=\"customer_name\"></strong>, شكراً لتواصلك معنا"
 
-msgid  "We_have_received_your_message"
-msgstr  "لقد استلمنا رسالتك و نودّ أن نشكرك لمراسلتنا. إذا كان الأمر مستعجلاً, يمكنك أيضاً استخدام رقم الهاتف المحمول أدناه للتّحدّث معنا."
+msgid "We_have_received_your_message"
+msgstr "لقد إستلمنا رسالتك  وسيتم التواصل معك. كما يمكن التواصل مباشرة معنا من خلال رقم الجوال المدون بالأسفل"
 
-msgid  "have_great_day"
-msgstr  "طاب يومك!"
+msgid "mobile_no"
+msgstr "رقم الجوال"
 
+msgid "have_great_day"
+msgstr "يوم سعيد"
 
-msgid "About_Us"
-msgstr "عنّا"
+msgid "our_works"
+msgstr "أعمالنا"
 
-msgid "Call_us_today_at_<span>{0}</span>_or_Email_us_at_<span>{1}</span>"
-msgstr "اِتّصل بنا اليوم على <span>{0}</span> أو أرسل لنا بريداً إلكترونيّاً على  <span>{1}</span>"
+msgid "galleries_message"
+msgstr "مزيج مثالي من الإبداع والطاقة والاتصالات والوضوح وضبط النفس"
 
-msgid  "Start_Now"
-msgstr "اِبدأ الآن"
+msgid "Know_More"
+msgstr "المزيد"
 
-#:galleries
-msgid "our_galleries"
-msgstr "معارضنا"
+msgid "P_Video"
+msgstr "الفيديو"
 
-msgid "Galleries"
-msgstr "معارض الصّور"
+msgid "p_photo"
+msgstr "صورة"
 
-msgid "Gallery"
-msgstr "معرض صور"
+msgid "p_calendar"
+msgstr "التقويم"
 
-msgid "Services"
-msgstr "خدمات"
+msgid "events_message"
+msgstr "تجربة استثنائية في كل مرة"
+
+msgid "share_this"
+msgstr "نشر"
 
 msgid "our_services"
 msgstr "خدماتنا"
 
-msgid "read_more"
-msgstr "اِقرأ أكثر"
+msgid "About_Us"
+msgstr "حول الشركة"
 
-#: Products
+msgid "companyHistory"
+msgstr "تاريخ الشركة"
 
-msgid "Products"
-msgstr "منتَجات"
+msgid "companyHistory_txt"
+msgstr "<p>تأسست الشركة الأم في عام 1988 وبعد أن تحقق نجاح العمل وتعددت الأنشطة انبثقت عنها (أميال التميز) لتكون أكثر تخصصا. تهدف الشركة إلى تقديم مشاريع داخلية وخدمات تأثيث وفقا لمعايير ومستويات المنظور المحلي والعالمي المتميز من خلال خبرة مستشاريها. طوّرت أميال الامتياز بنية جديدة لتنظيم المناسبات والمؤتمرات مع أفضل الموارد البشرية والتقنيات والخدمات ، بناءً على خبرتها السابقة ، بالإضافة إلى البحث والتطوير الذي يقدم خدمات إضافية ، بدءاً بالتصميم والتنفيذ ، والمشاركة في التحليل والتسويق للفعاليات وتوفير الخدمات الصوتية  والبصرية و الضيافة</p>"
 
-msgid "Our_products"
-msgstr "منتَجاتنا"
+msgid "chairman_message"
+msgstr "كلمة رئيس مجلس الأدارة"
 
-msgid "Previous"
-msgstr "السّابق"
+msgid "chairman_message_txt"
+msgstr " لقد عملنا دوما على تقديم أفضل الخدمات لعملاؤنا وتميزنا بقدرتنا على تطور ومواكبة الحداثة في النهضة العمرانية التي تشهدها المملكة ووسعنا نطاق أعمالنا لتغطي كافة أنحاء المملكة
+كان ذلك بفضل الله ثم جهود الكادر الفني المتخصص لديكم حيث قدمتم كل ما يلزم للتوسع وتحقيق النجاح بتخصصكم في مجال الأعمال مدنية والإنشاءات الداخلية والديكور والتأثيث وتنظيم الفعاليات
+وعليه يسعدني أن تكونو ضمن مجموعة العما بكيان مستقل متخصص بالأعمال المذكورة لتكون أميال التميز للفعاليات  خدمة جديدة لعملاءنا تواكب تطور أعمالهم وتقدم أفضل ما يمكن لتحويل الخيال للواقع وتلبية حاجات العملاء
+الصدق والأمانة عماد النجاح فيجب أن تحافظو عليهما لنبقى أهلا للثقة الت عهدناها من عملاءنا والمتابعة الحثيثة لطلبات العملاء والدقة في الغنجاز تجعلكم دوما على سلم النجاح
+<br/>"
 
-msgid "Next"
-msgstr "التّالي"
+msgid "Chairman"
+msgstr "رئيس مجلس الإدارة"
 
-msgid "Description"
-msgstr "وصف"
+msgid "Chairman_name"
+msgstr "عبدالله بن عبدالعزيز الزير"
 
-msgid "By"
-msgstr "بواسطة"
+msgid "Mission"
+msgstr "مهمتنا"
 
-msgid "share_this_post"
-msgstr "مشاركة "
+msgid "Mission_txt"
+msgstr "إضافة قيمة إلى العمل ، بروح الشراكة الحقيقية"
 
-#request quote
+msgid "Vision"
+msgstr "رؤيتنا"
 
-msgid "request_quote"
-msgstr "عرض سعر"
+msgid "Vision_txt"
+msgstr "تحقيق معايير عالمية المستوى بأعلى تقنيات لاستراتيجية التواصل وتخطيط الأحداث في الشرق الأوسط"
+
+msgid "Methodology"
+msgstr "منهاجيتنا"
+
+msgid "listen"
+msgstr "الإصغاء"
+
+msgid "listen_txt"
+msgstr "نصغي بدقة للجميع لمساعدتهم في تلبية احتياجاتهم"
+
+msgid "Analysis"
+msgstr "التحليل"
+
+msgid "Analysis_txt"
+msgstr "نجري دراسات مكثفة لفهم احتياجات عملائنا وتحقيق أكثر من توقعاتهم"
+
+msgid "RD"
+msgstr "البحث والتطوير"
+
+msgid "RD_txt" 
+msgstr "لأننا نريد أن نبقي في رأس السوق ، فإن البحث والتطوير في كل جزئية أمر مهم بالنسبة لنا"
+
+msgid "Solutions"
+msgstr "الحلول"
+
+msgid "Solutions_txt"
+msgstr "نقترح الحل المناسب لعملائنا ونحاول أن نجعل هذا الحل ملبيا لمتطلباتهم بأفضل المعايير العالمية"
+
+msgid "Quality_of_control"
+msgstr "إدارة الجودة"
+
+msgid "Quality_of_control_txt"
+msgstr "جميع التعاملات مع عملائنا وموظفينا تتابع من قبل فريق الجودة للتأكد من أن هذه التعاملات تسير وفق أفضل المعايير"
+
+msgid "Innovation"
+msgstr "المبادرات"
+
+msgid "Innovation_txt"
+msgstr "من خلال خلق مبادرات فعالة فإن أميال التميز تساهم في التنمية الوطنية والمساهمة في العديد من الأنشطة البشرية"
+
+msgid "Motivation"
+msgstr "التحفيز"
+
+msgid "Motivation_txt"
+msgstr "نستفيد من أي نجاح صغير لتمكين فريقنا من منحهم جميع أنواع الحوافز ليكونوا قادرين على خدمة عملائنا "
+
+msgid "Customer_satisfaction"
+msgstr "رضا العميل"
+
+msgid "Customer_satisfaction_txt"
+msgstr "رضا العملاء هو أساس النجاح وهذا يعني أننا نقدم حل متكامل لتحقيق أهدافهم من خلال تصميم وتنفيذ ومتابعة فرق من ذوي المهارات العالية لتحقيق أفضل أداء وسجل زمني"
+
+msgid "Speed_performance"
+msgstr "السرعة في الأداء"
+
+msgid "Speed_performance_txt"
+msgstr "ولأن عامل الوقت هو أحد أساسيات عملنا ، فإننا نعطي كل عمل وقته بشكل صحيح ونلتزم بالجداول الزمنية المخططة ونشاركها مع عملائنا"
+
+msgid "Prices"
+msgstr "أسعارنا"
+
+msgid "Prices_txt"
+msgstr "ونظرًا لخبرتنا ، نقدم أسعارًا خاصة تحفز الشركات الصغيرة على المشاركة في الأحداث الكبرى"
+
+msgid "our_clients"
+msgstr "عملاءنا"
+
+msgid ""
+msgstr ""

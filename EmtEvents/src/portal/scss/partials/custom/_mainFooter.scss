@@ -1,0 +1,58 @@
+.main-footer{
+    position: relative;
+    @include media-breakpoint-down(sm){
+        text-align:center; 
+    }
+    .ds{
+        position: relative;
+        z-index: 1;
+        a:not(.btn) {
+            color: $lightColor;
+            &:hover {
+             color: $colorMain;
+            }
+        }
+    }
+    &:before{
+        content: "";
+        height: 45px;
+        left: -1px;
+        position: absolute;
+        top: -8px;
+        width: 50%;
+        transform: rotate(1deg);
+        z-index: 0;
+        background: lighten($db,10%);
+        @include media-breakpoint-down(sm){
+            content:none;
+        }
+    }
+     .container > .row{
+        min-height: 100px;
+
+        .widget{
+            margin-bottom: 0;
+        }
+    }
+    .widget_social_buttons{
+        a{
+            padding: 5px;
+        }
+
+
+    }
+    ul li{
+        @include media-breakpoint-down(sm){
+             margin-bottom: 10px;
+        }
+    }
+}
+.copyright{
+    &,p{
+        @include media-breakpoint-down(sm){
+            text-align:center; 
+        }
+    }
+    
+    
+}

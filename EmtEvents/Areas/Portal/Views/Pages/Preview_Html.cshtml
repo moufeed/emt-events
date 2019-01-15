@@ -3,9 +3,9 @@
 
 
 @{
-    ViewData["Title"] =  String.IsNullOrEmpty(Model.Title) ? "TamTech" : Model.Title;
+    ViewData["Title"] =  String.IsNullOrEmpty(Model.Title) ? @Localizer["excellence_miles"].Value: Model.Title;
     Layout = "_Layout";
-    ViewData["ImageURl"] = @Url.Content("~/portal/img/about.jpg");
+    ViewData["ImageURl"] = @Url.Content((string.IsNullOrEmpty(Model.MainImage) ? @Localizer["PagesImage"].Value : Model.MainImage ));
     ViewData["pageTitle"] = @Model.Title;
 
     ViewBag.ItemId = Model.Id;
@@ -25,57 +25,13 @@
     
 
     
-
-
-<section class="section-page py-5">
-    <div class="container">
-        <div class="row align-items-center mb-5">
-
-            @{ int classname = 12; }
-
-            @if (Model.MainImage?.Length > 0)
-            {
-                <div class="col-md-5 ">
-
-                    <div class="page-mainimage  d-flex justify-content-center align-items-center">
-                        <img src="@Model.MainImage" alt="@Model.Title" />
-                    </div>
-                </div>
-
-                classname = 7;
-            }
-
-
-            <div class="col-md-@classname">
-                <div class="page-summary">
-
-                    <div class="page-meta">
-
-                        @if (Model.ContentPublishDate != null)
-                        {
-                            <small class=""> <i class="fa fa-calendar"></i> @((DateTime)Model.ContentPublishDate).ToString("MMMM dd, yyyy") </small>
-                        }
-
-                        @if (Model.Section?.Length > 0)
-                        {
-                            <small><i class="fa fa-folder-o" aria-hidden="true"></i>  @Model.Section </small>
-                        }
-
-
-                    </div>
-
-
-                    <div class="page-summary mt-3 mb-2">
-                        @Html.Raw(Model.Summary)
-                    </div>
+    <section class="section-page py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col ">
+                    @Html.Raw(Model.HtmlContent)
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col ">
-                @Html.Raw(Model.HtmlContent)
-            </div>
-        </div>
-    </div>
-</section>
-
+    </section>
+ 

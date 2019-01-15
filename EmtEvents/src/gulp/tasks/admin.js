@@ -9,7 +9,7 @@ autoprefixer = require('gulp-autoprefixer'),
 uglify =  require('gulp-uglify-es').default, 
 merge = require("merge-stream"),
 babel = require('gulp-babel'),
-admin_conf = require('../config/admin'),
+admin_conf = require('../config/admin.config'),
 pkg = require('../../../package.json'),
 mod = require('../lib/module')
 ;

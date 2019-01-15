@@ -63,7 +63,7 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-section"
-                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("PublishAsync","sections" , new { id = Model.Id})"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
@@ -262,7 +262,7 @@
    $('.select_picker').select2();
     </script>
 
-    @if (!ViewBag.IsEditMode)
+    @if (!ViewBag.IsEditMode || string.IsNullOrEmpty(Model.Slug))
     {
         <script>
            $("#Title").on("keyup", function() {

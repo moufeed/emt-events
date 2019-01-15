@@ -1,178 +1,220 @@
-
-# adminbar
-msgid "Dashboard"
-msgstr "Dashboard"
-
-msgid "Log_Out"
-msgstr "Log Out"
-
-# tobbar
-msgid "mail_Us"
-msgstr "Mail Us"
-
-# bootombar
-msgid "Copyright_©_2018_tamtech_solutions._All_rights_reserved."
-msgstr "Copyright © 2018 tamtech solutions. All rights reserved."
+ 
+# bottom_bar
+msgid "copyright_excellence_miles_All_rights_reserved"
+msgstr "Copyright © {0} Excellence Miles. All rights reserved."
 
 msgid "Powered_by"
 msgstr "Powered by"
 
 msgid "tamtech"
-msgstr "Tamtech"
+msgstr "tamtech"
 
-# index
-msgid "Welcome_Totamtech"
-msgstr "Welcome Totamtech"
+msgid "about_company"
+msgstr "About Company"
 
-msgid "Who_we_are"
-msgstr "Who we are?"
+msgid "latest_services"
+msgstr "Some Services"
 
-msgid "services_we_offer"
-msgstr "Services we offer"
+msgid "latest_services_slogan"
+msgstr "We deliver the best quality service for the realization of each client’s marketing needs."
 
-msgid "What_we_do"
-msgstr "What we do"
+msgid "Latest_work"
+msgstr "Some works"
 
-msgid "Why_Choose_Us"
-msgstr "Why Choose Us?"
+msgid "Latest_work_slogan"
+msgstr "We are honesty deal with everyone because we strongly believe that adhering to our promises is the key to success."
 
-msgid "What_Clients_say"
-msgstr "What Clients say?"
+msgid "Latest_Testimonials"
+msgstr "Testimonials"
 
-msgid "Our_Clients"
-msgstr "Our Clients"
+msgid "Latest_Testimonials_slogan"
+msgstr "Fabulously planned… Remembered always.."
 
-msgid "meet_our_clients"
-msgstr "Meet our clients"
+msgid "Lets_get_started"
+msgstr "Let's Get Started <br> Your Project"
 
-#about us
+msgid "Lets_get_started_slogan"
+msgstr "Because in your dreams, every detail matters."
 
-msgid "our_mission"
-msgstr "Our Mission"
+msgid "Lets_talk"
+msgstr "Let’s Talk!"
 
-msgid "happy_clients"
-msgstr "Happy Clients"
+msgid "latest_events"
+msgstr "Calendar"
 
-msgid "years_in_business"
-msgstr "Years in Business"
+msgid "latest_events_slogan"
+msgstr "An exceptional experience every time."
 
-msgid "cups_of_coffee"
-msgstr "Cups of Coffee"
+msgid "prev_event"
+msgstr "<span>prev<br>Event</span>"
 
-msgid "no_projects"
-msgstr "No. of Projects"
+msgid "next_event"
+msgstr "<span>next<br>Event</span>"
 
-msgid "our_values"
-msgstr "Our Value"
-
-msgid "our_vision"
-msgstr "Our Vision"
-
- 
-
-#: contact us
 msgid "contact_us"
-msgstr "Contact Us"
+msgstr "Contact us"
 
-msgid "Address"
-msgstr "Address"
+msgid "Write_Us"
+msgstr "Write Us"
 
-msgid "Phone"
-msgstr "Phone"
+msgid "call_us"
+msgstr "Call Us"
+ 
+msgid "visit_us"
+msgstr "Visit Us"
+ 
+msgid "p_full_name"
+msgstr "Full Name"
 
-msgid "Mobile"
-msgstr "Mobile"
+msgid "p_email_address"
+msgstr "Email address"
 
-msgid "Email"
-msgstr "Email"
+msgid "p_phone_number"
+msgstr "Phone number"
 
-msgid "Find_us"
-msgstr "Find us"
-
-msgid "Get_in_Touch"
-msgstr "Get in Touch"
-
-msgid "send_us_meesage"
-msgstr "Send us a meesage"
-
-msgid "name"
-msgstr "Name"
-
-msgid "Message"
+msgid "p_Message"
 msgstr "Message"
 
-msgid "Send_it"
-msgstr "Send it"
+msgid "p_send_message"
+msgstr "Send Message"
 
-msgid "close"
-msgstr "Close"
+msgid "dear_customer"
+msgstr "Dear  <strong class=\"customer_name\"></strong>, thanks for reaching out!"
+
+msgid "We_have_received_your_message"
+msgstr "We have received your message and would like to thank you for writing to us. If it's urgent, You can also use the mobile number listed below to talk to us."
 
 msgid "mobile_no"
 msgstr "Mobile No"
 
-msgid "dear_customer"
-msgstr  "Dear  <strong class=\"customer_name\"></strong>, thanks for reaching out!"
+msgid "have_great_day"
+msgstr "Have a great day!"
 
-msgid  "We_have_received_your_message"
-msgstr  "We have received your message and would like to thank you for writing to us. If it's urgent, You can also use the mobile number listed below to talk to us."
+msgid "our_works"
+msgstr "Our works"
 
-msgid  "have_great_day"
-msgstr  "Have a great day!"
+msgid "galleries_message"
+msgstr "A perfect blend of creativity, energy, communication, clarity and restraint"
 
+msgid "Know_More"
+msgstr "Know More"
 
-msgid "About_Us"
-msgstr "About Us"
+msgid "P_Video"
+msgstr "Video"
 
-msgid "Call_us_today_at_<span>{0}</span>_or_Email_us_at_<span>{1}</span>"
-msgstr "Call us today at <span>{0}</span> or Email us at <span>{1}</span>"
+msgid "p_photo"
+msgstr "Photo"
 
-msgid  "Start_Now"
-msgstr "Start Now"
+msgid "p_calendar"
+msgstr "Calendar"
 
-#:galleries
-msgid "our_galleries"
-msgstr "Our Galleries"
+msgid "events_message"
+msgstr "An exceptional experience every time."
 
-msgid "Galleries"
-msgstr "Galleries"
-
-msgid "Gallery"
-msgstr "Gallery"
-
-msgid "Services"
-msgstr "Services"
+msgid "share_this"
+msgstr "Share"
 
 msgid "our_services"
 msgstr "Our Services"
 
-msgid "read_more"
-msgstr "Read More"
+msgid "About_Us"
+msgstr "About Us"
 
-#: Products
+msgid "companyHistory"
+msgstr "Company History"
 
-msgid "Products"
-msgstr "Products"
+msgid "companyHistory_txt"
+msgstr "<p>Parent organization was founded in 1988 and after that check the success of the work and the multiplicity of activities emanated (Excellence Miles) to be more Specialized</p><p>The company aims at interior projects and services furnishing in accordance with the standards and levels of distinctive local and global perspective through the experience of its consultants.</p><p>Excellence miles has developed a new structure for events organization and conferences with the best human resources, technologies and services, based on its previous experience, in addition to research and development provided additional services, starting with design and implementation, engaged in the analysis and marketing of events and providing audio and visual services and catering.</p>"
 
-msgid "Our_products"
-msgstr "Our Products"
+msgid "chairman_message"
+msgstr "Chairman’s Message"
 
-msgid "Previous"
-msgstr "Previous"
+msgid "chairman_message_txt"
+msgstr "We have always worked to provide the best services to our clients and distinguished by our ability to develop and keep up with the modernity in the urban development witnessed by the Kingdom and we have expanded our business to cover all parts of the Kingdom.<br/>Was so thanks to God and then the efforts of your professional technical staff, where you have provided everything necessary to expand and achieve success with your specialization in the field of civil works, interior construction, decoration, furnishing and organization of events<br/>Therefore, I am pleased to be part of the group of independent entities specialized in the above mentioned activities to serve as a symbol of excellence for Events, a new service for our customers, keeping pace with the development of their business and providing the best possible to turn the imagination into reality and meet the needs of customers<br/>Honesty and honesty is the foundation of success, you must keep them to stay true to the trust we have entrusted to our customers and follow up diligently to customer requests and accuracy in the achievement always make you on the ladder of success<br/>"
 
-msgid "Next"
-msgstr "Next"
+msgid "Chairman"
+msgstr "Chairman"
 
-msgid "Description"
-msgstr "Description"
+msgid "Chairman_name"
+msgstr "Abdullah Abdulaziz Alzeer"
 
-msgid "By"
-msgstr "By"
+msgid "Mission"
+msgstr "Mission"
 
-msgid "share_this_post"
-msgstr "Share this Post"
+msgid "Mission_txt"
+msgstr "To add value to your business, in a true spirit of partnership, "
 
+msgid "Vision"
+msgstr "Vision"
 
-#request quote
+msgid "Vision_txt"
+msgstr "To bring world-class standards in highest technology to communication strategy and events planning in the middle east"
 
-msgid "request_quote"
-msgstr "Request Quote"
+msgid "Methodology"
+msgstr "Methodology"
+
+msgid "listen"
+msgstr "listen"
+
+msgid "listen_txt"
+msgstr "Listening carefully to everyone to help them identify their needs"
+
+msgid "Analysis"
+msgstr "Analysis"
+
+msgid "Analysis_txt"
+msgstr "Doing extensive studies in order to understand our customers’ needs and achieve more than their expectations"
+
+msgid "RD"
+msgstr "R&D"
+
+msgid "RD_txt" 
+msgstr "Because we want to keep at the top of the market we research and development in each article is very important to us"
+
+msgid "Solutions"
+msgstr "Solutions"
+
+msgid "Solutions_txt"
+msgstr "We propose appropriate solution to our customers and try to make that solution meet the requirement and the best international standards"
+
+msgid "Quality_of_control"
+msgstr "Quality of control"
+
+msgid "Quality_of_control_txt"
+msgstr "All dealings with our customer and employee’s follow-up by Quality team to make sure if these deals meet the best standards"
+
+msgid "Innovation"
+msgstr "Innovation"
+
+msgid "Innovation_txt"
+msgstr "by creating effective initiatives for the company to contribute to national development and contribute to many human activities."
+
+msgid "Motivation"
+msgstr "Motivation"
+
+msgid "Motivation_txt"
+msgstr "We take advantage of any small success to enable our team to give them all kinds of motivation to be able to serve our customers "
+
+msgid "Customer_satisfaction"
+msgstr "Customer satisfaction"
+
+msgid "Customer_satisfaction_txt"
+msgstr "Customer satisfaction is the foundation of success which’s mean we provide integrated solution to achieve their goals by designing, implementing and following by highly skilled teams to achieve the best performance and time record"
+
+msgid "Speed_performance"
+msgstr "Speed performance"
+
+msgid "Speed_performance_txt"
+msgstr "Because the time factor is one of the fundamentals of our work, we give every work its time right and comply with planned time tables and we share it with our clients."
+
+msgid "Prices"
+msgstr "Prices"
+
+msgid "Prices_txt"
+msgstr "Because of our expertise we provide special prices which motivate small companies to participate in big events"
+
+msgid "our_clients"
+msgstr "Our Clients"
+
+msgid ""
+msgstr ""

@@ -1,0 +1,47 @@
+
+
+.page-header{
+    position: relative;
+    background-position : 50%  0;
+    background-color: $db;
+     
+    &:after{
+        @include absolute(top $left , 0);
+        @include size(100%);
+        content: '';
+        background:  rgba(mix(darken($colorMain ,53%), #000) ,.6);
+        background:  linear-gradient(to left ,rgba(darken($colorMain ,45%) ,.75) 0% , rgba($colorMain, 0.1) 50%,rgba(darken($colorMain ,45%) ,.75) 100%);
+        opacity: .85; 
+    } 
+    .container{
+        z-index: 1;
+        position: relative;
+        >.row {
+            min-height: 400px;
+            @include media-breakpoint-down(sm){
+               min-height:300px;
+            }
+    }
+  
+   }
+   h1{
+       color: $lightColor;
+  
+       strong{
+           display: inline-block;
+           font-weight: normal; 
+           position: relative;
+           span{
+               content: '';
+               @include size(60px,60px);
+               @include absolute(top $left, -5px -10px );
+               background : $colorMain;
+               transform: rotate(45deg);
+               z-index: -1;
+               
+           }
+       }
+   }
+     
+}
+ 

@@ -8,7 +8,7 @@ namespace EmtEvents.Settings.Configurations.AppSettings.Constants
     public class AdminModules
 
     {
-        public const bool ProductsModule = true;
+        public const bool ProductsModule = false;
 
         public const bool PagesModule = true;
 
@@ -24,7 +24,7 @@ namespace EmtEvents.Settings.Configurations.AppSettings.Constants
 
         public const bool PostsModule = true;
 
-        public const bool RequestsModule = true;
+        public const bool RequestsModule = false;
 
     }
 }

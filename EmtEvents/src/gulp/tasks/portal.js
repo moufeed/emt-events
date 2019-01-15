@@ -5,13 +5,14 @@ watch = require('gulp-watch'),
 sass = require('gulp-sass')
 concat = require('gulp-concat'),
 rename = require('gulp-rename'),
-autoprefixer = require('gulp-autoprefixer'),
 uglify =  require('gulp-uglify-es').default, 
 merge = require("merge-stream"),
 babel = require('gulp-babel'),
-conf = require('../config/portal'),
+conf = require('../config/portal.config'),
 pkg = require('../../../package.json'),
-mod = require('../lib/module')
+mod = require('../lib/module'),
+postcss = require('gulp-postcss'),
+sourcemaps  = require('gulp-sourcemaps');
 ;
  
 
@@ -23,14 +24,19 @@ mod = require('../lib/module')
 gulp.task('p:css', ()=> {
     
     return gulp.src(conf.css.src)
+        .pipe(sourcemaps.init())
         .pipe(sass(conf.sassOptions).on('error', sass.logError))
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(header(conf.header, {
-            pkg: pkg
-        }))
-        .pipe(autoprefixer(conf.css.prefixerOptions))
+        
+        .pipe(postcss([
+                        require('postcss-discard-comments')({removeAll: true}) ,
+                        require('autoprefixer')(conf.css.prefixerOptions)
+                        ]).on('error', (err) => console.log(err.message) ))
+        
+        .pipe(header(conf.header, { pkg: pkg }))
+        .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest(conf.css.dist));
 });
 

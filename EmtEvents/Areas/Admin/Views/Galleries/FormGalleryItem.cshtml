@@ -51,7 +51,7 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-gallery-item"
-                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("PublishItemAsync", "galleries", new { GalleryId = ViewBag.GalleryId, id = Model.Id })"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
@@ -136,7 +136,7 @@
                             <div class="form-group clearfix">
                                 <label asp-for="VideoUrl" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_video_url"]</label>
                                 <div class="col-md-7 col-sm-5 col-xs-12">
-                                    <div class="input-group">
+                                    <div class="input-group" dir="ltr">
                                         <div class="input-group-addon">http://youtube.com/watch?v=</div>
                                         <if include-if="ViewBag.isUpdate"> <input asp-for="VideoUrl" class="form-control" placeholder="@Localizer["f_video_id"]" /></if>
                                         <if exclude-if="ViewBag.isUpdate"> <input asp-for="VideoUrl" class="form-control" placeholder="@Localizer["f_video_id"]" required /></if>
@@ -200,11 +200,7 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
     <script src="~/Admin/js/validator.min.js"></script>
      
-    @{
-        ViewBag.TinyMce_Contetnt_Id = null;
-        ViewBag.TinyMce_Suumry_Id = "#Summary";
-        await Html.RenderPartialAsync("partials/_tinymce.cshtml");
-    }
+    
 
     @if (ViewBag.isUpdate)
     {

@@ -1,0 +1,50 @@
+﻿
+@model GalleryList
+
+ @{ 
+     var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+ }
+<nav class="my-4">
+    <ul class="pagination">
+
+        @if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
+        {
+            @if (Model.Pagination.PreviousPage)
+            {
+                <li class="page-item ">
+                    @{ int PreviousPage = Int32.Parse(Model.Pagination.PageNumber) - 1; }
+
+                    <a class="page-link" href="@Url.Action("index", "galleries", new { PageNumber = PreviousPage.ToString() })" tabindex="-1">
+                        <i class="fa @(lang == "ar" ? "fa-chevron-right" :"fa-chevron-left") "></i>
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+            {
+                int num = Int32.Parse(Model.Pagination.PageNumber);
+
+                <li class="page-item @( num == i ? "active" : "" ) ">
+                    <a class="page-link" href="@Url.Action("index", "galleries", new { PageNumber = i.ToString() })">@i</a>
+                </li>
+            }
+
+            @if (Model.Pagination.NextPage)
+            {
+                <li class="page-item ">
+                    @{ int NextPage = Int32.Parse(Model.Pagination.PageNumber) + 1; }
+
+                    <a class="page-link" href="@Url.Action("index", "galleries", new { PageNumber = NextPage.ToString() })" tabindex="-1">
+
+                         
+                        <i class="fa @(lang == "ar" ? "fa-chevron-left" :"fa-chevron-right") "></i>
+                    </a>
+
+                </li>
+            }
+
+        }
+
+
+    </ul>
+</nav>
