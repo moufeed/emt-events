@@ -23,8 +23,8 @@ module.exports = {
         files: [{
                 outputFileName: "script.js",
                 inputFiles: [
-                    './node_modules/jquery/dist/jquery.min.js',
-                    './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+                   /*  './node_modules/jquery/dist/jquery.min.js',
+                    './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', */
                     './node_modules/bootstrap-notify/bootstrap-notify.min.js',
                     './node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js',
                     `${admin_src}/js/scripts.js`

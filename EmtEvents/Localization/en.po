@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: emt_events 0.1.6"
+"Project-Id-Version: emt_events 0.1.7"
 "Last-Translator: tamtech solution <support@tamtech.solution>"
 "MIME-Version: 1.0"
 "Content-Type: text/plain; charset=UTF-8"
@@ -1555,8 +1555,11 @@ msgstr "More info"
 
 msgid "fullscreen"
 msgstr "Fullscreen"
+
+msgid "Log_out"
+msgstr "Log out"
  
-# bootombar
+# bottom_bar
 msgid "copyright_excellence_miles_All_rights_reserved"
 msgstr "Copyright © {0} Excellence Miles. All rights reserved."
 
@@ -1832,13 +1835,13 @@ msgid "PagesImage"
 msgstr "~/portal/img/backgrounds/pages.jpg"
 
 msgid "facebook_link"
-msgstr ""
+msgstr "https://www.facebook.com/Excellence-miles-Events-1174398756040626/"
 
 msgid "twitter_link"
-msgstr ""
+msgstr "https://twitter.com/amyal_career"
 
-msgid "google_link"
-msgstr ""
+msgid "instagram_link"
+msgstr "https://www.instagram.com/excellence_miles_events_/?hl=en"
 
 msgid "youtube_link"
 msgstr "https://www.youtube.com/channel/UCsCA7gJjzyj8uBlJsH3nVFw"
@@ -1846,6 +1849,11 @@ msgstr "https://www.youtube.com/channel/UCsCA7gJjzyj8uBlJsH3nVFw"
 msgid "linkedin_link"
 msgstr ""
 
+msgid "snapchat_link"
+msgstr "https://www.snapchat.com/add/excellence_miles_events_"
+
 msgid ""
 msgstr ""
 
+
+ 

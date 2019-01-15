@@ -279,10 +279,11 @@
       font-size: 54px;
     }
     .intro_featured_word {
-      font-size: 200px;
+
+      font-size: if-ltr(150px ,100px );
       white-space: nowrap;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
 
       .container & {
         font-size: 138px;

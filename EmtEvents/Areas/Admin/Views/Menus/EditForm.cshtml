@@ -402,7 +402,7 @@
                                                        aria-controls="collapse-@index">
                                                         <span data-toggle="tooltip"
                                                               title="@Localizer["submenu"]"
-                                                              data-placement="top">
+                                                              data-placement="@(activeLang == "ar" ? "right" : "left")">
                                                             <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
                                                         </span>
                                                     </a>
@@ -411,7 +411,7 @@
 
 
                                                 <a data-toggle="tooltip"
-                                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                    title="@Localizer["edit"]"
                                                    data-key="@item.Key"
                                                    data-root="@Model.Id"
@@ -420,13 +420,13 @@
 
 
                                                 <a data-toggle="tooltip"
-                                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                    title="@Localizer["cancel"]"
                                                    data-object='@Html.Raw(Json.Serialize(@item))'
                                                    class="btn btn-cancel cancel-menuitem btn-round hidden"><i class="fa fa-ban "></i></a>
                                                  
                                                 <a data-toggle="tooltip"
-                                                    data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                                    data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                    data-key="@item.Key"
                                                    data-root="@Model.Id"
                                                    data-type='@item.ItemType'

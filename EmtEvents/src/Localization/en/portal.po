@@ -1,5 +1,5 @@
  
-# bootombar
+# bottom_bar
 msgid "copyright_excellence_miles_All_rights_reserved"
 msgstr "Copyright © {0} Excellence Miles. All rights reserved."
 

@@ -70,7 +70,7 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-gallery"
-                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("PublishAsync" ,"galleries" , new { id= Model.Id })"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>

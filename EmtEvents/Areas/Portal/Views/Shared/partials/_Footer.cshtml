@@ -21,28 +21,37 @@
 
                         <if include-if="@(!string.IsNullOrEmpty(Localizer["facebook_link"].Value)
                             && Localizer["facebook_link"].Name != @Localizer["facebook_link"].Value)">
-                            <a href="@Localizer["facebook_link"]" class="fa fa-facebook color-icon" title="facebook"></a>
+                            <a href="@Localizer["facebook_link"]" class="fa fa-facebook color-icon" title="facebook" target="_blank"></a>
                         </if>
 
                         <if include-if="@(!string.IsNullOrEmpty(Localizer["twitter_link"].Value)
                             && Localizer["twitter_link"].Name != @Localizer["twitter_link"].Value)">
-                            <a href="@Localizer["twitter_link"]" class="fa fa-twitter color-icon" title="twitter"></a>
+                            <a href="@Localizer["twitter_link"]" class="fa fa-twitter color-icon" title="twitter" target="_blank"></a>
                         </if>
 
                         <if include-if="@(!string.IsNullOrEmpty(Localizer["google_link"].Value)
                             && Localizer["google_link"].Name != @Localizer["google_link"].Value)">
-                            <a href="@Localizer["google_link"]" class="fa fa-google color-icon" title="google"></a>
+                            <a href="@Localizer["google_link"]" class="fa fa-google color-icon" title="google" target="_blank"></a>
                         </if>
                         <if include-if="@(!string.IsNullOrEmpty(Localizer["youtube_link"].Value)
                             && Localizer["youtube_link"].Name != @Localizer["youtube_link"].Value)">
-                            <a href="@Localizer["youtube_link"]" class="fa fa-youtube-play color-icon" title="youtube-play"></a>
+                            <a href="@Localizer["youtube_link"]" class="fa fa-youtube-play color-icon" title="youtube" target="_blank"></a>
                         </if>
 
                         <if include-if="@(!string.IsNullOrEmpty(Localizer["linkedin_link"].Value)
                             && Localizer["linkedin_link"].Name != @Localizer["linkedin_link"].Value)">
-                            <a href="@Localizer["linkedin_link"]" class="fa fa-linkedin color-icon" title="linkedin"></a>
+                            <a href="@Localizer["linkedin_link"]" class="fa fa-linkedin color-icon" title="linkedin" target="_blank"></a>
                         </if>
                        
+                        <if include-if="@(!string.IsNullOrEmpty(Localizer["instagram_link"].Value)
+                            && Localizer["instagram_link"].Name != @Localizer["instagram_link"].Value)">
+                            <a href="@Localizer["instagram_link"]" class="fa fa-instagram color-icon" title="instagram" target="_blank"></a>
+                        </if>
+
+                         <if include-if="@(!string.IsNullOrEmpty(Localizer["snapchat_link"].Value)
+                            && Localizer["snapchat_link"].Name != @Localizer["snapchat_link"].Value)">
+                            <a href="@Localizer["snapchat_link"]" class="fa fa-snapchat color-icon" title="snapchat" target="_blank"></a>
+                        </if>
                        
                         
                        

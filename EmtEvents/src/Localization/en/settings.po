@@ -54,13 +54,13 @@ msgid "PagesImage"
 msgstr "~/portal/img/backgrounds/pages.jpg"
 
 msgid "facebook_link"
-msgstr ""
+msgstr "https://www.facebook.com/Excellence-miles-Events-1174398756040626/"
 
 msgid "twitter_link"
-msgstr ""
+msgstr "https://twitter.com/amyal_career"
 
-msgid "google_link"
-msgstr ""
+msgid "instagram_link"
+msgstr "https://www.instagram.com/excellence_miles_events_/?hl=en"
 
 msgid "youtube_link"
 msgstr "https://www.youtube.com/channel/UCsCA7gJjzyj8uBlJsH3nVFw"
@@ -68,6 +68,11 @@ msgstr "https://www.youtube.com/channel/UCsCA7gJjzyj8uBlJsH3nVFw"
 msgid "linkedin_link"
 msgstr ""
 
+msgid "snapchat_link"
+msgstr "https://www.snapchat.com/add/excellence_miles_events_"
+
 msgid ""
 msgstr ""
 
+
+ 

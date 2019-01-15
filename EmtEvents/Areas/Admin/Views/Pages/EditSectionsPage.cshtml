@@ -35,7 +35,7 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-page"
-                                   data-placement="@(activeLang == "ar" ? "left" : "right")"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("Publish","Pages", new { type = "Sections" , id = Model.Id } )"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
