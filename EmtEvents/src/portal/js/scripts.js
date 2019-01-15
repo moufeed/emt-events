@@ -383,7 +383,7 @@ function documentReadyInit() {
 
 
 	//toggle mobile menu
-	$('.page_header .toggle_menu, .page_toplogo .toggle_menu').on('click', function(){
+	$('.page_header .toggle_menu, .page_toplogo .toggle_menu ,.togglemenu').on('click', function(){
 		$(this)
 			.toggleClass('mobile-active')
 			.closest('.page_header')

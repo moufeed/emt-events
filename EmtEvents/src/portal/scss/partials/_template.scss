@@ -762,6 +762,10 @@ a.btn {
   span {
     color: $colorMain;
   }
+  @include media-breakpoint-down(sm){
+    text-align: center;
+    margin-bottom: 15px;
+  }
 }
 
 .main-testimonials {

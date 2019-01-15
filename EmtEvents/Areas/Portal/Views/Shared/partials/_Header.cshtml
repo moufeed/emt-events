@@ -16,8 +16,14 @@
     <div class="header_absolute s-pb-30">
         <header class="page_header ds">
             <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-xl-2 col-lg-3 col-11">
+                <div class="row align-items-center justify-content-around">
+                    
+
+                    <div class="col-xl-2 col-lg-3  col-md-5 col-11">
+                        <span class="togglemenu d-lg-none">
+                            <i class="fa fa-bars"></i>
+                        </span>
+
                         <a href="@Url.Action("index","home")" class="logo text-center">
                             <img src="~/Portal/img/@(_lang == "ar" ? "main_logo_ar.png" : "main_logo.png" )" alt="">
                         </a>
@@ -25,12 +31,12 @@
                     <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
                         <navbar></navbar>
                     </div>
-                    <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right d-none d-lg-block">
+                    <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right col-md-3">
                         <div class="header_phone">
 
                             @foreach (var culture in CultureConstants.CulturesList)
                             {
-                                 
+
                                 @if (_lang != culture.Lang)
                                 {
                                     <a href="@Url.Action("index","Home", new { culture = culture.Lang })" class="btn btn_lang"> @culture.Name </a>
@@ -42,9 +48,7 @@
 
                 </div>
             </div>
-            <span class="toggle_menu">
-                <span></span>
-            </span>
+            
         </header>
     </div>
     <span class="toggle_menu_side header-slide">
@@ -56,20 +60,24 @@ else
 {
     <header class="page_header ls justify-nav-center tog-ls affix-top">
         <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-xl-2 col-lg-3 col-11">
+            <div class="row align-items-center  justify-content-around">
+                <div class="col-xl-2 col-lg-3  col-md-5 col-11">
+                    <span class="togglemenu d-lg-none">
+                        <i class="fa fa-bars"></i>
+                    </span>
+
                     <a href="@Url.Action("index","home")" class="logo text-center">
                         <img src="~/Portal/img/@(_lang == "ar" ? "dark_main_logo_ar.png" : "dark_main_logo.png" )" alt="">
                     </a>
                 </div>
                 <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
-                    <navbar></navbar> 
+                    <navbar></navbar>
                 </div>
-                <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right d-none d-lg-block">
+                <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right col-md-3">
                     <div class="header_phone">
                         @foreach (var culture in CultureConstants.CulturesList)
                         {
-                            
+
                             @if (_lang != culture.Lang)
                             {
                                 <a href="@Url.Action("index","Home", new { culture = culture.Lang })" class="btn btn_lang"> @culture.Name </a>
@@ -77,13 +85,10 @@ else
                         }
                     </div>
                 </div>
-                
+
             </div>
         </div>
-        <!-- header toggler -->
-        <span class="toggle_menu">
-            <span></span>
-        </span>
+       
     </header>
 }
 

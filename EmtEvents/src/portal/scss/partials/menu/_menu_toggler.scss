@@ -6,7 +6,30 @@
       display: none;
     }
   }
+  .togglemenu{
+    display: none;
+  }
 }
+.ls {
+  .togglemenu{
+    color: #000;
+  }
+}
+.togglemenu{
+   display: inline-flex;
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  float: $left;
+  &.mobile-active{
+    position: fixed;
+    margin: 0;
+    z-index: 3000;
+  }
+}
+
 
 .toggle_menu {
   position: absolute;

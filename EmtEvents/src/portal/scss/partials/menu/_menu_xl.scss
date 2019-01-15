@@ -63,7 +63,7 @@
     position: relative;
     margin-left: 0;
     top: -3px;
-    right: -25px;
+    right:if-ltr( -25px, 13px);
   }
 
   .sf-menu li:hover > ul,
@@ -72,9 +72,9 @@
   }
 
   .sf-menu a {
-    display: block;
+    display: block;  
     position: relative;
-  }
+  } 
 
   /* menu skin */
 
