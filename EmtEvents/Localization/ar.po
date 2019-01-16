@@ -1549,7 +1549,7 @@ msgstr "معرفة المزيد"
 
 msgid "fullscreen"
 msgstr "ملئ الشاشة"
-
+ 
 msgid "Log_out"
 msgstr "تسجيل الخروج"
   
@@ -1567,9 +1567,9 @@ msgid "about_company"
 msgstr "حول الشركة"
 
 msgid "latest_services"
-msgstr "من خدماتنا"
+msgstr "خدماتنا"
 
-msgid "latest_services_slogan"
+msgid "latest_services_slogan" 
 msgstr "نحن نقدم أفضل الخدمات من أجل تحقيق احتياجات التسويق لكل عميل."
 
 msgid "Latest_work"
@@ -1773,6 +1773,9 @@ msgstr "ونظرًا لخبرتنا ، نقدم أسعارًا خاصة تحفز
 
 msgid "our_clients"
 msgstr "عملاءنا"
+
+msgid "read_more"
+msgstr "المزيد ..."
 
 msgid ""
 msgstr ""

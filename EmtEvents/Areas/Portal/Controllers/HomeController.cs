@@ -83,11 +83,17 @@ namespace EmtEvents.Areas.Portal.Controllers
                     ViewBag.aboutSummary = aboutSummary.Data;
                 }
 
-                var services = await _servicesservice.GetPublicListAsync(4);
+                var services = await _servicesservice.GetPublicListAsync(25);
 
                 if (services.Success)
                 {
                     ViewBag.services = services.Data;
+                }
+
+                var publicClientsSlider = await _sliderService.GetPublicByKeyAsync(_appSettingsService.GetHomePageCarouselSliderKey());
+                if (publicClientsSlider.Success)
+                {
+                    ViewBag.publicClientsSlider = publicClientsSlider.Data;
                 }
 
             }

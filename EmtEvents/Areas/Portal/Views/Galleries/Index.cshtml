@@ -42,19 +42,16 @@
                             <h6 class="animate delay-2ms" data-animation="fadeIn">
                                 <a href="@Url.PortalAction("v", "galleries", new { slug = item.Slug })">@item.Title</a>
                             </h6>
-                            <div class="small-text animate delay-2ms"  data-animation="fadeIn">
+                            <div class="small-text animate delay-2ms" data-animation="fadeIn">
                                 <span> @(String.Format("{0:d/M/yyyy }", item.CreatedDate)) </span>
+                            </div>
+                            <div class="small-text animate delay-2ms" data-animation="fadeIn">
+                                <span>@item.Section</span>
                             </div>
 
                             <p class=" animate delay-4ms fast" data-animation="fadeIn">
-                                @{
-                                    string text = String.Empty;
-                                    if (!string.IsNullOrEmpty(item.Summary))
-                                    {
-                                        text = Regex.Replace(item.Summary, "<.*?>", String.Empty);
-                                    }
-                                }
-                                @Html.Raw(text)
+                                 
+                                @Html.Raw(item.Summary)
                             </p>
                             <div class="animate fast mt-4" data-animation="fadeIn">
                                 <a href="@Url.PortalAction("v", "galleries", new { slug = item.Slug })" class="btn-link-more">@Localizer["Know_More"]</a>

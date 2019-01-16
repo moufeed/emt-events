@@ -13,6 +13,9 @@
 <partial name="partials/Index/_works.cshtml" />
 <partial name="partials/Index/_events.cshtml" />
 <partial name="partials/Index/_testimonials.cshtml" />
+<if include-if="ViewBag.publicClientsSlider != null">
+     <partial name="partials/Index/_clients.cshtml"  model="@ViewBag.publicClientsSlider" />
+</if>
 <partial name="partials/Index/_contactFooter.cshtml" />
 
 

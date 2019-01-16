@@ -82,11 +82,15 @@
             selector: '@ViewBag.TinyMce_Suumry_Id',
                 branding: false,
                 theme: 'modern',
+                force_br_newlines: true,
+                force_p_newlines: false,
+                forced_root_block :false,
                 min_height: 150,
                 statusbar: false,
                  menubar: false,
                  directionality:"@(DataCultureHelper.GetCurrent(Context.Request.Query) == "ar" ? "rtl" : "ltr")",
-             plugins: ['code hr anchor pagebreak spellchecker directionality'],
+             plugins: ['code hr anchor pagebreak spellchecker directionality code'],
+             toolbar :['undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify  |   fontselect fontsizeselect  | outdent indent   | code  |  hr ltr rtl |blockquote     removeformat '],
                 setup: function(editor) {
                 editor.on('change', function(e) {
                     editor.save();

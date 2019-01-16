@@ -14,24 +14,37 @@
             </div>
         </div>
         <if include-if="(ViewBag.services != null && ViewBag.services.Count > 0)">
-            <div class="row list-home-services">
+            <div class="row list-home-services no-gutters">
                 @{ int index = 0; }
 
                 @foreach (ServiceDto item in ViewBag.services)
                 {
 
                 <div class="col-md-6 si">
-                    <div class="service-item @(index % 2 != 0 ?"flip" :"")">
-                        <h3 class="service-title">
-                            @{ 
-                                var animation = activeLang == "ar" ? (index % 2) != 0 ? "interInDownLeft" : "interInDownRight"  : ((index % 2) == 0) ? "interInDownLeft" : "interInDownRight"  ;
-                            }
-                            <i class="fi @item.Icon animate" data-animation="@animation" data-appear-top-offset="250"></i>
-                            <span class="animate fast" data-animation="fadeIn" data-appear-top-offset="250">@item.Title</span>
+
+
+                    <div class="row no-gutters service-item @(index % 2 != 0 ?"flip" :"")">
+                        @{  var animation = activeLang == "ar" ? (index % 2) != 0 ? "interInDownLeft" : "interInDownRight"  : ((index % 2) == 0) ? "interInDownLeft" : "interInDownRight"  ; }
+
+                        <div class="col-auto">
+                            <i class="@(item.Icon.StartsWith("fi") ?  "fi" : "fa") @item.Icon animate icon" data-animation="@animation" data-appear-top-offset="250"></i>
+                        </div>
+                        <div class="col px-2">
+                            <h3 class="service-title">
+                            
+
+                            
+                           <a href="@Url.Action("v","services",new{slug = item.Slug})">
+                                <span class="animate fast" data-animation="fadeIn" data-appear-top-offset="250">@item.Title</span>
+                           </a>
                         </h3>
                         <p class="service-text animate fast" data-animation="fastInDown">
                             @item.Summary
                         </p>
+                        <a class="btnlink  animate fast" data-animation="fastInDown" href="@Url.Action("v","services",new{slug = item.Slug})"> @Localizer["read_more"]</a>
+                        </div>
+
+                        
                     </div>
                 </div>
 

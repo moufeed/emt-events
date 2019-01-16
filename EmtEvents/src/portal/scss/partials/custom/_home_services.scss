@@ -1,188 +1,84 @@
 .list-home-services{
-
     .service-item{
-
         @include media-breakpoint-up(lg){
             margin-top: rem(75px);
         }
         @include media-breakpoint-only(md){
             margin-top: rem(35px);
         }
-        .service-title{
-             @include media-breakpoint-only(md){
-                 font-size: rem(24px); 
-             }
-            i{
-                @include media-breakpoint-up(md){
-                    display: inline;
-                    float: $left;     
-                    margin-#{$right}: rem(15px);                 
-                    font-size: 4rem;
-                    font-weight: 600;
-                    z-index: -1;
-                    transform: rotate(if-ltr(-5deg,5deg));
-                }
-                @include media-breakpoint-up(lg){
-                    font-size: 7rem;
-                }
+        .icon{
+            color: #DFA06E;
+            @include media-breakpoint-up(md){
+                display: inline;
+                float: $left;     
+                font-size: 4rem;
+                font-weight: 600;
+                z-index: -1;
+                transform: rotate(if-ltr(-5deg,5deg));
             }
-            span{ 
-                position: relative;
-                z-index: 1;
-             }
-           margin-bottom: 10px;
+            @include media-breakpoint-up(lg){
+                font-size: 7rem;
+            }
+        }
+        .service-title{
+            font-size: rem(25px);
+            @include media-breakpoint-only(md){
+                font-size: rem(24px); 
+            } 
+        }
+        .service-text{
+            @include media-breakpoint-up(md){
+                @include ellipseMax(16px,1.8,3);
+                 padding-#{$right}: rem(25px); 
+            }
+        }
+        .btnlink{
+            color: #fff;
+            display: inline-block;
+            padding: 6px 0;
+            padding-#{$right}: rem(25px);
+            border-radius: 25px;
+            text-transform: capitalize;
         }
 
-        .service-text{
-            
-            @include media-breakpoint-up(md){
-                @include ellipse(16px,1.8,3);
-                max-width: 90%;
-            }
-        }
+        // .service-item 
         &.flip{
             @include media-breakpoint-up(md){
                 text-align: $right;
                 direction: if-ltr(rtl,ltr);
-                h3{
-                    i{
-                        float: $right;
-                        margin-#{$right}: 0;
-                        margin-#{$left}: rem(15px);
-                    }
-                 }
-            }
-        }
-    }
-
-
-    .si{
-        $i :1;
-        @each $color in $services-listColor{
-            &:nth-child(#{$i}){
-                 
-                .service-title i{
-                    color: $color; 
-                }
-            }
-            $i : $i + 1;
-        }
-    }
-}
-
-
-
-/*
-<div class="service-item @(index % 2 == 0 ?"flip" :"")">
-                        <h3 class="">
-                            <i class="fi @item.Icon animate" data-animation="@(((index % 2) == 0) ? "interInDownLeft" : "interInDownRight" ) " data-appear-top-offset="250"></i>
-                            <strong class="animate fast" data-animation="fadeIn" data-appear-top-offset="250">@item.Title</strong>
-                        </h3>
-                        <p class="service-text animate fast" data-animation="fastInDown">
-                            @item.Summary
-                        </p>
-                    </div>
-*/
-
-/*
-$fi_mr : -3.5rem;
-.list-home-services{
-    .service-item{
-        position: relative;
-        @include clearfix();
-        &:before{
-            content: '';
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            left: calc(50% - 10px );
-        }
-        @include media-breakpoint-up(md){
-            margin-bottom: 5rem;
-            &:before{
-                content: none;
-            }
-        }
-        
-        .service-title{
-            @include clearfix();
-            @include media-breakpoint-only(md){
-                font-size: 30px;
-            }
-            i{
-              
-                @include media-breakpoint-up(md){
-                    float: left;
-                    margin-top: -3rem;
-                    font-size: 7rem;
-                    font-weight: 600;
-                    margin-right: $fi_mr ;
-                    z-index: -1;
-                    transform: rotate(-5deg);
-                }
-                @include media-breakpoint-up(lg){
-                    font-size: 10rem;
-                }
-            }
-            strong{
-                position: relative;
-                z-index: 1; 
-            }
-        }
-        .service-text{
-            @include ellipse(16px,1.4,3);
-            @include media-breakpoint-up(md){
-                width: 47%;
-                margin-top: 2rem;
-            }
-            @include media-breakpoint-up(lg){
-                width: 40%;
-            }
-        }
-
-        &:nth-child(even){
-            &:before{
-                top: auto;
-                bottom: 35%;
-            }
-
-            @include media-breakpoint-up(md){
-                text-align: right;
-                margin-top: -14rem;
-                .service-title{
-                    i{
-                         
-                            float: right;
-                            margin-left: $fi_mr ;
-                            margin-right: auto;
-                            transform: rotate(5deg);  
-                    }
-                }
                 .service-text{
-                    float: right;
-                    text-align: right; 
+                         padding-#{$left}: rem(25px); 
+                         padding-#{$right}: 0; 
                 }
+                
             }
-        }
-         
 
-        $i :1;
-        @each $color in $services-listColor{
-            &:nth-child(#{$i}){
-                 
-                .service-title i.fi{
-                    color: $color; 
-                }
+            .btnlink{
+                padding-#{$left}: rem(25px); 
+                padding-#{$right}: 0;
             }
-            $i : $i + 1;
         }
-        
     }
 }
- 
 
-*/
+
+.si{
+    .service-title i{
+        color: $colorMain; 
+    }
+    $i :1;
+    $colorss : #DA3131 #A20021 #F79D5C #F3752B #FFBE0B #FF4E00 #086788 #65DEF1 #C33C54;
+    $colorsA : #DA3131 #5B85AA #FF4D80 #2AB7CA #FED766 #F9A03F #8DB1AB #FFC09F #00A878;
+    @each $color in $colorsA{
+        &:nth-child(#{$i}){ 
+             
+            .icon{
+                color: $color; 
+            }
+        }
+        $i : $i + 1;
+    }
+}
+
+
+ 

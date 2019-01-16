@@ -32,12 +32,15 @@
            font-weight: normal; 
            position: relative;
            span{
-               content: '';
+               @include absolute(top $left, -5px -60px );
+               z-index: -1;
                @include size(60px,60px);
-               @include absolute(top $left, -5px -10px );
+
+               /* content: '';
+              
                background : $colorMain;
                transform: rotate(45deg);
-               z-index: -1;
+               */
                
            }
        }

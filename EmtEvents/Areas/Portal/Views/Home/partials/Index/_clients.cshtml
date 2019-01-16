@@ -1,0 +1,39 @@
+﻿@model TamTechSDK.Common.Services.ContentService.Sliders.Models.SliderDto
+
+<if include-if="Model.Items.Count > 0">
+
+    <section class="home-clients-section ">
+        <div class="container">
+            <div class="row">
+                <header class="col-12 text-center mb-5">
+                    <h4 class="animate fast" data-animation="fadeInLeft">
+                        @Localizer["our_clients"]
+                    </h4>
+                </header>
+                <div class="col-12 animate fast delay-5ms" data-animation="fadeIn">
+                    <div class="owl-carousel"
+                         data-responsive-lg="4"
+                         data-responsive-md="3"
+                         data-responsive-sm="2"
+                         data-responsive-xs="1"
+                         data-autoplay="true"
+                         data-nav="false"
+                         data-dots="false"
+                         data-loop="true"
+                         data-margin="15"
+                         dir="ltr">
+                        @foreach (TamTechSDK.Common.Services.ContentService.Sliders.Models.SliderItemDto item in Model.Items)
+                        {
+                            <article class="box text-center">
+                                <img src="@item.MainImage" alt="@item.Title"  class="img-fluid"/>
+                            </article>
+                        }
+
+                    </div>
+                    </div>
+                </div>
+        </div>
+        <div class="corner corner-light"></div>
+    </section>
+
+</if>

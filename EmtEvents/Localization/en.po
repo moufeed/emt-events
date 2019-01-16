@@ -1573,7 +1573,7 @@ msgid "about_company"
 msgstr "About Company"
 
 msgid "latest_services"
-msgstr "Some Services"
+msgstr "Our Services"
 
 msgid "latest_services_slogan"
 msgstr "We deliver the best quality service for the realization of each client’s marketing needs."
@@ -1775,6 +1775,9 @@ msgstr "Because of our expertise we provide special prices which motivate small 
 
 msgid "our_clients"
 msgstr "Our Clients"
+
+msgid "read_more"
+msgstr "more ..."
 
 msgid ""
 msgstr ""

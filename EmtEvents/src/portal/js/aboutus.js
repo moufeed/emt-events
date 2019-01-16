@@ -16,7 +16,7 @@ $(document).ready(function(){
 				themeClass = data.themeclass ? data.themeclass : 'owl-theme',
 				center = data.center ? data.center : false,
 				items = data.items ? data.items : 4,
-				autoplay = data.autoplay ? data.autoplay : false,
+				autoplay = data.autoplay ? data.autoplay : true,
 				responsiveXs = data.responsiveXs ? data.responsiveXs : 1,
 				responsiveSm = data.responsiveSm ? data.responsiveSm : 2,
 				responsiveMd = data.responsiveMd ? data.responsiveMd : 3,
