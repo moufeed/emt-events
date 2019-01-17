@@ -219,5 +219,8 @@ msgstr "Our Clients"
 msgid "read_more"
 msgstr "more ..."
 
+msgid "Visit_us"
+msgstr "Visit us"
+
 msgid ""
 msgstr ""

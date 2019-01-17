@@ -1,0 +1,33 @@
+.btn-group.btn-links{
+    > a.btn{
+        min-width: 0;
+        border: 2px solid;
+       padding:  21px 30px;
+        &:first-child{
+            border-top-#{$right}-radius: 0;
+            border-bottom-#{$right}-radius: 0;
+            border-top-#{$left}-radius: 40px;
+            border-bottom-#{$left}-radius: 40px;
+            border-#{$right} : 0;
+        }
+        &:last-child{
+            border-top-#{$left}-radius: 0;
+            border-bottom-#{$left}-radius: 0;
+            border-top-#{$right}-radius: 40px;
+            border-bottom-#{$right}-radius: 40px;
+        }
+        &:hover{
+            background: $colorMain;
+            color: #fff;
+            border-color: $colorMain;
+        }
+    }
+}  
+
+/*
+ <div class="btn-group btn-links">
+                        <a href="@Url.Action("contactus","home")" class="btn btn-outline ">@Localizer["Lets_talk"]</a>
+                        <a href="https://goo.gl/maps/RqRrtsPgR4u" class="btn btn-outline " target="_blank">@Localizer["Visit_us"]</a>
+                    </div>
+                    .btn-group>.btn:not(:last-child):not(.dropdown-toggle), .btn-group>.btn-group:not(:last-child)>.btn
+*/

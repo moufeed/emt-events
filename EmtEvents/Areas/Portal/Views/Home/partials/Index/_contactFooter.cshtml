@@ -13,10 +13,15 @@
                     </p>
                     <div class="divider-30"></div>
                 </div>
-
+                <div>
+                    @Localizer["full_address"]
+                 </div>
                 <div class="animate fast delay-2ms" data-animation="slideInUp" >
                     <div class="divider-40"></div>
-                    <a href="@Url.Action("contactus","home")" class="btn btn-outline-maincolor">@Localizer["Lets_talk"]</a>
+                    <div class="btn-group btn-links">
+                        <a href="@Url.Action("contactus","home")" class="btn btn-outline ">@Localizer["Lets_talk"]</a>
+                        <a href="https://goo.gl/maps/RqRrtsPgR4u" class="btn btn-outline " target="_blank">@Localizer["Visit_us"]</a>
+                    </div>
                     <div class="divider-30"></div>
                 </div>
             </div>

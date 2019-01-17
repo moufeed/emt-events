@@ -1779,6 +1779,9 @@ msgstr "Our Clients"
 msgid "read_more"
 msgstr "more ..."
 
+msgid "Visit_us"
+msgstr "Visit us"
+
 msgid ""
 msgstr ""
 
@@ -1788,6 +1791,9 @@ msgid "excellence_miles"
 msgstr "Excellence Miles"
 msgid "p_meta_description"
 msgstr "The company aims at interior projects and services furnishing in accordance with the standards and levels of distinctive local and global perspective through the experience of its consultants."
+
+msgid "full_address"
+msgstr "Takhassusi St, Al Mathar Ash Shamali Riyadh 12312 11575 Saudi Arabia"
 
 msgid "c_address"
 msgstr "Riyadh,Saudi Arabia"

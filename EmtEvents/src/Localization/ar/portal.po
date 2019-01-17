@@ -223,5 +223,8 @@ msgstr "عملاءنا"
 msgid "read_more"
 msgstr "المزيد ..."
 
+msgid "Visit_us"
+msgstr "قم بزيرتنا"
+
 msgid ""
 msgstr ""
