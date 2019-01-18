@@ -2,10 +2,17 @@
     .service-item{
         @include media-breakpoint-up(lg){
             margin-top: rem(75px);
+            img{
+                width: 140px;
+            }
         }
         @include media-breakpoint-only(md){
             margin-top: rem(35px);
+            img{
+                width: 140px;
+            }
         }
+        
         .icon{
             color: #DFA06E;
             @include media-breakpoint-up(md){

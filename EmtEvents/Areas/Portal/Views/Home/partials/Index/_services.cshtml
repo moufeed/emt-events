@@ -27,7 +27,19 @@
                         @{  var animation = activeLang == "ar" ? (index % 2) != 0 ? "interInDownLeft" : "interInDownRight"  : ((index % 2) == 0) ? "interInDownLeft" : "interInDownRight"  ; }
 
                         <div class="col-auto">
-                            <i class="@(item.Icon.StartsWith("fi") ?  "fi" : "fa") @item.Icon animate icon" data-animation="@animation" data-appear-top-offset="250"></i>
+                            @if (item.IconVisibility)
+                            {
+                                <i class="@(item.Icon.StartsWith("fi") ?  "fi" : "fa") @item.Icon animate icon" data-animation="@animation" data-appear-top-offset="250"></i>
+                            }
+                            else if (!string.IsNullOrEmpty(item.MainImage))
+                            {
+                                <img src="@item.MainImage" alt="@item.Title" />
+                            }
+                            else
+                            {
+                               <i class="fa fa-cubes"></i>
+                            }
+
                         </div>
                         <div class="col px-2">
                             <h3 class="service-title">

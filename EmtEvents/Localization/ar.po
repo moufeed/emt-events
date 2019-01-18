@@ -1786,15 +1786,15 @@ msgstr ""
 
 #seo 
 msgid "excellence_miles"
-msgstr "Excellence Miles"
+msgstr "أميال التميز"
 msgid "p_meta_description"
-msgstr "The company aims at interior projects and services furnishing in accordance with the standards and levels of distinctive local and global perspective through the experience of its consultants."
-
-msgid "full_address"
-msgstr "Takhassusi St, Al Mathar Ash Shamali Riyadh 12312 11575 Saudi Arabia"
+msgstr "تهدف الشركة إلى تقديم مشاريع داخلية وخدمات تأثيث وفقا لمعايير ومستويات المنظور المحلي والعالمي المتميز من خلال خبرة مستشاريها."
 
 msgid "c_address"
-msgstr "Riyadh,Saudi Arabia"
+msgstr "المملكة العربية السعودية . الرياض"
+
+msgid "fulladdress"
+msgstr "شارع التخصصي، المعذر الشمالي، الرياض 12312 11575 المملكة العربية السعودية"
 
 msgid "telephone_number"
 msgstr "+966 11 281 7030"
@@ -1818,10 +1818,10 @@ msgid "postalCode"
 msgstr "34320"
 
 msgid "streetAddress"
-msgstr "Takhassusi St"
+msgstr "شارع التخصصي"
 
 msgid "addressLocality"
-msgstr "Al Mathar Ash Shamali"
+msgstr "حي المعذر الشمالي"
 
 msgid "contactUsImage"
 msgstr "~/Portal/img/backgrounds/contact-us.jpg"
@@ -1840,6 +1840,7 @@ msgstr "~/portal/img/backgrounds/about.jpg"
 
 msgid "PagesImage"
 msgstr "~/portal/img/backgrounds/pages.jpg"
+
 
 msgid "facebook_link"
 msgstr "https://www.facebook.com/Excellence-miles-Events-1174398756040626/"
@@ -1862,5 +1863,3 @@ msgstr "https://www.snapchat.com/add/excellence_miles_events_"
 msgid ""
 msgstr ""
 
-
- 

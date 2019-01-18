@@ -8,7 +8,7 @@ msgstr "تهدف الشركة إلى تقديم مشاريع داخلية وخد
 msgid "c_address"
 msgstr "المملكة العربية السعودية . الرياض"
 
-msgid "full_address"
+msgid "fulladdress"
 msgstr "شارع التخصصي، المعذر الشمالي، الرياض 12312 11575 المملكة العربية السعودية"
 
 msgid "telephone_number"
