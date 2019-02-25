@@ -26,7 +26,7 @@
                     <div class="row no-gutters service-item @(index % 2 != 0 ?"flip" :"")">
                         @{  var animation = activeLang == "ar" ? (index % 2) != 0 ? "interInDownLeft" : "interInDownRight"  : ((index % 2) == 0) ? "interInDownLeft" : "interInDownRight"  ; }
 
-                        <div class="col-auto">
+                        <div class="col-12 col-md-auto">
                             @if (item.IconVisibility)
                             {
                                 <i class="@(item.Icon.StartsWith("fi") ?  "fi" : "fa") @item.Icon animate icon" data-animation="@animation" data-appear-top-offset="250"></i>

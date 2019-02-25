@@ -96,7 +96,7 @@ $(window).on('load',function(){
 			});
 			var data = $carousel.data();
 
-			var loop = data.loop ? data.loop : false,
+			let loop = data.loop ? data.loop : false,
 				margin = (data.margin || data.margin === 0) ? data.margin : 30,
 				nav = data.nav ? data.nav : false,
 				navPrev = data.navPrev ? data.navPrev : '<i class="fa fa-angle-left">',
@@ -112,15 +112,23 @@ $(window).on('load',function(){
 				responsiveLg = data.responsiveLg ? data.responsiveLg : 4,
 				draggable = (data.draggable === false) ? data.draggable : true,
 				syncedClass = (data.syncedClass) ? data.syncedClass : false,
+				hoverPause  = (data.pause) ? data.pause : true,
+				autoplayTimeout  = (data.autoplaytimeout) ? data.autoplaytimeout : 3000,
 				filters = data.filters ? data.filters : false;
 
-			 
-
+			  
+ 
 			$carousel.owlCarousel({
+				  
+				autoplay:autoplay,
+				autoplayTimeout: autoplayTimeout,
+				autoplayHoverPause:hoverPause,
+
 				loop: loop,
+				 
 				margin: margin,
 				nav: nav,
-				autoplay: autoplay,
+				 
 				dots: dots,
 				themeClass: themeClass,
 				center: center,
@@ -128,6 +136,7 @@ $(window).on('load',function(){
 				mouseDrag: draggable,
 				touchDrag: draggable,
 				items: items,
+		 
 				responsive: {
 					0:{
 						items: responsiveXs
@@ -144,6 +153,10 @@ $(window).on('load',function(){
 				},
 			})
 			.addClass(themeClass);
+
+			 
+			
+
 			if(center) {
 				$carousel.addClass('owl-center');
 			}

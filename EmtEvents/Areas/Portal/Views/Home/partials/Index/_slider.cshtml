@@ -13,7 +13,7 @@
 
 <if include-if="(mainSlider.Items != null && mainSlider.Items.Count > 0)">
     <section class="page_slider main_slider">
-        <div class="flexslider" data-nav="true" data-dots="false">
+        <div class="flexslider" data-nav="true" data-dots="false" data-speed="3000">
             <ul class="slides">
                 @{ int index = 1; }
                 @foreach (var item in mainSlider.Items)

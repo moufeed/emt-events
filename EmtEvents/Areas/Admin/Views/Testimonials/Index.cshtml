@@ -1,0 +1,177 @@
+﻿@model List<TestimonialDto>
+
+@{
+    ViewData["Title"] = Localizer["testimonials"];
+    ViewData["UnitTestPageClass"] = "ut-testimonials-index";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["testimonials"] <small></small></h3>
+        </div>
+        <div class="title_right">
+            <a href="@Url.AdminUrl("Create" , "testimonials")"
+               class="btn btn-blue btn-add-new ut-create-btn">
+                <i class="fa fa-plus"></i>
+                @Localizer["new_testimonial"]
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        @{
+            ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { };
+        }
+         @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+        <div class="x_panel p-x-0">
+
+            <div class="x_content">
+
+                <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
+
+
+                <div class="table-responsive">
+                    <table class="table table-middle table-striped posts-table" id="postsTable">
+                        <thead>
+                        <th width="100" class="text-center">@Localizer["t_image"]</th>
+                        <th>@Localizer["t_name"]</th>
+                        <th>@Localizer["t_company"]</th>
+                        <th>@Localizer["t_job_position"]</th>
+                        <th>@Localizer["t_rating"]</th>
+                        <th width="120">@Localizer["t_display_order"]</th>
+                        <th width="100" class="text-center">@Localizer["t_visibility"]</th>
+                        <th width="175">@Localizer["t_actions"]</th>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr id="tr-@item.Id">
+                                    <td class="text-center">
+                                        <div class="tabel-img-circle">
+
+                                            <if include-if="(!string.IsNullOrEmpty(item.MainImage))">
+                                                <img src="@item.MainImage" alt="" width="60" />
+                                            </if>
+
+                                            <if include-if="(string.IsNullOrEmpty(item.MainImage))">
+                                                <img src="~/Admin/img/noimage.jpg" alt="" width="75" />
+                                            </if>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="@Localizer["t_edit"]"
+                                           href="@Url.AdminUrl("Edit" ,"Testimonials" ,new { id= item.Id})"
+                                           class="underline ser-title">@item.AuthorName</a>
+                                    </td>
+                                    <td>@item.Company</td>
+                                    <td>@item.Postion</td>
+                                    <td>
+                                        <div class="rating">
+
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                if (item.Rating > i)
+                                                {
+                                                    <i class="fa fa-star"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-star-o"></i>
+                                                }
+                                            }
+                                        </div>
+                                    </td>
+
+                                    <td class="text-center">@item.DisplayOrder</td>
+
+                                    <td width="100" class="text-center">
+                                        <span data-toggle="tooltip"
+                                              data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                              data-status="true"
+                                              title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
+
+                                            <input class="tgl tgl-flat toggle__publish"
+                                                   data-url="@Url.AdminUrl("PublishAsync","testimonials" , new { id = item.Id})"
+                                                   id="@item.Id"
+                                                   type="checkbox"
+                                                   @((item.Published) ? "<text> checked </text>" : "") />
+                                            <label class="tgl-btn" for="@item.Id"></label>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="@Localizer["t_details"]"
+                                               href="@Url.AdminUrl("Details","testimonials",new { id = item.Id })"
+                                               class="btn btn-view btn-round ut-detail-btn"><i class="fa fa-info "></i></a>
+
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="@Localizer["t_edit"]"
+                                               href="@Url.AdminUrl("Edit" ,"testimonials",new { id = item.Id })"
+                                               class="btn btn-edit btn-round ut-edit-btn"><i class="fa fa-edit "></i></a>
+
+
+
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               data-id="@item.Id"
+                                               data-url="@Url.AdminUrl("DeleteAsync", "testimonials", new { id = item.Id })"
+                                               title="@Localizer["t_remove"]"
+                                               class="btn btn-remove btn-round delete-testimonial ut-remove-btn"><i class="fa fa-trash-o  "></i></a>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                            }
+
+                            <if include-if='Model.Count == 0'>
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <p class="empty_row">
+                                            <i class='fa fa fa-exclamation-circle'></i>
+                                            @Localizer["no_data_table"]
+                                        </p>
+                                    </td>
+                                </tr>
+                            </if>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="m-y-2" />
+
+                <pagination controller-name="testimonials" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles{
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+
+@section Scripts {
+    <script src="~/Admin/js/testimonials.min.js"></script>
+    <script src="~/Admin/lib/select2/dist/js/select2.js"></script>
+    <script>
+        $('.select_no-search').select2({ minimumResultsForSearch: -1 });
+         
+    </script>
+}

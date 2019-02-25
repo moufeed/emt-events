@@ -1,0 +1,50 @@
+﻿
+@model ProductSEO
+
+
+<input type="hidden" name="Seo[Type]" id="SeoType" value="Product" />
+<input type="hidden" name="Seo[data][Image]" value="@Model.Image" asp-for="Image" />
+
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["product_name"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" name="Seo[data][name]" class="form-control" value="@Model.Name" asp-for="Name" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["product_description"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <textarea name="Seo[data][Description]" rows="3" class="form-control" asp-for="Description"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["brand_name"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" name="Seo[data][brand]" class="form-control" value="@Model.Name" asp-for="Name" />
+    </div>
+</div>
+
+<div class="form-group ">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["product_Category"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12 category">
+        <div class="input-group mb-3 add-category">
+            <input type="text" class="form-control" id="input-category" placeholder="@Localizer["add_category"]">
+            <div class="input-group-addon">
+                <button class="btn btn-success btn-add-category" type="button"> <i class="fa fa-plus"></i> @Localizer["Add"] </button>
+            </div>
+        </div>
+        <div class="category-items">
+            @if (Model.Category != null && Model.Category.Count > 0)
+            {
+                @foreach (var item in Model.Category)
+                {
+                    <div class="input-category">
+                        <input type="text" class="form-control" id="" name="Seo[data][category][]" value="@item">
+                        <button class="btn btn-danger remove-input-item" type="button" data-type="category"><i class="fa fa-times"></i></button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

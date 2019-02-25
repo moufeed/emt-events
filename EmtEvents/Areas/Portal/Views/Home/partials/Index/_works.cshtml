@@ -54,7 +54,18 @@
                             </span>
                            
                             <div>
-                                <h6><a asp-action="v" asp-controller="galleries" asp-route-slug="@gallery.Slug">@gallery.Title</a></h6>
+                                  @if(gallery.CustomDate != null){
+                                     <div>
+                                    <small style="color:#b00">
+                                        <i class="fa fa-calendar"></i>
+                                         @(string.Format("{0:yyyy/MM/dd}", gallery.CustomDate))
+                                    </small>
+                                </div>
+                                 <h6 style="margin-top:0;"><a asp-action="v" asp-controller="galleries" asp-route-slug="@gallery.Slug">@gallery.Title</a></h6>
+                                }else{
+
+                                <h6 ><a asp-action="v" asp-controller="galleries" asp-route-slug="@gallery.Slug">@gallery.Title</a></h6>
+                                }
                                 <p>
                                     @{
                                         string Summary = "";

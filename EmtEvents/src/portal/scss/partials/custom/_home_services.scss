@@ -6,24 +6,33 @@
                 width: 140px;
             }
         }
-        @include media-breakpoint-only(md){
+        @include media-breakpoint-down(md){
             margin-top: rem(35px);
             img{
                 width: 140px;
             }
         }
+
+        @include media-breakpoint-down(sm){
+            text-align: center;
+        }
         
         .icon{
             color: #DFA06E;
-            @include media-breakpoint-up(md){
-                display: inline;
-                float: $left;     
+            display: inline-block;
+                 
                 font-size: 4rem;
                 font-weight: 600;
                 z-index: -1;
                 transform: rotate(if-ltr(-5deg,5deg));
+
+            @include media-breakpoint-up(md){
+                float: $left;   
             }
             @include media-breakpoint-up(lg){
+                font-size: 7rem;
+            }
+            @include media-breakpoint-down(Sm){
                 font-size: 7rem;
             }
         }

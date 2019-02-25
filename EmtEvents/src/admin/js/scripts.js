@@ -1,25 +1,5 @@
 ﻿ 
-defaultLocalization ={
-    "error" : 'Error',
-    "success" : "success",
-    "deleted" : "Deleted!",
-    "deleted_successfully" : "Deleted successfully", 
-    "item_deleted" : "Item has been deleted.",
-    "confirm_title" :  "Are you sure?",
-    "confirm_text" : "You won\'t be able to revert this!",
-    "confirm_yes" :"Yes",
-    "Confirm_cancel" : "Cancel",
-    "characters" : "Characters",
-    "text_will_be_truncated" : "be careful your text will be truncated" ,
-    "text_count_be_more_than" : "text count be more than 300 characters long",
-    "updateted_successfully" : "updateted successfully",
-    "something_wrong" : "Something wrong",
-    "published_successfully" : "published successfully",
-    "unpublished_successfully" : "unpublished successfully",
-    "publish" : "Publish",
-    "unpublish" :"unpublish"
-}
-   window.localization = $.extend({}, defaultLocalization ,window.customLocalization || {});
+
  
  (function ($, sr) {
      // debouncing function from John Hann
@@ -318,7 +298,10 @@ function RemoveItem (table , itm ){
                          
                     }else{
                         var errors = data.errors;
-                        $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");
+                        if (errors.length > 0) {
+                            txt = MakeErrorsMsg(errors);
+                            $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                        }
                     }
                 })
                 .fail(function (jqXHR, Status) {
@@ -477,101 +460,6 @@ $Confirm  = function(opts, callback){
 
 
 
-function blocking(status,$this,unblock_url,block_url,userName){
-    $.ajax({
-        url: (status) ? unblock_url : block_url,
-        type: 'POST',
-        contentType: 'application/json',
-        dataType: "json",
-        cache: false,
-        data: JSON.stringify({
-            username: userName
-        })
-    })
-
-    .done(function (data) {
-        if (data.success) {
-            $notification.success("success", "", 2000, "fa fa-check");
-            if (status) {
-
-                $('#UserStatus').removeClass('c-red')
-                    .addClass('c-green')
-                    .html(`<i class="fa fa-check"></i> Active `);
-
-                $this.data('status', !status)
-                    .removeClass('unblock')
-                    .addClass('block')
-                    .text('block User');
-            } else {
-                $('#UserStatus').removeClass('c-green')
-                    .addClass('c-red')
-                    .html(`<i class="fa fa-times-circle-o c-red"></i>  Blocked`);
-
-                $this.data('status', !status)
-                    .removeClass('block')
-                    .addClass('unblock')
-                    .text('Unblock User');
-            }
-        } else {
-            if (status) {
-                var text = "";
-                $.each(data.messges, function (i, item) {
-
-                    text += item + "\s\n";
-                })
-                $notification.error(window.localization.error , text, 2000, "fa fa-exclamation-circle")
-            } else {
-                var text = "\s\n";
-                $.each(data.messages, function (i, item) {
-
-                    text += item + "\s\n";
-
-                })
-                $notification.error(window.localization.error , text, 2000, "fa fa-exclamation-circle")
-            }
-        }
-    })
-    .fail(function (jqXHR, Status) {
-        $notification.error(window.localization.error , jqXHR.statusText, 2000, "fa fa-exclamation-circle")
-    });
-}
-
- 
-$('.toggleblock').on('click', function () {
-    var $this = $(this);
-    var userId = $(this).data('id');
-    var userName = $(this).data('username');
-    var block_url = $(this).data('block-url');
-    var unblock_url = $(this).data('unblock-url');
-    var status = $(this).data('status');
-    var confirm_title = $(this).data("confirm-title");
-    var confirm_text = $(this).data("confirm-text");
-    var confirm_yes = $(this).data("confirm-yes");
-
- 
-
-    if(!status){
-        window.swalWithBootstrapButtons({
-            title:confirm_title || 'Are you sure?',
-            text: confirm_text || "Blocking this user will prevent them from logging in ",
-            type: 'error',
-            showCancelButton: true,
-            confirmButtonText: confirm_yes || window.localization.confirm_yes ,
-            focusConfirm :false
-        }).then((result) => {
-            if(result.value){
-                blocking(status,$this,unblock_url,block_url,userName)
-            }
-        } );
-    }else{
-        blocking(status,$this,unblock_url,block_url,userName)
-    }
-   
-
-
-   
-    
-})
 
 
 
@@ -650,3 +538,68 @@ function toggleFullscreen(elem) {
   }
   
 $(".fullscreen").click(function(){toggleFullscreen()});
+
+
+
+const MakeErrorsMsg = (errors)=>{
+
+    let txt = "";
+    errors.forEach((el)=>{
+        txt += `<strong>${window.localization[el.key]}</strong>`;
+        let div = "<div>";
+        el.value.map((vl)=> div += `${vl}<br/>`)
+        div += "</div>";
+        txt += div;
+    }) 
+
+    return txt;
+}
+ 
+
+const ImgReader = (img,callback)=>{
+    let reader = new FileReader();
+    reader.onload = (e) => callback(e.target.result) ;
+    reader.readAsDataURL(img);
+}
+
+
+$(document).ready(()=>{
+
+    $(".toggle__publish").on("change",function(event){
+
+        let $this = $(this);
+        let link = $this.data('url');
+        let status = $this.prop('checked');
+        
+
+        fetch(link,{headers :{"Content-Type" : "application/json;charset=utf-8"}})
+        .then(res=>res.json()) 
+        .then(response => {
+            if(!response.success){  
+                if (response.errors.length > 0) {
+                    txt = MakeErrorsMsg(response.errors);
+                    $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                }else{
+                    $notification.error(window.localization.error , window.localization.something_wrong , 3500, "fa fa-exclamation-circle");
+                }
+                $this.prop('checked' , !status )
+            } 
+        })
+        .catch(error =>  $notification.error("", error.message , 2000, "fa fa-exclamation-circle"));
+    })
+
+})
+
+
+async function async_fetch(url, body, headers) {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: headers || {
+            'Accept': 'application/json',
+            "Content-Type": 'application/json; charset=utf-8',
+        },
+        body: body
+
+    })
+    return await response.json();
+}

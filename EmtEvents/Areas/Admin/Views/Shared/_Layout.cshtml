@@ -103,7 +103,8 @@
             <footer>
 
                 <div class="pull-right flip-dir">
-                    &copy; 2018 -   <a href="http://tamtech.solutions/" class="c-blue"
+                    &copy; 2018 - @DateTime.Now.Year
+                    <a href="http://tamtech.solutions/" class="c-blue"
                                        data-toggle="tooltip" data-placement="top" title="Visit Tamtech" target="_blank">
                         <span class="fa fa-globe"></span>
                         @Localizer["tamtech"]
@@ -117,30 +118,25 @@
 
 
 
-    <script src="~/Admin/lib/jquery/dist/jquery.min.js">
-    </script>
-    <script src="~/Admin/lib/bootstrap/dist/js/bootstrap.min.js">
-    </script>
+    
 
+    <partial name="~/Areas/Admin/Views/Shared/utilities/_localization.cshtml" />
 
-
-    <script src="~/Admin/lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    @Html.Partial("~/Areas/Admin/Views/Shared/_localization.cshtml")
     @RenderSection("Localization", required: false)
+      
+    <script src="~/Admin/js/lib.min.js"></script>
     <script src="~/Admin/js/script.min.js"></script>
 
     @RenderSection("Scripts", required: false)
-    @Html.Partial("~/Areas/Admin/Views/Shared/_ResultMessage_notification.cshtml", ViewData)
 
+    <partial name="~/Areas/Admin/Views/Shared/utilities/_ResultMessage_notification.cshtml" model="ViewData"/>
+
+   
     <script>
-        var loginUrl = '@Url.Action("login", "account" ,new { Area="Identity" })'
         $.ajaxSetup({
-            statusCode: {
-                401: function () {
-                    window.location.href = loginUrl
-                },
-                403: function () {
-                    window.location.href = loginUrl
+            error: function (x, status, error) {
+                if(x.status == 403 || x.status == 401){
+                    window.location.href = '@Url.Action("login", "account" ,new { Area="Identity" })';
                 }
             }
         });

@@ -1,0 +1,56 @@
+@{
+     var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div class="modal fade" id="sectionModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="">@Localizer["create_section"]</h4>
+            </div>
+
+            <form asp-action="CreateSection" asp-controller="Sections" class="form " id="CreateSection">
+                <input type="hidden" name="Lang" value="@activeLang" />
+                <div class="modal-body">
+
+                    <div class="alert alert-danger" id="errors" style="display:none">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="content"> </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group clearfix">
+                            <label  for="Title" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                            <div class="col-sm-9 col-xs-12">
+                                <input type="text" name="Title" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="Slug" class="control-label col-md-2 col-sm-3 col-xs-12 ">
+                                @Localizer["f_slug"]
+                                <i class="fa fa-asterisk c-red fz-10 "></i>
+                            </label>
+                            <div class="col-sm-9 col-xs-12">
+                                <input type="text" name="Slug" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label  for="Summary" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_summary"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                            <div class="col-sm-9 col-xs-12">
+                                <textarea  name="Summary" class="form-control" required rows="5" maxlength="1000"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Localizer["close"]</button>
+                    <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@Localizer["Create"]">
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

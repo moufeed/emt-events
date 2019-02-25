@@ -1,0 +1,136 @@
+﻿@model TestimonialDto
+@{
+    ViewData["Title"] = Localizer["testimonial_details"];
+    ViewData["UnitTestPageClass"] = "ut-Testimonial";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3> @Localizer["testimonial_details"] <small> </small></h3>
+        </div>
+        <div class="title_right">
+            <a asp-action="Index"
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+        </div>
+    </div>
+</div>
+
+
+ 
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+            @{
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
+            }
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+       
+
+        <div class="x_panel">
+            <div class="x_content p-y-5 ">
+
+
+                <div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong> @Localizer["image"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @if (Model.MainImage != null)
+                        {
+                            <img src="@Model.MainImage" class="img-responsive" style="max-width: 125px;" />
+                        }
+                        else
+                        {
+                            <img src="~/Admin/img/noimage.jpg" class="img-responsive" style="max-width: 125px;" />
+                        }
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group clearfix">
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["author_name"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">@Model.AuthorName</span>
+
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["l_email"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">@Model.Email</span>
+
+                </div>
+                <hr />
+
+                <div class="form-group clearfix">
+
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["t_company"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">@Model.Company</span>
+
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["t_job_position"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">@Model.Postion</span>
+
+                </div>
+                <hr />
+                <div class="form-group clearfix">
+
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["status"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">
+                        @if (Model.Published)
+                        {
+                            <span class="c-green"> <i class="fa fa-check" aria-hidden="true"></i>@Localizer["published"]</span>
+                        }
+                        else
+                        {
+                            <span class="c-red"> <i class="fa fa-times" aria-hidden="true"></i> @Localizer["unpublished"]</span>
+                        }
+                    </span>
+
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["t_rating"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">
+
+                        <span class="rating">
+
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                if (Model.Rating > i)
+                                {
+                                    <i class="fa fa-star"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-star-o"></i>
+                                }
+                            }
+                        </span>
+                    </span>
+
+                </div>
+                <hr />
+                <div class="form-group clearfix">
+
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["created_date"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">@Model.CreatedDate</span>
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["modified_date"]</strong>
+                    <span class="col-md-4 col-sm-4 col-xs-12">@Model.ModifiedDate</span>
+                </div>
+                <hr />
+                <div class="form-group clearfix">
+                    <strong class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["title"]</strong>
+                    <span class="col-md-8 col-sm-8 col-xs-12">@Model.Title</span>
+                </div>
+                <hr />
+                <div class="form-group clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <strong> @Localizer["t_message"]</strong>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        @Html.Raw(Model.Summary)
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -3,6 +3,12 @@
         width: 100%;
     }
 }
+
+table{
+    > thead > tr > th{
+         font-family: if-ltr("dosis-bold","tl-bold"), Roboto, Arial, "Droid Sans", sans-serif;  
+    }
+}
 .table-middle {
 
     > thead > tr > th, 
@@ -19,13 +25,25 @@
     }
 
     &.table-striped:not(.table-bordered ){
+
+            
         td {
-            border: 0; 
+            border: 0;
+            
+            
+
+                border-bottom: 1px solid #e0eef6;
+            
             vertical-align: middle !important;
             &.index{
                 padding-#{$left} : 15px; 
-            } 
+            }  
             
+        }
+        tr:last-child {
+            td {
+                border: 0;
+            }
         }
     }
     .btn{  

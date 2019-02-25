@@ -58,7 +58,11 @@ var t_settings = {
 }
 
 const $showErorr = (errors)=>{
-    $notification.error(`<strong>${errors[0].key}</strong>`, `<span>${errors[0].value[0]}</span>`, 2000, "fa fa-exclamation-circle");
+    
+    if (errors.length > 0) {
+        txt = MakeErrorsMsg(errors);
+        $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+    }
 }
 
 const $fail  = (jqXHR, Status)=>{

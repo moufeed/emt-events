@@ -7,13 +7,21 @@
         <div class="form-group col-md-4 col-sm-4 col-lg-2">
             <label for="sortPage">@Localizer["sort_by"]</label>
             <select asp-for="SortBy" asp-items="ViewBag.sortList"
-             onchange="document.filterForm.submit()"
+                    onchange="document.filterForm.submit()"
                     class="form-control m-x-1 select_no-search"></select>
         </div>
 
         <div class="form-group col-md-4 col-sm-4 col-lg-2">
             <label for="sortPage">@Localizer["title"]</label>
             <input type="text" asp-for="Title" class="form-control m-x-1" style="height: 38px;" />
+        </div>
+
+        <div class="form-group col-md-4 col-sm-4 col-lg-2">
+            <label for="section">@Localizer["section"]</label>
+            <select asp-for="Section" asp-items="ViewBag.sectionList"
+                    class="form-control m-x-1 select_no-search">
+                <option value="">@Localizer["all"]</option>
+            </select>
         </div>
 
         <div class="form-group col-md-4 col-sm-4 col-lg-2">
@@ -29,9 +37,9 @@
 
             <button type="submit" class="btn btn-info p-x-5 m-t5">@Localizer["search"]</button>
 
-        <if exclude-if="@ViewBag.showReset">
+            <if exclude-if="@ViewBag.showReset">
                 <a href="@Url.AdminUrl("index","galleries")" class="btn btn-link p-x-2 m-t5 c-red"> <i class="fa fa-times-circle "></i> @Localizer["reset"]</a>
-        </if>
+            </if>
         </div>
 
 

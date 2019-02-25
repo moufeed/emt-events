@@ -21,7 +21,8 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts.Mapper
                 Summary = frontend.Summary,
                 Title = frontend.Title,
                 MetaDescription = frontend.MetaDescription,
-                Tags = frontend.Tags
+                Tags = frontend.Tags,
+                CustomDate = frontend.PostDate
             };
         }
 
@@ -41,7 +42,8 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts.Mapper
                 SectionName = frontend.Section,
                 MetaDescription = frontend.MetaDescription,
                 SEOMarkup = frontend.SEOMarkup,
-                Tags = frontend.Tags
+                Tags = frontend.Tags,
+                CustomDate = frontend.PostDate
             };
         }
 
@@ -69,6 +71,8 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Posts.Mapper
                 PublishedDate = backend.PublishedDate,
                 AuthorName = backend.AuthorName,
                 SectionSlug = backend.SectionSlug,
+                ViewsCount = backend.VisitorsCount,
+                PostDate =backend.CustomDate
                 //Tags = backend.Tags
             };
         }

@@ -41,9 +41,13 @@
 
 
     }
-    ul li{
-        @include media-breakpoint-down(sm){
-             margin-bottom: 10px;
+    ul {
+        padding: 0;
+         
+        li{
+            @include media-breakpoint-down(sm){
+                 margin-bottom: 10px;
+            }
         }
     }
 }

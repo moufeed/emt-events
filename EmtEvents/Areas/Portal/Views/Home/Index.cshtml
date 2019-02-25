@@ -14,7 +14,7 @@
 <partial name="partials/Index/_events.cshtml" />
 <partial name="partials/Index/_testimonials.cshtml" />
 <if include-if="ViewBag.publicClientsSlider != null">
-     <partial name="partials/Index/_clients.cshtml"  model="@ViewBag.publicClientsSlider" />
+    <partial name="partials/Index/_clients.cshtml" model="@ViewBag.publicClientsSlider" />
 </if>
 <partial name="partials/Index/_contactFooter.cshtml" />
 
@@ -22,6 +22,8 @@
 
 @section SEO {
     <meta name="description" content="@Localizer["p_meta_description"]">
+    <meta name="Keywords" content="@Localizer["p_meta_keywords"]">
+
     <script type="application/ld+json">
         {
         "@@context": "http://schema.org",

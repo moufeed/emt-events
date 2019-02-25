@@ -16,8 +16,9 @@ using TamTechSDK.Common.Services.ContentService.Posts.Models;
 using TamTechSDK.Common.Services.ContentService.Request;
 using TamTechSDK.Common.Services.ContentService.Services;
 using TamTechSDK.Common.Services.ContentService.Sliders;
-
+using TamTechSDK.Common.Services.ContentService.Testimonials;
 using TamTechSDK.Common.Services.Email;
+using TamTechSDK.Common.Services.Upload;
 using TamTechSDK.Web;
 using TamTechSDK.Web.Controllers.Portal;
 using TamTechSDK.Web.Services.Configurations.AppSetting;
@@ -33,32 +34,38 @@ namespace EmtEvents.Areas.Portal.Controllers
         private readonly IGalleriesService _GalleriesService;
         private readonly IPostsService _postservice;
         private readonly IServicesService _servicesservice;
+        private readonly ITestimonialsServices _TestimonialsServices;
+
+
 
         public HomeController(ITelemetryClientService telemetryClientService,
                                IPageService pageService,
                                IMenusServices menusServices,
                                IConfiguration configuration,
-                               IEmailSenderService emailSender, 
-                               IWebApplicationSettingsService appSettingsService, 
-                               IServicesService servicesservice,
+                               IEmailSenderService emailSender, IWebApplicationSettingsService appSettingsService, IServicesService servicesservice,
                                ISlidersServices sliderService,
                                IRequestService requestService,
                                ICityService cityService,
                                IGalleriesService GalleriesService,
-                               IPostsService postservice
-                                
-                             )
+                               IPostsService postservice,
+                               ITestimonialsServices testimonialservices,
+                               IStringLocalizer<PublicBaseController> localizer,
+                               IUploadManagerService uploadManager,
+                               ITestimonialsServices TestimonialsServices)
                                : base(telemetryClientService, pageService,
                                         menusServices, configuration, emailSender, appSettingsService,
-                                        servicesservice, sliderService, requestService, cityService)
+                                        servicesservice, sliderService, requestService, cityService, testimonialservices, uploadManager, localizer)
 
         {
+
+            _TestimonialsServices = TestimonialsServices;
             _pageService = pageService;
             _appSettingsService = appSettingsService;
             _GalleriesService = GalleriesService;
             _sliderService = sliderService;
             _postservice = postservice;
             _servicesservice = servicesservice;
+
         }
 
         public override async Task<IActionResult> Index()
@@ -66,6 +73,12 @@ namespace EmtEvents.Areas.Portal.Controllers
 
             try
             {
+                var testimonial = await _TestimonialsServices.GetPublicListAsync(true);
+                if (testimonial.Success)
+                {
+                    ViewBag.testimonials = testimonial.Data;
+                }
+
                 var publicMainSlider = await _sliderService.GetPublicByKeyAsync(_appSettingsService.GetHomePageMainSliderKey());
                 if (publicMainSlider.Success)
                 {
@@ -83,7 +96,7 @@ namespace EmtEvents.Areas.Portal.Controllers
                     ViewBag.aboutSummary = aboutSummary.Data;
                 }
 
-                var services = await _servicesservice.GetPublicListAsync(25);
+                var services = await _servicesservice.GetPublicListAsync(25,true);
 
                 if (services.Success)
                 {

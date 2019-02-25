@@ -3,31 +3,31 @@
 
 <div class="form-group clearfix">
    
-    <label asp-for="Name" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_name"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="Name" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
         @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger invalid_field" })
     </div>
 </div>
 
 <div class="form-group clearfix">
-    <label asp-for="ShortDescription" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_short_description"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="ShortDescription" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_short_description"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @Html.TextAreaFor(m => m.ShortDescription, new { @class = "form-control", rows = "5" })
         @Html.ValidationMessageFor(m => m.ShortDescription, "", new { @class = "text-danger invalid_field" })
     </div>
 </div>
 
 <div class="form-group clearfix">
-    <label asp-for="FullDescription" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_full_description"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="FullDescription" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_full_description"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @Html.TextAreaFor(m => m.FullDescription, new { @class = "form-control", rows = "5" })
         @Html.ValidationMessageFor(m => m.FullDescription, "", new { @class = "text-danger invalid_field" })
     </div>
 </div>
 <div class="form-group clearfix">
-    <label asp-for="SKU" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_sku"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="SKU" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_sku"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @if (ViewBag.isUpdate)
         {
             <p class="form-control-static" id="SKU">@Model.SKU</p>
@@ -42,8 +42,8 @@
 </div>
 
 @*<div class="form-group clearfix">
-        @Html.Label("Published", "Published :", new { @class = "control-label col-md-3 col-sm-4 col-xs-12 " })
-        <div class="col-md-8 col-sm-8 col-xs-12">
+        @Html.Label("Published", "Published :", new { @class = "control-label col-md-2 col-sm-4 col-xs-12 " })
+        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
             @Html.CheckBoxFor(m => m.Published, new { @class = "toggle_switch" })
             @Html.ValidationMessageFor(m => m.Published, "", new { @class = "text-danger " })
         </div>
@@ -51,23 +51,23 @@
 <hr />
 <div class="form-group clearfix">
     
-    <label asp-for="Price" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_price"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="Price" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_price"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @Html.TextBoxFor(m => m.Price, new { @class = "form-control price-group", type = "number", step = "any", min = "0" })
         @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger invalid_field" })
     </div>
 </div>
 <div class="form-group clearfix">
-    <label asp-for="DiscountPrice" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_discount_price"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="DiscountPrice" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_discount_price"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @Html.TextBoxFor(m => m.DiscountPrice, new { @class = "form-control price-group", type = "number", step = "any", min = "0" })
         @Html.ValidationMessageFor(m => m.DiscountPrice, "", new { @class = "text-danger invalid_field" })
     </div>
 </div>
 <hr />
 <div class="form-group clearfix">
-    <label asp-for="StockQuantity" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_stock_quantity"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="StockQuantity" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_stock_quantity"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @Html.TextBoxFor(m => m.StockQuantity, new { @class = "form-control ignore", type= "number" ,
        min = "0", step = "1" })
         @Html.ValidationMessageFor(m => m.StockQuantity, "", new { @class = "text-danger invalid_field" })
@@ -75,8 +75,8 @@
 </div>
 
 <div class="form-group clearfix">
-    <label asp-for="MaximumCartQuantity" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["maximum_cart_quantity"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label asp-for="MaximumCartQuantity" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["maximum_cart_quantity"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         @Html.TextBoxFor(m => m.MaximumCartQuantity, new { @class = "form-control ignore", type= "number" ,
        min = "0", step = "1" })
         @Html.ValidationMessageFor(m => m.MaximumCartQuantity, "", new { @class = "text-danger invalid_field" })
@@ -85,9 +85,9 @@
 <hr />
 <div class="form-group clearfix">
 
-    <label asp-for="Brand" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["Manufacturer"]</label>
+    <label asp-for="Brand" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["Manufacturer"]</label>
 
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         <div class="clerfix" style="position:relative">
             <div class="col-md-4 col-sm-4 col-xs-12 p-x-0">
                 <select asp-for="Brand"
@@ -98,7 +98,7 @@
                 <span asp-validation-for="Brand" class="text-danger invalid_field"></span>
             </div>
 
-            <label for="Categories" class="control-label col-md-3 col-md-offset-1 col-sm-4 col-xs-12"> @Localizer["Categories"]</label>
+            <label for="Categories" class="control-label col-md-2 col-md-offset-1 col-sm-4 col-xs-12"> @Localizer["Categories"]</label>
             <div class="col-md-4 col-sm-4 col-xs-12 p-x-0">
                 <select asp-for="Categories"
                         name="Categories" id="Categories"
@@ -116,16 +116,16 @@
 
 
 <div class="form-group clearfix">
-    <label for="IsShipEnabled" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["requires_shipping"]</label>
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <label for="IsShipEnabled" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["requires_shipping"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
         <div class="clerfix">
             <div class="col-md-4 col-sm-4 col-xs-12 p-x-0">
                 <input type="checkbox" asp-for="IsShipEnabled" name="IsShipEnabled" id="Shipping" class="toggle_switch" />
                 <span asp-validation-for="IsShipEnabled" class="text-danger invalid_field"></span>
             </div>
-            <div class="col-md-8 col-sm-8 col-xs-12 p-x-0">
+            <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12 p-x-0">
 
-                <label for="IsFreeShipping" class="control-label col-md-3 col-md-offset-1 col-sm-4 col-xs-12">@Localizer["free_shipping"] </label>
+                <label for="IsFreeShipping" class="control-label col-md-2 col-md-offset-1 col-sm-4 col-xs-12">@Localizer["free_shipping"] </label>
 
                 <div class="col-md-4 col-sm-4 col-xs-12 p-x-0">
                     @if (Model.IsShipEnabled)
@@ -150,7 +150,7 @@
 
 @{ string disabledInput = Model.IsShipEnabled ? "" : "disabled='disabled' "; }
 <div class="form-group clearfix shipping_inputs ">
-    <div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="col-md-2 col-sm-3 col-xs-12">
 
         <label for="Weight" class="m-b3">@Localizer["weight"] </label>
         <div class="input-group">
@@ -161,7 +161,7 @@
               <div class="input-group-addon">@Localizer["gram"] </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="col-md-2 col-sm-3 col-xs-12">
         <label for="Length" class="m-b3">@Localizer["length"] </label>
         <div class="input-group">
             @if (Model.IsShipEnabled)
@@ -171,7 +171,7 @@
               <div class="input-group-addon">@Localizer["millimeter"] </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="col-md-2 col-sm-3 col-xs-12">
         <label for="Weight" class="m-b3">@Localizer["width"] </label>
         <div class="input-group">
             @if (Model.IsShipEnabled)
@@ -182,7 +182,7 @@
               <div class="input-group-addon">@Localizer["millimeter"] </div>
         </div>
     </div>
-    <div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="col-md-2 col-sm-3 col-xs-12">
         <label for="Height" class="m-b3">@Localizer["height"] </label>
         <div class="input-group">
             @if (Model.IsShipEnabled)

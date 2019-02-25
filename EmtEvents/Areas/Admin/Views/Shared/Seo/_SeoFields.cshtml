@@ -1,0 +1,132 @@
+﻿@model string
+
+
+@{
+    SEODataModel SeoModel = new SEODataModel();
+    if (!string.IsNullOrEmpty(Model))
+    {
+        SeoModel = JsonConvert.DeserializeObject<SEODataModel>(Model);
+    }
+
+    var dict = new Dictionary<int, string>();
+    foreach (var name in Enum.GetNames(typeof(SeoTypes)))
+    {
+        dict.Add((int)Enum.Parse(typeof(SeoTypes), name), name);
+    }
+
+}
+
+  
+<input type="hidden" name="Seo_types" value="@(JsonConvert.SerializeObject(dict))" data-seo-types />
+
+<hr />
+<div class="form-group clearfix">
+    <label for="_SeoTypes" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["seo_type"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <select class="form-control" name="_SeoTypes" id="SeoTypes">
+            <option value="null">@Localizer["select_type"]</option>
+
+            @{
+                var values = Enum.GetValues(typeof(SeoTypes));
+            }
+            @foreach (int item in values)
+            {
+                if (SeoModel.Type == Enum.GetName(typeof(SeoTypes), item))
+                {
+                    <option value="@item" selected>@Localizer[(Enum.GetName(typeof(SeoTypes), item))]</option>
+                }
+                else
+                {
+                    <option value="@item">@Localizer[(Enum.GetName(typeof(SeoTypes), item))]</option>
+                }
+
+            } 
+        </select>
+    </div>
+</div>
+
+<fieldset class="Seofields" id="Seofields">
+    @{
+        if (SeoModel.Data != null)
+        {
+            if (SeoModel.Type == SeoTypes.Article.ToString())
+            {
+                string serialized = JsonConvert.SerializeObject(SeoModel.Data);
+
+                ArticleModel Article = JsonConvert.DeserializeObject<ArticleModel>(serialized);
+
+                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoArticle.cshtml", Article);
+            }
+            if (SeoModel.Type == SeoTypes.Recipe.ToString())
+            {
+                string serialized = JsonConvert.SerializeObject(SeoModel.Data);
+
+                RecipeModel Recipe = JsonConvert.DeserializeObject<RecipeModel>(serialized);
+
+                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoRecipe.cshtml", Recipe);
+            }
+
+            if (SeoModel.Type == SeoTypes.WebPage.ToString())
+            {
+
+
+                string serialized = JsonConvert.SerializeObject(SeoModel.Data);
+                WebPage Web_Page = JsonConvert.DeserializeObject<WebPage>(serialized);
+
+
+                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoWebPage.cshtml", Web_Page);
+            }
+
+            if (SeoModel.Type == SeoTypes.ImageGallery.ToString())
+            {
+
+
+                string serialized = JsonConvert.SerializeObject(SeoModel.Data);
+                Gallery gallery = JsonConvert.DeserializeObject<Gallery>(serialized);
+
+
+                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoGallery.cshtml", gallery);
+            }
+
+            if (SeoModel.Type == SeoTypes.Service.ToString())
+            {
+                string serialized = JsonConvert.SerializeObject(SeoModel.Data);
+                Service Service = JsonConvert.DeserializeObject<Service>(serialized);
+
+
+                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoService.cshtml", Service);
+            }
+
+            if (SeoModel.Type == SeoTypes.Product.ToString())
+            {
+                string serialized = JsonConvert.SerializeObject(SeoModel.Data);
+                ProductSEO product = JsonConvert.DeserializeObject<ProductSEO>(serialized);
+
+
+                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoProduct.cshtml", product);
+            }
+
+        }
+    }
+
+</fieldset>
+
+<hr />
+<div class="jsonField">
+    <div class="form-group">
+        <label for="SeoTypes" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["seo_markup"]</label>
+        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+            <div class="col-md-9 col-sm-8 col-xs-12 p-0">
+                <span class="toggle_span m-0 p-b3">
+                    <input type="checkbox" name="isEditable" id="JsonIsEditable"
+                            class="toggle_switch m-l0 "  
+                           data-alert-title='@Localizer["edit_markup_title"]'  
+                           data-alert-msg='@Localizer["edit_markup_msg"]'/> @Localizer["edit_markup"]
+                </span>
+            </div>
+            <input type="hidden" name="SEOMarkup" id="SEOMarkup" class="ut-seo-markup">
+            <Textarea class="form-control" rows="15" name="SEOField" id="SEOField"
+                        disabled>@Html.Raw(SeoModel.Data)</Textarea>
+        </div>
+    </div>
+</div>

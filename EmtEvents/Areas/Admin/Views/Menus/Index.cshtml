@@ -14,8 +14,12 @@
         </div>
         <div class="title_right">
 
-            <a href="@Url.AdminUrl("Create","Menus")"
-               class="btn btn-blue  btn-add-new ut-newMenu"><i class="fa fa-plus"></i>@Localizer["new_menu"]</a>
+            @if (Model.Count == 0)
+            {
+                <a href="@Url.AdminUrl("Create","Menus")"
+                   class="btn btn-blue  btn-add-new ut-newMenu"><i class="fa fa-plus"></i>@Localizer["new_menu"]</a>
+            }
+
         </div>
     </div>
 </div>
@@ -53,12 +57,18 @@
                             {
 
                                 <tr id="tr-@menu.Id">
-                                    <td class="index">
-                                        @menu.Key
+
+                                     <td class="index">
+                                        <a  href="@Url.AdminUrl("Edit","menus",new { id = menu.Id})"  class="underline" >
+                                                @menu.Key
+                                        </a>
                                     </td>
-                                    <td>
+
+
+                                    <td >
                                         @menu.Title
                                     </td>
+                                   
                                     <td>
                                         @menu.Position
                                     </td>

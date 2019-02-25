@@ -23,9 +23,12 @@ $.validator.addMethod(
     },$.validator.messages.slug);
 
 
+$.validator.addMethod('filesize', function (value, element, param) {
+    return this.optional(element) || (element.files[0].size <= (param * 1024))
+}, $.validator.messages.filesize );
 
 
-// 
+ 
 
 
 
@@ -129,7 +132,7 @@ $("#DiscountPrice").on('keyup',function(){
     Productvalidator.element( "#Price" );
 })
 
-$('#BrandForm ,#CategoriesForm ,#ListPageForm ,#EmailForm ,#CreateUserForm'   ).validate({
+$('#BrandForm ,#CategoriesForm ,#ListPageForm ,#EmailForm ,#CreateUserForm ,#GalleryItemForm ').validate({
     errorClass: "invalid_field",
     validClass: "valid_field",
     ignore: ".ignore",
@@ -188,5 +191,3 @@ $('#CreatePageForm,#EditPageForm ,#ServicesForm , #PostForm ').validate({
         },
 },
 });
-
- 

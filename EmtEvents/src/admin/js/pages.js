@@ -9,41 +9,8 @@ var default_page_Localization ={
 }
 
 var _localizer = $.extend({}, default_page_Localization ,window.pageLocalization || {});
-
-$(document).on('click','a[id^="pubunpub-"]',function(){
-
-    let $el = $(this);
-    let url = $el.data('url')
-    let status = $el.data('status');
-    let OldClass = $el.find('i').attr("class");
-    $el.find('i').removeClass().addClass("fa fa-spinner fa-pulse");
-    var $tr  =  $el.parents("tr");
-    $.get(url,()=>{}).done(function(data){
  
-       if(data.success){
-        var title = $tr.find(".ser-title");
-        if( $el.hasClass('ptrue') ){
-            title.attr("data-href",title.attr("href")).removeAttr("href").removeClass("underline");
-             $el.removeClass('ptrue')
-             $el.attr('title' , _localizer.t_unpublish  );
-             $el.removeClass("ut-published").addClass("ut-unpublished");
-             $el.find('i').removeClass("fa-spinner fa-pulse").addClass("fa-eye-slash c-red");
-             $el.find('small').text(_localizer.t_unpublished);
-             $notification.success("", _localizer.unpublished_successfully , 2500, "fa fa-check")
-        }else{
-            title.attr("href",title.attr("data-href")).addClass("underline");
-            $el.removeClass("ut-unpublished").addClass("ut-published ptrue");
-            $el.attr('title' ,_localizer.t_publish );
-            $el.find('i').removeClass("fa-spinner fa-pulse").addClass("fa-eye c-green");
-            $el.find('small').text(_localizer.t_published );
-            $notification.success("",_localizer.published_successfully , 2500, "fa fa-check")
-        }
-       }else{
-           $notification.error("Error!", data.errors[0].value[0], 2000, "fa fa-exclamation-circle");
-           $el.find('i').removeClass().addClass(OldClass);
-       }
-    })
-})
+
 
 $(document).on("click",".remove_page",function(){
     let $this = $(this);
@@ -62,7 +29,10 @@ $(document).on("click",".remove_page",function(){
                         $this.parents('tr')[0].remove();
                     }else{
                         var errors = data.errors;
-                        $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");
+                        if (errors.length > 0) {
+                            txt = MakeErrorsMsg(errors);
+                            $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                        }
                     }
                 })
                 .fail(function (jqXHR, Status) {

@@ -64,7 +64,7 @@
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-service"
-                                  data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("PublishAsync","services" , new { id = Model.Id})"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
@@ -88,8 +88,8 @@
                             @if (!string.IsNullOrEmpty(Model.Slug) && Model.Published)
                             {
                                 <div class="form-group clearfix">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_public_url"]</label>
-                                    <div class="col-md-7 col-sm-9 col-xs-12">
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_public_url"]</label>
+                                    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                         @{
                                             var url = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action("v", "services", new { Area = "portal", slug = Model.Slug }));
                                         }
@@ -100,15 +100,15 @@
                             }
                         }
                         <div class="form-group clearfix">
-                            <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_name"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="Title" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 <input asp-for="Title" class="form-control" required data-seo-name />
                                 <span asp-validation-for="Title" class="text-danger invalid_field"></span>
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label asp-for="Slug" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="Slug" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_slug"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 @if (Model.Locked)
                                 {
                                     <div class="input-group input-locked">
@@ -130,8 +130,8 @@
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="MainImage" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
 
                                 @if (!string.IsNullOrEmpty(Model.MainImage))
                                 {
@@ -140,17 +140,19 @@
                                 }
 
                                 <label class="form-control clearfix uploadfile">
-                                    <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" />
+                                    <input type="file" name="NewMainImage" id="NewMainImage"
+                                           class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" data-rule-filesize="500" />
                                     <span class="url">@Localizer["choose_file"]</span>
                                     <span class="file-btn"><i class="fa fa-search"></i> @Localizer["Browse"]</span>
                                 </label>
+                                <label id="NewMainImage-error" class="invalid_field" for="NewMainImage" style="display:none;"></label>
                                 <span asp-validation-for="MainImage" class="text-danger invalid_field"></span>
                             </div>
                         </div>
 
                         <div class="form-group clearfix">
-                            <label asp-for="Icon" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_icon"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="Icon" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_icon"]</label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
 
                                 @await Html.PartialAsync("_Icons.cshtml", Model)
                                 <span asp-validation-for="Icon" class="text-danger invalid_field"></span>
@@ -158,8 +160,8 @@
                         </div>
 
                         <div class="form-group clearfix">
-                            <label asp-for="IconVisibility" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["icon_visibility"] </label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="IconVisibility" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["icon_visibility"] </label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 <input type="checkbox" asp-for="IconVisibility" name="IconVisibility" id="IconVisibility" class="toggle_switch" />
                                 <span asp-validation-for="IconVisibility" class="text-danger invalid_field"></span>
                             </div>
@@ -167,8 +169,8 @@
 
 
                         <div class="form-group clearfix">
-                            <label asp-for="DisplayOrder" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="DisplayOrder" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 @if (activeLang != CultureConstants.DefaultCulture.Lang && ViewBag.isUpdate)
                                 {
                                     <input asp-for="DisplayOrder" class="form-control" min="0" disabled />
@@ -182,23 +184,23 @@
                         </div>
 
                         <div class="form-group clearfix">
-                            <label asp-for="Section" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_section"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="Section" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_section"]</label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 <input asp-for="Section" class="form-control" />
                                 <span asp-validation-for="Section" class="text-danger invalid_field"></span>
                             </div>
                         </div>
 
                         <div class="form-group clearfix">
-                            <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="Summary" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_summary"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 <textarea asp-for="Summary" class="form-control" required rows="5" maxlength="1000" data-seo-description></textarea>
                                 <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label asp-for="Content" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_content"] </label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="Content" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_content"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 <textarea asp-for="Content" class="form-control" required rows="5"></textarea>
                                 <span asp-validation-for="Content" class="text-danger invalid_field"></span>
                             </div>
@@ -214,9 +216,9 @@
 
                         <div class="form-group clearfix">
 
-                            <label asp-for="MetaDescription" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
+                            <label asp-for="MetaDescription" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
 
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 <textarea asp-for="MetaDescription" class="form-control MetaDescription"
                                           data-characters='{"warning_count" : 158  , "maximum_count" : 300 }' rows="3"></textarea>
 
@@ -230,7 +232,7 @@
                         {
                             <input type="hidden" name="DatePublished" value="@(String.Format("{0:yyyy-MM-dd}", Model.PublishedDate))" data-seo-published />
                             <input type="hidden" name="DateModified" value="@(String.Format("{0:yyyy-MM-dd}", Model.ModifiedDate))" data-seo-modified />
-                            @await Html.PartialAsync("~/Areas/admin/Views/Shared/_SeoFields.cshtml", Model.SEOMarkup);
+                            @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoFields.cshtml", Model.SEOMarkup);
                         }
 
 
@@ -285,8 +287,11 @@
                     if (data.success) {
                         $notification.success(window.localization.success, msg, 2000, "fa fa-check");
                     } else {
-                        var errors = data.errors;
-                        $notification.error("<strong>" + errors[0].key + "</strong>", "<span>" + errors[0].value[0] + "</span>", 2000, "fa fa-exclamation-circle");
+                      var errors = data.errors;
+                            if (errors.length > 0) {
+                                txt = MakeErrorsMsg(errors);
+                                $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                            }
                         togglePublishBtn($this, false, published, unpublished);
                     }
                 })
@@ -314,5 +319,3 @@
             }   
 
 }
-
-

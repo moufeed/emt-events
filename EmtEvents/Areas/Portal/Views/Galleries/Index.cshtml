@@ -43,7 +43,7 @@
                                 <a href="@Url.PortalAction("v", "galleries", new { slug = item.Slug })">@item.Title</a>
                             </h6>
                             <div class="small-text animate delay-2ms" data-animation="fadeIn">
-                                <span> @(String.Format("{0:d/M/yyyy }", item.CreatedDate)) </span>
+                                <span>@(string.Format("{0:dd/MM/yyyy}",item.CustomDate) ) </span>
                             </div>
                             <div class="small-text animate delay-2ms" data-animation="fadeIn">
                                 <span>@item.Section</span>
@@ -71,6 +71,3 @@
                 </div>
     </div>
 </section>
-
-
- 

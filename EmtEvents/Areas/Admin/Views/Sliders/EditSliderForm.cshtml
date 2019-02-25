@@ -1,9 +1,11 @@
 ﻿@model UpdateSliderDto
+
 @{
     ViewData["Title"] = Localizer["edit_slider"];
     ViewData["UnitTestPageClass"] = "ut-sliders-edit";
     var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
 }
+
 
 <div class="clearfix">
     <div class="page-title">
@@ -17,52 +19,64 @@
     </div>
 </div>
 
+
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
+
+
 
         @{
             ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
         }
         @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
         <div class="x_panel">
+
             <div class="x_content">
+
                 @if (!Model.Locked)
                 {
                     <div class="text-right flip">
                         <label asp-for="Published">
+
                             <input type="checkbox"
                                    asp-for="Published"
                                    class="toggle_switch "
                                    data-toggle="tooltip"
                                    id="publish-slider"
-                                    data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                    data-url="@Url.AdminUrl("PublishSliderAsync","Sliders" ,new { id= Model.Id })"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
                     </div>
                 }
+
                 <form asp-controller="Sliders"
                       asp-action="Edit"
                       class="form-horizontal forn-new form-label-left m-t5"
                       id="SlidersForm">
+
                     <input type="hidden" name="Lang" value="@activeLang" />
+
 
                     @if (!ViewData.ModelState.IsValid)
                     {
                         <div asp-validation-summary="All" class="alert alert-danger"></div>
                     }
+
                     <div class="form-group clearfix">
-                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_name"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
-                            <input asp-for="Title" class="form-control" required  id="Title"/>
+                        <label asp-for="Title" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
+                            <input asp-for="Title" class="form-control" required />
                             <span asp-validation-for="Title" class="text-danger invalid_field"></span>
                         </div>
                     </div>
+
                     @if (Model.Locked)
                     {
                         <div class="form-group clearfix">
-                            <label asp-for="Key" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_key"]</label>
-                            <div class="col-md-7 col-sm-5 col-xs-12">
+                            <label asp-for="Key" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_key"]</label>
+                            <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
                                 <div class="input-group input-locked">
                                     <p class="form-control-static p-r3">@Model.Key</p>
                                     <span class="input-group-addon"
@@ -78,31 +92,34 @@
                     {
 
                         <div class="form-group clearfix">
-                            <label asp-for="Key" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_key"]</label>
-                            <div class="col-md-7 col-sm-5 col-xs-12">
-                                <input asp-for="Key" class="form-control" required data-rule-slug="true" id="Slug" />
+                            <label asp-for="Key" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_key"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                            <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
+                                <input asp-for="Key" class="form-control" required data-rule-slug="true" />
                                 <span asp-validation-for="Key" class="text-danger invalid_field"></span>
                             </div>
                         </div>
 
                     }
-                    @*<div class="form-group clearfix">
-                            <label asp-for="Position" class="control-label col-md-3 col-sm-3 col-xs-12 ">Slider Position</label>
-                            <div class="col-md-7 col-sm-5 col-xs-12">
-                                <select asp-for="Position" class="form-control" required>
-                                    <option value="Header">Header</option>
-                                </select>
 
-                                <span asp-validation-for="Position" class="text-danger invalid_field"></span>
-                            </div>
-                        </div>*@
+                    @*<div class="form-group clearfix">
+                <label asp-for="Position" class="control-label col-md-2 col-sm-3 col-xs-12 ">Slider Position <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
+                    <select asp-for="Position" class="form-control" required>
+                        <option value="Header">Header</option>
+                    </select>
+
+                    <span asp-validation-for="Position" class="text-danger invalid_field"></span>
+                </div>
+            </div>*@
+
                     <div class="form-group clearfix">
-                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label asp-for="Summary" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
                             <textarea asp-for="Summary" class="form-control" rows="3"></textarea>
                             <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
                             <input type="submit" class="btn btn-success p-x-5 ut-save-btn" value="@Localizer["Update"]">
@@ -113,6 +130,7 @@
                         </div>
                     </div>
 
+
                 </form>
             </div>
         </div>
@@ -120,15 +138,23 @@
 </div>
 
 
+
+
 @await Html.PartialAsync("_sliderItems")
 
 
+
+
+
 @section Styles{
+
 }
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 
-    <script>
+
+<script>
         $('#SlidersForm').validate({
             errorClass: "invalid_field",
             validClass: "valid_field",
@@ -144,7 +170,10 @@
                     $notification.success(window.localization.success,msg, 2000, "fa fa-check");
                 } else {
                     var errors = data.errors;
-                    $notification.error("<strong>" + errors[0].key + "</strong>", "<span>" + errors[0].value[0] + "</span>", 2000, "fa fa-exclamation-circle");
+                            if (errors.length > 0) {
+                                txt = MakeErrorsMsg(errors);
+                                $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                            }
                     togglePublishBtn($this, false, published, unpublished);
                 }
             })
@@ -152,24 +181,17 @@
                 $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
                 togglePublishBtn($this, false, published, unpublished);
             }); })
-    </script>
+</script>
+
+
 
     <script src="~/Admin/js/sliders.min.js"></script>
     <script src="~/Admin/js/validator.min.js"></script>
+
 
     @{
         ViewBag.TinyMce_Contetnt_Id = null;
         ViewBag.TinyMce_Suumry_Id = "#Summary";
         await Html.RenderPartialAsync("partials/_tinymce.cshtml");
     }
-    @if (string.IsNullOrEmpty(Model.Key))
-    {
-        <script>
-          $("#Title").on("keyup", function() {
-              $("#Slug").val($(this).val().replace(/\s / g, "_")).valid();
-          })
-        </script>
-    }
 }
-
-        

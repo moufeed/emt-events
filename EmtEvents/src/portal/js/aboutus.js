@@ -23,15 +23,19 @@ $(document).ready(function(){
 				responsiveLg = data.responsiveLg ? data.responsiveLg : 4,
 				draggable = (data.draggable === false) ? data.draggable : true,
 				syncedClass = (data.syncedClass) ? data.syncedClass : false,
+                hoverPause = (data.pause) ? data.pause : true,
+				autoplayTimeout = (data.autoplaytimeout) ? data.autoplaytimeout : 3000,
 				filters = data.filters ? data.filters : false;
 
 			 
 
-			$carousel.owlCarousel({
+		    $carousel.owlCarousel({
+		        autoplay: autoplay,
+		        autoplayTimeout: autoplayTimeout,
+		        autoplayHoverPause: hoverPause,
 				loop: loop,
 				margin: margin,
 				nav: nav,
-				autoplay: autoplay,
 				dots: dots,
 				themeClass: themeClass,
 				center: center,

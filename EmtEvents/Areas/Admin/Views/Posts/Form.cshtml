@@ -48,11 +48,11 @@
                         <label asp-for="Published">
                             <input type="checkbox"
                                    asp-for="Published"
-                                   class="toggle_switch "
+                                   class="toggle_switch toggle__publish"
                                    data-toggle="tooltip"
                                    id="publish-post"
                                    data-placement="@(activeLang == "ar" ? "right" : "left")"
-                                   data-url="@Url.AdminUrl("PublishAsync", "Posts", new { id = Model.Id })"
+                                   data-url="@Url.AdminUrl("PublishAsync","Posts" , new { id = Model.Id})"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
                     </div>
@@ -77,9 +77,8 @@
                         @*@if (!string.IsNullOrEmpty(Model.Slug) && Model.Published)
                             {
                                 <div class="form-group clearfix">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_public_url"]</label>
-                                    <div class="col-md-7 col-sm-9 col-xs-12">
-
+                                    <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_public_url"]</label>
+                                    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
 
                                         @{
                                             string slug = Model.SectionSlug.Trim('/');
@@ -93,16 +92,16 @@
                     }
 
                     <div class="form-group clearfix">
-                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_name"]</label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="Title" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                             <input asp-for="Title" class="form-control" required data-seo-name />
                             <span asp-validation-for="Title" class="text-danger invalid_field"></span>
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="Slug" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="Slug" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_slug"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                             @if (Model.Locked)
                             {
                                 <div class="input-group input-locked">
@@ -125,8 +124,8 @@
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="MainImage" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
 
                             @if (!string.IsNullOrEmpty(Model.MainImage))
                             {
@@ -135,17 +134,18 @@
                             }
 
                             <label class="form-control clearfix uploadfile">
-                                <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" />
+                                <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" data-rule-filesize="500" />
                                 <span class="url">@Localizer["choose_file"]</span>
                                 <span class="file-btn"><i class="fa fa-search"></i> @Localizer["Browse"]</span>
                             </label>
+                            <label id="NewMainImage-error" class="invalid_field" for="NewMainImage" style="display:none;"></label>
                             <span asp-validation-for="MainImage" class="text-danger invalid_field"></span>
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="DisplayOrder" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="DisplayOrder" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                             @if (activeLang != CultureConstants.DefaultCulture.Lang && ViewBag.IsEditMode)
                             {
                                 <input asp-for="DisplayOrder" class="form-control" min="0" disabled />
@@ -159,24 +159,41 @@
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="SectionId" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_section_parent"]</label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="SectionId" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_section_parent"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-7 col-xs-12">
+                            <div class="inputBtn">
+                                <span class="input">
+                                    <select asp-items="ViewBag.selectItems" asp-for="SectionId" class="form-control select_picker" required></select>
+                                    <span asp-validation-for="SectionId" class="text-danger invalid_field"></span>
+                                </span>
+                                <span data-toggle="modal" data-target="#sectionModal" class="btn btn-success linktosection">
+                                    <a data-toggle="tooltip" data-placement="top" title="@Localizer["create_section"]">
+                                        <i class="fa fa-folder"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
 
-                            <select asp-items="ViewBag.selectItems" asp-for="SectionId" class="form-control select_picker"></select>
-                            <span asp-validation-for="SectionId" class="text-danger invalid_field"></span>
+
+                    </div>
+                    <div class="form-group clearfix">
+                        <label asp-for="PostDate" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_post_date"] </label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+                            <input type="date"  asp-for="PostDate"  class="form-control"   />
+                            <span asp-validation-for="PostDate" class="text-danger invalid_field"></span>
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_summary"]</label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="Summary" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_summary"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                             <textarea asp-for="Summary" class="form-control" required rows="5" maxlength="1000" data-seo-description></textarea>
                             <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
                         </div>
                     </div>
                     <div class="form-group clearfix">
-                        <label asp-for="Content" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_content"] </label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="Content" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_content"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                             <textarea asp-for="Content" class="form-control" required rows="5"></textarea>
                             <span asp-validation-for="Content" class="text-danger invalid_field"></span>
                         </div>
@@ -194,8 +211,8 @@
                                 }
                             }
 
-                            <label asp-for="Tags" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_tags"]</label>
-                            <div class="col-md-7 col-sm-9 col-xs-12">
+                            <label asp-for="Tags" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_meta_tags"]</label>
+                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                 <div class="static-form-control">
                                     <input type="text"  asp-for="TagsString" name="TagsString" class="form-control" id="Tags" value="@tags" />
                                 </div>
@@ -212,9 +229,9 @@
 
                     <div class="form-group clearfix">
 
-                        <label asp-for="MetaDescription" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
+                        <label asp-for="MetaDescription" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
 
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                             <textarea asp-for="MetaDescription" class="form-control MetaDescription"
                                       data-characters='{"warning_count" : 158  , "maximum_count" : 300 }' rows="3"></textarea>
 
@@ -228,13 +245,13 @@
                     {
                         <input type="hidden" name="DatePublished" value="@(String.Format("{0:yyyy-MM-dd}", Model.PublishedDate))" data-seo-published />
                         <input type="hidden" name="DateModified" value="@(String.Format("{0:yyyy-MM-dd}", Model.ModifiedDate))" data-seo-modified />
-                        @await Html.PartialAsync("~/Areas/admin/Views/Shared/_SeoFields.cshtml", Model.SEOMarkup);
+                        @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoFields.cshtml", Model.SEOMarkup);
                     }
 
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
-                            <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@((ViewBag.IsEditMode) ? Localizer["Update"] : Localizer["Create"] )">
+                            <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@((ViewBag.IsEditMode) ? Localizer["Update"]  : Localizer["Create"] )">
                             <input type="submit" class="btn btn-info p-x-5   ut-continue-btn" name="save-continue" value="@Localizer["save_and_continue"]">
                         </div>
                     </div>
@@ -247,70 +264,53 @@
 
 
 @section Styles{
-    @*<link href="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />*@
+
+    <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
+
+
 }
 
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-
-    @*<script src="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>*@
+    <partial name="_ValidationScriptsPartial" />
     <script src="~/Admin/js/validator.min.js"></script>
-
-
-    @{
-        ViewBag.TinyMce_Contetnt_Id = "#Content";
-        ViewBag.TinyMce_Suumry_Id = null;
-        await Html.RenderPartialAsync("partials/_tinymce.cshtml");
-    }
-
-
+    <script src="/Admin/lib/select2/dist/js/select2.js"></script>
+    <script src="~/Admin/js/posts.min.js"></script>
     @if (ViewBag.IsEditMode)
     {
         <script src="~/Admin/js/serializejson.min.js"></script>
         <script src="~/Admin/js/seo.min.js"></script>
+    }
 
-        @if (!Model.Locked)
+
+    @{ ViewBag.TinyMce_Contetnt_Id = "#Content"; }
+    <partial name="partials/_tinymce.cshtml" />
+
+    <script>
+        $('.select_picker').select2();
+         @if (string.IsNullOrEmpty(Model.Slug))
         {
-            <script>
-            $('#publish-post').on('change', function () {
-                var msg = ($(this).prop('checked')) ? "@Localizer["published_successfully"]" : "@Localizer["unpublished_successfully"]";
-                var url = $(this).data('url');
-                $.get(url, function () { }).done(function (data) {
-
-                    if (data.success) {
-                        $notification.success(window.localization.success,msg, 2000, "fa fa-check");
-                    } else {
-                        var errors = data.errors;
-                        $notification.error("<strong>" + errors[0].key + "</strong>", "<span>" + errors[0].value[0] + "</span>", 2000, "fa fa-exclamation-circle");
-                        togglePublishBtn($this, false, published, unpublished);
-                    }
-                })
-                .fail(function (jqXHR, Status) {
-                    $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
-                    togglePublishBtn($this, false, published, unpublished);
-                }); })
-            </script>
+          <text>
+               $("#Title").on("keyup", function() {
+                   $("#Slug").val($(this).val().replace(/\s/g, "_")).valid();
+               })
+          </text>
         }
-    }
 
-    @if (!ViewBag.IsEditMode || string.IsNullOrEmpty(Model.Slug))
-    {
+      
+    </script>
+
+   
+
+    @*
+        <script src="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+        <link href="~/Admin/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
         <script>
-           $("#Title").on("keyup", function() {
-               $("#Slug").val($(this).val().replace(/\s/g, "_")).valid();
-           })
+                $('#Tags').tagsinput({
+                    tagClass: 'tag'
+                });
         </script>
-    }
-
-    @*<script>
-
-            $('#Tags').tagsinput({
-                tagClass: 'tag'
-            });
-        </script>*@
+    *@
 
 }
-
-
-
-
+<Partial name="_Modal.cshtml"/>

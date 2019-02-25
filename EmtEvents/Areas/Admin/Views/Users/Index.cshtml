@@ -10,10 +10,10 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         @Localizer["email_has_been_sent", TempData["subject"], TempData["username"]]
     </div>
-    @{ 
-      TempData.Remove("showSuccessAlert");
-      TempData.Remove("username");
-      TempData.Remove("subject");
+    @{
+        TempData.Remove("showSuccessAlert");
+        TempData.Remove("username");
+        TempData.Remove("subject");
     }
 
 </if>
@@ -24,7 +24,7 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         @Localizer["email_has_not_been_sent", TempData["subject"], TempData["username"]]
     </div>
-    @{ 
+    @{
         TempData.Remove("showFailedAlert");
         TempData.Remove("username");
         TempData.Remove("subject");
@@ -40,7 +40,8 @@
         <div class="title_right">
             <a href="@Url.AdminUrl("Create","Users")"
                class="btn btn-blue ut-create_btn">
-               <i class="fa fa-plus"></i>@Localizer["new_user"]</a>
+                @Localizer["new_user"]
+            </a>
         </div>
     </div>
 </div>
@@ -63,9 +64,9 @@
                                 <th>@Localizer["t_mobileNumber"]</th>
                                 <th>@Localizer["t_email"]</th>
                                 <th class="text-center" width="100">@Localizer["t_active"]</th>
-                                
+
                                 <th width="100">@Localizer["t_email_confirmed"]</th>
-                                <th width="100">@Localizer["t_actions"]</th>
+                                <th width="125">@Localizer["t_actions"]</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,9 +75,22 @@
                             {
                                 <tr>
                                     <td class="text-center">@indexer @{indexer++;}</td>
-                                    <td class="index">@user.UserName</td>
-                                    <td><span class="ltr-dir text-center">@user.MobileNumber</span></td>
-                                    <td>@user.Email</td>
+                                    <td>
+                                        <a href="@Url.AdminUrl("Details","Users" ,new { username = user.UserName })" class="underline">
+                                            @user.UserName
+                                        </a>
+                                    </td>
+                                    <td><span class="ltr-dir text-center tahoma">@user.MobileNumber</span></td>
+                                    <td>
+                                        <a class="underline pointer"
+                                           data-toggle="modal" 
+                                           data-target="#EmailModal"
+                                           data-email="@user.Email"
+                                           data-name="@user.UserName">
+                                            @user.Email
+                                        </a>
+
+                                    </td>
                                     <td class="text-center">
                                         @if (user.IsBlocked)
                                         {
@@ -87,7 +101,7 @@
                                             <i class="fa fa-check c-green"></i>
                                         }
                                     </td>
-                                    
+
                                     <td class="text-center">
                                         @if (user.EmailConfirmed)
                                         {
@@ -100,25 +114,45 @@
                                     </td>
                                     <td class="text-center ut-details_btn">
                                         <div>
-                                            <if include-if="user.IsBlocked">
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   title="@Localizer["t_details"]"
-                                                   href="@Url.AdminUrl("Details","Users" ,new { username = user.UserName })"
-                                                   class="btn btn-view ut-details_btn_for_blocked_user btn-round">
-                                                    <i class="fa fa-info"></i>
-                                                </a>
-                                            </if>
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="@Localizer["t_details"]"
+                                               href="@Url.AdminUrl("Details","Users" ,new { username = user.UserName })"
+                                               class="btn btn-view ut-details_btn_for_blocked_user btn-round">
+                                                <i class="fa fa-info"></i>
+                                            </a>
 
-                                            <if exclude-if="user.IsBlocked">
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   title="@Localizer["t_details"]"
-                                                   href="@Url.AdminUrl("Details","Users" ,new { username = user.UserName })"
-                                                   class="btn btn-view ut-details_btn_for_unblocked_user btn-round">
-                                                    <i class="fa fa-info "></i>
+                                            <a data-toggle="tooltip"
+                                               data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                               title="@Localizer["unblock_user"]"
+                                               data-user="@user.UserName"
+                                               data-url="@Url.AdminUrl("Unblock" ,"users" ,new { username = user.UserName })"
+                                               class="btn btn-view  ut-unblock-user unblock-user toggle_status btn-round @(user.IsBlocked ? "" :"hidden" )">
+                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                            </a>
+
+                                            <a data-toggle="tooltip"
+                                               data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                               title="@Localizer["block_user"]"
+                                               data-user="@user.UserName"
+                                               data-url="@Url.AdminUrl("block" ,"users" ,new { username = user.UserName })"
+                                               class="btn btn-remove  ut-block-user block-user toggle_status btn-round  @(user.IsBlocked ? "hidden" :"" )">
+                                                <i class="fa fa-ban "></i>
+                                            </a>
+
+
+
+                                            @*
+                                            
+                                            <span data-toggle="tooltip"
+                                                  data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                                  title="@( user.MobileNumberConfirmed ? Localizer["start_chat_in_whatsapp"] : Localizer["mobile_number_not_confirmed"])">
+                                                <a href="https://web.whatsapp.com/send?phone=@user.MobileNumber"
+                                                   class="btn btn-view btn-round  btn-whatsapp @(user.MobileNumberConfirmed ? "" :"disabled")" target="_blank">
+                                                    <i class="fa fa-whatsapp " aria-hidden="true"></i>
                                                 </a>
-                                            </if>
+                                            </span>
+                                             *@
 
                                         </div>
                                     </td>
@@ -135,16 +169,33 @@
 </div>
 
 
+
+
+<partial name="_email_modal.cshtml" />
+
+
 @section Styles{
     <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
 }
 
 
 @section Scripts {
-   
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+     
+    <script src="~/Admin/js/serializejson.min.js"></script>
     <script src="~/Admin/lib/select2/dist/js/select2.js"></script>
+    <script src="~/Admin/js/users.min.js"></script>
     <script>
         $('.select_no-search').select2({ minimumResultsForSearch: -1});
         $('.select_picker').select2();
     </script>
+
+    @{
+
+        ViewBag.TinyMce_Suumry_Id = "#Message";
+        await Html.RenderPartialAsync("partials/_tinymce.cshtml");
+    }
+
+
+
 }

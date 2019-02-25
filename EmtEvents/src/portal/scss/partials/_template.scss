@@ -2965,7 +2965,11 @@ h4.margin {
   }
   .owl-nav.disabled {
     display: block;
+    @include media-breakpoint-down(sm){
+      display: none;
+    }
   }
+
   .top-right-nav .owl-nav {
     top: 46%;
     @media (max-width: 991px) {

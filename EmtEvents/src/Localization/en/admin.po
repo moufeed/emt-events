@@ -310,6 +310,13 @@ msgstr "Position :"
 
 msgid "f_public_url"
 msgstr "Public url :"
+
+msgid "f_created_date"
+msgstr "Create date"
+
+msgid "f_post_date"
+msgstr "Post Date"
+
 #seo form 
 msgid "f_headline"
 msgstr "HeadLine :"
@@ -337,6 +344,22 @@ msgstr "Cuisine :"
 
 msgid "f_section_parent"
 msgstr "Section parent :"
+
+msgid "f_company"
+msgstr "Company :"
+
+msgid "f_job_position"
+msgstr "Job postion :"
+
+msgid "f_avater_image"
+msgstr "Image :"
+
+msgid "f_rating"
+msgstr "Rating :"
+
+msgid "f_message"
+msgstr "Message :"
+
 
 #global Tables
 msgid  "t_title"
@@ -464,6 +487,26 @@ msgstr "Detials"
 
 msgid "t_city"
 msgstr "Citt"
+
+msgid "t_position"
+msgstr "Postion"
+
+
+msgid "t_section"
+msgstr "Section"
+
+
+msgid "t_company"
+msgstr "Company"
+
+msgid "t_job_position"
+msgstr "Job Position"
+
+msgid "t_rating"
+msgstr "Rating"
+
+msgid "t_message"
+msgstr "Message"
 
 #labels
 
@@ -938,15 +981,18 @@ msgstr "Static Page"
 
 msgid "service"
 msgstr "Service"
-
+ 
 msgid "gallery"
 msgstr "Gallery"
- 
+
 msgid "posts_section"
 msgstr "Posts Section"
 
 msgid "services_section"
 msgstr "Services Section"
+
+msgid "gallery_section"
+msgstr "Gallery Sections"
 
 msgid "add_to_menu"
 msgstr "Add to menu"
@@ -955,6 +1001,8 @@ msgctxt "admin.Views.Menus.partials._modal"
 msgid "product"
 msgstr "Product"
 
+msgid "Create_section"
+msgctxt "Create Section"
 
 #:users Controller
 msgid "c_roles"
@@ -1114,6 +1162,11 @@ msgstr "Update Gallery Item"
 msgid "back_to_gallery"
 msgstr "Back to Gallery"
 
+msgid "create_video_item"
+msgstr "Create Video"
+
+msgid "edit_video_item"
+msgstr "Edit Video"
 
 #:FormGallery.cshtml 
 msgid "create_gallery"
@@ -1505,6 +1558,9 @@ msgstr  "The @type is required and cannot be an empty string "
 msgid "url_msg"
 msgstr "Url must be in this form : http://example.com"
  
+msgid "filesize_msg"
+msgstr "File size must be less than "
+
 # :controller adminbaseController.cs // filters
 
 msgid "title_a_to_z"
@@ -1545,5 +1601,101 @@ msgstr "More info"
 msgid "fullscreen"
 msgstr "Fullscreen"
 
-msgid "Log_out"
+msgid "Log_Out"
 msgstr "Log out"
+
+
+msgid "Slug_en"
+msgstr "Slug"
+
+msgid "Title_en"
+msgstr "Title"
+
+msgid "MainImage_en"
+msgstr "Main Image"
+
+msgid "VideoUrl_en"
+msgstr "Video Url"
+
+msgid "Content_en"
+msgstr "Content"
+
+msgid "Image_en"
+msgstr "Main Image"
+
+msgid "section_projects"
+msgstr "projects"
+
+msgid "section_works"
+msgstr "works"
+
+msgid "View_in_website"
+msgstr "View In website"
+
+msgid "new_tab"
+msgstr "New tab"
+
+msgid "same_tab"
+msgstr "Same tab"
+
+msgid "start_chat_in_whatsapp"
+msgstr "start chat"
+
+msgid "mobile_number_not_confirmed"
+msgstr "mobile number not confirmed"
+
+msgid "TAMCMS_UsersAdmin"
+msgstr "Users Admin"
+
+msgid "TAMCMS_MenusContentAdmin"
+msgstr "Menus Content Admin"
+
+msgid "TAMCMS_PagesContentAdmin"
+msgstr "Pages Content Admin"
+
+msgid "TAMCMS_PostAuthor"
+msgstr "PostAuthor"
+
+msgid "TAMCMS_GalleriesContentAdmin"
+msgstr "Galleries Content Admin"
+
+msgid "TAMCMS_SlidersContentAdmin"
+msgstr "Sliders Content Admin"
+
+msgid "TAMCMS_PostsContentAdmin"
+msgstr "Posts Content Admin"
+
+msgid "TAMCMS_ServicesContentAdmin"
+msgstr "Services Content Admin"
+
+msgid "TAMCMS_ProductsContentAdmin"
+msgstr "Products Content Admin"
+
+msgid "TAMCMS_PostsEditor"
+msgstr "Posts Editor"
+
+msgid "email_to"
+msgstr "New message to"
+
+msgid "email_sent"
+msgstr "Message sent."
+
+
+# testimonials
+msgid "new_testimonial"
+msgstr "New Testimonial"
+
+msgid "edit_testimonial"
+msgstr "Edit testimonial"
+
+msgid "create_testimonial"
+msgstr "Create testimonial"
+
+msgid "testimonial_details"
+msgstr "Testimonial details"
+
+msgid "testimonials"
+msgstr "Testimonials"
+
+msgid ""
+msgstr ""

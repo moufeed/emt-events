@@ -23,7 +23,7 @@
         <input type="hidden" name="Lang" value="@activeLang" />
 
         <div class="form-group clearfix">
-            <label class="control-label col-md-3 col-sm-4"> Title </label>
+            <label class="control-label col-md-3 col-sm-4"> @Localizer["title"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
             <div class="col-md-9 col-sm-8 col-xs-12">
                 <input type="text" name="Title" id="gallery-Title" class="form-control ut-title-input" required>
             </div>
@@ -31,7 +31,7 @@
 
 
         <div class="form-group clearfix">
-            <label class="control-label col-md-3 col-sm-4"> @Localizer["f_name"] </label>
+            <label class="control-label col-md-3 col-sm-4"> @Localizer["f_name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
             <div class="col-md-9 col-sm-8 col-xs-12">
 
                 <select style="width:100%"
@@ -52,7 +52,8 @@
         </div>
 
         <div class=" clearfix text-right">
-             <input type="submit" value="@Localizer["add_to_menu"]" class="btn btn-success ut-gallery-send">
+            <a href="@Url.AdminUrl("Create","Galleries")" class="btn btn-info">@Localizer["create_gallery"]</a>
+            <input type="submit" value="@Localizer["add_to_menu"]" class="btn btn-success ut-gallery-send">
             <button type="button" class="btn btn-default" data-dismiss="modal">@Localizer["close"]</button>
         </div>
 

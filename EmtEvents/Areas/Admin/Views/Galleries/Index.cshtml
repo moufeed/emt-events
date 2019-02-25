@@ -38,7 +38,7 @@
                         <th width="100" class="text-center">@Localizer["t_image"]</th>
                         <th width="300">title</th>
                         <th>@Localizer["t_slug"]</th>
-                        <th>@Localizer["t_summary"]</th>
+                        <th>@Localizer["t_section"]</th>
                         <th width="125">@Localizer["t_total_items"]</th>
                         <th width="100" class="text-center">@Localizer["t_display_order"]</th>
                         <th width="100" class="text-center">@Localizer["t_visibility"]</th>
@@ -50,44 +50,32 @@
 
                                 <tr id="tr-@item.Id">
                                     <td class="text-center">
-                                        @if (!string.IsNullOrEmpty(item.MainImage))
-                                        {
+                                        <div class="tabel-img-circle">
+                                            @if (!string.IsNullOrEmpty(item.MainImage))
+                                            {
 
-                                            <img src="@item.MainImage" alt="" width="60" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Admin/img/noimage.jpg" alt="" width="60" />
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (item.Published)
-                                        {
-
-                                            <a asp-area="Portal" asp-action="v" asp-controller="galleries" asp-route-slug="@item.Slug" target="_blank" class="underline ser-title">
-                                                @item.Title
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a target="_blank" data-href="@Url.AdminUrl("v","galleries",new {area = "portal" , slug = item.Slug })" class="ser-title"> @item.Title</a>
-                                        }
-
-                                    </td>
-
-                                    <td  style="max-width: 300px;overflow-x: scroll;">@item.Slug</td>
-                                    <td>
-                                        <div class="s-summary">
-                                            @{
-                                                string text = String.Empty;
-                                                if (item.Summary != null)
-                                                {
-                                                    text = Regex.Replace(item.Summary, "<.*?>", String.Empty);
-                                                }
-
+                                                <img src="@item.MainImage" alt="" width="60" />
                                             }
-                                            @Html.Raw(text)
+                                            else
+                                            {
+                                                <img src="~/Admin/img/noimage.jpg" alt="" width="60" />
+                                            }
                                         </div>
+                                    </td>
+                                    <td>
+
+                                          <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="@Localizer["t_edit"]"
+                                               href="@Url.AdminUrl("Edit" ,"galleries" ,new { id= item.Id})"
+                                               class="underline ser-title">  @item.Title</a>
+
+ 
+                                    </td>
+
+                                    <td>@item.Slug</td>
+                                    <td>
+                                      @item.Section
                                     </td>
                                     <td class="text-center">@item.ItemsCount</td>
                                     <td class="text-center">@item.DisplayOrder</td>
@@ -112,37 +100,21 @@
                                         else
                                         {
 
-                                            if (item.Published)
-                                            {
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   data-status="true"
-                                                   data-url="@Url.AdminUrl("PublishAsync" ,"galleries" , new { id= item.Id })"
-                                                   title="@Localizer["t_unpublish"]"
-                                                   data-type="gallery"
-                                                   data-txt-published="@Localizer["t_published"]"
-                                                   data-txt-unpublished="@Localizer["t_unpublished"]"
-                                                   data-msg-error="@Localizer["error"]"
-                                                   class="btn btn-link-pup  published toggle__publish ut-published">
-                                                    <i class="fa fa-eye c-green"></i>
-                                                    <small>@Localizer["t_published"]</small>
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   data-url="@Url.AdminUrl("PublishAsync" ,"galleries" , new { id= item.Id })"
-                                                   title="@Localizer["t_publish"]"
-                                                   data-type="gallery"
-                                                   data-txt-published="@Localizer["t_published"]"
-                                                   data-txt-unpublished="@Localizer["t_unpublished"]"
-                                                   class="btn btn-link-pup  unpublished toggle__publish ut-unpublished">
-                                                    <i class="fa fa-eye-slash c-red"></i>
-                                                    <small>@Localizer["t_unpublished"]</small>
-                                                </a>
-                                            }
-
+                                             <span 
+                                            data-toggle="tooltip" 
+                                            data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                            data-status="true"
+                                            title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
+                                            
+                                            <input 
+                                            class="tgl tgl-flat toggle__publish"
+                                            data-url="@Url.AdminUrl("PublishAsync","galleries" , new { id = item.Id})"
+                                            id="@item.Id"  
+                                            type="checkbox"
+                                            @((item.Published) ? "<text> checked </text>" : "" )/>
+                                            <label class="tgl-btn" for="@item.Id" ></label>
+                                        </span>
+                                        
                                         }
                                     </td>
 
@@ -179,6 +151,21 @@
                                                    data-msg-deleted="@Localizer["deleted_successfully"]"
                                                    class="btn btn-remove btn-round delete__gallery ut-delete-btn"><i class="fa fa-trash-o "></i></a>
                                             }
+ 
+
+                                            <if include-if="item.Published">
+                                             <a asp-area="Portal" 
+                                                asp-action="v" 
+                                                asp-controller="galleries" 
+                                                asp-route-slug="@item.Slug"
+                                                data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                                title="@Localizer["View_in_website"]"
+                                                data-toggle="tooltip"
+                                                  class="btn btn-view  btn-round" target="_blank">
+                                            <i class="fa fa-external-link"></i>
+                                        </a>
+                                        </if>
+
                                         </div>
                                     </td>
                                 </tr>

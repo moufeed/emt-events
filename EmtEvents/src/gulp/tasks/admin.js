@@ -42,20 +42,21 @@ gulp.task("a:js",  ()=> {
         let g =  gulp.src(file.inputFiles, { base: "." })
                 .pipe(concat(file.outputFileName));
                 if(file.es6){
+                   
                     g.pipe(babel({
                         presets: [['env', { 
                                 modules: false ,
                                 "targets": {
-                                    
                                     "browsers": [ ">0.25%"]
                                   }
                             }]],
                     }))
                 } 
-
-                 /* g.pipe(uglify({
+              
+                
+                g.pipe(uglify({
                     mangle: false
-                })) */
+                })) 
 
                  g.pipe(rename({
                     suffix: '.min'
@@ -79,5 +80,3 @@ gulp.task('a:w',  ()=> {
     gulp.watch(admin_conf.js.watch, ['a:js']);
     gulp.watch(admin_conf.css.src, ['a:css']);
 });
-
-

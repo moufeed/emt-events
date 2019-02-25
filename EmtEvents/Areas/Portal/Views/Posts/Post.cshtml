@@ -44,10 +44,20 @@
                     <header class="animate" data-animation="fadeIn">
 
                         <div class="entry-meta icons link-a small-text border-top">
+                             @if (Model.PostDate != null){
                             <i class="fa fa-calendar color-main fs-14"></i>
-                            <span class="url fn n" href="#"> @Model.CreatedDate.ToString("yyyy/MM/dd")</span>
+                            <span  class="url fn n"> @(string.Format("{0:yyyy/MM/dd}", Model.PostDate))</span>
+                        }
+                           
+                             
                             <i class="fa fa-folder color-main fs-14"></i>
                             <a href="@Url.AdminUrl("s","posts",new{slug=$"{@Model.SectionSlug.Trim('/')}"}).Replace("%2F", "/")" class="url fn n">@Model.Section</a>
+
+                            @if(Model.ViewsCount != null){
+                                    <i class="fa fa-eye color-main"></i>
+                                    <span class="url fn n"> @Model.ViewsCount</span>
+                            }
+
                         </div>
                     </header>
 
@@ -84,5 +94,3 @@
         </div>
     </div>
 </section>
-
- 

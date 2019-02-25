@@ -1,0 +1,66 @@
+﻿
+
+@{
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div role="tabpanel" class="tab-pane fade" id="@MenuItemTypeEnum.section_of_gallery.ToString()">
+
+
+
+    <form asp-action="CreateMenuItemAsync" asp-controller="menus"
+          method="post"
+          class="form-horizontal forn-new form-label-left p-x-5 p-y-3 ut-section_of_service-form"
+          id="PageMenuItem">
+        @if (!ViewData.ModelState.IsValid)
+        {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary()
+        </div>
+        }
+
+        <input type="hidden" name="MenuId" value="@Model.Id" />
+        <input type="hidden" name="ItemType" value="@MenuItemTypeEnum.section_of_gallery.ToString()" />
+        <input type="hidden" name="parentKey" value="" />
+        <input type="hidden" name="Lang" value="@activeLang" />
+
+        <div class="form-group clearfix">
+            <label class="control-label col-md-3 col-sm-4"> @Localizer["f_title"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <input type="text" name="Title" id="section_of_gallery-Title" class="form-control ut-title-input" required>
+            </div>
+        </div>
+
+
+        <div class="form-group clearfix">
+            <label class="control-label col-md-3 col-sm-4"> @Localizer["f_name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+            <div class="col-md-9 col-sm-8 col-xs-12">
+
+                <select style="width:100%"
+                        name="Url" id="section_of_gallery-Url"
+                        asp-items="ViewBag.section_of_galleryList"
+                        class="form-control select_picker"
+                        required
+                        data-live-search="true"
+                        data-style="btn-select"></select>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="control-label col-md-3 col-sm-4"> @Localizer["f_display_order"] </label>
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <input type="number" name="DisplayOrder" id="section_of_galleryDisplayOrder" step="1" min="0" value="0" class="form-control ut-order-input">
+            </div>
+        </div>
+
+        <div class=" clearfix text-right">
+
+            <input type="submit" value="@Localizer["add_to_menu"]" class="btn btn-success ut-section_of_gallery-send">
+            <button type="button" class="btn btn-default" data-dismiss="modal">@Localizer["close"]</button>
+        </div>
+
+    </form>
+
+
+
+</div>

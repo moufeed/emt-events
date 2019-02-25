@@ -19,7 +19,8 @@ namespace EmtEvents.Settings.Configurations.Modules
                 ModulesTypesEnum.Product,
                 ModulesTypesEnum.Section,
                 ModulesTypesEnum.Service,
-                ModulesTypesEnum.Slider
+                ModulesTypesEnum.Slider,
+               // ModulesTypesEnum.testimonials,
             };
         }
 

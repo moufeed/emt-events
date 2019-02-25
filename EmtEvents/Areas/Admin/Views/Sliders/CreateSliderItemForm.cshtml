@@ -16,7 +16,7 @@
         </div>
         <div class="title_right">
             <a href="@Url.AdminUrl("Edit" ,"sliders" ,  new { id = ViewBag.SliderId , culture = activeLang })"
-               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["Back to Slider"]</a>
+               class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_slider"]</a>
         </div>
     </div>
 </div>
@@ -54,23 +54,23 @@
                     <input type="hidden" name="SliderId" value="@ViewBag.SliderId" />
                     <input type="hidden" name="Lang" value="@activeLang" />
                     <div class="form-group clearfix">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slider_title"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_slider_title"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
                             <p class="form-control-static">@ViewBag.SliderTitle</p>
                         </div>
                     </div>
                     <div class="form-group clearfix">
-                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_title"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
-                            <input asp-for="Title" class="form-control" />
+                        <label asp-for="Title" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_title"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
+                            <input asp-for="Title" class="form-control"  required/>
                             <span asp-validation-for="Title" class="text-danger invalid_field"></span>
                         </div>
                     </div>
 
 
                     <div class="form-group clearfix">
-                        <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]  </label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label asp-for="MainImage" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]  <i class="fa fa-asterisk c-red fz-10 "></i></label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
 
                             @if (!string.IsNullOrEmpty(Model.MainImage))
                             {
@@ -79,7 +79,8 @@
                             }
 
                             <label class="form-control clearfix uploadfile">
-                                <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" required />
+                                <input type="file" name="NewMainImage" id="NewMainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" 
+                                       data-rule-filesize="500" required />
                                 <span class="url">@Localizer["choose_file"]</span>
                                 <span class="file-btn"><i class="fa fa-search"></i>@Localizer["Browse"]</span>
 
@@ -96,19 +97,17 @@
 
 
                     <div class="form-group clearfix">
-                        <label asp-for="Url" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_url"]</label>
-                        <div class="col-md-5 col-sm-3 col-xs-12">
+                        <label asp-for="Url" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_url"]</label>
+                        <div class="col-md-7 col-lg-7 col-sm-3 col-xs-12">
                             <input asp-for="Url" class="form-control" data-rule-url="true" data-msg-url="Url must be in this form : http://example.com" />
                             @*<input data-rule-slug="true" data-msg-slug="slug is wrong" />*@
 
                             <span asp-validation-for="Url" class="text-danger invalid_field"></span>
                         </div>
-                        <div class="col-md-2 col-sm-2 col-xs-12">
+                        <div class="col-md-3 col-lg-2 col-sm-2 col-xs-12">
                             <select class="form-control" asp-for="UrlTarget">
-                                <option value="_blank" selected>_blank</option>
-                                <option value="_self">_self</option>
-                                <option value="_parent">_parent</option>
-                                <option value="_top">_top</option>
+                                <option value="_blank" selected>@Localizer["new_tab"]</option>
+                                <option value="_self">@Localizer["same_tab"]</option>
                             </select>
                         </div>
                     </div>
@@ -117,8 +116,8 @@
 
 
                     <div class="form-group clearfix">
-                        <label asp-for="DisplayOrder" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label asp-for="DisplayOrder" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_display_order"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
                             <input asp-for="DisplayOrder" class="form-control" min="0" />
                             <span asp-validation-for="DisplayOrder" class="text-danger invalid_field"></span>
                         </div>
@@ -127,8 +126,8 @@
 
 
                     <div class="form-group clearfix">
-                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12 "> @Localizer["f_summary"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label asp-for="Summary" class="control-label col-md-2 col-sm-3 col-xs-12 "> @Localizer["f_summary"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
                             <textarea asp-for="Summary" class="form-control" rows="3"></textarea>
                             <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
                         </div>
@@ -171,7 +170,9 @@
         });
     </script>
 
-     
+    @*@{
+        ViewBag.TinyMce_Contetnt_Id = null;
+        ViewBag.TinyMce_Suumry_Id = "#Summary";
+        await Html.RenderPartialAsync("partials/_tinymce.cshtml");
+    }*@
 }
-
-

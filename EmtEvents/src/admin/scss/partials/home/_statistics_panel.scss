@@ -1,29 +1,30 @@
 .card{
-    background: #fff;
+     
     position: relative;
     box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.08);
     margin: 25px 0 10px;
     padding: 35px 30px 25px;
     overflow: hidden;
-    .card-body{
+    color: #fff;
 
         &.card-page{
-            .icon , .count{color: $color_A;}
-            
+            background:$color_A;
+            box-shadow: 0px 1px 15px 1px rgba($color_A, 0.25);
         }
         &.card-section{
-            .icon , .count{color: $color_B;}
-            
+            background: $color_B;
+            box-shadow: 0px 1px 15px 1px rgba($color_B, 0.25);
         }
         &.card-service{
-            .icon , .count{ color: $color_C;}
+            background:$color_C;
+            box-shadow: 0px 1px 15px 1px rgba($color_C, 0.25);
            
         }
         &.card-gallery{
-            .icon , .count{color: $color_D;}
-            
+            background:$color_D;
+            box-shadow: 0px 1px 15px 1px rgba($color_D, 0.25);
         }
-    }
+    
      
 
     .icon{
@@ -32,7 +33,7 @@
         font-style: normal;
         font-weight: normal;
         font-size: 40px;
-
+        
         &:after{
             position: absolute; 
             top: 90px;
@@ -68,7 +69,7 @@
         text-transform: capitalize;
         text-align: center;
         .title{
-            color: $dark-blue;
+             
             font-weight: 300;
         }
         .count{
@@ -80,13 +81,13 @@
     .card-footer{
         margin:15px 0 0 0  ;
         
-        color: darken($dark-gray , 25%);
+        color: darken(#fff ,3%);
         font-size: 14px;
         span{
             display: inline-block;
             margin: 5px;
             small{
-                color: $dark-gray;
+                color: #fff;
             }
         }
     }

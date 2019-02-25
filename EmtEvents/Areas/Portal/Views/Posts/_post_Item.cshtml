@@ -32,12 +32,21 @@
                     <a href="@Url.Action("p","Posts",new{slug=$"{@slug}/{@post.Slug}"}).Replace("%2F", "/")">@post.Title</a>
                 </h6>
 
-                <p class="item-meta color-darkgrey">
-                    <i class="fa fa-calendar color-main"></i>
-                    <span>@post.CreatedDate.ToString("MM/dd/yyyy")</span>
+              
+                     @if (post.PostDate != null){
+                            <i class="fa fa-calendar color-main"></i>
+                            <span> @(string.Format("{0:yyyy/MM/dd}", post.PostDate))</span>
+                        }
+                   
+                   
 
                     <i class="fa fa-folder-o color-main"></i>
                     <a href="@Url.Action("s","posts",new{slug=$"{post.SectionSlug.Trim('/')}"}).Replace("%2F", "/")">@post.Section</a>
+
+                    @if(post.ViewsCount != null){
+                        <i class="fa fa-eye color-main"></i>
+                        <small> @post.ViewsCount</small>
+                   }
                 </p>
                 <p>
                     @Html.Raw(post.Summary)

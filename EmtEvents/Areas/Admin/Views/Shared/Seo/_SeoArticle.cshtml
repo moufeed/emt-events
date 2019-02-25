@@ -1,0 +1,48 @@
+﻿
+@model ArticleModel
+
+
+<input type="hidden" name="Seo[Type]" id="SeoType" value="Article" />
+
+<input type="hidden" name="Seo[data][DatePublished]" asp-for="PublishedDate" />
+<input type="hidden" name="Seo[data][DateModified]"  asp-for="ModifiedDate" />
+<input type="hidden" name="Seo[data][Image]" asp-for="Image" />
+<input type="hidden" name="Seo[data][author][Type]" asp-for="Author.Type" />
+<input type="hidden" name="Seo[data][publisher][Type]"  asp-for="Publisher.Type" />
+<input type="hidden" name="Seo[data][publisher][logo][Type]" asp-for="Publisher.Logo.Type" />
+<input type="hidden" name="Seo[data][publisher][logo][url]"  asp-for="Publisher.Logo.Url" />
+<input type="hidden" name="Seo[data][publisher][logo][Width]" asp-for="Publisher.Logo.Width"/>
+<input type="hidden" name="Seo[data][publisher][logo][Height]"asp-for="Publisher.Logo.Height"/>
+
+
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["article_name"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" name="Seo[data][name]" class="form-control" asp-for="Name" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["article_headLine"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" class="form-control" name="Seo[data][HeadLine]" asp-for="Headline" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["article_description"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <textarea name="Seo[data][Description]" rows="3" class="form-control" asp-for="Description"></textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["article_author"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" class="form-control" name="Seo[data][author][name]" value="@Model.Author.Name" asp-for="Author.Name" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["article_publisher"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" class="form-control" name="Seo[data][publisher][name]" value="@Model.Publisher.Name" asp-for="Publisher.Name" />
+    </div>
+</div>

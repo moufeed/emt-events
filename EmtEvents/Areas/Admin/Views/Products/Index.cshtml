@@ -161,8 +161,11 @@
                         $notification.success("@Localizer["success"]", "", 2000, "fa fa-check");
                          $this.parents('tr')[0].remove()
                     }else{
-                        var errors = data.errors;
-                    $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");
+                       var errors = data.errors;
+                            if (errors.length > 0) {
+                                txt = MakeErrorsMsg(errors);
+                                $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                            }
                     }
                 })
                 .fail(function (jqXHR, Status) {
