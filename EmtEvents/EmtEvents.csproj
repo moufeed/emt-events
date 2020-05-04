@@ -37,7 +37,7 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" /> 
     <PackageReference Include="TamTechBackendSDK.ContentService.SQL" Version="0.0.4.3" /> 
     <PackageReference Include="TamTechBackendSDK.EmailService" Version="0.0.1.8" />
-    <PackageReference Include="TamTechBackendSDK.FileStorageService" Version="0.0.0.7" />
+    <PackageReference Include="TamTechBackendSDK.FileStorageService" Version="0.0.0.8" />
     <PackageReference Include="TamTechBackendSDK.IdentityService" Version="0.0.1.2" />
     <PackageReference Include="TamTechBackendSDK.SMSService" Version="0.0.0.1" />
     <PackageReference Include="TamTechSDK.Web" Version="0.0.3" />
