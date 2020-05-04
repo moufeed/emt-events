@@ -15,16 +15,24 @@ namespace EmtEvents
     {
 
         public static void Main(string[] args)
-        {
+        {  
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-             WebHost.CreateDefaultBuilder(args)
-                 .UseApplicationInsights()
-                 .UseKestrel()
-                 .UseIISIntegration()
-                 .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false)
+            .Build();
+
+            return WebHost.CreateDefaultBuilder(args)
+                .UseApplicationInsights()
+                .UseUrls($"http://localhost:{config.GetValue<int>("Host:Port")}", $"https://localhost:{config.GetValue<int>("Host:Port") + 1}")
+                .UseKestrel()
+                .UseIISIntegration()
+                .UseStartup<Startup>();
+        }
 
 
     }
