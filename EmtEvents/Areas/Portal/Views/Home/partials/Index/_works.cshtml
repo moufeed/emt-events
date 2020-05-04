@@ -5,7 +5,7 @@
 @{
     List<GalleryLiteDto> galleries = (List<GalleryLiteDto>)ViewBag.galleries;
 }
-   
+
 
 <section class="ls ms book-item works ">
 
@@ -32,9 +32,9 @@
         <div class="row justify-content-center home-works">
             @if (ViewBag.galleries != null && galleries.Count > 0)
             {
-                
+
                     int index = 0;
-                
+
                 @foreach (var gallery in galleries)
                 {
                     <div class="col-12 col-md-6 col-lg-5 witem">
@@ -52,7 +52,7 @@
 
                                 </a>
                             </span>
-                           
+
                             <div>
                                   @if(gallery.CustomDate != null){
                                      <div>
@@ -83,7 +83,7 @@
                 }
             }
 
-             
+
         </div>
 
         <div class="divider-100"></div>

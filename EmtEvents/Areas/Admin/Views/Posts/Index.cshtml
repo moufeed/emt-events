@@ -65,7 +65,7 @@
 
                                 </td>
 
-                                 
+
                                 <td style="min-width:150px">
                                     <a data-toggle="tooltip"
                                            data-placement="top"
@@ -109,16 +109,16 @@
                                     else
                                     {
 
-                                        <span 
-                                            data-toggle="tooltip" 
+                                        <span
+                                            data-toggle="tooltip"
                                             data-placement="@(activeLang == "ar" ? "right" : "left")"
                                             data-status="true"
                                             title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
-                                            
-                                            <input 
+
+                                            <input
                                             class="tgl tgl-flat toggle__publish"
                                             data-url="@Url.AdminUrl("PublishAsync","Posts" , new { id = item.Id})"
-                                            id="@item.Id"  
+                                            id="@item.Id"
                                             type="checkbox"
                                             @((item.Published) ? "<text> checked </text>" : "" )/>
                                             <label class="tgl-btn" for="@item.Id" ></label>
@@ -157,14 +157,14 @@
 
                                          <if include-if="item.Published">
                                               @{string slug = @item.SectionSlug.Trim('/');}
-                                 
-                                             <a href="@Url.AdminUrl("p","Posts",new{Area="portal", slug=$"{@slug}/{@item.Slug}"}).Replace("%2F", "/")"   
+
+                                             <a href="@Url.AdminUrl("p","Posts",new{Area="portal", slug=$"{@slug}/{@item.Slug}"}).Replace("%2F", "/")"
                                                 data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                 title="@Localizer["View_in_website"]"
                                                 data-toggle="tooltip"
                                                 class="btn btn-view  btn-round" target="_blank">
                                             <i class="fa fa-external-link"></i>
-                                            
+
                                         </a>
                                         </if>
 
@@ -174,7 +174,7 @@
                             </tr>
 
                             }
-                            
+
                                 <if include-if='Model.Count == 0'>
                                     <tr>
                                         <td colspan="6" class="text-center">
@@ -185,7 +185,7 @@
                                         </td>
                                     </tr>
                                 </if>
-                             
+
 
                         </tbody>
                         </table>

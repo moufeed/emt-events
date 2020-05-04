@@ -91,7 +91,7 @@
         stringBuilder.Append($"<td><span>{dto.ItemType}</span></td>");
 
 
-         
+
 
 
         string status = $"<td>";
@@ -101,7 +101,7 @@
         status += $"<label class=\"tgl-btn\" for=\"{dto.Key}\" ></label></span></td>";
         stringBuilder.Append(status);
 
-         
+
 
         stringBuilder.Append($"<td class='text-right'>");
 
@@ -205,7 +205,7 @@
     }
 
     <input type="hidden" name="Lang" value="@activeLang" />
- 
+
     @Html.HiddenFor(m => m.Id)
 
     <div class="row">
@@ -218,7 +218,7 @@
             }
             @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
 
-             
+
             <div class="x_panel">
 
                 <input type="hidden" name="Lang" value="@activeLang" />
@@ -310,9 +310,9 @@
                                         <tr data-key="@item.Key" data-type="@item.ItemType" class="ut-tr-@item.ItemType">
 
                                             <td class="text-center">
-                                                <input type="number" 
-                                                       name="DisplayOrder" 
-                                                        
+                                                <input type="number"
+                                                       name="DisplayOrder"
+
                                                        class="form-control order-control ut-input-displayOrder" min="0" value="@item.DisplayOrder" disabled />
                                             </td>
 
@@ -346,24 +346,24 @@
                                             <td>
                                                 <span class="form-control-static">@item.ItemType </span>
                                             </td>
-                                            
+
                                             <td>
 
-                                                <span 
-                                                data-toggle="tooltip" 
+                                                <span
+                                                data-toggle="tooltip"
                                                 data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                 data-status="true"
                                                 title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
-                                                
-                                                <input 
+
+                                                <input
                                                 class="tgl tgl-flat toggle_visibility"
                                                 data-root="@Model.Id"
-                                                id="@item.Key"  
+                                                id="@item.Key"
                                                 type="checkbox"
                                                 @((item.Published) ? "<text> checked </text>" : "" )/>
                                                 <label class="tgl-btn" for="@item.Key" ></label>
                                             </span>
- 
+
                                             </td>
                                             <td class="text-right">
 
@@ -398,7 +398,7 @@
                                                    title="@Localizer["cancel"]"
                                                    data-object='@Html.Raw(Json.Serialize(@item))'
                                                    class="btn btn-cancel cancel-menuitem btn-round hidden"><i class="fa fa-ban "></i></a>
-                                                 
+
                                                 <a data-toggle="tooltip"
                                                     data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                    data-key="@item.Key"
@@ -459,7 +459,7 @@
     <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
 }
 
- 
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
     <script src="~/Admin/lib/select2/dist/js/select2.min.js"></script>
@@ -479,8 +479,8 @@
     </script>
 }
 
-    
- 
+
+
 <div class="modal fade" id="MenuItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ut-modal">
@@ -495,7 +495,7 @@
                     <partial name="partials/_serviceTap.cshtml"  model="Model"/>
                     <partial name="partials/_staticpageTap.cshtml"  model="Model"/>
                     <partial name="partials/_dropdownTap.cshtml"  model="Model"/>
-                    <partial name="partials/_galleryTap.cshtml"  model="Model"/> 
+                    <partial name="partials/_galleryTap.cshtml"  model="Model"/>
                     <partial name="partials/_PostSectionTap.cshtml"  model="Model"/>
                     <partial name="partials/_ServicesSectionTap.cshtml"  model="Model"/>
                     <partial name="partials/_GalleriesSectionTap.cshtml"  model="Model"/>

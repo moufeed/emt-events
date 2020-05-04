@@ -4,10 +4,10 @@
     ViewData["UnitTestPageClass"] = "ut-Galleries-index";
     var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
 
-    
+
 }
 
-<div class="clearfix"> 
+<div class="clearfix">
     <div class="page-title">
         <div class="title_left">
             <h3>@Localizer["Galleries"] <small></small></h3>
@@ -70,7 +70,7 @@
                                                href="@Url.AdminUrl("Edit" ,"galleries" ,new { id= item.Id})"
                                                class="underline ser-title">  @item.Title</a>
 
- 
+
                                     </td>
 
                                     <td>@item.Slug</td>
@@ -100,21 +100,21 @@
                                         else
                                         {
 
-                                             <span 
-                                            data-toggle="tooltip" 
+                                             <span
+                                            data-toggle="tooltip"
                                             data-placement="@(activeLang == "ar" ? "right" : "left")"
                                             data-status="true"
                                             title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
-                                            
-                                            <input 
+
+                                            <input
                                             class="tgl tgl-flat toggle__publish"
                                             data-url="@Url.AdminUrl("PublishAsync","galleries" , new { id = item.Id})"
-                                            id="@item.Id"  
+                                            id="@item.Id"
                                             type="checkbox"
                                             @((item.Published) ? "<text> checked </text>" : "" )/>
                                             <label class="tgl-btn" for="@item.Id" ></label>
                                         </span>
-                                        
+
                                         }
                                     </td>
 
@@ -151,12 +151,12 @@
                                                    data-msg-deleted="@Localizer["deleted_successfully"]"
                                                    class="btn btn-remove btn-round delete__gallery ut-delete-btn"><i class="fa fa-trash-o "></i></a>
                                             }
- 
+
 
                                             <if include-if="item.Published">
-                                             <a asp-area="Portal" 
-                                                asp-action="v" 
-                                                asp-controller="galleries" 
+                                             <a asp-area="Portal"
+                                                asp-action="v"
+                                                asp-controller="galleries"
                                                 asp-route-slug="@item.Slug"
                                                 data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                 title="@Localizer["View_in_website"]"
@@ -186,13 +186,13 @@
                 </div>
                   <hr class="m-y-2" />
                     <pagination controller-name="galleries" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
-               
+
             </div>
         </div>
     </div>
 </div>
 
- 
+
 @section Styles{
     <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
 }

@@ -4,10 +4,10 @@
     Layout = "_Layout";
     ViewData["ImageURl"] = @Url.Content(Localizer["GalleriesImage"].Value);
     ViewData["pageTitle"] = Localizer["our_works"];
-   
+
 }
 
- 
+
 
 <partial name="~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml" />
 
@@ -50,7 +50,7 @@
                             </div>
 
                             <p class=" animate delay-4ms fast" data-animation="fadeIn">
-                                 
+
                                 @Html.Raw(item.Summary)
                             </p>
                             <div class="animate fast mt-4" data-animation="fadeIn">

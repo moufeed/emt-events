@@ -68,12 +68,12 @@
                                    data-url="@Url.AdminUrl("PublishAsync","services" , new { id = Model.Id})"
                                    title="@Localizer["publish_unpublish"]" />
                         </label>
-                        
+
                     </div>
                 }
                     <form asp-action="@ViewBag.FormAction" method="post" class="form-horizontal forn-new form-label-left" id="ServicesForm" enctype="multipart/form-data">
 
-                      
+
                         @if (!ViewData.ModelState.IsValid)
                         {
                             <div asp-validation-summary="All" as class="alert alert-danger"></div>
@@ -301,7 +301,7 @@
                 });
             });
 
-            
+
         </script>
     }
     <script>
@@ -316,6 +316,6 @@
                $("#Slug").val($(this).val().replace(/\s/g, "_")).valid();
            })
        </script>
-            }   
+            }
 
 }

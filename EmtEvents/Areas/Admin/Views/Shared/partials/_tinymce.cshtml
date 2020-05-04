@@ -1,10 +1,10 @@
 ﻿
 
-@{ 
+@{
     var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
 }
 <script src="~/Admin/lib/tinymce/tinymce.min.js"></script>
-    
+
     @if (ViewBag.TinyMce_Contetnt_Id != null)
     {
     <script>
@@ -46,11 +46,11 @@
    var image_class_list = [ {title: 'None', value: ''},
                             {title: 'Responsive', value: 'img-responsive'},
                             {title: 'img-fluid', value: 'img-fluid '}];
- 
+
             tinymce.init({
                     selector: '@ViewBag.TinyMce_Contetnt_Id',
                     branding: false,
-                    language : "@(activeLang)", 
+                    language : "@(activeLang)",
                     theme: 'modern',
                     height: 300,
                     plugins: plugins,
@@ -82,10 +82,10 @@
                     },
                 });
 
-      
+
 
     </script>
-         
+
     }
 
 @if (ViewBag.TinyMce_Suumry_Id != null)
@@ -112,4 +112,3 @@
 
     </script>
 }
-  

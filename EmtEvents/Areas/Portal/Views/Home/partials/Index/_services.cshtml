@@ -1,4 +1,4 @@
-@{ 
+@{
     var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
 
 }
@@ -43,9 +43,9 @@
                         </div>
                         <div class="col px-2">
                             <h3 class="service-title">
-                            
 
-                            
+
+
                            <a href="@Url.Action("v","services",new{slug = item.Slug})">
                                 <span class="animate fast" data-animation="fadeIn" data-appear-top-offset="250">@item.Title</span>
                            </a>
@@ -56,7 +56,7 @@
                         <a class="btnlink  animate fast" data-animation="fastInDown" href="@Url.Action("v","services",new{slug = item.Slug})"> @Localizer["read_more"]</a>
                         </div>
 
-                        
+
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                 }
             </div>
         </if>
-             
+
 
 
 
@@ -77,5 +77,3 @@
 
     </div>
 </section>
-
- 

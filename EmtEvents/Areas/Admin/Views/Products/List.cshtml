@@ -60,7 +60,7 @@
     <script src="~/Admin/lib/datatables/media/js/dataTables.bootstrap.js"></script>
 
     <script>
-        
+
         $(document).ready(function () {
 
             window.productsTable = $('#ProductsTable').DataTable({
@@ -110,7 +110,7 @@
                     { "data": "stockquantity"},
                     {
                         data: "published",
-                       
+
                         render: function (data, type, row, meta) {
                             if (row.published) {
                                 return '<i class="fa fa-check c-green"></i>'
@@ -125,7 +125,7 @@
                         orderable: false,
                         render: function (data, type, row, meta) {
 
-                            
+
                             return '<a  href="/Products/Edit/' + row.id + '" data-toggle="tooltip" data-placement="top" title="@Localizer["t_edit"]"' +
                                 'class="btn btn-edit"><i class="fa fa-edit "></i></a>' +
                                 '<a data-toggle="tooltip"' +
@@ -142,7 +142,7 @@
                 ]
             });
 
-             
+
         })
     </script>
 }

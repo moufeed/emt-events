@@ -3,7 +3,7 @@
 }
 
 <environment include="Development">
-    <script src="~/Admin/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true""></script>
+    <script src="~/Admin/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"/></script>
     <script src="~/Admin/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
 </environment>
 <environment exclude="Development">
@@ -42,7 +42,7 @@
         break;
 
 }
-  
+
 
 <script>
     $.extend($.validator.messages, {
@@ -52,7 +52,7 @@
         lessThan: $.validator.format("@Localizer["lessThan_msg"]" + "{1}"),
         json: "@Localizer["json_msg"]",
         schemaType: "@Localizer["schemaType_msg"]",
-        filesize : $.validator.format("@Localizer["filesize_msg"]" + "{0} kb"), 
+        filesize : $.validator.format("@Localizer["filesize_msg"]" + "{0} kb"),
     });
 </script>
  $.validator.messages.

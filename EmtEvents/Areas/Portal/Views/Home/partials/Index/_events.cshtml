@@ -23,7 +23,7 @@
                         @{
                             List<PostDto> posts = ViewBag.Posts;
                         }
-                    
+
                             @foreach (var post in posts)
                             {
                                 string slug = @post.SectionSlug.Trim('/');

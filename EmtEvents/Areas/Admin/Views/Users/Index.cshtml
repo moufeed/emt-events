@@ -83,7 +83,7 @@
                                     <td><span class="ltr-dir text-center tahoma">@user.MobileNumber</span></td>
                                     <td>
                                         <a class="underline pointer"
-                                           data-toggle="modal" 
+                                           data-toggle="modal"
                                            data-target="#EmailModal"
                                            data-email="@user.Email"
                                            data-name="@user.UserName">
@@ -143,7 +143,7 @@
 
 
                                             @*
-                                            
+
                                             <span data-toggle="tooltip"
                                                   data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                   title="@( user.MobileNumberConfirmed ? Localizer["start_chat_in_whatsapp"] : Localizer["mobile_number_not_confirmed"])">
@@ -181,7 +181,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-     
+
     <script src="~/Admin/js/serializejson.min.js"></script>
     <script src="~/Admin/lib/select2/dist/js/select2.js"></script>
     <script src="~/Admin/js/users.min.js"></script>

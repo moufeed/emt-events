@@ -12,7 +12,7 @@
     <div class="page-title">
         <div class="title_left">
             <h3>
-                @Localizer["Manufacturer"] 
+                @Localizer["Manufacturer"]
                 <small></small>
             </h3>
         </div>
@@ -81,7 +81,7 @@
                         sortable: false,
                         orderable: false,
                         render: function (data, type, row, meta) {
-                            
+
                             return '<span class="Brands_list_thumbnail"><img src="' + row.imageUrl + '"></span>';
                         }
                     },
@@ -91,7 +91,7 @@
                          width: "100",
                          className: "text-center",
                     },
-                     
+
                     {
                         width: "200",
                         className: "text-center",
@@ -99,7 +99,7 @@
                         orderable: false,
                         render: function (data, type, row, meta) {
 
-                           
+
                             return '<a  href="/Manufacturer/Edit/' + row.id+'" data-toggle="tooltip" data-placement="top" title="@Localizer["edit"]"' +
                                     'class="btn btn-edit"><i class="fa fa-edit "></i></a>' +
                                     '<a data-toggle="tooltip"' +
@@ -120,5 +120,3 @@
         })
     </script>
 }
-
-

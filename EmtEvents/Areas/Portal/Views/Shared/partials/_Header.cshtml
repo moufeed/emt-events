@@ -2,22 +2,22 @@
     string _lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
     var controller = ViewContext.RouteData.Values["Controller"].ToString();
     var action = ViewContext.RouteData.Values["Action"].ToString();
-    
 
 
 
-    bool isHomePage = controller.Equals("Home", StringComparison.OrdinalIgnoreCase) 
+
+    bool isHomePage = controller.Equals("Home", StringComparison.OrdinalIgnoreCase)
                         && action.Equals("index", StringComparison.OrdinalIgnoreCase);
 }
 
-  
+
 @if (isHomePage)
 {
     <div class="header_absolute s-pb-30">
         <header class="page_header ds">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-around">
-                    
+
 
                     <div class="col-xl-2 col-lg-3  col-md-5 col-11">
                         <span class="togglemenu d-lg-none">
@@ -46,9 +46,9 @@
 									<i class="fa fa-search"></i>
 								</button>
                         </div>
-                       
+
                     </div>
-                      
+
                 </div>
             </div>
             <div class="search-line">
@@ -69,7 +69,7 @@
                                             </script>
                                             <gcse:search></gcse:search>
 
-                
+
             </div>
         </header>
     </div>
@@ -110,6 +110,6 @@ else
 
             </div>
         </div>
-       
+
     </header>
 }

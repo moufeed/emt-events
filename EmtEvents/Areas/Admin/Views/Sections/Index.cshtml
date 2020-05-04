@@ -53,7 +53,7 @@
                             {
                                 @foreach (var item in Model)
                                 {
-                                    
+
                             <tr id="tr-@item.Id">
                                 <td class="text-center">
 
@@ -70,9 +70,9 @@
                                     </div>
 
                                 </td>
-                                
+
                                 <td style="min-width:150px">
-                            
+
                                   <a data-toggle="tooltip"
                                            data-placement="top"
                                            title="@Localizer["t_edit"]"
@@ -118,22 +118,22 @@
                                     {
 
 
-                                         <span 
-                                            data-toggle="tooltip" 
+                                         <span
+                                            data-toggle="tooltip"
                                             data-placement="@(activeLang == "ar" ? "right" : "left")"
                                             data-status="true"
                                             title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
-                                            
-                                            <input 
+
+                                            <input
                                             class="tgl tgl-flat toggle__publish"
                                             data-url="@Url.AdminUrl("PublishAsync","sections" , new { id = item.Id})"
-                                            id="@item.Id"  
+                                            id="@item.Id"
                                             type="checkbox"
                                             @((item.Published) ? "<text> checked </text>" : "" )/>
                                             <label class="tgl-btn" for="@item.Id" ></label>
                                         </span>
-                                        
-                                        
+
+
                                     }
                                 </td>
                                 <td>
@@ -169,7 +169,7 @@
 
 
                                         <if include-if="item.Published">
-                                             <a href="@Url.AdminUrl("s","posts",new{ Area = "Portal" ,slug=$"{@item.SlugHierarchy.Trim('/')}"}).Replace("%2F", "/")"   
+                                             <a href="@Url.AdminUrl("s","posts",new{ Area = "Portal" ,slug=$"{@item.SlugHierarchy.Trim('/')}"}).Replace("%2F", "/")"
                                                 data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                 title="@Localizer["View_in_website"]"
                                                 data-toggle="tooltip"
@@ -185,7 +185,7 @@
 
                                 }
                             }
-                             
+
 
                         <if include-if='Model.Count == 0'>
                                 <tr>
@@ -200,16 +200,16 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                   <hr class="m-y-2" />
                     <pagination controller-name="sections" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
-                
+
             </div>
         </div>
     </div>
 </div>
 
- 
+
 @section Styles{
     <link href="~/Admin/lib/select2/dist/css/select2.min.css" rel="stylesheet" />
 }
