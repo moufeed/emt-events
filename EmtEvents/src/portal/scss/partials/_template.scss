@@ -3512,10 +3512,12 @@ section.top_white_line_big .container:before {
   }
 }
 
+
+
 .search-box {
   position: absolute;
   top: 100%;
-  #{$left}: 50%;
+  #{$right}: 50%; 
   transform: translate(-50%, -50%);
   background: #fff;
   border-radius: 40px;
@@ -3781,4 +3783,3 @@ input[type="text"].search-text {
 .doc h1, h2, h3, h4 ,h5 {
   line-height: 60px;
 }
- 

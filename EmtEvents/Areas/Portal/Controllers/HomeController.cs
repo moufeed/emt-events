@@ -4,6 +4,7 @@ using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+ 
 using TamTechBackendSDK.EmailService.Services;
 using TamTechSDK.Common.Models.ContactUs;
 using TamTechSDK.Common.Models.Pagination;
@@ -18,6 +19,7 @@ using TamTechSDK.Common.Services.ContentService.Services;
 using TamTechSDK.Common.Services.ContentService.Sliders;
 using TamTechSDK.Common.Services.ContentService.Testimonials;
 using TamTechSDK.Common.Services.Email;
+using TamTechSDK.Common.Services.Email.Models;
 using TamTechSDK.Common.Services.Upload;
 using TamTechSDK.Web;
 using TamTechSDK.Web.Controllers.Portal;
@@ -35,7 +37,7 @@ namespace EmtEvents.Areas.Portal.Controllers
         private readonly IPostsService _postservice;
         private readonly IServicesService _servicesservice;
         private readonly ITestimonialsServices _TestimonialsServices;
-
+        private readonly IEmailSenderService _emailSender;
 
 
         public HomeController(ITelemetryClientService telemetryClientService,
@@ -65,6 +67,7 @@ namespace EmtEvents.Areas.Portal.Controllers
             _sliderService = sliderService;
             _postservice = postservice;
             _servicesservice = servicesservice;
+            _emailSender = emailSender;
 
         }
 
@@ -138,6 +141,50 @@ namespace EmtEvents.Areas.Portal.Controllers
             }
 
             return await base.AboutUs();
+        }
+
+        
+        [HttpPost]
+        public async Task<IActionResult> ContactEmt(ContactUs model)
+        {
+
+
+           // ContactUs model = new ContactUs();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var emailSettings = _appSettingsService.GetEmailSettings();
+                    bool result = await _emailSender.SendAsync(new EmailModel
+                    {
+                        Email = emailSettings.From,
+                        Subject = "Contact Us",
+                        Message = $"Message from Email : {model.Email} - Mobile :{model.Mobile} - Message content is : {model.Message}",
+                        ReasonOfSend = "ContactUs"
+
+                    });
+                    if (result)
+                    {
+                        TempData["UserName"] = model.Name;
+                        return RedirectToAction("success");
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                TrackException(exc);
+            }
+                ViewBag.Host = _appSettingsService.GetURl();
+                return View("ContactUs");
+        }
+
+        public  async Task<IActionResult> success()
+        {
+            ViewBag.Host = _appSettingsService.GetURl();
+            TempData["person"] = TempData["UserName"];
+            TempData["showAlert"] = true;
+
+            return View("ContactUs");
         }
     }
 }

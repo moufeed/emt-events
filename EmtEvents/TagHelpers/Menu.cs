@@ -138,8 +138,7 @@ namespace EmtEvents.TagHelpers
             {
                 var target = (Menu.UrlTarget?.Length > 0) ? Menu.UrlTarget : "_blank";
                 string li = "<li>";
-                li += $"<a href=\"#\" target=\"{target}\">{Menu.Title}</a>";
-                li += Print_UL(Menu.MenuItems, false);
+                li += $"<a href=\"{Menu.Url}\" target=\"{target}\">{Menu.Title}</a>";
                 li += "</li>";
                 return li;
 

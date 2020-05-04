@@ -31,7 +31,7 @@
                     <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
                         <navbar></navbar>
                     </div>
-                    <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right col-md-3 dn">
+                    <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right col-md-4 dn">
                         <div class="header_phone">
 
                             @foreach (var culture in CultureConstants.CulturesList)
@@ -42,13 +42,35 @@
                                     <a href="@Url.Action("index","Home", new { culture = culture.Lang })" class="btn btn_lang"> @culture.Name </a>
                                 }
                             }
-
+                            <button class="searchbtn">
+									<i class="fa fa-search"></i>
+								</button>
                         </div>
+                       
                     </div>
-
+                      
                 </div>
             </div>
-            
+            <div class="search-line">
+                <button class="close-search">
+                        <i class="fa fa-times"></i>
+                </button>
+
+                  <script>
+                                            (function() {
+                                            var cx = '009824878902413152929:lf_7vts4z_m';
+                                            var gcse = document.createElement('script');
+                                            gcse.type = 'text/javascript';
+                                            gcse.async = true;
+                                            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                            var s = document.getElementsByTagName('script')[0];
+                                            s.parentNode.insertBefore(gcse, s);
+                                            })();
+                                            </script>
+                                            <gcse:search></gcse:search>
+
+                
+            </div>
         </header>
     </div>
     <span class="toggle_menu_side header-slide">
@@ -91,19 +113,3 @@ else
        
     </header>
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

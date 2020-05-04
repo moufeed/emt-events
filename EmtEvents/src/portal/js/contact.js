@@ -33,7 +33,7 @@ if($('#contact_form').length){
                 },
             },
            
-            submitHandler: function (form) {
+           /*  submitHandler: function (form) {
                  
                 var $form = $(form);
                     $form.find('.lds-spinner').removeClass('d-none');
@@ -69,7 +69,7 @@ if($('#contact_form').length){
                     });
     
                     return false;
-            },
+            }, */
         }
     );
 } 

@@ -25,6 +25,17 @@
     @RenderSection("meta", required: false)
     @RenderSection("Styles", required: false)
     <script src="~/Portal/js/modernizr-2.6.2.min.js"></script>
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139623355-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-139623355-1');
+    </script>
+    
+ 
 </head>
 <body>
     <!--[if lt IE 9]>
@@ -93,6 +104,3 @@ s0.parentNode.insertBefore(s1,s0);
     <partial name="~/Areas/Portal/Views/Shared/partials/_socialBar.cshtml" />
 </body>
 </html>
-
-
-

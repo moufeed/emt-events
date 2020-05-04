@@ -36,6 +36,7 @@
     "jquery": "^3.3.1",
     "jquery-validation": "^1.19.0",
     "npm": "^6.5.0",
+    "postcss-discard-comments": "^4.0.2",
     "sweetalert2": "^7.33.1"
   }
 }

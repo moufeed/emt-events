@@ -112,7 +112,7 @@ namespace EmtEvents
                             seedUsersAndRolesSettingsSectionName: $"{AppSettings.DirectBackendSDKsSettings}:{AppSettings.DirectBackendSDK_IdentityService_SeedUsersAndRoles}",
                             seedIdentityServerSettingsSectionName: $"{AppSettings.DirectBackendSDKsSettings}:{AppSettings.DirectBackendSDK_IdentityService_SeedIdentityServer}"
                         );
-                    identityMigrateDb.SeedIdentityServerSettings(app);
+        identityMigrateDb.SeedIdentityServerSettings(app);
                     identityMigrateDb.SeedIdentityServerUsersAndRoles(app);
                 }
             }
