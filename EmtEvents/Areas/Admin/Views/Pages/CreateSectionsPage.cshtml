@@ -228,7 +228,7 @@
                 min_height: 150,
                 statusbar: false,
                 menubar: false,
-
+         
                 plugins: ['code hr anchor pagebreak spellchecker directionality code'],
                 toolbar :['undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify  |   fontselect fontsizeselect  | outdent indent   | code  |  hr ltr rtl |blockquote     removeformat '],
                 setup: function(editor) {
@@ -237,7 +237,7 @@
                     })}
             });
         }
-
+        
 
         var i =  @indx || 0;
         var template =
@@ -256,7 +256,7 @@
             '<textarea rows="4" class="form-control" id="Content-&&" name="Content[&&].Value" required="required"></textarea>' +
             '</div></div><hr class="line"/>' +
             '</section>';
-
+        
 
         $('#addContent').on('click', function (e) {
             e.preventDefault();

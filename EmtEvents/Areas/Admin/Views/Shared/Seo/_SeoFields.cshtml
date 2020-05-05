@@ -16,7 +16,7 @@
 
 }
 
-  
+
 <input type="hidden" name="Seo_types" value="@(JsonConvert.SerializeObject(dict))" data-seo-types />
 
 <hr />
@@ -40,7 +40,7 @@
                     <option value="@item">@Localizer[(Enum.GetName(typeof(SeoTypes), item))]</option>
                 }
 
-            } 
+            }
         </select>
     </div>
 </div>
@@ -55,7 +55,7 @@
 
                 ArticleModel Article = JsonConvert.DeserializeObject<ArticleModel>(serialized);
 
-                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoArticle.cshtml", Article);
+                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/Seo/_SeoArticle.cshtml", Article);
             }
             if (SeoModel.Type == SeoTypes.Recipe.ToString())
             {
@@ -63,7 +63,7 @@
 
                 RecipeModel Recipe = JsonConvert.DeserializeObject<RecipeModel>(serialized);
 
-                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoRecipe.cshtml", Recipe);
+                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/Seo/_SeoRecipe.cshtml", Recipe);
             }
 
             if (SeoModel.Type == SeoTypes.WebPage.ToString())
@@ -74,7 +74,7 @@
                 WebPage Web_Page = JsonConvert.DeserializeObject<WebPage>(serialized);
 
 
-                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoWebPage.cshtml", Web_Page);
+                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/Seo/_SeoWebPage.cshtml", Web_Page);
             }
 
             if (SeoModel.Type == SeoTypes.ImageGallery.ToString())
@@ -85,7 +85,7 @@
                 Gallery gallery = JsonConvert.DeserializeObject<Gallery>(serialized);
 
 
-                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoGallery.cshtml", gallery);
+                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/Seo/_SeoGallery.cshtml", gallery);
             }
 
             if (SeoModel.Type == SeoTypes.Service.ToString())
@@ -94,7 +94,7 @@
                 Service Service = JsonConvert.DeserializeObject<Service>(serialized);
 
 
-                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoService.cshtml", Service);
+                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/Seo/_SeoService.cshtml", Service);
             }
 
             if (SeoModel.Type == SeoTypes.Product.ToString())
@@ -103,7 +103,7 @@
                 ProductSEO product = JsonConvert.DeserializeObject<ProductSEO>(serialized);
 
 
-                @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoProduct.cshtml", product);
+                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/Seo/_SeoProduct.cshtml", product);
             }
 
         }
@@ -119,8 +119,8 @@
             <div class="col-md-9 col-sm-8 col-xs-12 p-0">
                 <span class="toggle_span m-0 p-b3">
                     <input type="checkbox" name="isEditable" id="JsonIsEditable"
-                            class="toggle_switch m-l0 "  
-                           data-alert-title='@Localizer["edit_markup_title"]'  
+                            class="toggle_switch m-l0 "
+                           data-alert-title='@Localizer["edit_markup_title"]'
                            data-alert-msg='@Localizer["edit_markup_msg"]'/> @Localizer["edit_markup"]
                 </span>
             </div>

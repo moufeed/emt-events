@@ -52,7 +52,7 @@
                                 <input type="hidden" name="Recipients" value="@ViewBag.number" />
                                 <input type="text"  value="@ViewBag.username / @ViewBag.number"  disabled class="form-control"/>
 
-
+                                
                             }
                             else
                             {
@@ -128,7 +128,7 @@
 
     <script>
          $('.select_picker').select2();
-
+  
 
     </script>
 
@@ -152,7 +152,7 @@
     {
         <script>
             var length =  @ViewBag.CharactersLength - $('.smsbox').val().length;
-
+            
             $('.smsbox').keyup(function(){
                 $('.sms_messages .characters').text( length - this.value.length);
             });
@@ -161,3 +161,5 @@
 
 
 }
+
+

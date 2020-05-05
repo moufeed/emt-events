@@ -21,5 +21,7 @@ namespace EmtEvents.Areas.Portal.Controllers
             : base(telemetryClientService, menusServices, servicesservice,true)
         {
         }
+
+
     }
 }

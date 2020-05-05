@@ -44,7 +44,7 @@
                                     <div class="btn-group  ">
                                         @if (item.Published)
                                         {
-                                            <a
+                                            <a  
                                                data-status="true"
                                                data-url="@Url.AdminUrl("PublishItem","sliders" , new {sliderId = Model.Id , id = item.Id })"
                                                title="@Localizer["t_unpublish"]"
@@ -52,7 +52,7 @@
                                                class="btn btn-default published toggle_publish_slider_item ut-published"
                                                data-publish="@Localizer["Publish"]"
                                                data-unpublish="@Localizer["unpublish"]">
-                                                <span class="fa fa-eye-slash"></span>
+                                                <span class="fa fa-eye-slash"></span> 
                                                 <span class="text">@Localizer["t_unpublish"]</span>
                                             </a>
                                         }
@@ -64,7 +64,7 @@
                                                 data-publish="@Localizer["Publish"]"
                                                data-unpublish="@Localizer["unpublish"]"
                                                class="btn btn-default unpublished toggle_publish_slider_item ut-unpublished">
-                                                <span class="fa fa-eye"></span>
+                                                <span class="fa fa-eye"></span> 
                                                 <span class="text">@Localizer["t_publish"]</span>
                                             </a>
 

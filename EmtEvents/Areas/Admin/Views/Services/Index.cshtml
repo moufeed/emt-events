@@ -32,7 +32,7 @@
 
 
         <div class="x_panel p-x-0">
-
+             
             <div class="x_content">
                 <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
                 <div class="table-responsive">
@@ -64,7 +64,7 @@
                                                 <img src="~/Admin/img/noimage.jpg" alt="" width="75" />
                                             }
                                         </div>
-
+                                        
                                     </td>
                                     <td style="min-width:150px">
 
@@ -74,7 +74,7 @@
                                                href="@Url.AdminUrl("Edit", "services", new { id = item.Id })"
                                                class="underline">  @item.Title </a>
 
-
+                                      
 
                                     </td>
 
@@ -111,21 +111,21 @@
                                         }
                                         else
                                         {
-                                             <span
-                                                data-toggle="tooltip"
+                                             <span 
+                                                data-toggle="tooltip" 
                                                 data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                 data-status="true"
                                                 title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
-
-                                                <input
+                                                
+                                                <input 
                                                 class="tgl tgl-flat toggle__publish"
                                                 data-url="@Url.AdminUrl("PublishAsync","services" , new { id = item.Id})"
-                                                id="@item.Id"
+                                                id="@item.Id"  
                                                 type="checkbox"
                                                 @((item.Published) ? "<text> checked </text>" : "" )/>
                                                 <label class="tgl-btn" for="@item.Id" ></label>
                                             </span>
-
+                                           
                                         }
                                     </td>
                                     <td>
@@ -157,9 +157,9 @@
                                             </if>
 
                                         <if include-if="item.Published">
-                                             <a asp-area="Portal"
-                                                asp-action="v"
-                                                asp-controller="services"
+                                             <a asp-area="Portal" 
+                                                asp-action="v" 
+                                                asp-controller="services" 
                                                 asp-route-slug="@item.Slug"
                                                 data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                 title="@Localizer["View_in_website"]"
@@ -168,7 +168,7 @@
                                             <i class="fa fa-external-link"></i>
                                         </a>
                                         </if>
-
+                                         
                                         </div>
 
                                     </td>

@@ -29,7 +29,7 @@
 
         @{
             ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary {
-
+                    
 
                 };
         }
@@ -68,7 +68,7 @@
                                     <td >
                                         @menu.Title
                                     </td>
-
+                                   
                                     <td>
                                         @menu.Position
                                     </td>
@@ -86,7 +86,7 @@
                                                href="@Url.AdminUrl("Edit","menus",new { id = menu.Id})"
                                                title="@Localizer["t_edit"]"
                                                class="btn btn-edit  ut-edit-btn btn-round"><i class="fa fa-edit "></i></a>
-
+                                             
 
                                             <if include-if="menu.Locked">
                                                 <span data-toggle="tooltip"
@@ -106,7 +106,7 @@
                                                    data-msg-deleted="@Localizer["deleted_successfully"]"
                                                    class="btn btn-remove btn-round delete__menu ut-delete-btn "><i class="fa fa-trash-o "></i></a>
                                             </if>
-
+                                             
                                         </div>
                                     </td>
                                 </tr>

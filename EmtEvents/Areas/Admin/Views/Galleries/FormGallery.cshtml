@@ -237,7 +237,7 @@
                         <input type="hidden" name="DateModified" value="@(String.Format("{0:yyyy-MM-dd}", (Model.ModifiedDate != null ) ? Model.ModifiedDate  : Model.CreatedDate  ))" data-seo-modified />
 
 
-                        @await Html.PartialAsync("~/Areas/admin/Views/Shared/Seo/_SeoFields.cshtml", Model.SEOMarkup);
+                        @await Html.PartialAsync("~/Areas/Admin/Views/Shared/Seo/_SeoFields.cshtml", Model.SEOMarkup);
 
                     }
 

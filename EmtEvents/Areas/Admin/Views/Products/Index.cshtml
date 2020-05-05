@@ -7,12 +7,12 @@
 
 
 <div class="clearfix">
-    <div class="page-title">
+    <div class="page-title"> 
         <div class="title_left">
             <h3>@Localizer["Products"]<small></small></h3>
-
-
-
+          
+            
+            
         </div>
         <div class="title_right">
             <a  href="@Url.AdminUrl("Create" ,"Products")"  class="btn btn-info btn-add-new ut-create-btn">
@@ -106,7 +106,7 @@
                                            data-backurl="@Url.AdminUrl("index","products")"
                                            class="btn btn-remove btn-round delete-product ut-remove-btn"><i class="fa fa-trash-o"></i></a>
 
-
+                                            
 
                                        </div>
                                     </td>
@@ -134,10 +134,10 @@
         e.preventDefault();
         var $this = $(this);
         var dataURl = $this.data("url");
-
-
-
-
+             
+        
+       
+         
         swal({
             title: "",
             title: "@Localizer["are_you_sure"]",
@@ -151,7 +151,7 @@
                 $.ajax({
                     url: dataURl  ,
                     type: 'Get',
-                    dataType: "json",
+                    dataType: "json",  
                     data: {
                         redirection : false
                     }

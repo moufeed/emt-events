@@ -23,7 +23,7 @@
         }
         @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
 
-
+        
         <div class="x_panel p-x-0">
 
 
@@ -93,16 +93,16 @@
                                     }
                                     else
                                     {
-                                    <span
-                                        data-toggle="tooltip"
+                                    <span 
+                                        data-toggle="tooltip" 
                                         data-placement="@(activeLang == "ar" ? "right" : "left")"
                                         data-status="true"
                                         title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
-
-                                        <input
+                                        
+                                        <input 
                                         class="tgl tgl-flat toggle__publish"
                                         data-url="@Url.AdminUrl("PublishSliderAsync","Sliders" , new { id = item.Id})"
-                                        id="@item.Id"
+                                        id="@item.Id"  
                                         type="checkbox"
                                         @((item.Published) ? "<text> checked </text>" : "" )/>
                                         <label class="tgl-btn" for="@item.Id" ></label>
