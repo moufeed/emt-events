@@ -35,14 +35,16 @@
                 <div class="table-responsive">
                     <table class="table table-middle table-striped services-table" id="ServicesTable">
                         <thead>
-                        <th width="100" class="text-center">@Localizer["t_image"]</th>
-                        <th width="300">title</th>
-                        <th>@Localizer["t_slug"]</th>
-                        <th>@Localizer["t_section"]</th>
-                        <th width="125">@Localizer["t_total_items"]</th>
-                        <th width="100" class="text-center">@Localizer["t_display_order"]</th>
-                        <th width="100" class="text-center">@Localizer["t_visibility"]</th>
-                        <th width="175">@Localizer["t_actions"]</th>
+                            <tr>
+                                <th width="100" class="text-center">@Localizer["t_image"]</th>
+                                <th width="300">title</th>
+                                <th>@Localizer["t_slug"]</th>
+                                <th>@Localizer["t_section"]</th>
+                                <th width="125">@Localizer["t_total_items"]</th>
+                                <th width="100" class="text-center">@Localizer["t_display_order"]</th>
+                                <th width="100" class="text-center">@Localizer["t_visibility"]</th>
+                                <th width="175">@Localizer["t_actions"]</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
@@ -185,7 +187,7 @@
                     </table>
                 </div>
                   <hr class="m-y-2" />
-                    <pagination controller-name="galleries" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
+                    <pagination controller-name="Galleries" filter-model="ViewBag.FilterModel" pagniation-model="ViewBag.pagination" total="true"></pagination>
                
             </div>
         </div>
