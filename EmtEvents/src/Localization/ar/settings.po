@@ -47,16 +47,16 @@ msgid "GalleriesImage"
 msgstr "~/Portal/img/backgrounds/works.jpg"
 
 msgid "PostsImage"
-msgstr "~/portal/img/backgrounds/events.jpg"
+msgstr "~/Portal/img/backgrounds/events.jpg"
 
 msgid "ServicesImage"
-msgstr "~/portal/img/backgrounds/services.jpg"
+msgstr "~/Portal/img/backgrounds/services.jpg"
 
 msgid "AboutUsImage"
-msgstr "~/portal/img/backgrounds/about.jpg"
+msgstr "~/Portal/img/backgrounds/about.jpg"
 
 msgid "PagesImage"
-msgstr "~/portal/img/backgrounds/pages.jpg"
+msgstr "~/Portal/img/backgrounds/pages.jpg"
 
 
 msgid "facebook_link"
