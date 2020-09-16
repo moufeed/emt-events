@@ -30,6 +30,11 @@
     &:after {
       background-color: transparent;
     }
+    .dn{
+     @include media-breakpoint-down(sm){
+      display: none;
+     }
+    }
   }
   //hidding top border on affixed header
   &.affix.s-bordertop::before {

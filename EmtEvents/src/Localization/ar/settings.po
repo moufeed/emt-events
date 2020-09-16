@@ -3,10 +3,15 @@
 msgid "excellence_miles"
 msgstr "أميال التميز"
 msgid "p_meta_description"
-msgstr "تهدف الشركة إلى تقديم مشاريع داخلية وخدمات تأثيث وفقا لمعايير ومستويات المنظور المحلي والعالمي المتميز من خلال خبرة مستشاريها."
+msgstr "أميال التميز تقوم بخدمتكم في مجال تنظيم المعارض والمؤتمرات التصميم والانيميشن الإنتاج الإعلامي خدمات الضيافة والتسويق الإلكتروني"
+msgid "p_meta_keywords"
+msgstr "مؤتمرات, تنظيم مؤتمرات, شركات تجهيز المعارض بالرياض, شركات تنظيم ايفنتات, ايفنتات, معدات سمعية وبصرية, تسويق الكتروني, تنظيم فعاليات, تنظيم معارض ومؤتمرات"
 
 msgid "c_address"
 msgstr "المملكة العربية السعودية . الرياض"
+
+msgid "fulladdress"
+msgstr "شارع التخصصي، المعذر الشمالي، الرياض 12312 11575 المملكة العربية السعودية"
 
 msgid "telephone_number"
 msgstr "+966 11 281 7030"
@@ -42,16 +47,16 @@ msgid "GalleriesImage"
 msgstr "~/Portal/img/backgrounds/works.jpg"
 
 msgid "PostsImage"
-msgstr "~/portal/img/backgrounds/events.jpg"
+msgstr "~/Portal/img/backgrounds/events.jpg"
 
 msgid "ServicesImage"
-msgstr "~/portal/img/backgrounds/services.jpg"
+msgstr "~/Portal/img/backgrounds/services.jpg"
 
 msgid "AboutUsImage"
-msgstr "~/portal/img/backgrounds/about.jpg"
+msgstr "~/Portal/img/backgrounds/about.jpg"
 
 msgid "PagesImage"
-msgstr "~/portal/img/backgrounds/pages.jpg"
+msgstr "~/Portal/img/backgrounds/pages.jpg"
 
 
 msgid "facebook_link"

@@ -1,81 +1,76 @@
+@{
+    List<TestimonialDto> testimonials = (List<TestimonialDto>)ViewBag.testimonials;
+}
+    <if include-if="@ViewBag.testimonials != null">
+        <section class=" overflow-visible s-parallax testimonials-sliders main-testimonials ds"
+                 id="testimonials">
+            <div class="corner  "></div>
+            <div class="container">
+                <div class="row   c-mt-md-0">
 
-
-<section class=" overflow-visible s-parallax testimonials-sliders main-testimonials ds"
-         id="testimonials">
-    <div class="corner  "></div>
-    <div class="container">
-        <div class="row   c-mt-md-0">
-
-            <div class="text-center img-wrap line col-md-12">
-                <img src="~/Portal/img/vertical_line2.png" alt="">
-            </div>
-            <div class="divider-40 d-none d-md-block"></div>
-            <div class="col-12 text-center mb-30">
-                <h2 class="animate" data-animation="fastFromLeft" >@Localizer["Latest_Testimonials"]</h2>
-                <p class="animate fast delay-2ms"  data-animation="fadeInDown" >@Localizer["Latest_Testimonials_slogan"]</p>
-            </div>
-
-            <div class="col-md-12 animate" data-animation="fadeInUp">
-                <div class="owl-carousel" data-autoplay="false"  dir="ltr" data-responsive-lg="1" data-responsive-md="1" data-responsive-sm="1"
-                     data-nav="false" data-dots="true" id="quote">
-                    <div class="quote-item">
-                        <div class="quote-image">
-                            <img src="~/Portal/img/face.jpg" alt="">
-                        </div>
-                        <p class="small-text author-job">
-                            Eye Insurance
-                        </p>
-                        <h5>
-                            <a href="#">Fakhir Ala' Abadi</a>
-                        </h5>
-                        <p>
-                            <em class="big">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, veritatis quo? Voluptatibus quaerat voluptas ipsa debitis minus quis dicta quidem eligendi sed! Similique dolor magni accusamus quod cupiditate eius porro.
-                            </em>
-                        </p>
+                    <div class="text-center img-wrap line col-md-12">
+                        <img src="~/Portal/img/vertical_line2.png" alt="">
                     </div>
-                    <div class="quote-item">
-                        <div class="quote-image">
-                            <img src="~/Portal/img/face-1.jpg" alt="">
-                        </div>
-                        <p class="small-text author-job">
-                            Moving co
-                        </p>
-                        <h5>
-                            <a href="#">Maimun Kadeer Basara</a>
-                        </h5>
-                        <p>
-                            <em class="big">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates cum soluta quae iusto et reprehenderit!
-                            </em>
-                        </p>
+                    <div class="divider-40 d-none d-md-block"></div>
+                    <div class="col-12 text-center mb-30">
+                        <h2 class="animate" data-animation="fastFromLeft">@Localizer["Latest_Testimonials"]</h2>
+                        <p class="animate fast delay-2ms" data-animation="fadeInDown">@Localizer["Latest_Testimonials_slogan"]</p>
                     </div>
-                    <div class="quote-item">
-                        <div class="quote-image">
-                            <img src="~/Portal/img/face-2.jpg" alt="">
-                        </div>
-                        <p class="small-text author-job">
-                            Paradox Inc
-                        </p>
-                        <h5>
-                            <a href="#">Jasim Kamil Harb</a>
-                        </h5>
-                        <p>
-                            <em class="big">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestiae suscipit dicta quas quae voluptatibus eos perferendis culpa, est, impedit, fuga et obcaecati alias voluptatem!
-                            </em>
-                        </p>
 
+                    <div class="col-md-12 animate" data-animation="fadeInUp">
+                        <div class="owl-carousel" data-autoplay="false" dir="ltr" data-responsive-lg="1" data-responsive-md="1" data-responsive-sm="1"
+                             data-nav="false" data-dots="true" id="quote">
+
+
+                            @foreach (TestimonialDto item in testimonials)
+                            {
+                            <div class="quote-item">
+                                <div class="quote-image">
+                                    @if (string.IsNullOrEmpty(item.MainImage))
+                                    {
+                                        <img src="~/Portal/img/face-1.jpg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.MainImage" alt="">
+                                    }
+                                </div>
+                                <p class="small-text author-job">
+                                    @item.Postion
+                                </p>
+                                <div class="rating">
+
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        if (item.Rating > i)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-star-o"></i>
+                                        }
+                                    }
+                                </div>
+                                <h5>
+                                    @item.AuthorName
+                                </h5>
+                                <p>
+                                    <em class="big">
+                                        @Html.Raw(item.Summary)
+                                    </em>
+                                </p>
+
+                            </div>
+                            }
+
+                        </div>
                     </div>
+                    <div class="divider-55 d-none d-md-block"></div>
+
                 </div>
             </div>
-            <div class="divider-55 d-none d-md-block"></div>
-
-        </div>
-    </div>
-
-    <div class="corner corner-light"></div>
-</section>
 
 
- 
+        </section>
+    </if>

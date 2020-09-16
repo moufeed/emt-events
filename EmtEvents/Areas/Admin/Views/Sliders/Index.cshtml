@@ -10,8 +10,8 @@
             <h3>@Localizer["Sliders"] <small></small></h3>
         </div>
         <div class="title_right">
-            <a href="@Url.AdminUrl("CreateSlider" ,"Sliders")"
-               class="btn btn-blue btn-add-new ut-new-btn">@Localizer["new_slider"]</a>
+            @*<a href="@Url.AdminUrl("CreateSlider" ,"Sliders")"
+               class="btn btn-blue btn-add-new ut-new-btn">@Localizer["new_slider"]</a>*@
         </div>
     </div>
 </div>
@@ -32,6 +32,7 @@
                     <table class="table table-middle table-striped sliders-table" id="SlidersTable">
                         <thead>
                             <tr>
+                                <th width="100" class="text-center">@Localizer["t_image"]</th>
                                 <th class="index" style="min-width:150px">@Localizer["t_title"]</th>
                                 <th style="min-width:100px">@Localizer["t_key"]</th>
                                 <th style="min-width:200px">@Localizer["t_summary"]</th>
@@ -43,102 +44,105 @@
                             @foreach (var item in Model)
                             {
 
-                                <tr id="tr-@item.Id">
-                                    <td class="index"> @item.Title  </td>
-                                    <td>@item.Key</td>
-                                    <td>
-                                        @{
-                                            string text;
-                                            if (item.Summary != null)
-                                            {
-                                                text = Regex.Replace(item.Summary, "<.*?>", String.Empty);
-                                            }
-                                        }
+                            <tr id="tr-@item.Id">
+                                <td class="text-center">
 
-                                        @Html.Raw(item.Summary)
-                                    </td>
-                                    <td class="text-center">
-
-
-                                        @if (item.Locked)
+                                    <div class="tabel-img-circle">
+                                        @if (!string.IsNullOrEmpty(item.MainImage))
                                         {
-                                             <if include-if="item.Published">
-                                                <span class="label label-success">
-                                                    <i class="fa fa-eye "></i>
-                                                    @Localizer["t_published"]
-                                                </span>
-                                            </if>
-                                            <if exclude-if="item.Published">
-                                                <span class="label label-danger">
-                                                    <i class="fa fa-eye-slash "></i>
-                                                    @Localizer["t_unpublished"]
-                                                </span>
-                                            </if>
+
+                                            <img src="@item.MainImage" alt="" width="60" />
                                         }
                                         else
                                         {
-                                            @if (item.Published)
-                                            {
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   data-status="true"
-                                                   title="@Localizer["t_unpublish"]"
-                                                   data-type="slider"
-                                                   data-url="@Url.AdminUrl("PublishSliderAsync","Sliders" ,new { id= item.Id })"
-                                                   class="btn btn-link-pup published toggle__publish ut-published">
-                                                    <i class="fa fa-eye c-green"></i>
-                                                    <small>@Localizer["t_published"]</small>
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   data-status="true"
-                                                   title="@Localizer["t_publish"]"
-                                                   data-type="slider"
-                                                   data-url="@Url.AdminUrl("PublishSliderAsync","Sliders" ,new { id= item.Id })"
-                                                   class="btn btn-link-pup unpublished toggle__publish ut-unpublished">
-                                                    <i class="fa fa-eye-slash c-red"></i>
-                                                    <small>@Localizer["t_unpublished"]</small>
-                                                </a>
-                                            }
+                                            <img src="~/Admin/img/noimage.jpg" alt="" width="75" />
                                         }
-                                    </td>
+                                    </div>
+
+                                </td>
+                                <td class="index"> @item.Title  </td>
+                                <td>@item.Key</td>
+                                <td>
+                                    @{
+                                        string text;
+                                        if (item.Summary != null)
+                                        {
+                                            text = Regex.Replace(item.Summary, "<.*?>", String.Empty);
+                                        }
+                                    }
+
+                                    @Html.Raw(item.Summary)
+                                </td>
+                                <td class="text-center">
+
+
+                                    @if (item.Locked)
+                                    {
+                                        <if include-if="item.Published">
+                                            <span class="label label-success">
+                                                <i class="fa fa-eye "></i>
+                                                @Localizer["t_published"]
+                                            </span>
+                                        </if>
+                                        <if exclude-if="item.Published">
+                                            <span class="label label-danger">
+                                                <i class="fa fa-eye-slash "></i>
+                                                @Localizer["t_unpublished"]
+                                            </span>
+                                        </if>
+                                    }
+                                    else
+                                    {
+                                    <span 
+                                        data-toggle="tooltip" 
+                                        data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                        data-status="true"
+                                        title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
+                                        
+                                        <input 
+                                        class="tgl tgl-flat toggle__publish"
+                                        data-url="@Url.AdminUrl("PublishSliderAsync","Sliders" , new { id = item.Id})"
+                                        id="@item.Id"  
+                                        type="checkbox"
+                                        @((item.Published) ? "<text> checked </text>" : "" )/>
+                                        <label class="tgl-btn" for="@item.Id" ></label>
+                                    </span>
+                                    }
+                                </td>
 
 
 
-                                    <td>
-                                        <div>
+                                <td>
+                                    <div>
+                                        <a data-toggle="tooltip"
+                                           data-placement="top"
+                                           title="@Localizer["t_details"]"
+                                           href="@Url.AdminUrl("details","sliders",new { id=item.Id} )"
+                                           class="btn btn-view btn-round"><i class="fa fa-info "></i></a>
+                                        <a data-toggle="tooltip"
+                                           data-placement="top"
+                                           href="@Url.AdminUrl("Edit","sliders",new { id=item.Id})"
+                                           title="@Localizer["t_edit"]"
+                                           class="btn btn-edit btn-round ut-edit-btn"><i class="fa fa-edit "></i></a>
+                                        <if include-if="item.Locked">
+                                            <span data-toggle="tooltip"
+                                                  data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                                  class="btn-locked btn-round"
+                                                  title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
+                                        </if>
+                                        <if exclude-if="item.Locked">
                                             <a data-toggle="tooltip"
                                                data-placement="top"
-                                               title="@Localizer["t_details"]"
-                                               href="@Url.AdminUrl("details","sliders",new { id=item.Id} )"
-                                               class="btn btn-view btn-round"><i class="fa fa-info "></i></a>
-                                            <a data-toggle="tooltip"
-                                               data-placement="top"
-                                               href="@Url.AdminUrl("Edit","sliders",new { id=item.Id})"
-                                               title="@Localizer["t_edit"]"
-                                               class="btn btn-edit btn-round ut-edit-btn"><i class="fa fa-edit "></i></a>
-                                            <if include-if="item.Locked">
-                                                <span data-toggle="tooltip"
-                                                       data-placement="@(activeLang == "ar" ? "right" : "left")"
-                                                      class="btn-locked btn-round"
-                                                      title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
-                                            </if>
-                                            <if exclude-if="item.Locked">
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   title="@Localizer["t_remove"]"
-                                                   data-url="@Url.AdminUrl("DeleteAsync","sliders",new { id=item.Id})"
-                                                   data-target="#tr-@item.Id"
-                                                   data-id="@item.Id"
-                                                   class="btn btn-remove btn-round delete__slider ut-delete-btn"><i class="fa fa-trash-o"></i></a>
-                                            </if>
-                                            
-                                        </div>
-                                    </td>
-                                </tr>
+                                               title="@Localizer["t_remove"]"
+                                               data-url="@Url.AdminUrl("DeleteAsync","sliders",new { id=item.Id})"
+                                               data-target="#tr-@item.Id"
+                                               data-id="@item.Id"
+                                               class="btn btn-remove btn-round delete__slider ut-delete-btn"><i class="fa fa-trash-o"></i></a>
+                                        </if>
+
+                                    </div>
+                                </td>
+                            </tr>
                             }
 
                         </tbody>

@@ -34,7 +34,7 @@ msgstr ""
             `${local_src}/ar/admin.po`,
             `${local_src}/ar/portal.po`,
             `${local_src}/ar/custom.po`,
-            `${local_src}/en/settings.po`
+            `${local_src}/ar/settings.po`
         ]
     }
 ]

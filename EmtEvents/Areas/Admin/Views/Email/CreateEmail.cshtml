@@ -60,16 +60,17 @@
                     <input type="hidden" name="route" value="@ViewBag.route" />
 
                     <div class="form-group clearfix">
-                        <label asp-for="Subject" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_subject"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label asp-for="Subject" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_subject"] <i class="fa fa-asterisk c-red fz-10 "></i>
+</label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
                             <input type="text" asp-for="Subject" class="form-control" required id="ut-subject" />
                             <span asp-validation-for="Subject" class="text-danger invalid_field"></span>
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="Recipients" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_recipients"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label asp-for="Recipients" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_recipients"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
 
                             @if (ViewBag.SpecificUser)
                             {
@@ -99,15 +100,16 @@
 
 
                     <div class="form-group clearfix">
-                        <label asp-for="Message" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_massage"]</label>
-                        <div class="col-md-7 col-sm-5 col-xs-12">
+                        <label asp-for="Message" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_massage"]<i class="fa fa-asterisk c-red fz-10 "></i>
+</label>
+                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12">
                             <textarea asp-for="Message" class="form-control" rows="12" required></textarea>
                             <span asp-validation-for="Message" class="text-danger invalid_field"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-7 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 text-right">
+                        <div class="col-md-10 col-lg-9 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 text-right">
                             <input type="submit" class="btn btn-success p-x-5 ut-send_btn" value="@Localizer["send"]">
                         </div>
                     </div>
@@ -163,5 +165,3 @@
     </script>
 
 }
-
-

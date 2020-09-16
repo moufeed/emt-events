@@ -3,7 +3,12 @@
 msgid "excellence_miles"
 msgstr "Excellence Miles"
 msgid "p_meta_description"
-msgstr "The company aims at interior projects and services furnishing in accordance with the standards and levels of distinctive local and global perspective through the experience of its consultants."
+msgstr "أميال التميز تقوم بخدمتكم في مجال تنظيم المعارض والمؤتمرات التصميم والانيميشن الإنتاج الإعلامي خدمات الضيافة والتسويق الإلكتروني"
+msgid "p_meta_keywords"
+msgstr "مؤتمرات, تنظيم مؤتمرات, شركات تجهيز المعارض بالرياض, شركات تنظيم ايفنتات, ايفنتات, معدات سمعية وبصرية, تسويق الكتروني, تنظيم فعاليات, تنظيم معارض ومؤتمرات"
+
+msgid "fulladdress"
+msgstr "Takhassusi St, Al Mathar Ash Shamali Riyadh 12312 11575 Saudi Arabia"
 
 msgid "c_address"
 msgstr "Riyadh,Saudi Arabia"
@@ -42,16 +47,16 @@ msgid "GalleriesImage"
 msgstr "~/Portal/img/backgrounds/works.jpg"
 
 msgid "PostsImage"
-msgstr "~/portal/img/backgrounds/events.jpg"
+msgstr "~/Portal/img/backgrounds/events.jpg"
 
 msgid "ServicesImage"
-msgstr "~/portal/img/backgrounds/services.jpg"
+msgstr "~/Portal/img/backgrounds/services.jpg"
 
 msgid "AboutUsImage"
-msgstr "~/portal/img/backgrounds/about.jpg"
+msgstr "~/Portal/img/backgrounds/about.jpg"
 
 msgid "PagesImage"
-msgstr "~/portal/img/backgrounds/pages.jpg"
+msgstr "~/Portal/img/backgrounds/pages.jpg"
 
 msgid "facebook_link"
 msgstr "https://www.facebook.com/Excellence-miles-Events-1174398756040626/"

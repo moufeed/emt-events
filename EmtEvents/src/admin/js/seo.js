@@ -36,8 +36,8 @@ const Seo_Defaults_labels ={
     "article_author": "Article author :",
     "article_publisher": "Article publisher :"
 }
-console.log(window.seo_labels)
 let localizer = $.extend({}, Seo_Defaults_labels , window.seo_labels || {});
+
 
 const SEOTemplates = [];
 
@@ -578,8 +578,7 @@ $('#JsonIsEditable').on('change',function(){
             title: $this.data("alert-title") || 'Are you sure?',
             text:  $this.data("alert-msg") || "i hope you know what you're doing",
             type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes ',
+            showCancelButton: true, 
             focusConfirm :false 
         },function (result) {
             if (result.value) {

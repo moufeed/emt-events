@@ -1,0 +1,42 @@
+
+.fixed-social-bar{
+    @include fixed(top $left , calc(50vh - 150px)  0);
+    background: $colorMain;
+    -webkit-box-shadow: 0 if-ltr(2px,-2px) 15px 0 rgba(100,100,100,0.09);
+    box-shadow: 0 if-ltr(2px,-2px) 15px 0 rgba(100,100,100,0.09);
+    z-index: 12500;
+
+    &.home_bar{
+        top: 50vh ;
+    }
+    nav{
+        a{ 
+            
+             
+                display: block;
+                @include square(35px);
+                text-align: center;
+                line-height: 35px;
+                transition: all .3s;
+                color: #fff;
+                /* @each $color in $social-colors{
+                    &[class*="#{nth($color ,1)}"]{
+                        color: nth($color ,2) ;
+                    }
+                } */
+                &:hover{
+                    @each $color in $social-colors{
+                        &[class*="#{nth($color ,1)}"]{
+                            background: nth($color ,2) ;
+                            color: #fff;
+                        }
+                    }
+                    &.fa-snapchat {
+                        color: #000;
+                    }
+                }
+            
+        }
+    }
+}
+ 

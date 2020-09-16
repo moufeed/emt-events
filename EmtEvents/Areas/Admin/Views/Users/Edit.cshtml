@@ -57,7 +57,7 @@
                         <div class="col-sm-8 col-xs-12 col-md-9">
                             <div class="form-group clearfix ">
 
-                                <label asp-for="Name" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_name"]</label>
+                                <label asp-for="Name" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_name"]<i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">                           
                                     <input asp-for="Name" class="form-control" required />
                                     <span asp-validation-for="Name" class="text-danger invalid_field"></span>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group clearfix">
 
-                                <label asp-for="UserName" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_username"]</label>
+                                <label asp-for="UserName" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_username"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     <input asp-for="UserName" class="form-control" required />
                                     <span asp-validation-for="UserName" class="text-danger invalid_field"></span>
@@ -83,7 +83,7 @@
 
                             <div class="form-group clearfix">
 
-                                <label asp-for="Password" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_password"]</label>
+                                <label asp-for="Password" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_password"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     <input type="password" asp-for="Password" class="form-control" required/>
                                     <span asp-validation-for="Password" class="text-danger invalid_field"></span>
@@ -92,7 +92,7 @@
 
                             <div class="form-group clearfix">
 
-                                <label asp-for="ConfirmPasswoord" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_confirmpassword"]</label>
+                                <label asp-for="ConfirmPasswoord" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_confirmpassword"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     <input type="password" asp-for="ConfirmPasswoord" class="form-control" required />
                                     <span asp-validation-for="ConfirmPasswoord" class="text-danger invalid_field"></span>
@@ -101,7 +101,7 @@
 
                             <div class="form-group clearfix">
 
-                                <label asp-for="PhoneNumber" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_phone"]</label>
+                                <label asp-for="PhoneNumber" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_phone"]<i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     <input type="tel" asp-for="PhoneNumber" class="form-control" required />
                                     <span asp-validation-for="PhoneNumber" class="text-danger invalid_field"></span>
@@ -123,7 +123,7 @@
                             </div>
                             <div class="form-group clearfix">
 
-                                <label asp-for="Roles" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_role"]</label>
+                                <label asp-for="Roles" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_role"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
  
                                     @Html.DropDownList("Roles",

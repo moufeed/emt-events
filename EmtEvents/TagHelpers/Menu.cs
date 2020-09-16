@@ -138,8 +138,7 @@ namespace EmtEvents.TagHelpers
             {
                 var target = (Menu.UrlTarget?.Length > 0) ? Menu.UrlTarget : "_blank";
                 string li = "<li>";
-                li += $"<a href=\"#\" target=\"{target}\">{Menu.Title}</a>";
-                li += Print_UL(Menu.MenuItems, false);
+                li += $"<a href=\"{Menu.Url}\" target=\"{target}\">{Menu.Title}</a>";
                 li += "</li>";
                 return li;
 
@@ -154,8 +153,15 @@ namespace EmtEvents.TagHelpers
         private string GenerateLiItem(MenuItemDto Menu,  string path = "")
         {
             string li = "<li>";
-                   li += $"<a href=\"{ path }/{ Menu.Url }\">{Menu.Title}</a>";
-                   li += "</li>";
+            if ("/".Equals(Menu.Url))
+            {
+                li += $"<a href=\"/{CultureInfo.CurrentCulture.Name}\">{Menu.Title}</a>";
+            }
+            else
+            {
+                li += $"<a href=\"{ path }/{ Menu.Url }\">{Menu.Title}</a>";
+            }      
+           li += "</li>";
             return li;
         }
 

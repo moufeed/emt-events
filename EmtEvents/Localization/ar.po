@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: emt_events 0.1.7"
+"Project-Id-Version: emtevents 0.1.8"
 "Last-Translator: tamtech solution <support@tamtech.solution>"
 "MIME-Version: 1.0"
 "Content-Type: text/plain; charset=UTF-8"
@@ -322,6 +322,12 @@ msgstr "الموقع :"
 msgid "f_public_url"
 msgstr "الرابط العام :"
 
+msgid "f_created_date"
+msgstr "تاريخ الأنشاء"
+
+msgid "f_post_date"
+msgstr "تاريخ المقالة"
+
 #seo form 
 msgid "f_headline"
 msgstr "العنوان الرّئيسي :"
@@ -349,6 +355,22 @@ msgstr "المطبخ :"
 
 msgid "f_section_parent"
 msgstr "التصنيف الأب :"
+
+msgid "f_company"
+msgstr "شركة :"
+
+msgid "f_job_position"
+msgstr "المنصب الوظيفي :"
+
+msgid "f_avater_image"
+msgstr "الصورة :"
+
+msgid "f_rating"
+msgstr "التقيم :"
+
+msgid "f_message"
+msgstr "الرسالة :"
+
 
 #global Tables
 msgid  "t_title"
@@ -476,6 +498,25 @@ msgstr "التفاصيل"
 
 msgid "t_city"
 msgstr "المدينة"
+
+msgid "t_position"
+msgstr "الموقع"
+
+msgid "t_section"
+msgstr "التصنيف"
+
+
+msgid "t_company"
+msgstr "الشركة"
+
+msgid "t_job_position"
+msgstr "المنصب الوظيفي"
+
+msgid "t_rating"
+msgstr "التقيم"
+
+msgid "t_message"
+msgstr "الرسالة"
 
 #labels
 
@@ -954,12 +995,18 @@ msgstr "تصنبفات المقالات"
 msgid "services_section"
 msgstr "تصنيفات الخدمات"
 
+msgid "gallery_section"
+msgstr "تصنيفات معرض الصور"
+
 msgid "add_to_menu"
 msgstr "إضافة للقائمة"
 
 msgctxt "admin.Views.Menus.partials._modal"
 msgid "product"
 msgstr "منتَج"
+
+msgid "Create_section"
+msgctxt "تصنيف جديد"
 
 #:users Controller
 msgid "c_roles"
@@ -1118,6 +1165,12 @@ msgstr "تحديث صورة في المعرض"
 
 msgid "back_to_gallery"
 msgstr "العودة إلى معرض الصّور"
+
+msgid "create_video_item"
+msgstr "إضافة فيديو"
+
+msgid "edit_video_item"
+msgstr "تعديل الفيديو"
 
 #:FormGallery.cshtml 
 msgid "create_gallery"
@@ -1508,6 +1561,9 @@ msgstr  " لايمكن ترك حقل (@type) فارغ"
 msgid "url_msg"
 msgstr "الرجاء إدخال رابط صحيح  http://example.com "
 
+msgid "filesize_msg"
+msgstr "حجم الملف يجب ان يكون اصغر من"
+
 # :controller adminbaseController.cs // filters
 
 msgid "title_a_to_z"
@@ -1550,8 +1606,106 @@ msgstr "معرفة المزيد"
 msgid "fullscreen"
 msgstr "ملئ الشاشة"
 
-msgid "Log_out"
+msgid "Log_Out"
 msgstr "تسجيل الخروج"
+
+
+msgid "Slug_ar"
+msgstr "الاسم اللطيف"
+
+msgid "Title_ar"
+msgstr "العنوان"
+
+msgid "MainImage_ar"
+msgstr "الصّورة الرّئيسيّة"
+
+msgid "VideoUrl_ar"
+msgstr "رابط الفيديو"
+
+msgid "Content_ar"
+msgstr "محتوى"
+
+msgid "Image_ar"
+msgstr "الصّورة الرّئيسيّة"
+
+msgid "section_projects"
+msgstr "مشاريع"
+
+msgid "section_works"
+msgstr "أعمال"
+
+msgid "View_in_website"
+msgstr "مشاهدة ضمن الموقع"
+
+msgid "new_tab"
+msgstr " فتح في تبويب جديد"
+
+msgid "same_tab"
+msgstr " فتح في نفس التبويب"
+
+msgid "start_chat_in_whatsapp"
+msgstr "بدء محادثة"
+
+msgid "mobile_number_not_confirmed"
+msgstr "رقم الجوال غير مؤكد"
+
+
+msgid "TAMCMS_UsersAdmin"
+msgstr "مدير المستخدمين"
+
+msgid "TAMCMS_MenusContentAdmin"
+msgstr "مدير القوائم"
+
+msgid "TAMCMS_PagesContentAdmin"
+msgstr "مدير الصفحات"
+
+msgid "TAMCMS_PostAuthor"
+msgstr "مؤلف المقالات"
+
+msgid "TAMCMS_GalleriesContentAdmin"
+msgstr "مدير المعارض"
+
+msgid "TAMCMS_SlidersContentAdmin"
+msgstr "مدير السلايدرات"
+
+msgid "TAMCMS_PostsContentAdmin"
+msgstr "مدير المقالات"
+
+msgid "TAMCMS_ServicesContentAdmin"
+msgstr "مدير الخدمات"
+
+msgid "TAMCMS_ProductsContentAdmin"
+msgstr "مدير النتجات"
+
+msgid "TAMCMS_PostsEditor"
+msgstr "محرر مقالات"
+
+
+msgid "email_to"
+msgstr "رسالة إلى"
+
+msgid "email_sent"
+msgstr "تم إرسال الرسالة"
+
+# testimonials
+msgid "new_testimonial"
+msgstr "توصية جديدة"
+
+
+msgid "edit_testimonial"
+msgstr "تعديل التوصية"
+
+msgid "create_testimonial"
+msgstr "إنشاء توصية"
+
+msgid "testimonial_details"
+msgstr "تفاصيل التوصية"
+
+msgid "testimonials"
+msgstr "التوصيات"
+
+msgid ""
+msgstr ""
   
 # bottom_bar
 msgid "copyright_excellence_miles_All_rights_reserved"
@@ -1567,9 +1721,9 @@ msgid "about_company"
 msgstr "حول الشركة"
 
 msgid "latest_services"
-msgstr "من خدماتنا"
+msgstr "خدماتنا"
 
-msgid "latest_services_slogan"
+msgid "latest_services_slogan" 
 msgstr "نحن نقدم أفضل الخدمات من أجل تحقيق احتياجات التسويق لكل عميل."
 
 msgid "Latest_work"
@@ -1774,18 +1928,29 @@ msgstr "ونظرًا لخبرتنا ، نقدم أسعارًا خاصة تحفز
 msgid "our_clients"
 msgstr "عملاءنا"
 
+msgid "read_more"
+msgstr "المزيد ..."
+
+msgid "Visit_us"
+msgstr "قم بزيرتنا"
+
 msgid ""
 msgstr ""
  
 
 #seo 
 msgid "excellence_miles"
-msgstr "Excellence Miles"
+msgstr "أميال التميز"
 msgid "p_meta_description"
-msgstr "The company aims at interior projects and services furnishing in accordance with the standards and levels of distinctive local and global perspective through the experience of its consultants."
+msgstr "أميال التميز تقوم بخدمتكم في مجال تنظيم المعارض والمؤتمرات التصميم والانيميشن الإنتاج الإعلامي خدمات الضيافة والتسويق الإلكتروني"
+msgid "p_meta_keywords"
+msgstr "مؤتمرات, تنظيم مؤتمرات, شركات تجهيز المعارض بالرياض, شركات تنظيم ايفنتات, ايفنتات, معدات سمعية وبصرية, تسويق الكتروني, تنظيم فعاليات, تنظيم معارض ومؤتمرات"
 
 msgid "c_address"
-msgstr "Riyadh,Saudi Arabia"
+msgstr "المملكة العربية السعودية . الرياض"
+
+msgid "fulladdress"
+msgstr "شارع التخصصي، المعذر الشمالي، الرياض 12312 11575 المملكة العربية السعودية"
 
 msgid "telephone_number"
 msgstr "+966 11 281 7030"
@@ -1809,10 +1974,10 @@ msgid "postalCode"
 msgstr "34320"
 
 msgid "streetAddress"
-msgstr "Takhassusi St"
+msgstr "شارع التخصصي"
 
 msgid "addressLocality"
-msgstr "Al Mathar Ash Shamali"
+msgstr "حي المعذر الشمالي"
 
 msgid "contactUsImage"
 msgstr "~/Portal/img/backgrounds/contact-us.jpg"
@@ -1821,16 +1986,17 @@ msgid "GalleriesImage"
 msgstr "~/Portal/img/backgrounds/works.jpg"
 
 msgid "PostsImage"
-msgstr "~/portal/img/backgrounds/events.jpg"
+msgstr "~/Portal/img/backgrounds/events.jpg"
 
 msgid "ServicesImage"
-msgstr "~/portal/img/backgrounds/services.jpg"
+msgstr "~/Portal/img/backgrounds/services.jpg"
 
 msgid "AboutUsImage"
-msgstr "~/portal/img/backgrounds/about.jpg"
+msgstr "~/Portal/img/backgrounds/about.jpg"
 
 msgid "PagesImage"
-msgstr "~/portal/img/backgrounds/pages.jpg"
+msgstr "~/Portal/img/backgrounds/pages.jpg"
+
 
 msgid "facebook_link"
 msgstr "https://www.facebook.com/Excellence-miles-Events-1174398756040626/"
@@ -1853,5 +2019,3 @@ msgstr "https://www.snapchat.com/add/excellence_miles_events_"
 msgid ""
 msgstr ""
 
-
- 

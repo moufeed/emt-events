@@ -18,8 +18,10 @@ namespace EmtEvents.Areas.Portal.Controllers
     {
         public ServicesController(ITelemetryClientService telemetryClientService, IMenusServices menusServices,
               IServicesService servicesservice)
-            : base(telemetryClientService, menusServices, servicesservice)
+            : base(telemetryClientService, menusServices, servicesservice,true)
         {
         }
+
+
     }
 }

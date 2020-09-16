@@ -30,6 +30,7 @@ namespace EmtEvents.AppStartup.DirectBackendServices.ContentService.ApplicationS
             services.AddTransient<ISliderRepository, EFCoreSliderRepository>();
             services.AddTransient<IServiceRepository, EFCoreServiceRepository>();
             services.AddTransient<IGalleryRepository, EFCoreGalleryRepository>();
+            services.AddTransient<ITestimonialRepository, EFCoreTestimonialRepository>();
 
             services.AddTransient<ISectionRepository, EFCoreSectionRepository>();
             services.AddTransient<IPostRepository, EFCorePostRepository>();

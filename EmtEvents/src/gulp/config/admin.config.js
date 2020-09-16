@@ -20,14 +20,23 @@ module.exports = {
     js: {
         dist: `${admin_dist}/js`,
         watch: `${admin_src}/js/**/*.js`,
-        files: [{
-                outputFileName: "script.js",
+        files: [
+            {
+                outputFileName: "lib.js",
                 inputFiles: [
-                   /*  './node_modules/jquery/dist/jquery.min.js',
-                    './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', */
+                    './node_modules/jquery/dist/jquery.min.js',
+                    './wwwroot/Admin/lib/bootstrap/dist/js/bootstrap.min.js', // bootstrap version 3.3.7
                     './node_modules/bootstrap-notify/bootstrap-notify.min.js',
+                    './node_modules/sweetalert2/dist/sweetalert2.all.min.js', 
                     './node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js',
-                    `${admin_src}/js/scripts.js`
+                ],
+            },
+            {
+                outputFileName: "script.js",
+                es6: true,
+                inputFiles: [
+                    `${admin_src}/js/Localization.js`,
+                    `${admin_src}/js/scripts.js`,
                 ],
             },
             {
@@ -116,6 +125,20 @@ module.exports = {
                 es6: true,
                 inputFiles: [
                     `${admin_src}/js/posts.js`
+                ],
+            },
+            {
+                outputFileName: "testimonials.js",
+                es6: true,
+                inputFiles: [
+                    `${admin_src}/js/testimonials.js`
+                ],
+            },
+            {
+                outputFileName: "Localization.js",
+                es6: true,
+                inputFiles: [
+                    `${admin_src}/js/Localization.js`
                 ],
             },
         ]

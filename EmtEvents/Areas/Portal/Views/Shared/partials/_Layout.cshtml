@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+@{
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    var StyleFile = (lang == "ar") ? "style-rtl.min.css" : "style-ltr.min.css";
+}
+
+<html class="no-js" dir="@(lang== "ar" ? "rtl" :"ltr")">
+
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="application/xhtml+html; charset=utf-8" />
+    <title>@ViewData["Title"]</title>
+    @RenderSection("SEO", required: false)
+    <link rel="shortcut icon" href="~/Portal/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/Portal/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="~/Portal/css/@StyleFile">
+    @RenderSection("meta", required: false)
+    @RenderSection("Styles", required: false)
+    <script src="~/Portal/js/modernizr-2.6.2.min.js"></script>
+
+
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139623355-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-139623355-1');
+    </script>
+</head>
+<body>
+    <!--[if lt IE 9]>
+            <div class="bg-danger text-center">You are using an <strong>outdated</strong>
+            browser. Please <a href="http://browsehappy.com/" class="color-main">upgrade your browser</a> to improve your experience.</div>
+    <![endif]-->
+    <div class="preloader">
+        <div class="preloader_image"></div>
+    </div>
+
+    <div id="canvas">
+        <div id="box_wrapper">
+            <partial name="~/Areas/Portal/Views/Shared/partials/_Header.cshtml" />
+            @RenderBody()
+            <partial name="~/Areas/Portal/Views/Shared/partials/_Footer.cshtml" />
+        </div>
+    </div>
+    <script src="~/Portal/js/bundle.min.js"></script>
+    <script src="~/Portal/js/script.min.js"></script>
+    @RenderSection("footer", required: false)
+
+
+    @*<!-- BEGIN JIVOSITE CODE {literal} -->
+        <script type='text/javascript'>(function(){ var widget_id = 'uMmz0v3ryn';var d=document;var w=window;function l(){var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+        <!-- {/literal} END JIVOSITE CODE -->*@
+
+
+    @if (lang == "ar")
+    {
+
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c45911951410568a10790bd/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+        </script>
+        <!--End of Tawk.to Script-->
+
+    }
+    else
+    {
+
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5c45911951410568a10790bd/1d1vv1s15';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+                </script>
+                <!--End of Tawk.to Script-->
+    }
+
+
+
+    <partial name="~/Areas/Portal/Views/Shared/partials/_socialBar.cshtml" />
+</body>
+</html>

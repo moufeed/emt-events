@@ -57,8 +57,8 @@
                     <input type="hidden" name="Lang" value="@activeLang" />
                     <div class="form-group clearfix">
 
-                        <label asp-for="Title" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_title"]</label>
-                        <div class="col-md-7 col-sm-8 col-xs-12">
+                        <label asp-for="Title" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_title"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
                             <input type="text" asp-for="Title" class="form-control" required />
                             <span asp-validation-for="Title" class="text-danger invalid_field"></span>
                         </div>
@@ -66,8 +66,8 @@
 
                     <div class="form-group clearfix">
 
-                        <label asp-for="Slug" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
-                        <div class="col-md-7 col-sm-8 col-xs-12">
+                        <label asp-for="Slug" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_slug"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
 
                             <input type="text" asp-for="Slug" class="form-control" required />
                             <span asp-validation-for="Slug" class="text-danger invalid_field"></span>
@@ -76,8 +76,8 @@
 
                     <div class="form-group clearfix">
 
-                        <label asp-for="Section" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_section"]</label>
-                        <div class="col-md-7 col-sm-8 col-xs-12">
+                        <label asp-for="Section" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_section"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
 
                             <input type="text" asp-for="Section" class="form-control" />
                             <span asp-validation-for="Section" class="text-danger invalid_field"></span>
@@ -90,23 +90,24 @@
 
                     <div class="form-group clearfix">
 
-                        <label asp-for="MainImage" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
-                        <div class="col-md-7 col-sm-8 col-xs-12">
+                        <label asp-for="MainImage" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_main_image"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
 
 
                             <label class="form-control clearfix uploadfile">
-                                <input type="file" asp-for="MainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" />
+                                <input type="file" asp-for="MainImage" class="upload-input" data-text="@Localizer["choose_file"]" accept="image/*" data-rule-filesize="500"/>
                                 <span class="url">@Localizer["choose_file"]</span>
                                 <span class="file-btn"><i class="fa fa-search"></i> @Localizer["Browse"]</span>
                             </label>
                             <span asp-validation-for="MainImage" class="text-danger invalid_field"></span>
+                            <label id="MainImage-error" class="invalid_field" for="MainImage" style="display:none;"></label>
                         </div>
 
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="AuthorName" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["author_name"]</label>
-                        <div class="col-md-7 col-sm-9 col-xs-12">
+                        <label asp-for="AuthorName" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["author_name"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                             <input type="text" asp-for="AuthorName" class="form-control" />
                             <span asp-validation-for="AuthorName" class="text-danger invalid_field"></span>
                         </div>
@@ -114,8 +115,8 @@
 
                     <div class="form-group clearfix">
 
-                        <label asp-for="Summary" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_summary"]</label>
-                        <div class="col-md-7 col-sm-8 col-xs-12">
+                        <label asp-for="Summary" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_summary"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
                             <textarea asp-for="Summary" class="form-control" rows="3" required></textarea>
                             <span asp-validation-for="Summary" class="text-danger invalid_field"></span>
                         </div>
@@ -136,15 +137,15 @@
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                     <div class="form-group">
-                                        <Label for="title-@indx" class="control-label col-md-3 col-sm-3 col-xs-12"> @Localizer["f_title"]</Label>
-                                        <div class="col-md-7 col-sm-5 col-xs-12" id="">
+                                        <Label for="title-@indx" class="control-label col-md-2 col-sm-3 col-xs-12"> @Localizer["f_title"]</Label>
+                                        <div class="col-md-10 col-lg-9 col-sm-5 col-xs-12" id="">
                                             <input type="text" name="Content[@indx].Key" id="title-@indx" class="form-control m-b2" required="required" />
                                         </div>
 
                                     </div>
                                     <div class="form-group">
-                                        <Label for="Content-@indx" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_content"]</Label>
-                                        <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                                        <Label for="Content-@indx" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_content"]</Label>
+                                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12" id="">
                                             <textarea rows="4" class="form-control" id="Content-@indx" name="Content[@indx].Value" required="required"></textarea>
                                         </div>
                                     </div>
@@ -170,8 +171,8 @@
                         @{
                             string keywords = string.Empty;
                         }
-                        <label asp-for="Keywords" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_keywords"]</label>
-                        <div class="col-md-7 col-sm-8 col-xs-12">
+                        <label asp-for="Keywords" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_meta_keywords"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
                             <div class="static-form-control">
                                 <input type="text" asp-for="Keywords" class="form-control" id="keywords" />
                             </div>
@@ -180,15 +181,15 @@
                     </div>
 
                     <div class="form-group clearfix">
-                        <label asp-for="MetaDescription" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
-                        <div class="col-md-7 col-sm-8 col-xs-12">
+                        <label asp-for="MetaDescription" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_meta_description"]</label>
+                        <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12">
                             <textarea asp-for="MetaDescription" class="form-control MetaDescription" data-characters='{"warning_count" : 158  , "maximum_count"  : 300 }' rows="3"></textarea>
                             <span asp-validation-for="MetaDescription" class="text-danger invalid_field"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-7 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 text-right">
+                        <div class="col-md-10 col-lg-9 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 text-right">
                             <input type="submit" class="btn btn-success p-x-5 ut-createbtn" value="@Localizer["Create"]" id="createBtn">
                             <input type="submit" class="btn btn-info p-x-5 ut-saveAndcontinue" value="@Localizer["save_and_continue"]" id="saveAndcontinue" name="save-continue">
                         </div>
@@ -219,13 +220,17 @@
         function tinymceInit(){
             tinymce.init({
                 selector: 'textarea[id^="Content-"]',
+                force_br_newlines: true,
+                force_p_newlines: false,
+                forced_root_block :false,
                 branding: false,
                 theme: 'modern',
                 min_height: 150,
                 statusbar: false,
                 menubar: false,
-
-                plugins: ['code hr anchor pagebreak spellchecker '],
+         
+                plugins: ['code hr anchor pagebreak spellchecker directionality code'],
+                toolbar :['undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify  |   fontselect fontsizeselect  | outdent indent   | code  |  hr ltr rtl |blockquote     removeformat '],
                 setup: function(editor) {
                     editor.on('change', function(e) {
                         editor.save();
@@ -241,13 +246,13 @@
             '<i class="fa fa-trash-o"></i>' +
             '</a>' +
             '<div class="form-group">' +
-            '<Label for="Title-&&" class="control-label col-md-3 col-sm-3 col-xs-12">@Localizer["f_title"]</Label>' +
-            '<div class="col-md-7 col-sm-5 col-xs-12" id="">' +
+            '<Label for="Title-&&" class="control-label col-md-2 col-sm-3 col-xs-12">@Localizer["f_title"]</Label>' +
+            '<div class="col-md-10 col-lg-9 col-sm-5 col-xs-12" id="">' +
             '<input type="text" name="Content[&&].Key" id="Title-&&" class="form-control m-b2" required="required"/>' +
             '</div></div>' +
             '<div class="form-group">' +
-            '<Label for="Content-&&" class="control-label col-md-3 col-sm-3 col-xs-12 ">@Localizer["f_content"]</Label>' +
-            '<div class="col-md-7 col-sm-8 col-xs-12" id="">' +
+            '<Label for="Content-&&" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["f_content"]</Label>' +
+            '<div class="col-md-10 col-lg-9 col-sm-8 col-xs-12" id="">' +
             '<textarea rows="4" class="form-control" id="Content-&&" name="Content[&&].Value" required="required"></textarea>' +
             '</div></div><hr class="line"/>' +
             '</section>';
@@ -265,6 +270,7 @@
         $(document).on('click', '.remove-content', function () {
             if (i > 1) {
                 let id = $(this).data('id');
+        tinymce.get("Content-"+id).remove();
                 $('#section-' + id).remove();
                 if (id < (i - 1)) {
                     let sections = $('#ContentItems').find('section');

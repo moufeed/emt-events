@@ -18,7 +18,9 @@
    
     @include font('rw-medium', '#{$font}/Raleway/Raleway-Medium.ttf');
     @include font('rw-bold', '#{$font}/Raleway/Raleway-Bold.ttf');
-    @include font('rw-black', '#{$font}/Raleway/Raleway-Black.ttf');
+
+    @include font('dosis-SemiBold', '#{$font}/Dosis/Dosis-SemiBold.ttf');
+    @include font('dosis-bold', '#{$font}/Dosis/Dosis-Bold.ttf');
    
 
     

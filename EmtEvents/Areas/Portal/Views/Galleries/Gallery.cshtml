@@ -21,7 +21,18 @@
                 <header class="col-lg-12 text-center mt-5">
                     <h3 class="color-main">
                         <span>@Model.Title</span>
+
                     </h3>
+                    @if (Model.CustomDate != null)
+                    {
+                        <div>
+                            <small>
+                                <i class="fa fa-calendar"></i>
+                                @(string.Format("{0:MMM/dd/yyyy}", Model.CustomDate))
+                            </small>
+                        </div>
+                    }
+
                     <p>
                         @Html.Raw(Model.Summary)
                     </p>
@@ -123,11 +134,11 @@
     </section>
 </if>
 
- 
+
 
 
 
 @section footer {
     <script src="~/Portal/js/gallery.min.js"></script>
-  
+
 }

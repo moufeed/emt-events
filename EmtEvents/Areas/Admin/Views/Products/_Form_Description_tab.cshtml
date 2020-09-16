@@ -22,15 +22,15 @@
                     <i class="fa fa-trash-o"></i>
                 </a>
                 <div class="form-group">
-                    <Label for="title-@indx" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_title"]</Label>
-                    <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                    <Label for="title-@indx" class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["f_title"] <i class="fa fa-asterisk c-red fz-10 "></i></Label>
+                    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12" id="">
                         <input type="text" name="Description[@indx].Key" id="Title-@indx" asp-for="@item.Key" class="form-control m-b2" required  />
                     </div>
 
                 </div>
                 <div class="form-group">
-                    <Label for="Content-@indx" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_content"]</Label>
-                    <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                    <Label for="Content-@indx" class="control-label col-md-2 col-sm-4 col-xs-12 ">@Localizer["f_content"]</Label>
+                    <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12" id="">
                         <textarea rows="4" class="form-control" id="Description-@indx" name="Description[@indx].Value" asp-for="@item.Value"  ></textarea>
                     </div>
                 </div>
@@ -48,15 +48,15 @@
                 <i class="fa fa-trash-o"></i>
             </a>
             <div class="form-group">
-                <Label for="title-@indx" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_title"]</Label>
-                <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                <Label for="title-@indx" class="control-label col-md-2 col-sm-4 col-xs-12">@Localizer["f_title"] <i class="fa fa-asterisk c-red fz-10 "></i></Label>
+                <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12" id="">
                     <input type="text" name="Description[@indx].Key" id="Title-@indx" class="form-control m-b2" required />
                 </div>
 
             </div>
             <div class="form-group">
-                <Label for="Description-@indx" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_content"]</Label>
-                <div class="col-md-7 col-sm-8 col-xs-12" id="">
+                <Label for="Description-@indx" class="control-label col-md-2 col-sm-4 col-xs-12 ">@Localizer["f_content"]</Label>
+                <div class="col-md-10 col-lg-9 col-sm-8 col-xs-12" id="">
                     <textarea rows="4" class="form-control" id="Description-@indx" name="Description[@indx].Value" ></textarea>
                 </div>
             </div>

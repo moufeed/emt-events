@@ -6,7 +6,7 @@
     List<string> targets = new List<string> { "_blank", "_self", "_parent", "_top" };
 
     var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
-
+    ViewBag.activeLang = activeLang;
 }
 
 @using System.Text;
@@ -24,12 +24,12 @@
 
         StringBuilder stringBuilder = new StringBuilder("<table class=\"table table-middle table-hover\">");
         stringBuilder.Append("<thead><tr>");
-        stringBuilder.Append($"<th width=\"80\">{ViewBag.tableheadding[0]}</th>");
-        stringBuilder.Append($"<th>{ViewBag.tableheadding[1]}</th>");
-        stringBuilder.Append($"<th>{ViewBag.tableheadding[2]}</th>");
-        stringBuilder.Append($"<th>{ViewBag.tableheadding[3]}</th>");
-        stringBuilder.Append($"<th width=\"150\" class=\"text-center\">{ViewBag.tableheadding[4]}</th>");
-        stringBuilder.Append($"<th width=\"200\" class=\"text-center\">{ViewBag.tableheadding[5]}</th>");
+        stringBuilder.Append($"<th width=\"80\">{Localizer["t_order"].Value }</th>");
+        stringBuilder.Append($"<th>{Localizer["t_title"].Value}</th>");
+        stringBuilder.Append($"<th>{Localizer["t_url"].Value}</th>");
+        stringBuilder.Append($"<th>{Localizer["t_type"].Value}</th>");
+        stringBuilder.Append($"<th width=\"150\" class=\"text-center\">{Localizer["t_visibility"].Value}</th>");
+        stringBuilder.Append($"<th width=\"200\" class=\"text-center\">{Localizer["t_actions"].Value}</th>");
         stringBuilder.Append($"</tr></thead>");
         if (MenuItems?.Count > 0)
         {
@@ -42,7 +42,7 @@
         stringBuilder.Append("<tr class=\"tfooter\"><td colspan='6'>");
         stringBuilder.Append("<div class=\"text-right p-t2\">");
         stringBuilder.Append($"<button class=\"btn btn-add btn-info ut-additem-btn ut-btn-{index}  \" data-toggle=\"modal\" data-target=\"#MenuItemModal\" data-root=\"false\" " +
-            $"<i class=\"fa fa-plus\"></i>{ViewBag.tableheadding[6]}</button>");
+            $"<i class=\"fa fa-plus\"></i>{Localizer["add_Item"].Value}</button>");
         stringBuilder.Append("</div></tr></td>");
         stringBuilder.Append("</table>");
         return stringBuilder.ToString();
@@ -91,23 +91,17 @@
         stringBuilder.Append($"<td><span>{dto.ItemType}</span></td>");
 
 
+         
 
-        if (dto.Published)
-        {
-            stringBuilder.Append($"<td> <a data-toggle='tooltip' data-placement='top'  " +
-                $"data-status='true' title='{ViewBag.tableheadding[7]}' data-key='{dto.Key}' " +
-                $" data-published='{ViewBag.tableheadding[8]}' data-unpublished='{ViewBag.tableheadding[7]}' " +
-                $"data-root='{@Model.Id}' class='btn btn-link-pup toggle__publish  published'> " +
-                $"<i class='fa fa-eye c-green'></i> <small>{ViewBag.tableheadding[8]}</small></a></td>");
-        }
-        else
-        {
-            stringBuilder.Append($"<td>  <a   data-toggle='tooltip'" +
-                $" data-placement='top' title='{ViewBag.tableheadding[9]}' data-key='{dto.Key}'" +
-                $" data-published='{ViewBag.tableheadding[8]}' data-unpublished='{ViewBag.tableheadding[7]}' " +
-                $"data-root= '{@Model.Id}' class='btn btn-link-pup toggle__publish unpublished'>" +
-                $" <i class='fa fa-eye-slash c-red'></i>  <small>{ViewBag.tableheadding[10]}</small>  </a></td>");
-        }
+
+        string status = $"<td>";
+
+        status += $"<span data-toggle=\"tooltip\" data-status=\"true\" title=\"{Localizer["t_unpublish"].Value} \"  / \"{Localizer["t_publish"].Value}\" data-placement=\"{(ViewBag.activeLang == "ar" ? "right" : "left" )}\">";
+        status += $"<input  class=\"tgl tgl-flat toggle_visibility\" data-root=\"{@Model.Id}\" id=\"{dto.Key}\" type=\"checkbox\" {(dto.Published ? "checked" : "")} />";
+        status += $"<label class=\"tgl-btn\" for=\"{dto.Key}\" ></label></span></td>";
+        stringBuilder.Append(status);
+
+         
 
         stringBuilder.Append($"<td class='text-right'>");
 
@@ -127,7 +121,7 @@
 
 
 
-        stringBuilder.Append($"<a data-toggle='tooltip' data-placement='top' title='{ViewBag.tableheadding[11]}'" +
+        stringBuilder.Append($"<a data-toggle='tooltip' data-placement='top' title='{Localizer["t_edit"].Value}'" +
                              $"data-key='{dto.Key}' " +
                              $"data-type=\"{dto.ItemType}\" " +
                              $"data-root='{@Model.Id}' " +
@@ -137,7 +131,7 @@
 
         stringBuilder.Append($"<a data-toggle='tooltip'" +
                            $"data-placement='top'" +
-                           $"title='{ViewBag.tableheadding[12]}'" +
+                           $"title='{Localizer["cancel"].Value}'" +
                            $"data-object='{@Html.Raw(Json.Serialize(@dto))}'" +
                            $"class='btn btn-cancel cancel-menuitem btn-round hidden child'>" +
                            $"<i class='fa fa-ban '></i></a>");
@@ -146,7 +140,7 @@
         stringBuilder.Append($" <a data-toggle='tooltip'" +
                             $"data-placement='top'  data-key='{dto.Key}' data-root='{@Model.Id}'" +
                             $"data-url={Url.AdminUrl("DeleteAsync","menus" ,new { rootmenuid = Model.Id  , Key = dto.Key })}" +
-                            $" title='{ViewBag.tableheadding[13]}' class='btn btn-remove delete-menuitem btn-round' data-type=\"{dto.ItemType}\">" +
+                            $" title='{Localizer["t_remove"].Value}' class='btn btn-remove delete-menuitem btn-round' data-type=\"{dto.ItemType}\">" +
                             $"<i class='fa fa-trash-o '></i></a>");
 
 
@@ -241,13 +235,13 @@
 
                     <div class="col-md-4 col-xs-12">
                         <div class="form-group clearfix">
-                            <label for="MenuKey" class="control-label col-md-3 col-sm-12">@Localizer["name"]</label>
+                            <label for="MenuKey" class="control-label col-md-3 col-sm-12">@Localizer["name"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
                             <div class="col-md-9 col-sm-12">
                                 @if (Model.Locked)
                                 {
                                     <div class="input-group input-locked">
                                         <p class="form-control-static p-x-2 disabled">@Model.Key</p>
-                                        <input type="hidden" asp-for="Key" id="MenuKey" class="form-control" disabled />
+                                        <input type="hidden" asp-for="Key" id="MenuKey" class="form-control"  />
                                         <span class="input-group-addon"
                                               data-toggle="tooltip"
                                               data-placement="top"
@@ -354,42 +348,22 @@
                                             </td>
                                             
                                             <td>
-                                                @if (@item.Published)
-                                                {
 
-                                                    <a id="pubunpub-@index"
-                                                       data-toggle="tooltip"
-                                                       data-placement="@(activeLang == "ar" ? "left" : "right")"
-                                                       data-status="true"
-                                                       title="@Localizer["publish"]"
-                                                       data-published='@Localizer["t_published"]'
-                                                       data-unpublished='@Localizer["t_unpublish"]'
-                                                       data-key="@item.Key"
-                                                       data-root="@Model.Id"
-                                                       class="btn btn-link-pup published toggle__publish ut-published">
-                                                        <i class="fa fa-eye c-green"></i>
-                                                        <small>@Localizer["published"]</small>
-                                                    </a>
-
-                                                }
-                                                else
-                                                {
-
-                                                    <a id="pubunpub-@index"
-                                                       data-toggle="tooltip"
-                                                       data-placement="@(activeLang == "ar" ? "left" : "right")"
-                                                       title="@Localizer["unpublished"]"
-                                                       data-published='@Localizer["t_published"]'
-                                                       data-unpublished='@Localizer["t_unpublish"]'
-                                                       data-key="@item.Key"
-                                                       data-root="@Model.Id"
-                                                       class="btn btn-link-pup unpublished toggle__publish ut-unpublished">
-                                                        <i class="fa fa-eye-slash c-red"></i>
-                                                        <small>@Localizer["unpublished"]</small>
-                                                    </a>
-
-
-                                                }
+                                                <span 
+                                                data-toggle="tooltip" 
+                                                data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                                data-status="true"
+                                                title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
+                                                
+                                                <input 
+                                                class="tgl tgl-flat toggle_visibility"
+                                                data-root="@Model.Id"
+                                                id="@item.Key"  
+                                                type="checkbox"
+                                                @((item.Published) ? "<text> checked </text>" : "" )/>
+                                                <label class="tgl-btn" for="@item.Key" ></label>
+                                            </span>
+ 
                                             </td>
                                             <td class="text-right">
 
@@ -402,7 +376,7 @@
                                                        aria-controls="collapse-@index">
                                                         <span data-toggle="tooltip"
                                                               title="@Localizer["submenu"]"
-                                                              data-placement="@(activeLang == "ar" ? "right" : "left")">
+                                                              data-placement="top">
                                                             <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
                                                         </span>
                                                     </a>
@@ -524,6 +498,7 @@
                     <partial name="partials/_galleryTap.cshtml"  model="Model"/> 
                     <partial name="partials/_PostSectionTap.cshtml"  model="Model"/>
                     <partial name="partials/_ServicesSectionTap.cshtml"  model="Model"/>
+                    <partial name="partials/_GalleriesSectionTap.cshtml"  model="Model"/>
                 </div>
             </div>
         </div>

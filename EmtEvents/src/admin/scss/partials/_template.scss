@@ -336,7 +336,7 @@ a {
 .nav>li>a {
   position: relative;
   display: block;
-  padding: 13px 15px 12px;
+  padding: 15px;
 }
 
 
@@ -4280,3 +4280,99 @@ ul.notifications {
   font-size: 18px;
   color: #666;
 }
+
+.linktosection{
+  margin: 0;
+  padding: 8px 13px;
+}
+
+.modal{
+  .modal-content{
+    border: 0;
+    box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.2);
+  }
+}  
+
+.tooltip{
+  .tooltip-inner {
+   white-space:nowrap;
+  }
+  &.top .tooltip-arrow{
+    border-top: 0; 
+    
+  }
+  &.bottom .tooltip-arrow{
+    border-bottom: 0; 
+    
+  }
+  &.right .tooltip-arrow{
+    border-right: 0; 
+  }
+  &.left .tooltip-arrow{
+    border-left: 0; 
+  }
+}
+
+.modal-backdrop{
+  background: #fff;
+}
+
+.fz-10{
+  font-size: 10px;
+}
+
+.c-white{
+  color :#fff;
+}
+
+.c-black{
+  color :#000;
+} 
+
+.inputBtn{
+  display: flex;
+  justify-content: space-between;
+  span.input{
+    width: calc(100% - 60px);
+  }
+  a{
+    color: #fff; 
+  }
+}
+.rating {
+  color: darken(#fff, 20%);
+
+  .fa-star {
+    color: $yellow;
+  }
+} 
+.star_rating{
+  float: $left;
+  >input {
+    display: none;
+  }
+  >label {
+    color: #ddd;
+    float: $right;
+    &:before {
+      margin: 5px;
+      font-size: 1.25em;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f005";
+    }
+  }
+    >input:checked~label,
+   
+   &:not(:checked)>label:hover,
+    
+   &:not(:checked)>label:hover~label {
+     color: #FFD700;
+   }
+   >input:checked+label:hover,
+   >input:checked~label:hover,
+   >label:hover~input:checked~label,
+   >input:checked~label:hover~label {
+     color: #FFED85;
+   }
+} 

@@ -16,22 +16,26 @@ $(document).ready(function(){
 				themeClass = data.themeclass ? data.themeclass : 'owl-theme',
 				center = data.center ? data.center : false,
 				items = data.items ? data.items : 4,
-				autoplay = data.autoplay ? data.autoplay : false,
+				autoplay = data.autoplay ? data.autoplay : true,
 				responsiveXs = data.responsiveXs ? data.responsiveXs : 1,
 				responsiveSm = data.responsiveSm ? data.responsiveSm : 2,
 				responsiveMd = data.responsiveMd ? data.responsiveMd : 3,
 				responsiveLg = data.responsiveLg ? data.responsiveLg : 4,
 				draggable = (data.draggable === false) ? data.draggable : true,
 				syncedClass = (data.syncedClass) ? data.syncedClass : false,
+                hoverPause = (data.pause) ? data.pause : true,
+				autoplayTimeout = (data.autoplaytimeout) ? data.autoplaytimeout : 3000,
 				filters = data.filters ? data.filters : false;
 
 			 
 
-			$carousel.owlCarousel({
+		    $carousel.owlCarousel({
+		        autoplay: autoplay,
+		        autoplayTimeout: autoplayTimeout,
+		        autoplayHoverPause: hoverPause,
 				loop: loop,
 				margin: margin,
 				nav: nav,
-				autoplay: autoplay,
 				dots: dots,
 				themeClass: themeClass,
 				center: center,

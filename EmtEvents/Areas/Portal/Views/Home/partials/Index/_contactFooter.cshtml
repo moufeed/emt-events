@@ -3,7 +3,6 @@
     <div class="container">
         <div class="row">
             <div class="text-center col-md-12 justify-content-center text-block">
-                <img src="./assets/img/vertical_line.png" alt="">
                 <div class="divider-35"></div>
                 <div class="content">
                     <h1 class="animate fast" data-animation="fastInUp" >
@@ -14,15 +13,18 @@
                     </p>
                     <div class="divider-30"></div>
                 </div>
-
+                <div>
+                    @Localizer["fulladdress"]
+                 </div>
                 <div class="animate fast delay-2ms" data-animation="slideInUp" >
                     <div class="divider-40"></div>
-                    <a href="@Url.Action("contactus","home")" class="btn btn-outline-maincolor">@Localizer["Lets_talk"]</a>
+                    <div class="btn-group btn-links">
+                        <a href="@Url.Action("contactus","home")" class="btn btn-outline ">@Localizer["Lets_talk"]</a>
+                        <a href="https://goo.gl/maps/RqRrtsPgR4u" class="btn btn-outline " target="_blank">@Localizer["Visit_us"]</a>
+                    </div>
                     <div class="divider-30"></div>
                 </div>
-
             </div>
-
         </div>
         <div class="divider-50"></div>
     </div>

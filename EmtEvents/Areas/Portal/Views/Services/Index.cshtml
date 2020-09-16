@@ -15,10 +15,9 @@
 
 
 
-<section class="services-section py-5">
+<section class="services-section">
 
-    <div class="container">
-        <if include-if="Model != null && Model.Count > 0">
+       <if include-if="Model != null && Model.Count > 0">
             @{
                 int i = 1;
 
@@ -28,9 +27,11 @@
             {
 
                 var ImageAnimation = (lang == "ar") ? (i % 2 == 0 ? "fastFromLeft" : "fastFromRight") : (i % 2 == 0 ? "fastFromRight" : "fastFromLeft");
-
-
-                <div class="row service-list-item justify-content-center align-items-center py-5 my-4 @(i % 2 == 0 ? "flex-row-reverse" :"" )">
+                <div class="@(  i % 2 == 0  ? "ds" :"" )">
+                    
+                    <div class="container">
+                        
+                <div class="row service-list-item justify-content-center align-items-center    @(i % 2 == 0 ? "flex-row-reverse" :"" )">
                     <div class="col-md-3 align-self-center text-center animate faster s-icon" data-animation="@ImageAnimation">
                         @if (service.IconVisibility && !string.IsNullOrEmpty(service.Icon))
                         {
@@ -38,7 +39,7 @@
                         }
                         else if (!string.IsNullOrEmpty(service.MainImage) && !service.IconVisibility)
                         {
-                            <figure class="before-border">
+                            <figure class="">
                                 <img src="@service.MainImage" class="img-fluid" alt="">
                             </figure>
                         }
@@ -75,15 +76,13 @@
 
                     </div>
                 </div>
+                    </div>
+                </div>
 
                 i++;
-                @if (i <= Model.Count)
-                {
-                    <hr class="dashed-line animate  d-block delay-2ms " data-animation="fadeInUp"/>
-                }
+               
             }
         </if>
-    </div>
 
 
 </section>

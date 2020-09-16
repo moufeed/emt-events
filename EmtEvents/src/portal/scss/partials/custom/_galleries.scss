@@ -1,5 +1,8 @@
 
 .work-item{
+    h6{
+        font-weight: bold;
+    }
     @include media-breakpoint-down(sm){
        text-align: center;
     }
@@ -10,6 +13,7 @@
     }
     .small-text{
         color: $colorMain;
+        font-size: 14px;
     }
     .btn-link-more{
         color: $colorMain;

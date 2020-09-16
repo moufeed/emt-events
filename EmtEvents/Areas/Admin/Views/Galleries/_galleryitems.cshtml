@@ -14,16 +14,20 @@
             </div>
             <div class="title_right">
 
-                <button data-url="@Url.AdminUrl("PublishGaleryItemsAsync", "Galleries" , new { gid = Model.Id})"
-                        class="publish__all btn btn-success"
-                        data-confirm-title="@Localizer["Publish"]"
-                        data-confirm-text="@Localizer["publish_all_images"]"
-                        data-confrim-yes="@Localizer["Yes"]"
-                        data-confrim-cancel="@Localizer["cancel"]"
-                        data-msg-published="@Localizer["published_successfully"]"
-                        data-txt-unpublish="@Localizer["unpublish"]">
-                    @Localizer["publish_all"]
-                </button>
+                @if (Model.Items.Count > 0)
+                {
+                    <button data-url="@Url.AdminUrl("PublishGaleryItemsAsync", "Galleries" , new { gid = Model.Id})"
+                            class="publish__all btn btn-success"
+                            data-confirm-title="@Localizer["Publish"]"
+                            data-confirm-text="@Localizer["publish_all_images"]"
+                            data-confrim-yes="@Localizer["Yes"]"
+                            data-confrim-cancel="@Localizer["cancel"]"
+                            data-msg-published="@Localizer["published_successfully"]"
+                            data-txt-unpublish="@Localizer["unpublish"]">
+                        @Localizer["publish_all"]
+                    </button>
+                }
+
 
 
                 <a href="@Url.AdminUrl("CreateGaleryItemAsync","Galleries" ,new { gid = Model.Id})"

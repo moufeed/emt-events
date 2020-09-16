@@ -26,5 +26,7 @@ namespace EmtEvents.Settings.Configurations.AppSettings.Constants
 
         public const bool RequestsModule = false;
 
+        public const bool Testimonials = true;
+
     }
 }

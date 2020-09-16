@@ -173,6 +173,27 @@
                     </ul>
                 </li>
             </if>
+
+            <if include-if="@AdminModules.Testimonials">
+                <li class='@((activeController == "Sliders")  ?  "active" :""  )'>
+                    <a>
+                        <i class="fa fa-comments"></i> @Localizer["testimonials"] <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                        <li class="@( activeController == " Testimonials" && activeAction=="Index" ? "current-page" :"" )">
+                            <a href="@Url.AdminUrl("index","Testimonials")">
+                                <i class="fa fa-circle"></i>@Localizer["view_all"]
+
+                            </a>
+                        </li>
+                        <li class="@( activeController == " Testimonials" && activeAction=="Create" ? "current-page" :"" )">
+                            <a href="@Url.AdminUrl("Create","Testimonials")"><i class="fa fa-plus"></i>@Localizer["new_testimonial"]</a>
+                        </li>
+                    </ul>
+                </li>
+            </if>
+
+
             <if include-if="@AdminModules.RequestsModule">
 
                 <li class='@((activeController == "Request")  ?  "active" :""  )'>

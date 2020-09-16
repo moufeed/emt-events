@@ -13,7 +13,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: if-ltr("rw-bold","tl-bold"), Roboto, Arial, "Droid Sans", sans-serif;
+    font-family: if-ltr("dosis-bold","tl-bold"), Roboto, Arial, "Droid Sans", sans-serif;  
 }
 
 a, tr {
@@ -467,24 +467,35 @@ a:focus {
     padding: 5px;
 } 
 
-
- 
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  
- 
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
+.tabel-img-circle{
+    margin: 5px 0;  
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+   // box-shadow: 0px 1px 15px 1px rgba(69,65,78,0.3);
+    transition: all .3s;
+    img{
+        width: auto;
+        height: 100%;
+    }
    
- 
-  ::-webkit-scrollbar-thumb {
-    background: #888;  
-  }
-  
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+}
+
+@media screen and (min-width: 992px){
+    .modal-lg { 
+        width: 950px;
+    }
+}
+
+.tahoma{
+    font-family: tahoma;
+}
+.btn-whatsapp {
+    &:not(.disabled){
+        color: #1ebea5;
+    }
+}

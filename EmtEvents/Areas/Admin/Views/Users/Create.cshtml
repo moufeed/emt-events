@@ -57,7 +57,11 @@
 
                         <div class="col-sm-8 col-xs-12 col-md-9">
                             @*<div class="form-group clearfix ">
-                                @Html.Label("Name", "Name :", new { @class = "control-label col-md-3 col-sm-4 col-xs-12 " })
+                                 
+                                <label for="Name" class="control-label col-md-3 col-sm-4 col-xs-12">
+                                    Name :
+                                    <i class="fa fa-asterisk c-red fz-10 "></i>
+                                </label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control ignore", required = "required" })
                                     @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger  " })
@@ -65,7 +69,9 @@
                             </div>*@
                             <div class="form-group clearfix">
 
-                                <label asp-for="UserName" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_username"]</label>
+                                <label asp-for="UserName" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_username"]
+                                    <i class="fa fa-asterisk c-red fz-10 "></i>
+                                </label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", required = "required", id = "ut-username" })
                                     @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger  " })
@@ -82,7 +88,9 @@
 
                             <div class="form-group clearfix">
 
-                                <label asp-for="Password" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_password"]</label>
+                                <label asp-for="Password" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_password"]
+                                    <i class="fa fa-asterisk c-red fz-10 "></i>
+                                </label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     @Html.Password("Password", null, new { @class = "form-control", required = "required", id = "ut-password" })
                                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger  " })
@@ -92,7 +100,9 @@
 
                             <div class="form-group clearfix">
 
-                                <label asp-for="ConfirmPasswoord" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_confirmpassword"]</label>
+                                <label asp-for="ConfirmPasswoord" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_confirmpassword"]
+                                    <i class="fa fa-asterisk c-red fz-10 "></i>
+                                </label>
 
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     @Html.Password("ConfirmPasswoord", null, new { @class = "form-control", required = "required", id = "ut-confirmpassword" })
@@ -103,7 +113,9 @@
 
                             <div class="form-group clearfix">
 
-                                <label asp-for="PhoneNumber" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_phone"]</label>
+                                <label asp-for="PhoneNumber" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_phone"]
+                                    <i class="fa fa-asterisk c-red fz-10 "></i>
+                                </label>
 
                                 <div class="col-md-7 col-sm-8 col-xs-12">
                                     @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @type = "tel", required = "required", id = "ut-phonenumber" })
@@ -127,20 +139,20 @@
                             </div>*@
                             <div class="form-group clearfix">
 
-                                <label asp-for="Roles" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_role"]</label>
+                                <label asp-for="Roles" class="control-label col-md-3 col-sm-4 col-xs-12 ">@Localizer["f_role"]<i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
-                                    @{
-                                        var bagRoles = (IEnumerable<RoleModel>)ViewBag.Roles;
-                                        var roles = bagRoles.Select(r => new SelectListItem(r.Name, r.Name, (Model?.Roles != null) ? Model.Roles.Any(u => u == r.Name) : false)).ToList();
-                                    }
+                                     
+                                    <select asp-items="ViewBag.Roles" asp-for="Roles"  class = "form-control select_picker" id = "ut-role" required>
+                                        
+                                    </select>
 
-                                    @Html.ListBox("Roles", roles, htmlAttributes: new { @class = "form-control select_picker", required = "required", id = "ut-role" })
+                                   
                                 <label id="ut-role-error" class="invalid_field" for="ut-role"></label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3 col-sm-offset-4 col-sm-6 col-xs-12 ">
-                                    <input type="submit" class="btn btn-success p-x-5 ut-create_btn" value="@Localizer["create"]">
+                                    <input type="submit" class="btn btn-success p-x-5 ut-create_btn" value="@Localizer["Create"]">
                                 </div>
                             </div>
                         </div>

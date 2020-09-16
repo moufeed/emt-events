@@ -1,0 +1,83 @@
+﻿@model SectionContainerDto
+@{
+
+    if (Model.SectionInfo != null)
+    {
+        ViewData["pageTitle"] = Localizer["p_calendar"];
+        ViewData["Title"] = Model.SectionInfo.Title;
+        ViewData["pageTitle"] = Model.SectionInfo.Title;
+    }
+    else
+    {
+        ViewData["pageTitle"] = "";
+        ViewData["Title"] = Localizer["p_calendar"];
+        ViewData["pageTitle"] = Localizer["p_calendar"];
+    }
+
+    Layout = "_Layout";
+    ViewData["ImageURl"] = @Url.Content(Localizer["PostsImage"].Value);
+
+
+    bool HasSections = Model.Sections != null && Model.Sections.Count > 0;
+    bool HasPosts = Model.Posts != null && Model.Posts.Count > 0;
+
+}
+@await Html.PartialAsync("~/Areas/Portal/Views/Shared/partials/_PageHeader.cshtml", @ViewData)
+
+
+<section class="latest-posts-section pt-5">
+    <div class="container">
+        <div class="row ">
+            <header class="col-12 text-center my-5">
+                <p class="lead">
+                    @Localizer["events_message"]
+                </p>
+            </header>
+
+            <if include-if="HasPosts">
+                <div class="@(HasSections ? "col-md-12 col-lg-9" :"col-12" ) ">
+
+                    <if include-if="HasSections">
+                        @foreach (PostDto post in Model.Posts)
+                        {
+                            <partial name="_post_Item.cshtml" model="post" />
+                        }
+                    </if>
+
+                    <if exclude-if="HasSections">
+                        <div class="row">
+                            @foreach (PostDto post in Model.Posts)
+                            {
+                                <div class="col-xl-6">
+                                    <partial name="_post_Item.cshtml" model="post" />
+                                </div>
+                            }
+                        </div>
+                    </if>
+
+                    <partial name="_pagination" model="Model" />
+                </div>
+            </if>
+
+            <if include-if="HasSections">
+                <div class="d-none d-lg-inline   col-lg-3 ">
+
+                    <div class="sections-list widget">
+                        <sections-list sections="Model.Sections"
+                                       root-id="Model.SectionInfo?.Id"
+                                       action-name="s"
+                                       controller-name="Posts"></sections-list>
+                    </div>
+
+                </div>
+            </if>
+
+
+
+
+        </div>
+    </div>
+
+    <div class="divider-70 d-none d-xl-block"></div>
+</section>
+

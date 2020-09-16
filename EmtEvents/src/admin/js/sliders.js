@@ -23,7 +23,10 @@ $(document).ready(() => {
                                 $(target).remove();
                             } else {
                                 var errors = data.errors;
-                                $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");
+                                if (errors.length > 0) {
+                                    txt = MakeErrorsMsg(errors);
+                                    $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                                }
                             }
                         }).fail(function (jqXHR, Status) {
                             $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
@@ -35,53 +38,7 @@ $(document).ready(() => {
     })
 
 
-
-
-    $(document).on("click", ".toggle__publish", function (event) {
-        event.preventDefault();
-        var $this = $(this),
-            dataurl = $this.data('url'),
-            type = $this.data('type');
-
-        $this.find('.fa').removeClass().addClass("fa fa-spinner fa-pulse");
-
-
-        $.ajax({
-            url: dataurl,
-            type: 'GET',
-            dataType: "json",
-            data: {}
-        })
-            .done(function (data) {
-
-                if (data.success) {
-                    if (type == 'slider')
-                        togglePublishBtn($this, true)
-                    else {
-                        toggleEye($this, true);
-                    }
-
-                } else {
-                    var errors = data.errors;
-                    $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");
-                    if (type == 'slider')
-                        togglePublishBtn($this, false);
-                    else {
-                        toggleEye($this, false);
-                    }
-
-
-                }
-            })
-            .fail(function (jqXHR, Status) {
-                $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
-                if (type == 'slider')
-                    togglePublishBtn($this, false);
-                else
-                    toggleEye($this, false);
-            });
-    })
-
+ 
 
 
 
@@ -90,6 +47,7 @@ $(document).ready(() => {
 $(document).on("click", ".toggle_publish_slider_item", function (event) {
     event.preventDefault();
     var $this = $(this),
+        className =$this.find('.fa').attr("class")
         dataurl = $this.data('url'),
         unpublish = $this.data('unpublish') || "unpublish",
         publish = $this.data('publish') || "publish";
@@ -120,11 +78,17 @@ $(document).on("click", ".toggle_publish_slider_item", function (event) {
 
             } else {
                 var errors = data.errors;
-                $notification.error("<strong>"+errors[0].key+"</strong>", "<span>"+errors[0].value[0]+"</span>", 2000, "fa fa-exclamation-circle");
+                            if (errors.length > 0) {
+                                txt = MakeErrorsMsg(errors);
+                                $notification.error("", txt , 3500, "fa fa-exclamation-circle");
+                            }
+                            $this.find('.fa').removeClass().addClass(className);
+                            
+
             }
         })
         .fail(function (jqXHR, Status) {
             $notification.error(errorTitle, jqXHR.statusText, 2000, "fa fa-exclamation-circle");
         });
 })
- 
+  

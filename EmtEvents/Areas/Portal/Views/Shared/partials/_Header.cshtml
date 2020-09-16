@@ -2,22 +2,22 @@
     string _lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
     var controller = ViewContext.RouteData.Values["Controller"].ToString();
     var action = ViewContext.RouteData.Values["Action"].ToString();
-    
 
 
 
-    bool isHomePage = controller.Equals("Home", StringComparison.OrdinalIgnoreCase) 
+
+    bool isHomePage = controller.Equals("Home", StringComparison.OrdinalIgnoreCase)
                         && action.Equals("index", StringComparison.OrdinalIgnoreCase);
 }
 
-  
+
 @if (isHomePage)
 {
     <div class="header_absolute s-pb-30">
         <header class="page_header ds">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-around">
-                    
+
 
                     <div class="col-xl-2 col-lg-3  col-md-5 col-11">
                         <span class="togglemenu d-lg-none">
@@ -31,7 +31,7 @@
                     <div class="col-xl-8 col-lg-6 col-1 text-sm-center">
                         <navbar></navbar>
                     </div>
-                    <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right col-md-3">
+                    <div class="col-xl-2 col-lg-3 text-lg-left text-xl-right col-md-4 dn">
                         <div class="header_phone">
 
                             @foreach (var culture in CultureConstants.CulturesList)
@@ -42,13 +42,35 @@
                                     <a href="@Url.Action("index","Home", new { culture = culture.Lang })" class="btn btn_lang"> @culture.Name </a>
                                 }
                             }
-
+                            <button class="searchbtn">
+									<i class="fa fa-search"></i>
+								</button>
                         </div>
+
                     </div>
 
                 </div>
             </div>
-            
+            <div class="search-line">
+                <button class="close-search">
+                        <i class="fa fa-times"></i>
+                </button>
+
+                  <script>
+                                            (function() {
+                                            var cx = '009824878902413152929:lf_7vts4z_m';
+                                            var gcse = document.createElement('script');
+                                            gcse.type = 'text/javascript';
+                                            gcse.async = true;
+                                            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                            var s = document.getElementsByTagName('script')[0];
+                                            s.parentNode.insertBefore(gcse, s);
+                                            })();
+                                            </script>
+                                            <gcse:search></gcse:search>
+
+
+            </div>
         </header>
     </div>
     <span class="toggle_menu_side header-slide">
@@ -88,22 +110,6 @@ else
 
             </div>
         </div>
-       
+
     </header>
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

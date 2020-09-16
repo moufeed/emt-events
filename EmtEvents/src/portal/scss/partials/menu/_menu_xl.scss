@@ -104,12 +104,12 @@
 
   //.nav is added to override .nav-narrow
   .sf-menu.nav > li:first-child > a {
-    margin-left: 0;
+    margin-#{$left}: 0;
   }
   .sf-menu.nav > li:last-child > a {
-    margin-right: 0;
-  }
-
+    margin-#{$right}: 0;
+  } 
+ 
   .sf-menu > li > a {
     //uncomment following if you need border on active and hovered item
     line-height: 14px;

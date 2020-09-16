@@ -1,0 +1,34 @@
+﻿@model Service
+
+
+
+
+<input type="hidden" name="Seo[Type]" id="SeoType" value="Service" />
+<input type="hidden" name="Seo[data][DatePublished]" value="@Model.PublishedDate" asp-for="PublishedDate" />
+<input type="hidden" name="Seo[data][DateModified]" value="@Model.ModifiedDate" asp-for="ModifiedDate" />
+<input type="hidden" name="Seo[data][Image]" value="@Model.Image" asp-for="Image" />
+<input type="hidden" name="Seo[data][provider][Type]" asp-for="Provider.Type" />
+<input type="hidden" name="Seo[data][provider][logo][Type]" asp-for="Provider.Logo.Type" />
+<input type="hidden" name="Seo[data][provider][logo][url]" asp-for="Provider.Logo.Url" />
+<input type="hidden" name="Seo[data][provider][logo][Width]" asp-for="Provider.Logo.Width" />
+<input type="hidden" name="Seo[data][provider][logo][Height]" asp-for="Provider.Logo.Height" />
+
+
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["service_name"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" name="Seo[data][name]" class="form-control" value="@Model.Name" asp-for="Name" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["service_description"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <textarea name="Seo[data][Description]" rows="3" class="form-control" asp-for="Description"></textarea>
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["service_provider"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" class="form-control" name="Seo[data][provider][name]" value="@Model.Provider.Name" asp-for="Provider.Name" />
+    </div>
+</div>

@@ -30,7 +30,9 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Galleries.Mapper
                 Locked = backend.Locked,
                 ItemsCount = backend.ItemsCount,
                 PublishedDate = backend.PublishedDate,
-                AuthorName = backend.AuthorName
+                AuthorName = backend.AuthorName,
+                Section = backend.Section,
+                CustomDate = backend.CustomDate //backend.
             };
         }
 
@@ -48,7 +50,9 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Galleries.Mapper
                 Tags = item.Tags,
                 Section = item.Section,
                 MetaDescription = item.MetaDescription,
-                AuthorName = item.AuthorName
+                AuthorName = item.AuthorName,
+                CustomDate = item.CustomDate
+
             };
         }
 
@@ -73,7 +77,8 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Galleries.Mapper
                 ModifiedDate = item.ModifiedDate,
                 Locked = item.Locked,
                 PublishedDate = item.PublishedDate,
-                AuthorName = item.AuthorName
+                AuthorName = item.AuthorName,
+                CustomDate = item.CustomDate
             };
         }
 
@@ -93,11 +98,12 @@ namespace EmtEvents.DirectBackendServices.ContentServices.Galleries.Mapper
                 Section = item.Section,
                 MetaDescription = item.MetaDescription,
                 SEOMarkup = item.SEOMarkup,
-                AuthorName = item.AuthorName
+                AuthorName = item.AuthorName,
+                CustomDate = item.CustomDate
+
             };
         }
         #endregion
-
 
         #region gallery item 
 

@@ -1,132 +1,196 @@
 ﻿ 
+function blocking(status,$this,unblock_url,block_url,userName){
+    $.ajax({
+        url: (status) ? unblock_url : block_url,
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: "json",
+        cache: false,
+        data: JSON.stringify({
+            username: userName
+        })
+    })
 
+    .done(function (data) {
+        if (data.success) {
+            $notification.success("success", "", 2000, "fa fa-check");
+            if (status) {
 
-$(document).ready(function () {
-    window.UsersTable = $('#UsersTable').DataTable({
-        "serverSide": true,
-        "lengthChange": false,
-        drawCallback : function(settings, json) {
-                $('.btn-viewgit').tooltip();
-        },
-        responsive: true,
-        "language": {
-            "emptyTable": "<div class='empty_table'> <i class='fa fa fa-exclamation-circle'></i><p>No data available in table</p></div>",
-            "processing": "Loading..."
-        },
-        "searching": false,
-        //"processing": true,
-        "orderMulti": false,
-        "ajax": {
-            "url": "/Admin/Users/GetUsersAsync",
-            "type": "POST",
-            "datatype": "json",
-            "data": function (data) { 
-                data.usermodel = {
-                    username: $('#Username').val(),
-                    rolename: $('#UserRole').val(),
-                    PageNumber: (data.start == 0) ? 1 : data.start / data.length,
-                    PageSize: data.length 
-                }
+                $('#UserStatus').removeClass('c-red')
+                    .addClass('c-green')
+                    .html(`<i class="fa fa-check"></i> Active `);
+
+                $this.data('status', !status)
+                    .removeClass('unblock')
+                    .addClass('block')
+                    .text('block User');
+            } else {
+                $('#UserStatus').removeClass('c-green')
+                    .addClass('c-red')
+                    .html(`<i class="fa fa-times-circle-o c-red"></i>  Blocked`);
+
+                $this.data('status', !status)
+                    .removeClass('block')
+                    .addClass('unblock')
+                    .text('Unblock User');
             }
-        },
-        /* "order": [
-            [1, 'asc']
-        ], */
-        "ordering": false,
-        "columnDefs": [ 
-            {
-                sortable: false,
-                orderable: false,
-                targets : [0,1,2,3,4,5,6],
-            },
-            {
-                
-                targets : [0,4,5,6],
-                className :  "text-center"
+        } else {
+            if (status) {
+                var text = "";
+                $.each(data.messges, function (i, item) {
+
+                    text += item + "\s\n";
+                })
+                $notification.error(window.localization.error , text, 2000, "fa fa-exclamation-circle")
+            } else {
+                var text = "\s\n";
+                $.each(data.messages, function (i, item) {
+
+                    text += item + "\s\n";
+
+                })
+                $notification.error(window.localization.error , text, 2000, "fa fa-exclamation-circle")
             }
-
-        ],
-        "columns": [
-            {
-                data: null,
-                width: "50px",
-            },
-            {
-                "data": "userName"
-            },
-            {
-                "data": "mobileNumber"
-            },
-            {
-                "data": "email"
-            },
-            {
-                data: "isBlocked",
-                width: "75",
-                render: function (data, type, row, meta) {
-                    if (row.isBlocked) {
-                        return '<i class="fa fa-times-circle-o c-red"></i>';
-                    }
-                    return '<i class="fa fa-check c-green"></i>';
-                },
-            },
-            {
-                data: "MobileNumberConfirmed",
-                width: "75",
-                render: function (data, type, row, meta) {
-                    if (row.mobileNumberConfirmed) {
-                        return '<i class="fa fa-check c-green"></i>';
-                    }
-                    return '<i class="fa fa-times c-red"></i>';
-                }
-            },
-            {
-                width: "75",
-                render: function (data, type, row, meta) {
-                    return '<a data-toggle="tooltip"' +
-                        'data-placement="top"' +
-                        'title="Details"' +
-                        'href="/Users/Account/' + row.userName + '"' +
-                        'class="btn btn-view"><i class="fa fa-eye "></i></a>';
-                    /*'<a  href="/Users/Edit/' + row.userName +'" data-toggle="tooltip" data-placement="top" title="Edit"' +
-                    'class="btn btn-edit"><i class="fa fa-edit "></i></a>' +
-                    '<a data-toggle="tooltip"' +
-                    'data-placement="top"' +
-                    'data-type="user"' +
-                    'data-id="' + row.id + '"' +
-                    'data-url="/Users/Delete/' + row.userName + '"' +
-                    'title="Remove"' +
-                    'class="btn btn-remove" onClick="RemoveItem(UsersTable, this)"><i class="fa fa-times"></i></a>'*/
-                }
-
-            }
-
-        ]
+        }
+    })
+    .fail(function (jqXHR, Status) {
+        $notification.error(window.localization.error , jqXHR.statusText, 2000, "fa fa-exclamation-circle")
     });
+}
 
-    UsersTable.on('draw.dt', function () {
-        var PageInfo = $('#UsersTable').DataTable().page.info();
-        UsersTable.column(0, {
-            search: 'applied',
-            order: 'applied'
-        }).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1 + PageInfo.start;
-        });
-    }).draw();
+ 
+$('.toggleblock').on('click', function () {
+    var $this = $(this);
+    var userId = $(this).data('id');
+    var userName = $(this).data('username');
+    var block_url = $(this).data('block-url');
+    var unblock_url = $(this).data('unblock-url');
+    var status = $(this).data('status');
+    var confirm_title = $(this).data("confirm-title");
+    var confirm_text = $(this).data("confirm-text");
+    var confirm_yes = $(this).data("confirm-yes");
 
-    
-    $("#searchBtn").on('click', function () {
-        UsersTable.clear().draw();
-    })
-    
-    $("#resetBtn").on('click', function () {
-        $('#Username').val("");
-        $('#UserRole').prop('selectedIndex', 0);
-        UsersTable.clear().draw();
-    })
-    
-   
+ 
+
+    if(!status){
+        window.swalWithBootstrapButtons({
+            title:confirm_title || 'Are you sure?',
+            text: confirm_text || "Blocking this user will prevent them from logging in ",
+            type: 'error',
+            showCancelButton: true,
+            confirmButtonText: confirm_yes || window.localization.confirm_yes ,
+            focusConfirm :false
+        }).then((result) => {
+            if(result.value){
+                blocking(status,$this,unblock_url,block_url,userName)
+            }
+        } );
+    }else{
+        blocking(status,$this,unblock_url,block_url,userName)
+    }
 })
 
 
 
+
+
+$('.toggle_status').on("click",function(){
+    let $this = $(this);
+    let link = $this.data("url");
+    let username = $this.data("user");
+    let classList = $this[0].classList;
+
+    if(classList.contains("block-user")){
+        $Confirm({
+            text: window.localization.block_user_from_logging_in,
+            type: 'warning',
+        }, result => {
+            if(result.value) {
+                let response = async_fetch(link, JSON.stringify({
+                    username: username
+                }));
+
+               response.then(response => {
+                   if (!response.success && response.errors.length > 0) {
+                        txt = MakeErrorsMsg(response.errors);
+                        $notification.error("", txt, 3500, "fa fa-exclamation-circle");
+                   }
+
+                   if (response.success) {
+                        $this.addClass("hidden");
+                        $this.parent().find(".unblock-user").removeClass("hidden")
+                   }
+
+               })
+            }
+        })
+    }
+    else if(classList.contains("unblock-user")){
+             let response = async_fetch(link, JSON.stringify({
+                 username: username
+             }));
+
+             response.then(response => {
+                 if (!response.success && response.errors.length > 0) {
+                     txt = MakeErrorsMsg(response.errors);
+                     $notification.error("", txt, 3500, "fa fa-exclamation-circle");
+                 }
+
+                 if (response.success) {
+                     $this.addClass("hidden");
+                     $this.parent().find(".block-user").removeClass("hidden")
+                 }
+             })
+    }
+
+})
+
+let alert = `
+<div class="alert alert-danger alert-dismissible" style="border-radius:0" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<span class="content">@@</span>
+</div>
+`;
+//-----------------------------------------------------
+
+$('#EmailModal').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget)  
+    let recipient = button.data('email')
+    let userName = button.data('name')
+     
+    let modal = $(this)
+    modal.find('.mailto').text(recipient);
+    modal.find('#Recipient').val(recipient);
+    modal.find('#userName').val(userName);
+ 
+})
+
+
+$('#EmailModal').on('hidden.bs.modal', () => $('#NewEmail').trigger("reset") );
+ 
+ $("#NewEmail").validate({
+      errorClass: "invalid_field",
+      validClass: "valid_field",
+     submitHandler: (form)=>{
+        let request = async_fetch($(form).attr("action"), $(form).serialize(), {
+                "Content-Type": 'application/x-www-form-urlencoded' ,
+            })
+            request.then(response=> {
+                 if (!response.success && response.errors.length > 0) {
+                     txt = MakeErrorsMsg(response.errors);
+                        if ($("#NewEmail").find(".alert").length > 0) {
+                            $("#NewEmail").find(".alert .content").html(txt)
+                        }else{
+                            $(alert.replace(/@@/g, txt)).insertBefore('.modal-body')
+                        } 
+                 }
+                 if (response.success) {
+                    $('#NewEmail').trigger("reset");
+                    $('#EmailModal').modal('hide');
+                    $notification.success("", window.localization.email_sent, 2000, "fa fa-check");
+                 }
+
+            });
+         return false;
+     }
+ });

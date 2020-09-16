@@ -19,6 +19,7 @@ using TamTechBackendSDK.ContentService.Services.Services;
 using TamTechBackendSDK.ContentService.Services.Shared;
 using TamTechBackendSDK.ContentService.Services.Sliders;
 using TamTechBackendSDK.ContentService.Services.Statuses;
+using TamTechBackendSDK.ContentService.Services.Testimonials;
 using TamTechBackendSDK.ContentService.Services.Utilities.Content;
 
 namespace EmtEvents.AppStartup.DirectBackendServices.ContentService.ApplicationServices
@@ -43,6 +44,7 @@ namespace EmtEvents.AppStartup.DirectBackendServices.ContentService.ApplicationS
             services.AddTransient<ISliderService, SliderService>();
             services.AddTransient<GalleryServiceManager, GalleryServiceManager>();
             services.AddTransient<IGalleryService, GalleryService>();
+            services.AddTransient<ITestimonialService, TestimonialService>();
 
             services.AddTransient<ISectionService, SectionService>();
             services.AddTransient<IPostService, PostService>();
@@ -50,6 +52,7 @@ namespace EmtEvents.AppStartup.DirectBackendServices.ContentService.ApplicationS
             services.AddTransient<IRequestService, RequestService>();
             services.AddTransient<ICityService, CityService>();
             services.AddTransient<IStatusService, StatusService>();
+
 
 
 

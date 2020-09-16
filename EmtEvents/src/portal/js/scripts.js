@@ -996,7 +996,14 @@ if($('.page-header')){
 	})
 	
 }
+
+$('.searchbtn').click(function(){
+	$('.search-line').addClass("opened");
+})
+
+$('.close-search').click(function(){
+	$('.search-line').removeClass("opened");
+})
+
 //end of IIFE function
 })(jQuery);
-
-

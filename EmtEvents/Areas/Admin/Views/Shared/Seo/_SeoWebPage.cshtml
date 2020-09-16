@@ -1,0 +1,21 @@
+﻿
+@model WebPage
+
+ 
+<input type="hidden" name="Seo[Type]" id="SeoType" value="WebPage" />
+<input type="hidden" name="Seo[data][DatePublished]" value="@Model.PublishedDate" asp-for="PublishedDate" />
+<input type="hidden" name="Seo[data][DateModified]" value="@Model.ModifiedDate" asp-for="ModifiedDate" />
+<input type="hidden" name="Seo[data][Image]" value="@Model.Image"  asp-for="Image"/>
+ 
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["page_name"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <input type="text" name="Seo[data][name]" class="form-control" value="@Model.Name"  asp-for="Name"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="" class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["page_description"]</label>
+    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+        <textarea name="Seo[data][Description]" rows="3" class="form-control" asp-for="Description"></textarea>
+    </div>
+</div>

@@ -88,9 +88,9 @@ function initPhotoSwipe() {
 						//for html - building iframe manually
 						//autoplay only if 1 iframe in gallery
 						var autoplay = ( $links.length > 1 ) ? '' : '&autoplay=1';
-						item.html = '<div class="embed-responsive embed-responsive-16by9">';
+						item.html = '<div class="embed-responsive embed-responsive-16by9">'; 
 						// item.html += '<iframe class="embed-responsive-item" src="'+ $(this).data('iframe') + '?rel=0&autoplay=1'+ '"></iframe>';
-						item.html += '<iframe class="embed-responsive-item" src="' + $(this).data('iframe') + '?rel=0' + autoplay + '&enablejsapi=1&api=1"></iframe>';
+						item.html += '<iframe class="embed-responsive-item" src="' + $(this).data('iframe') + '"></iframe>';
 						item.html += '</div>';
 					} else {
 						item.src = $this.attr('href');

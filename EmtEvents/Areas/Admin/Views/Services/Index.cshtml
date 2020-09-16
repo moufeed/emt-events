@@ -32,9 +32,7 @@
 
 
         <div class="x_panel p-x-0">
-
-
-
+             
             <div class="x_content">
                 <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
                 <div class="table-responsive">
@@ -54,28 +52,29 @@
 
                                 <tr id="tr-@item.Id">
                                     <td class="text-center">
-                                        @if (!string.IsNullOrEmpty(item.MainImage))
-                                        {
 
-                                            <img src="@item.MainImage" alt="" width="60" />
-                                        }
-                                        else
-                                        {
-                                            <img src="~/Admin/img/noimage.jpg" alt="" width="75" />
-                                        }
+                                        <div class="tabel-img-circle">
+                                            @if (!string.IsNullOrEmpty(item.MainImage))
+                                            {
+
+                                                <img src="@item.MainImage" alt="" width="60" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Admin/img/noimage.jpg" alt="" width="75" />
+                                            }
+                                        </div>
+                                        
                                     </td>
                                     <td style="min-width:150px">
-                                        @if (item.Published)
-                                        {
 
-                                            <a asp-area="Portal" asp-action="v" asp-controller="services" asp-route-slug="@item.Slug" target="_blank" class="underline ser-title">
-                                                @item.Title
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a target="_blank" data-href="@Url.AdminUrl("v", "services", new { area = "portal", slug = item.Slug })" class="ser-title"> @item.Title</a>
-                                        }
+                                            <a data-toggle="tooltip"
+                                               data-placement="top"
+                                               title="@Localizer["t_edit"]"
+                                               href="@Url.AdminUrl("Edit", "services", new { id = item.Id })"
+                                               class="underline">  @item.Title </a>
+
+                                      
 
                                     </td>
 
@@ -112,33 +111,21 @@
                                         }
                                         else
                                         {
-                                            @if (item.Published)
-                                            {
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   data-status="true"
-                                                   data-url="@Url.AdminUrl("PublishAsync", "services", new { id = item.Id })"
-                                                   title="@Localizer["t_unpublish"]"
-                                                   data-unpublished="@Localizer["t_unpublished"]"
-                                                   data-published="@Localizer["t_published"]"
-                                                   class="btn btn-link-pup published ut-published toggle_publish">
-                                                    <i class="fa fa-eye c-green"></i>
-                                                    <small>@Localizer["t_published"]</small>
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   data-url="@Url.AdminUrl("PublishAsync", "services", new { id = item.Id })"
-                                                   title="@Localizer["t_publish"]"
-                                                   data-unpublished="@Localizer["t_unpublished"]"
-                                                   data-published="@Localizer["t_published"]"
-                                                   class="btn btn-link-pup unpublished ut-unpublished toggle_publish">
-                                                    <i class="fa fa-eye-slash c-red"></i>
-                                                    <small>@Localizer["t_unpublished"]</small>
-                                                </a>
-                                            }
+                                             <span 
+                                                data-toggle="tooltip" 
+                                                data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                                data-status="true"
+                                                title="@Localizer["t_unpublish"] / @Localizer["t_publish"]">
+                                                
+                                                <input 
+                                                class="tgl tgl-flat toggle__publish"
+                                                data-url="@Url.AdminUrl("PublishAsync","services" , new { id = item.Id})"
+                                                id="@item.Id"  
+                                                type="checkbox"
+                                                @((item.Published) ? "<text> checked </text>" : "" )/>
+                                                <label class="tgl-btn" for="@item.Id" ></label>
+                                            </span>
+                                           
                                         }
                                     </td>
                                     <td>
@@ -156,7 +143,7 @@
                                                class="btn btn-edit btn-round ut-edit_btn"><i class="fa fa-edit "></i></a>
                                             <if include-if="item.Locked">
                                                 <span data-toggle="tooltip"
-                                                       data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                                      data-placement="@(activeLang == "ar" ? "right" : "left")"
                                                       class="btn-locked btn-round"
                                                       title="@Localizer["locked_by_system"]"><i class="fa fa-lock"></i></span>
                                             </if>
@@ -168,6 +155,20 @@
                                                    title="@Localizer["t_remove"]"
                                                    class="btn btn-remove btn-round delete-service ut-service_remove_btn"><i class="fa fa-trash-o "></i></a>
                                             </if>
+
+                                        <if include-if="item.Published">
+                                             <a asp-area="Portal" 
+                                                asp-action="v" 
+                                                asp-controller="services" 
+                                                asp-route-slug="@item.Slug"
+                                                data-placement="@(activeLang == "ar" ? "right" : "left")"
+                                                title="@Localizer["View_in_website"]"
+                                                data-toggle="tooltip"
+                                                  class="btn btn-view  btn-round" target="_blank">
+                                            <i class="fa fa-external-link"></i>
+                                        </a>
+                                        </if>
+                                         
                                         </div>
 
                                     </td>

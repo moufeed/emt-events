@@ -61,6 +61,8 @@
                                             <a data-url="@Url.AdminUrl("PublishItem","sliders" , new {sliderId = Model.Id , id = item.Id })"
                                                title="@Localizer["t_publish"]"
                                                data-type="item"
+                                                data-publish="@Localizer["Publish"]"
+                                               data-unpublish="@Localizer["unpublish"]"
                                                class="btn btn-default unpublished toggle_publish_slider_item ut-unpublished">
                                                 <span class="fa fa-eye"></span> 
                                                 <span class="text">@Localizer["t_publish"]</span>
